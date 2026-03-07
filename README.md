@@ -27,7 +27,7 @@ This repository is for building a privacy-conscious legal workflow assistant tha
 
 ## Current status
 
-**In-progress** The public preview is intentionally limited while the private working repository remains the source of truth
+**In-progress** - the public preview is intentionally limited while the private working repository remains the source of truth
 
 ## Public preview boundary
 
