@@ -4,6 +4,12 @@
 
 <p align="left"><a href="https://drasticstatic.github.io/divorce-custody-assistant-public-preview/"><img src="https://img.shields.io/badge/%F0%9F%8C%90%20Public%20Preview-Configured-brightgreen" alt="Public Preview"></a> <a href="https://github.com/open-condo-software/gitexporter"><img src="https://img.shields.io/badge/Synced%20via-GitExporter-blue" alt="Synced via GitExporter"></a> <a href="https://code.claude.com/docs/en/overview"><img src="https://img.shields.io/badge/Claude%20Code%20CLI-Anthropic-1f2937" alt="Claude Code CLI"></a> <a href="https://www.augmentcode.com/"><img src="https://img.shields.io/badge/Augment-Code-2563eb" alt="Augment"></a></p>
 
+---
+
+**🌐 [Explore the Public Preview →](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/)**
+
+---
+
 > 🔒 Public mirror notice: This repository is partially mirrored as a public preview of the private source via an automated GitExporter pipeline. The public version includes this README and other files made available.
 
 > Note for visitors: The working repository stays private, and the public preview intentionally excludes any proprietary content, internal specs, agent coordination files, startup instructions, workflow config, and any runtime-loaded case material.
