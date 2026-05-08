@@ -6,7 +6,7 @@
 
 ---
 
-**🌐 [Explore the Public Preview →](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/)**
+**🌐 [Explore the Public Preview →](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/)** &nbsp;&nbsp;<big>·&nbsp;&amp;&nbsp;·</big>&nbsp;&nbsp; [👀 View Sample Marp Deck 📰](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/divorce-palette-sample.marp.html)
 
 ---
 
