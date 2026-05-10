@@ -2,7 +2,7 @@
 
 > Privacy-first, AI-assisted case management for pro se litigation support
 
-<p align="left"><a href="https://drasticstatic.github.io/divorce-custody-assistant-public-preview/"><img src="https://img.shields.io/badge/%F0%9F%8C%90%20Public%20Preview-Configured-brightgreen" alt="Public Preview"></a> <a href="https://github.com/open-condo-software/gitexporter"><img src="https://img.shields.io/badge/Synced%20via-GitExporter-blue" alt="Synced via GitExporter"></a> <a href="https://code.claude.com/docs/en/overview"><img src="https://img.shields.io/badge/Claude%20Code%20CLI-Anthropic-1f2937" alt="Claude Code CLI"></a> <a href="https://www.augmentcode.com/"><img src="https://img.shields.io/badge/Augment-Code-2563eb" alt="Augment"></a></p>
+<p align="left"><a href="https://drasticstatic.github.io/divorce-custody-assistant-public-preview/"><img src="https://img.shields.io/badge/%F0%9F%8C%90%20Public%20Preview-Configured-brightgreen" alt="Public Preview"></a> <a href="https://github.com/open-condo-software/gitexporter"><img src="https://img.shields.io/badge/Synced%20via-GitExporter-blue" alt="Synced via GitExporter"></a> <a href="https://code.claude.com/docs/en/overview"><img src="https://img.shields.io/badge/Built%20with-Claude%20Code%20CLI-blueviolet" alt="Built with Claude Code CLI"></a> <a href="https://build.nvidia.com/"><img src="https://img.shields.io/badge/Powered%20by-NVIDIA%20NIM-76b900" alt="NVIDIA NIM"></a></p>
 
 ---
 
@@ -38,9 +38,11 @@ The public mirror is automated from the private repo, but private-by-default rul
 
 ## Agent roles
 
-- **Fortuna** — session intelligence and operating context
-- **Kavanah** — coordination and task orchestration
-- **Auggie** — implementation and automation work
+Built and maintained with **Anthropic's Claude** (Claude Code CLI + NVIDIA NIM).
+
+**Alfred** is the primary operator for this workspace — running in both Anthropic (full quality) and NVIDIA NIM (free-tier, for research and housekeeping) modes. Alfred handles infrastructure, git ops, AGENT-SYNC coordination, session pickups, and anything that doesn't require deep case context.
+
+**Fortuna** is called in when tasks require case strategy, document review, financial modeling, negotiation prep, or legal depth. Fortuna uses Anthropic by default for case-sensitive work; NIM is available for non-sensitive drafts and research.
 
 ## Public-safe principle
 
