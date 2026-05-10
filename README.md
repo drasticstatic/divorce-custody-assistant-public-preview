@@ -1,4 +1,4 @@
-# Divorce & Custody Assistant
+# 🔏 Divorce & Custody Assistant ⛓️‍💥
 
 > Privacy-first, AI-assisted case management for pro se litigation support
 
