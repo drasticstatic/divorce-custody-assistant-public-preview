@@ -2,7 +2,7 @@
 
 > Privacy-first, AI-assisted case management for pro se litigation support
 
-<p align="left"><a href="https://drasticstatic.github.io/divorce-custody-assistant-public-preview/"><img src="https://img.shields.io/badge/%F0%9F%8C%90%20Public%20Preview-Configured-brightgreen" alt="Public Preview"></a> <a href="https://github.com/open-condo-software/gitexporter"><img src="https://img.shields.io/badge/Synced%20via-GitExporter-blue" alt="Synced via GitExporter"></a> <a href="https://code.claude.com/docs/en/overview"><img src="https://img.shields.io/badge/Built%20with-Claude%20Code%20CLI-blueviolet" alt="Built with Claude Code CLI"></a> <a href="https://build.nvidia.com/"><img src="https://img.shields.io/badge/Powered%20by-NVIDIA%20NIM-76b900" alt="NVIDIA NIM"></a></p>
+<p align="left"><a href="https://drasticstatic.github.io/divorce-custody-assistant-public-preview/"><img src="https://img.shields.io/badge/%F0%9F%8C%90%20Public%20Preview-Configured-brightgreen" alt="Public Preview"></a> <a href="https://github.com/open-condo-software/gitexporter"><img src="https://img.shields.io/badge/Synced%20via-GitExporter-blue" alt="Synced via GitExporter"></a> <a href="https://code.claude.com/docs/en/overview"><img src="https://img.shields.io/badge/Built%20with-Claude%20Code%20CLI-blueviolet" alt="Built with Claude Code CLI"></a> <a href="https://build.nvidia.com/"><img src="https://img.shields.io/badge/Powered%20by-NVIDIA%20NIM-76b900" alt="NVIDIA NIM"></a> <a href="https://github.com/drasticstatic/divorce-custody-assistant/actions/workflows/sync-public.yml"><img src="https://github.com/drasticstatic/divorce-custody-assistant/actions/workflows/sync-public.yml/badge.svg" alt="Sync"></a></p>
 
 ---
 
