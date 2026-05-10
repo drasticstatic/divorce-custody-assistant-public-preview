@@ -19,9 +19,17 @@ Never include in commit messages: party names, case numbers, specific allegation
 
 ## Step 1 — Check Status and Stage Work
 
+If structural files changed this session, update the knowledge graph first (AST-only, no API cost):
+
+```bash
+graphify update .
+```
+
+Then stage:
+
 ```bash
 git status
-git add specs/ AGENT-SYNC/ PENDING-TASKS.md CLAUDE.md AGENTS.md HANDOFF.md
+git add specs/ AGENT-SYNC/ PENDING-TASKS.md CLAUDE.md AGENTS.md HANDOFF.md graphify-out/
 ```
 
 Never stage: `sessions/`, `logs/`, `child-support/`, `custody/`, `divorce/`, `*alias`, `.env`, credentials, or any runtime case documents.
@@ -52,12 +60,12 @@ Adjust `Co-Authored-By` to the actual agent and model:
 ## Step 3 — Push
 
 ```bash
-git push origin main
+git push origin HEAD:main
 ```
 
 If push fails (remote ahead):
 ```bash
-git pull --rebase origin main && git push origin main
+git pull --rebase origin main && git push origin HEAD:main
 ```
 
 ---

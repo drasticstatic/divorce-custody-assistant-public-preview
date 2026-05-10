@@ -53,6 +53,12 @@ If auth fails: `gwsdc auth login` — use cwilson.cswproductions@gmail.com (divo
 
 ---
 
+## Step 2.5 — Graph Orientation (if graphify installed)
+
+If `graphify-out/GRAPH_REPORT.md` exists, read it before opening any case documents — community structure shows how files relate at a glance without opening each one.
+
+---
+
 ## Step 3 — Read Session Context (in order)
 
 1. `HANDOFF.md` — NIM pickup brief and case status snapshot
