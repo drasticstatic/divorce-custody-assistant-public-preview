@@ -19,11 +19,15 @@ Never include in commit messages: party names, case numbers, specific allegation
 
 ## Step 1 — Check Status and Stage Work
 
-If structural files changed this session, update the knowledge graph first (AST-only, no API cost):
+If structural files changed this session, update the knowledge graph first:
 
 ```bash
 graphify update .
 ```
+
+`graphify update` is AST-only — **no API call, no cost, always safe to run.**
+
+`graphify extract .` (full re-extraction) requires an LLM API key. Only needed if the graph doesn't exist yet or the repo structure has changed significantly. If extraction hits the Gemini free-tier rate limit (429), **stop and ask Christopher** before switching to a paid API key — do not auto-run with a paid key.
 
 Then stage:
 
