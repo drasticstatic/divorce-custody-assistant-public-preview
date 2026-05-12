@@ -49,15 +49,16 @@ Brief structural description — no names, case numbers, or identifying details
 - What changed structurally
 - Why it changed
 
-Co-Authored-By: Alfred · Claude · Sonnet 4.6
+Co-Authored-By: [agent] · Claude · [model] <noreply@anthropic.com>
 EOF
 )"
 ```
 
-Adjust `Co-Authored-By` to the actual agent and model:
-- Alfred-Anthropic: `Alfred · Claude · Sonnet 4.6`
-- Fortuna: `Fortuna · Claude · Sonnet 4.6`
-- Alfred-NIM: `Alfred · Claude · NVIDIA NIM Z-AI GLM-4.7`
+Replace `[agent]` and `[model]` with the active session values:
+- Alfred-Anthropic (Sonnet): `Alfred · Claude · claude-sonnet-4-6 <noreply@anthropic.com>`
+- Alfred-Anthropic (Opus): `Alfred · Claude · claude-opus-4-7 <noreply@anthropic.com>`
+- Fortuna-Anthropic (Sonnet): `Fortuna · Claude · claude-sonnet-4-6 <noreply@anthropic.com>`
+- Alfred-NIM: `Alfred · Claude · NVIDIA NIM Z-AI GLM-4.7 <noreply@anthropic.com>`
 
 ---
 
@@ -121,7 +122,12 @@ Session logs are **never committed** in this repo (privacy). Local only.
 
 ```bash
 git add AGENT-SYNC/
-git commit -m "Update agent sync [date]"
+git commit -m "$(cat <<'EOF'
+Update agent sync [date]
+
+Co-Authored-By: [agent] · Claude · [model] <noreply@anthropic.com>
+EOF
+)"
 git push origin main
 ```
 
