@@ -42,7 +42,11 @@ Built and maintained with **Anthropic's Claude** (Claude Code CLI + NVIDIA NIM).
 
 **Alfred** is the primary operator for this workspace — running in both Anthropic (full quality) and NVIDIA NIM (free-tier, for research and housekeeping) modes. Alfred handles infrastructure, git ops, AGENT-SYNC coordination, session pickups, and anything that doesn't require deep case context.
 
+**🌐 [Who Is Alfred? →](https://drasticstatic.github.io/anthropas-argus-alfred-public-preview/)** &nbsp;&nbsp;<big>·&nbsp;&amp;&nbsp;·</big>&nbsp;&nbsp; [👀 View Sample Marp Deck 📰](https://drasticstatic.github.io/anthropas-argus-alfred-public-preview/alfred-palette-sample.marp.html)
+
 **Fortuna** is called in when tasks require case strategy, document review, financial modeling, negotiation prep, or legal depth. Fortuna uses Anthropic by default for case-sensitive work; NIM is available for non-sensitive drafts and research.
+
+**🌐 [Who Is Fortuna? →](https://drasticstatic.github.io/trading-assistant-public-preview/)** &nbsp;&nbsp;<big>·&nbsp;&amp;&nbsp;·</big>&nbsp;&nbsp; [👀 View Sample Marp Deck 📰](https://drasticstatic.github.io/trading-assistant-public-preview/setup/trading-palette-sample.marp.html)
 
 ## Public-safe principle
 
