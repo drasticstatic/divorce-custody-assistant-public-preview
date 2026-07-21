@@ -1,0 +1,10 @@
+# Python bytecode caches — never commit
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Locally-exported PDF artifacts. Regenerated from the markdown source (or
+# printed from the HTML accordion's @media print styles). The published,
+# interactive surface for the public record is the HTML on GitHub Pages, not a
+# committed PDF.
+*.pdf
