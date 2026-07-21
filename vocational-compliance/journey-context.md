@@ -21,7 +21,8 @@ and the canonical capstones built in sequence:
 
 These repos remain public on the maintainer's GitHub as the verifiable record
 of the schooling. The `code-forked/` local working directory holds curated
-forks carried forward from this phase.
+working copies of upstream open-source projects studied and integrated into
+the trading system (attribution below).
 
 **2. First product + portfolio (May – Dec 2025).** The classroom met practice
 early: the first product — a gratitude-token project (created 2025-05-25) — and
@@ -42,9 +43,29 @@ at scale: the `trading-assistant` quantitative-trading platform (private
 (`drasticstatic.github.io`, 2026-03-11), the multi-repo dev ecosystem, and a
 cluster of market-data and automation MCP integrations stood up together at the
 end of April 2026 (`tradingview-mcp-jackson`, `robinhood-mcp`, `hummingbot-mcp`,
-`hummingbot-api` — several carried in `code-forked/` as curated forks). This is
-the phase the weekly log below documents in attributable, dated detail from
-January 2026 forward.
+`hummingbot-api`). This is the phase the weekly log below documents in
+attributable, dated detail from January 2026 forward.
+
+### Attribution — the `code-forked/` working set (curated upstream copies)
+
+Not every repo in the record is authored from scratch. The `code-forked/`
+directory holds curated working copies of upstream open-source projects that
+were studied, integrated, and in some cases extended for the trading system.
+Public attribution of those upstreams:
+
+| Working copy (`drasticstatic/`) | Upstream | Purpose |
+|---|---|---|
+| `free-claude-code` | [`Alishahryar1/free-claude-code`](https://github.com/Alishahryar1/free-claude-code) | Anthropic-compatible proxy for NVIDIA NIM / DeepSeek / OpenRouter / Ollama (powers the multi-agent dev system) |
+| `hummingbot` | [`hummingbot/hummingbot`](https://github.com/hummingbot/hummingbot) | Open-source crypto market-making / arbitrage bot engine |
+| `hummingbot-mcp` | [`hummingbot/mcp`](https://github.com/hummingbot/mcp) | Model Context Protocol layer for the bot |
+| `hummingbot-api` | [`hummingbot/hummingbot-api`](https://github.com/hummingbot/hummingbot-api) | Python REST/WebSocket client for the Hummingbot API server |
+| `robinhood-mcp` | [`verygoodplugins/robinhood-mcp`](https://github.com/verygoodplugins/robinhood-mcp) | MCP layer for the Robinhood brokerage (equities/options market data) |
+| `tradingview-mcp-jackson` | [`LewisWJackson/tradingview-mcp-jackson`](https://github.com/LewisWJackson/tradingview-mcp-jackson) | MCP layer for the TradingView desktop client (charting / signal flow) |
+
+The maintainer's value-add is the integration, configuration, trading-strategy
+work, and the higher-order multi-agent system these plugs into — not the claim
+of authoring the upstream libraries themselves. The upstream repos are linked
+above so attribution is explicit and verifiable.
 
 > **On dating.** The classroom capstones were migrated to GitHub after the
 > instruction; their repository *creation* dates above post-date the actual

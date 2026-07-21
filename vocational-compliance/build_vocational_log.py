@@ -38,7 +38,7 @@ Run:
 Outputs (overwrites, in the vocational-compliance/ directory):
     exhibit-4-log.md            <- table-of-contents index (journey + aggregate + monthly links)
     exhibit-4-log-YYYY-MM.md    <- one per-month weekly log (each a standalone exhibit)
-    exhibit-4-log.html          <- interactive accordion export (served on GitHub Pages)
+    exhibit-4.html              <- interactive accordion export (served on GitHub Pages)
 
 Change --since / --until to extend the reporting period and re-run; the script
 appends nothing automatically — it regenerates the full artifact family in one
@@ -84,7 +84,7 @@ BLOB_BASE = (f"https://github.com/{PUBLIC_PREVIEW_OWNER}/{PUBLIC_PREVIEW_REPO}"
 
 # File-name stems/patterns for the generated artifact family.
 INDEX_FILE = "exhibit-4-log.md"
-HTML_FILE = "exhibit-4-log.html"
+HTML_FILE = "exhibit-4.html"          # interactive accordion (short URL for embedding)
 MONTH_FILE_TMPL = "exhibit-4-log-{}.md"   # .format("YYYY-MM")
 
 # Recognized author identities (login + any committed email handles).
@@ -478,9 +478,13 @@ def render_table(rows: list[ActivityRow]) -> str:
     if not rows:
         return "_No attributable commits recorded this week._"
     # Narrow header labels keep the exported-PDF page width sane while the
-    # proof-link column still carries the repo name.
+    # proof-link column carries the repo name AND the full verifiable URL.
+    # The URL is shown in full (not abbreviated) because this markdown is the
+    # PDF source: printed copies filed via the prothonotary must let a reader
+    # type the proof link into a browser. GFM autolinks the bare URL and
+    # renders the <br> line break inside the cell.
     header = ("| Date | Category | Activity / Description "
-              "| Proof (repo) | Equivalence |")
+              "| Proof (repo — full commit URL) | Equivalence |")
     sep = "|---|---|---|---|---|"
     lines = [header, sep]
     for r in rows:
@@ -490,10 +494,11 @@ def render_table(rows: list[ActivityRow]) -> str:
                       else f"{metric} / {r.action:g} action")
         if not metric:
             metric = "—"
-        link = f"[{r.repo}]({r.proof_url})"
+        # Repo name label + full visible URL for print/PDF.
+        proof = f"**{r.repo}**<br>{r.proof_url}"
         lines.append(
             f"| {r.commit_date} | {r.category} | "
-            f"{r.description} | {link} | {metric} ({r.equiv_label}) |"
+            f"{r.description} | {proof} | {metric} ({r.equiv_label}) |"
         )
     return "\n".join(lines)
 
@@ -696,29 +701,64 @@ header { text-align:center; margin-bottom:28px; }
   letter-spacing:.12em; text-transform:uppercase; color:var(--accent); }
 h1 { margin:0; font-size:clamp(1.6rem,4vw,2.6rem); }
 .meta { margin:14px auto 0; max-width:42rem; color:var(--muted); font-size:.92rem; line-height:1.6; }
-.back { display:inline-block; margin-top:18px; padding:10px 18px; border-radius:999px;
-  background:var(--accent); color:#082f49; font-weight:700; text-decoration:none; }
+
+/* CTA glow — gentle light pulse on hero buttons, and a softer glow pulse on
+   the section chevrons. Subtle, not strobing. */
+@keyframes ctaPulse {
+  0%,100% { box-shadow:0 0 0 0 rgba(56,189,248,0); }
+  50%     { box-shadow:0 0 16px 2px rgba(56,189,248,.45); }
+}
+@keyframes ctaGlow {
+  0%,100% { text-shadow:0 0 0 rgba(56,189,248,0); }
+  50%     { text-shadow:0 0 10px rgba(56,189,248,.6); }
+}
+.cta { display:inline-block; padding:10px 16px; border-radius:999px;
+  background:var(--accent); color:#082f49; font-weight:700; font-size:.85rem;
+  text-decoration:none; border:none; cursor:pointer;
+  animation: ctaPulse 2.8s ease-in-out infinite; }
+.cta:hover { filter:brightness(1.08); }
+button.cta.expandall { background:var(--accent-2); color:#0b1020; }
+.hero-btns { display:flex; flex-wrap:wrap; gap:10px; justify-content:center;
+  margin:18px 0 4px; }
+.verify-hero { margin:14px auto 0; max-width:42rem; color:var(--muted);
+  font-size:.82rem; line-height:1.6; }
 summary { cursor:pointer; list-style:none; }
 summary::-webkit-details-marker { display:none; }
+/* Month accordion: rounded card. overflow:hidden so the CARD never initiates
+   horizontal scroll; only inner tables are allowed to scroll-x on mobile. */
 .month { margin:22px 0; border:1px solid var(--border); border-radius:16px;
-  background:var(--panel); overflow:auto; }
+  background:var(--panel); overflow:hidden; }
 .month > summary { padding:16px 20px; font-size:1.15rem; font-weight:700;
   display:flex; justify-content:space-between; gap:12px; align-items:center; }
-.month > summary::after { content:"\\2023"; color:var(--accent);
-  transition:transform .2s; }
+/* Month chevron — accent-triangle that rotates, with the CTA text-glow pulse. */
+.month > summary::after { content:"\\25B8"; color:var(--accent); font-size:.95em;
+  transition:transform .2s; animation: ctaGlow 2.8s ease-in-out infinite; }
 .month[open] > summary::after { transform:rotate(90deg); }
 .mstat { font-size:.82rem; font-weight:600; color:var(--muted); white-space:nowrap; }
+/* Week (child) chevron — a hollow/dimmer chevron so the hierarchy reads. */
+.week > summary::after { content:"\\2023"; color:var(--accent-2); font-size:.85em;
+  transition:transform .2s; opacity:.85; }
+.week[open] > summary::after { transform:rotate(90deg); }
 .week { margin:0; border-top:1px solid var(--border); }
 .week > summary { padding:12px 20px; font-weight:600; font-size:.98rem;
-  display:flex; justify-content:space-between; gap:12px; align-items:center;
-  white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  display:flex; justify-content:space-between; gap:10px; align-items:center; }
+/* On narrow screens, let the stat wrap rather than forcing horizontal scroll. */
+@media (max-width:640px) {
+  .week > summary, .month > summary { flex-wrap:wrap; }
+  .wstat, .mstat { white-space:normal; }
+}
 .wstat { font-size:.8rem; color:var(--muted); white-space:nowrap; }
-table { width:100%; border-collapse:collapse; font-size:.86rem; }
+/* The TABLE is the one element allowed to scroll horizontally on small screens —
+   it lives inside an overflow-x:auto wrapper. Columns keep readable widths. */
+.tablewrap { overflow-x:auto; }
+table { width:100%; border-collapse:collapse; font-size:.86rem;
+  min-width:38rem; }
 th, td { padding:7px 10px; text-align:left; border-bottom:1px solid var(--border);
   vertical-align:top; }
 th { position:sticky; top:0; background:#0f172a; color:var(--muted);
   font-weight:600; font-size:.78rem; text-transform:uppercase; letter-spacing:.03em; }
 td.proof a, td.desc { word-break:break-word; min-width:6rem; }
+td.proof .url { display:block; font-size:.72rem; color:#7dd3fc; word-break:break-all; }
 .empty { padding:6px 20px 14px; color:var(--muted); font-style:italic; }
 a { color:var(--accent); }
 footer { text-align:center; color:var(--muted); font-size:.82rem; margin:32px 0 0; line-height:1.6; }
@@ -737,7 +777,7 @@ footer { text-align:center; color:var(--muted); font-size:.82rem; margin:32px 0 
   body { padding:0; background:#fff; color:#000; font-size:9.5pt; }
   .wrap { max-width:100%; }
   details[open] > .week, details > .week { display:block !important; }
-  .month > summary::after, .back { display:none; }
+  .month > summary::after, button.cta.expandall { display:none; }
   .month, .week { border:1px solid #999; border-radius:0; break-inside:avoid;
     overflow:visible; }
   summary { break-after:avoid; break-inside:avoid; }
@@ -775,22 +815,27 @@ def render_html(weeks: list[Week], since: str, until: str,
             return '<p class="empty">No attributable commits recorded this week.</p>'
         body = []
         for r in rows:
+            url = _html_escape(r.proof_url)
             body.append(
                 "<tr>"
                 f'<td>{_html_escape(r.commit_date)}</td>'
                 f'<td>{_html_escape(r.category)}</td>'
                 f'<td class="desc">{_html_escape(r.description)}</td>'
-                f'<td class="proof"><a href="{_html_escape(r.proof_url)}">'
-                f'{_html_escape(r.repo)}</a></td>'
+                f'<td class="proof"><strong><a href="{url}">'
+                f'{_html_escape(r.repo)}</a></strong>'
+                f'<span class="url">{url}</span></td>'
                 f'<td>{metric_cell(r)} '
                 f'<span style="color:var(--muted);font-size:.78rem">'
                 f'({_html_escape(r.equiv_label)})</span></td>'
                 "</tr>"
             )
-        return ("<table><thead><tr><th>Date</th><th>Category</th>"
-                "<th>Activity / Description</th><th>Proof (repo)</th>"
+        return ('<div class="tablewrap">'
+                "<table><thead><tr><th>Date</th><th>Category</th>"
+                "<th>Activity / Description</th>"
+                "<th>Proof (repo &#183; full commit URL)</th>"
                 "<th>Equivalence</th></tr></thead><tbody>"
-                + "".join(body) + "</tbody></table>")
+                + "".join(body) + "</tbody></table>"
+                + '</div>')
 
     def week_block(wk: Week) -> str:
         label = f"{wk.start.date().isoformat()} &#8594; {wk.end.date().isoformat()}"
@@ -837,19 +882,35 @@ def render_html(weeks: list[Week], since: str, until: str,
         f"{total_commits} attributable public commits across {active_weeks} / "
         f"{len(weeks)} active weeks &middot; {grand_hours:g} product-development "
         f"hours &middot; {grand_actions:g} job-search actions</p>"
-        f'<a class="back" href="{HOMEPAGE_URL}">&#8592; public-preview homepage</a>'
+        # Hero buttons — all open GitHub blob / Pages URLs in a new tab.
+        '<div class="hero-btns">'
+        f'<a class="cta" target="_blank" rel="noopener" href="{blob_url(INDEX_FILE)}">table of contents (md)</a>'
+        f'<a class="cta" target="_blank" rel="noopener" href="{blob_url("overview.md")}">overview</a>'
+        f'<a class="cta" target="_blank" rel="noopener" href="{blob_url("journey-context.md")}">the journey</a>'
+        f'<a class="cta" target="_blank" rel="noopener" href="{HOMEPAGE_URL}">public-preview home &#8599;</a>'
+        # Collapse / expand all month (and sub-week) accordions.
+        '<button class="cta expandall" type="button" onclick="toggleAll(this)">'
+        "expand all</button>"
+        "</div>"
+        # Verification line in the hero (moved from the footer).
+        '<p class="verify-hero">Each row traces to a verifiable public commit '
+        "on github.com &#183; sworn verification rests with the filed "
+        "memorandum &#183; regenerated, not hand-edited.</p>"
         "</header>"
         + "".join(months_html)
-        + "<p style=\"text-align:center;margin-top:18px\">"
-        "<a style=\"font-size:.9rem\" href=\"" + blob_url(INDEX_FILE) + "\">"
-        "table of contents (markdown) &middot;</a> "
-        "<a style=\"font-size:.9rem\" href=\"" + blob_url("overview.md") + "\">"
-        "overview &middot;</a> "
-        "<a style=\"font-size:.9rem\" href=\"" + pages_url("journey-context.md") + "\">"
-        "the journey</a></p>"
-        "<footer>Each row traces to a verifiable public commit on github.com. "
-        "Sworn verification rests with the filed memorandum. Regenerated, not "
-        "hand-edited.</footer>"
+        + "<footer style=\"text-align:center\"><a class=\"cta\" "
+        f"target=\"_blank\" rel=\"noopener\" href=\"{blob_url(INDEX_FILE)}\">"
+        "table of contents (md)</a> &nbsp;&middot;&nbsp; "
+        f"<a class=\"cta\" target=\"_blank\" rel=\"noopener\" href=\"{blob_url('overview.md')}\">"
+        "overview</a> &nbsp;&middot;&nbsp; "
+        f"<a class=\"cta\" target=\"_blank\" rel=\"noopener\" href=\"{blob_url('journey-context.md')}\">"
+        "the journey</a></footer>"
+        "<script>"
+        "function toggleAll(btn){var ds=Array.from(document.querySelectorAll("
+        "'.month'));var open=ds.filter(d=>d.open).length;var makeOpen=!(open>"
+        "=ds.length/2);ds.forEach(d=>d.open=makeOpen);btn.textContent=makeOpen?"
+        "'collapse all':'expand all';}"
+        "</script>"
         "</div></body></html>"
     )
 

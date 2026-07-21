@@ -98,7 +98,7 @@ python3 vocational-compliance/build_vocational_log.py \
 The generator writes a **table-of-contents index** (`exhibit-4-log.md` —
 journey summary + aggregate + monthly links), one **per-month file**
 (`exhibit-4-log-YYYY-MM.md`, each fileable as a standalone date-range exhibit),
-and an **interactive accordion export** (`exhibit-4-log.html`) — all
+and an **interactive accordion export** (`exhibit-4.html`) — all
 cross-linked to each other and back to the public-preview homepage. To extend
 the reporting period, change the `--since` / `--until` flags and re-run. The
 output is always a faithful snapshot of the stated range — nothing is silently
@@ -199,7 +199,7 @@ result.
 | File | Purpose |
 |---|---|
 | [`exhibit-4-log.md`](https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/exhibit-4-log.md) | Table-of-contents index — journey summary + aggregate + monthly links (the entry point) |
-| [`exhibit-4-log.html`](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/vocational-compliance/exhibit-4-log.html) | Interactive accordion export (live web surface) |
+| [`exhibit-4.html`](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/vocational-compliance/exhibit-4.html) | Interactive accordion export (live web surface) |
 | `exhibit-4-log-YYYY-MM.md` | Per-month vocational logs — each fileable as a separate date-range exhibit |
 | [`overview.md`](https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/overview.md) | This file — the framework & template guide |
 | [`journey-context.md`](https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/journey-context.md) | Pre-2026 classroom→portfolio narrative (injected into the TOC index) |
