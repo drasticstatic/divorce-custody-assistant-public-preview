@@ -717,10 +717,20 @@ h1 { margin:0; font-size:clamp(1.6rem,4vw,2.6rem); }
   text-decoration:none; border:none; cursor:pointer;
   animation: ctaPulse 2.8s ease-in-out infinite; }
 .cta:hover { filter:brightness(1.08); }
-button.cta.expandall { background:var(--accent-2); color:#0b1020; }
-.hero-btns { display:flex; flex-wrap:wrap; gap:10px; justify-content:center;
-  margin:18px 0 4px; }
-.verify-hero { margin:14px auto 0; max-width:42rem; color:var(--muted);
+.cta.green { background:linear-gradient(135deg,#22c55e,#16a34a); color:#fff;
+  border:none; }
+.cta.green:hover { filter:brightness(1.06); }
+button.cta.expandall { background:#e0f2fe; color:#083344; border:2px solid var(--accent);
+  font-weight:800; }
+.cta.monthtoggle { background:var(--accent-2); color:#0b1020; font-size:.76rem;
+  padding:5px 12px; }
+.hero-btns { display:flex; flex-wrap:wrap; align-items:center; justify-content:center;
+  gap:0; margin:18px 0 4px; }
+.hero-btns .sep { padding:0 10px; color:var(--accent-2); font-weight:700; }
+.month-actions { text-align:right; padding:8px 20px 0; }
+.deck { margin:14px auto 4px; max-width:46rem; color:var(--text);
+  font-size:.9rem; line-height:1.6; }
+.verify-hero { margin:10px auto 0; max-width:42rem; color:var(--muted);
   font-size:.82rem; line-height:1.6; }
 summary { cursor:pointer; list-style:none; }
 summary::-webkit-details-marker { display:none; }
@@ -777,7 +787,8 @@ footer { text-align:center; color:var(--muted); font-size:.82rem; margin:32px 0 
   body { padding:0; background:#fff; color:#000; font-size:9.5pt; }
   .wrap { max-width:100%; }
   details[open] > .week, details > .week { display:block !important; }
-  .month > summary::after, button.cta.expandall { display:none; }
+  .month > summary::after, button.cta.expandall, button.cta.monthtoggle,
+  .month-actions, .hero-btns .sep { display:none; }
   .month, .week { border:1px solid #999; border-radius:0; break-inside:avoid;
     overflow:visible; }
   summary { break-after:avoid; break-inside:avoid; }
@@ -866,7 +877,11 @@ def render_html(weeks: list[Week], since: str, until: str,
             f'<details class="month" id="{mk}"><summary>'
             f'<span>{_html_escape(lbl)}</span>'
             f'<span class="mstat">{commits} commits &#183; {hrs:g} hrs '
-            f'&#183; {acts:g} actions</span></summary>{inner}</details>'
+            f'&#183; {acts:g} actions</span></summary>'
+            '<div class="month-actions"><button class="cta monthtoggle" '
+            'type="button" onclick="toggleMonth(this)">expand weeks</button>'
+            '</div>'
+            f'{inner}</details>'
         )
 
     return (
@@ -883,33 +898,50 @@ def render_html(weeks: list[Week], since: str, until: str,
         f"{len(weeks)} active weeks &middot; {grand_hours:g} product-development "
         f"hours &middot; {grand_actions:g} job-search actions</p>"
         # Hero buttons — all open GitHub blob / Pages URLs in a new tab.
+        # Interpuncts sit between every button so the row reads as one rail.
         '<div class="hero-btns">'
         f'<a class="cta" target="_blank" rel="noopener" href="{blob_url(INDEX_FILE)}">table of contents (md)</a>'
+        '<span class="sep">&#183;</span>'
         f'<a class="cta" target="_blank" rel="noopener" href="{blob_url("overview.md")}">overview</a>'
+        '<span class="sep">&#183;</span>'
         f'<a class="cta" target="_blank" rel="noopener" href="{blob_url("journey-context.md")}">the journey</a>'
-        f'<a class="cta" target="_blank" rel="noopener" href="{HOMEPAGE_URL}">public-preview home &#8599;</a>'
+        '<span class="sep">&#183;</span>'
+        f'<a class="cta" target="_blank" rel="noopener" href="{blob_url("reporting-context.md")}">reporting context</a>'
+        '<span class="sep">&#183;</span>'
         # Collapse / expand all month (and sub-week) accordions.
         '<button class="cta expandall" type="button" onclick="toggleAll(this)">'
         "expand all</button>"
         "</div>"
-        # Verification line in the hero (moved from the footer).
-        '<p class="verify-hero">Each row traces to a verifiable public commit '
-        "on github.com &#183; sworn verification rests with the filed "
+        # Navigational deck — what the page IS, before the verification line.
+        '<p class="deck">Generated straight from the public commit record. '
+        "Expand any month, open any row &#183; each traces to a verifiable "
+        "commit on github.com.</p>"
+        # Verification line in the hero (sworn-verification context only).
+        '<p class="verify-hero">Sworn verification rests with the filed '
         "memorandum &#183; regenerated, not hand-edited.</p>"
         "</header>"
         + "".join(months_html)
-        + "<footer style=\"text-align:center\"><a class=\"cta\" "
-        f"target=\"_blank\" rel=\"noopener\" href=\"{blob_url(INDEX_FILE)}\">"
-        "table of contents (md)</a> &nbsp;&middot;&nbsp; "
-        f"<a class=\"cta\" target=\"_blank\" rel=\"noopener\" href=\"{blob_url('overview.md')}\">"
-        "overview</a> &nbsp;&middot;&nbsp; "
-        f"<a class=\"cta\" target=\"_blank\" rel=\"noopener\" href=\"{blob_url('journey-context.md')}\">"
-        "the journey</a></footer>"
+        + "<footer style=\"text-align:center\">"
+        f"<a class=\"cta\" target=\"_blank\" rel=\"noopener\" href=\"{HOMEPAGE_URL}\">"
+        "divorce-custody-assistant home &#8599;</a>"
+        " &nbsp;&middot;&nbsp; "
+        '<a class="cta green" target="_blank" rel="noopener" '
+        'href="https://drasticstatic.github.io/trading-assistant-public-preview/">'
+        "trading-assistant home &#8599;</a></footer>"
         "<script>"
-        "function toggleAll(btn){var ds=Array.from(document.querySelectorAll("
-        "'.month'));var open=ds.filter(d=>d.open).length;var makeOpen=!(open>"
-        "=ds.length/2);ds.forEach(d=>d.open=makeOpen);btn.textContent=makeOpen?"
-        "'collapse all':'expand all';}"
+        "function toggleAll(btn){var ms=Array.from(document.querySelectorAll('.month'));"
+        "var ws=Array.from(document.querySelectorAll('.week'));"
+        "var open=ms.filter(function(d){return d.open;}).length+ws.filter(function(d){return d.open;}).length;"
+        "var tot=ms.length+ws.length;var make=!(open>=tot/2);"
+        "ms.forEach(function(d){d.open=make;});ws.forEach(function(d){d.open=make;});"
+        "btn.textContent=make?'collapse all':'expand all';"
+        "var tg=document.querySelectorAll('.monthtoggle');"
+        "for(var i=0;i<tg.length;i++){tg[i].textContent=make?'collapse weeks':'expand weeks';}}"
+        "function toggleMonth(btn){var m=btn.closest('.month');"
+        "var ws=Array.from(m.querySelectorAll('.week'));"
+        "var open=ws.filter(function(w){return w.open;}).length;"
+        "var make=!(open>=ws.length/2);ws.forEach(function(w){w.open=make;});"
+        "btn.textContent=make?'collapse weeks':'expand weeks';}"
         "</script>"
         "</div></body></html>"
     )

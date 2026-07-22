@@ -51,3 +51,40 @@ Built and maintained with **Anthropic's Claude** (Claude Code CLI + NVIDIA NIM).
 ## Public-safe principle
 
 This mirror is for sharing structure, automation patterns, and explicitly approved public-facing materials only. It is not a publication channel for sensitive legal records or repo-internal coordination artifacts
+
+---
+
+## Recent developments
+
+### Vocational compliance log (Exhibit 4)
+
+A `vocational-compliance/` suite translates real, public software-development and quantitative-trading work into the formal categories a domestic-relations work-search order expects ("hours of effort," "job contacts," "vocational activity"). It is **generated, not hand-edited** — `build_vocational_log.py` queries the maintainer's public repositories (and the `-public-preview` / `-public` mirrors of private repos) in one reproducible pass, so there is never a gap between what the log claims and what the public commit record shows.
+
+The generator emits three cross-linked artifacts:
+
+- **`exhibit-4-log.md`** — the table-of-contents index (journey summary, aggregate totals, and monthly links)
+- **`exhibit-4-log-YYYY-MM.md`** — one per-month weekly log, each fileable as a standalone date-range exhibit
+- **`exhibit-4.html`** — an interactive accordion version of the full record, served live on GitHub Pages
+
+Every row carries a **full** commit URL (not abbreviated) so a printed or PDF copy — filed with the prothonotary — lets a reader type the link into a browser. Each artifact cross-links to the others and back to the public-preview homepage. The directory also carries `overview.md`, `journey-context.md`, and `reporting-context.md` sidecars that frame the methodology, the pre-2026 classroom→portfolio arc, and the known reporting gaps.
+
+**Honesty contract:** every row derives from a real attributable public commit (no padding), only the maintainer's known GitHub identities are counted, commit subjects are sanitized before quoting (emails, hex tokens, and case-number patterns stripped), and commits that touched only private paths never surface (they are pruned by the sync pipeline).
+
+### Landing page redesign
+
+The public-preview landing (`index.html`) was rebuilt as an intentional-minimal framing page that embeds the interactive Exhibit 4, exposes the related records as GitHub blob links, and carries a small mercy-themed modal. A custom `404.html` now returns a hard GitHub Pages 404 for any pruned or never-published path (previously these rendered the default Jekyll soft-404 placeholder at HTTP 200).
+
+---
+
+## Google Workspace CLI (`gws`) setup — sterilized overview
+
+This workspace uses the `gws` CLI to talk to a dedicated, isolated Google account for case correspondence, court documents, and legal filings. The local setup guide (`GWS_SETUP.md`, kept private) walks through the one-time configuration; this README documents only the **mechanism**, so the pattern is reusable without exposing any account identifiers or document IDs.
+
+**Multi-account architecture.** The machine runs several isolated `gws` profiles — one per Google account / repo context. Each profile gets a shell alias of the form `gws<abbrev>` (the abbreviation denotes the project) so the account is always explicit at the command line and a bare `gws` is never used. Aliases include one for this repo's account and one for a separate devine-news automation project; each alias sets a per-profile `GOOGLE_WORKSPACE_CLI_CONFIG_DIR` so credentials and token caches never cross accounts.
+
+**One-time setup (the documented flow).** For each account: create an OAuth 2.0 **Desktop app** credential inside a dedicated GCP project, enable the Workspace APIs the account needs, drop the downloaded `client_secret.json` into the profile's config directory (gitignored), add the account as a **test user** on the OAuth consent screen, and run `gws auth login` through the alias to complete the OAuth flow in the browser. The token is stored encrypted in the config dir and never touches the repository.
+
+**Drive API vs. Docs API — the key distinction.** The **Drive API** can *create* a Google Doc by uploading content with the Google Doc mime type, but it cannot read or modify the *contents* of an existing doc. The **Docs API** (`documents.get`, `documents.batchUpdate`) is required for any in-place content editing — inserting text, filling tables, replacing placeholders. Profiles scoped to drafting-only get away with Drive alone; profiles that need to edit existing shared docs require the Docs API enabled.
+
+**Privacy model.** Config directories are local-only — never synced, never committed. Profiles are strictly isolated from one another by config dir, GCP project, and OAuth client. Anything accessed through `gws` stays local; per the security rules nothing case-specific is committed to this repo. The full step-by-step guide lives in `GWS_SETUP.md` in the private working repository alongside the example commands for read/write Drive, Docs, and Gmail operations.
+

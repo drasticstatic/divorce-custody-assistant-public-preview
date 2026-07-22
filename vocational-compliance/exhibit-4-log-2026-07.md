@@ -4,7 +4,7 @@ _Part of the full Exhibit 4 — [table of contents](https://github.com/drasticst
  · [public-preview homepage](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/)_
 
 **Reporting month:** July 2026  
-**Commits this month:** 17 · **Hours-equiv:** 78 · **Actions-equiv:** 0
+**Commits this month:** 27 · **Hours-equiv:** 118 · **Actions-equiv:** 0
 
 ---
 
@@ -65,7 +65,7 @@ _Commits this week:_ 3 · _Hours-equiv:_ 18 · _Actions-equiv:_ 0
 
 **Compliance target (context):** 8 attributable actions/week
 
-_Commits this week:_ 3 · _Hours-equiv:_ 16 · _Actions-equiv:_ 0
+_Commits this week:_ 13 · _Hours-equiv:_ 56 · _Actions-equiv:_ 0
 
 ### Weekly Vocational Activity & Work-Search & Effort Report
 
@@ -74,6 +74,16 @@ _Commits this week:_ 3 · _Hours-equiv:_ 16 · _Actions-equiv:_ 0
 | 2026-07-20 | Product Development | add 'who is' Alfred & Fortuna links | **divorce-custody-assistant-public-preview**<br>https://github.com/drasticstatic/divorce-custody-assistant-public-preview/commit/ced20d2ee9b8577f775fbe9e4d8bd11d9ccb876c | 4 hrs (Hours (product development / startup labor)) |
 | 2026-07-21 | Code Deployment | docs: append gotcha notes to both sync-public templates | **my-template**<br>https://github.com/drasticstatic/my-template/commit/2a95147de7621548e759ecfe28967940b31344b2 | 6 hrs (Hours (technical portfolio build)) |
 | 2026-07-21 | Code Deployment | Add Exhibit 4: vocational work-search compliance log + landing redesign | **divorce-custody-assistant-public-preview**<br>https://github.com/drasticstatic/divorce-custody-assistant-public-preview/commit/2f6826e3ad2569fb4c98d8b6dd755ca9a63d5d49 | 6 hrs (Hours (technical portfolio build)) |
+| 2026-07-21 | Product Development | Exhibit 4 v2: rename to exhibit-4.html, full proof URLs, hero buttons + expand-all, mobile fix, fork attribution, index embed | **divorce-custody-assistant-public-preview**<br>https://github.com/drasticstatic/divorce-custody-assistant-public-preview/commit/2375746e2291d6eacef34f10aebbb6aa11ca5539 | 4 hrs (Hours (product development / startup labor)) |
+| 2026-07-26 | Product Development | Add my-template, drasticstatic, and divorce-custody-assistant access links to profile readme | **drasticstatic**<br>https://github.com/drasticstatic/drasticstatic/commit/61cc6902daff0d1ea92e26f9a5459429f03ea346 | 4 hrs (Hours (product development / startup labor)) |
+| 2026-07-26 | Product Development | add interpuncts | **drasticstatic**<br>https://github.com/drasticstatic/drasticstatic/commit/80141e2957b03887f6b7ac874f02cf4521d1bfa4 | 4 hrs (Hours (product development / startup labor)) |
+| 2026-07-26 | Product Development | Fix formatting in README.md for Agent Workflows section | **drasticstatic**<br>https://github.com/drasticstatic/drasticstatic/commit/c72fcf4ab661e769b4d44beae50ce5b63f9628f4 | 4 hrs (Hours (product development / startup labor)) |
+| 2026-07-26 | Product Development | Fix formatting in README.md for Agent Workflows | **drasticstatic**<br>https://github.com/drasticstatic/drasticstatic/commit/7b6691eacc325e2a131397ba63485d69936d46b2 | 4 hrs (Hours (product development / startup labor)) |
+| 2026-07-26 | Product Development | Fix formatting in README.md for clarity | **drasticstatic**<br>https://github.com/drasticstatic/drasticstatic/commit/d3114501bb6bf2f9d9d2fc51bd7c05025082dd48 | 4 hrs (Hours (product development / startup labor)) |
+| 2026-07-26 | Product Development | Revise README formatting and link structure | **drasticstatic**<br>https://github.com/drasticstatic/drasticstatic/commit/81fb787236b4595ef4b74577ec40bffdd86a7ed8 | 4 hrs (Hours (product development / startup labor)) |
+| 2026-07-26 | Product Development | Fix formatting and update links in README.md | **drasticstatic**<br>https://github.com/drasticstatic/drasticstatic/commit/cbfc7066d5706b98998f4e4ab73cdc9f4c7fdcfb | 4 hrs (Hours (product development / startup labor)) |
+| 2026-07-26 | Product Development | Fix formatting | **drasticstatic**<br>https://github.com/drasticstatic/drasticstatic/commit/fd6efed084ed8ff52f8380b3024ac994ff1c04ec | 4 hrs (Hours (product development / startup labor)) |
+| 2026-07-26 | Product Development | Format bulleting | **drasticstatic**<br>https://github.com/drasticstatic/drasticstatic/commit/490fff91eee28d8e13b8f5aab01f183d868d14e9 | 4 hrs (Hours (product development / startup labor)) |
 
 ---
 
@@ -81,7 +91,7 @@ _Commits this week:_ 3 · _Hours-equiv:_ 16 · _Actions-equiv:_ 0
 
 **Compliance target (context):** 8 attributable actions/week
 
-_Upcoming as of 2026-07-21 — to be populated by continued development through the report's end date._
+_Upcoming as of 2026-07-26 — to be populated by continued development through the report's end date._
 
 ### Weekly Vocational Activity & Work-Search & Effort Report
 
