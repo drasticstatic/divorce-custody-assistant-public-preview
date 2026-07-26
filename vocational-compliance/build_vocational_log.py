@@ -722,12 +722,12 @@ h1 { margin:0; font-size:clamp(1.6rem,4vw,2.6rem); }
 .cta.green:hover { filter:brightness(1.06); }
 button.cta.expandall { background:#e0f2fe; color:#083344; border:2px solid var(--accent);
   font-weight:800; }
-.cta.monthtoggle { background:var(--accent-2); color:#0b1020; font-size:.76rem;
-  padding:5px 12px; }
+.cta.monthtoggle { background:#e0f2fe; color:#083344; border:2px solid var(--accent-2);
+  font-size:.76rem; padding:5px 12px; font-weight:800; }
 .hero-btns { display:flex; flex-wrap:wrap; align-items:center; justify-content:center;
   gap:0; margin:18px 0 4px; }
 .hero-btns .sep { padding:0 10px; color:var(--accent-2); font-weight:700; }
-.month-actions { text-align:right; padding:8px 20px 0; }
+.month-actions { text-align:right; padding:10px 20px 7px; }
 .deck { margin:14px auto 4px; max-width:46rem; color:var(--text);
   font-size:.9rem; line-height:1.6; }
 .verify-hero { margin:10px auto 0; max-width:42rem; color:var(--muted);
@@ -895,7 +895,7 @@ def render_html(weeks: list[Week], since: str, until: str,
         f"<strong>Period:</strong> {since} &rarr; {until} &middot; "
         f"<strong>Generated:</strong> {gen_date}<br>"
         f"{total_commits} attributable public commits across {active_weeks} / "
-        f"{len(weeks)} active weeks &middot; {grand_hours:g} product-development "
+        f"{len(weeks)} active weeks<br>{grand_hours:g} product-development "
         f"hours &middot; {grand_actions:g} job-search actions</p>"
         # Hero buttons — all open GitHub blob / Pages URLs in a new tab.
         # Interpuncts sit between every button so the row reads as one rail.
@@ -908,17 +908,17 @@ def render_html(weeks: list[Week], since: str, until: str,
         '<span class="sep">&#183;</span>'
         f'<a class="cta" target="_blank" rel="noopener" href="{blob_url("reporting-context.md")}">reporting context</a>'
         '<span class="sep">&#183;</span>'
-        # Collapse / expand all month (and sub-week) accordions.
+        # Collapse / expand all monthly accordions.
         '<button class="cta expandall" type="button" onclick="toggleAll(this)">'
-        "expand all</button>"
+        "expand all months</button>"
         "</div>"
         # Navigational deck — what the page IS, before the verification line.
-        '<p class="deck">Generated straight from the public commit record. '
-        "Expand any month, open any row &#183; each traces to a verifiable "
-        "commit on github.com.</p>"
-        # Verification line in the hero (sworn-verification context only).
-        '<p class="verify-hero">Sworn verification rests with the filed '
-        "memorandum &#183; regenerated, not hand-edited.</p>"
+        '<p class="deck">(Re)Generated straight from the public commit record, '
+        "not hand-edited &mdash; Each traces to a verifiable pushed commit "
+        "on GitHub.com<br>Sworn verification rests with the memorandum "
+        "filed with the prothonotary.</p>"
+        # Verification line in the hero (navigational guidance).
+        '<p class="verify-hero">Expand any month and open each row to view details.</p>'
         "</header>"
         + "".join(months_html)
         + "<footer style=\"text-align:center\">"
@@ -930,13 +930,9 @@ def render_html(weeks: list[Week], since: str, until: str,
         "trading-assistant home &#8599;</a></footer>"
         "<script>"
         "function toggleAll(btn){var ms=Array.from(document.querySelectorAll('.month'));"
-        "var ws=Array.from(document.querySelectorAll('.week'));"
-        "var open=ms.filter(function(d){return d.open;}).length+ws.filter(function(d){return d.open;}).length;"
-        "var tot=ms.length+ws.length;var make=!(open>=tot/2);"
-        "ms.forEach(function(d){d.open=make;});ws.forEach(function(d){d.open=make;});"
-        "btn.textContent=make?'collapse all':'expand all';"
-        "var tg=document.querySelectorAll('.monthtoggle');"
-        "for(var i=0;i<tg.length;i++){tg[i].textContent=make?'collapse weeks':'expand weeks';}}"
+        "var open=ms.filter(function(d){return d.open;}).length;"
+        "var make=!(open>=ms.length/2);ms.forEach(function(d){d.open=make;});"
+        "btn.textContent=make?'collapse all months':'expand all months';}"
         "function toggleMonth(btn){var m=btn.closest('.month');"
         "var ws=Array.from(m.querySelectorAll('.week'));"
         "var open=ws.filter(function(w){return w.open;}).length;"

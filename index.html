@@ -101,6 +101,7 @@
       .cta-strong:hover, .cta-strong:focus-visible { filter: brightness(1.12); transform: translateY(-1px); }
       .btn-row { display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:14px; margin-top:4px; }
       .btn-row .cta { margin-top:0; }
+      .btn-row .meetdev { margin-top:0; }
       .meetdev {
         display: inline-block;
         margin: 8px 6px 0;
@@ -296,6 +297,8 @@
         cursor: pointer;
         animation: ctaPulse 3s ease-in-out infinite;
       }
+      .modal-actions { display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:14px; margin-top:18px; }
+      .modal-actions .meetdev, .modal-actions .close { margin-top:0; }
       @media (max-width: 640px) {
         body { padding: 14px; }
         main { padding: 32px 18px 8px; }
@@ -314,21 +317,21 @@
       <section class="compliance">
         <div class="btn-row">
           <a class="cta" href="https://github.com/drasticstatic/divorce-custody-assistant-public-preview">View GitHub Repository &#8599;</a>
-          <a class="meetdev" href="#" onclick="document.getElementById('acim').showModal();return false;">meet the developer &#8599;</a>
+          <a class="meetdev" href="#" onclick="document.getElementById('acim').showModal();return false;">Meet the Developer &#8599;</a>
         </div>
       </section>
       <br>
     </main>
 
     <section class="exhibit-panel" id="exhibit">
-      <h3>Exhibit 4 &mdash; Embedded <iframe></h3>
+      <h3>Exhibit 4 &mdash; Embedded &lt;iframe&gt;</h3>
       <nav class="links" aria-label="Related records">
         <ul>
           <li><a href="https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/exhibit-4-log.md">table of contents &#8599;</a></li>
           <li><a href="https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/overview.md">overview &#8599;</a></li>
           <li><a href="https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/journey-context.md">the journey &#8599;</a></li>
           <li><a href="https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/reporting-context.md">reporting context &#8599;</a></li>
-          <li><a href="https://drasticstatic.github.io/divorce-custody-assistant-public-preview/vocational-compliance/exhibit-4.html" target="_blank" rel="noopener">open <iframe> in new tab &#8599;</a></li>
+          <li><a href="https://drasticstatic.github.io/divorce-custody-assistant-public-preview/vocational-compliance/exhibit-4.html" target="_blank" rel="noopener">open &lt;iframe&gt; in new tab &#8599;</a></li>
         </ul>
       </nav>
       <iframe
@@ -340,22 +343,25 @@
     </section>
 
     <footer>
-      <a class="repo-link" href="https://github.com/drasticstatic/divorce-custody-assistant-public-preview">divorce-custody-assistant &#8599;</a>&nbsp;&nbsp;· drasticstatic ·&nbsp;&nbsp;
+      <a class="repo-link" href="https://github.com/drasticstatic/divorce-custody-assistant-public-preview">divorce-custody-assistant &#8599;</a>&nbsp;&nbsp;· repo links ·&nbsp;&nbsp;
       <a class="repo-link" href="https://github.com/drasticstatic/trading-assistant-public-preview">trading-assistant &#8599;</a>
     </footer>
 
     <dialog id="acim" class="acim" aria-label="A quiet word — on mercy and judgment">
       <p class="modal-head">a quiet word on mercy, then back to the work</p>
-      <a class="meetdev" href="https://drasticstatic.github.io" target="_blank" rel="noopener">meet the developer &#8599;</a>
       <hr class="segue" />
       <p class="q">&ldquo;He represents your Self and your Creator, Who are One. ³He speaks for God and also for you, being joined with Both.&rdquo;
         <span class="ref"><a href="https://acim.org/acim/en/s/857#4:2-3">C-6.4:2-3</a> &middot; acim.org</span>
       </p>
+      <hr class="segue" />
       <p class="q">&ldquo;⁶The strain of constant judgment is virtually intolerable. ⁷It is curious that an ability so debilitating would be so deeply cherished. ⁸Yet if you wish to be the author of reality, you will insist on holding on to judgment. ⁹You will also regard judgment with fear, believing that it will someday be used against you. ¹⁰This belief can exist only to the extent that you believe in the efficacy of judgment as a weapon of defense for your own authority.<br /><br />
         6. ²God offers only mercy. ³Your words should reflect only mercy, because that is what you have received and that is what you should give. ⁴Justice is a temporary expedient, or an attempt to teach you the meaning of mercy. ⁵It is judgmental only because you are capable of injustice.&rdquo;
         <span class="ref"><a href="https://acim.org/acim/en/s/76#5:6-6:4">T-3.VI.5:6&ndash;6:4</a> &middot; acim.org</span>
       </p>
-      <button class="close" onclick="document.getElementById('acim').close()">Close</button>
+      <div class="modal-actions">
+        <a class="meetdev" href="https://drasticstatic.github.io" target="_blank" rel="noopener">Meet the Developer &#8599;</a>
+        <button class="close" onclick="document.getElementById('acim').close()">Close</button>
+      </div>
     </dialog>
 
     <script>

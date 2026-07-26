@@ -4,7 +4,7 @@ _Part of the full Exhibit 4 — [table of contents](https://github.com/drasticst
  · [public-preview homepage](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/)_
 
 **Reporting month:** July 2026  
-**Commits this month:** 27 · **Hours-equiv:** 118 · **Actions-equiv:** 0
+**Commits this month:** 28 · **Hours-equiv:** 124 · **Actions-equiv:** 0
 
 ---
 
@@ -65,7 +65,7 @@ _Commits this week:_ 3 · _Hours-equiv:_ 18 · _Actions-equiv:_ 0
 
 **Compliance target (context):** 8 attributable actions/week
 
-_Commits this week:_ 13 · _Hours-equiv:_ 56 · _Actions-equiv:_ 0
+_Commits this week:_ 14 · _Hours-equiv:_ 62 · _Actions-equiv:_ 0
 
 ### Weekly Vocational Activity & Work-Search & Effort Report
 
@@ -75,6 +75,7 @@ _Commits this week:_ 13 · _Hours-equiv:_ 56 · _Actions-equiv:_ 0
 | 2026-07-21 | Code Deployment | docs: append gotcha notes to both sync-public templates | **my-template**<br>https://github.com/drasticstatic/my-template/commit/2a95147de7621548e759ecfe28967940b31344b2 | 6 hrs (Hours (technical portfolio build)) |
 | 2026-07-21 | Code Deployment | Add Exhibit 4: vocational work-search compliance log + landing redesign | **divorce-custody-assistant-public-preview**<br>https://github.com/drasticstatic/divorce-custody-assistant-public-preview/commit/2f6826e3ad2569fb4c98d8b6dd755ca9a63d5d49 | 6 hrs (Hours (technical portfolio build)) |
 | 2026-07-21 | Product Development | Exhibit 4 v2: rename to exhibit-4.html, full proof URLs, hero buttons + expand-all, mobile fix, fork attribution, index embed | **divorce-custody-assistant-public-preview**<br>https://github.com/drasticstatic/divorce-custody-assistant-public-preview/commit/2375746e2291d6eacef34f10aebbb6aa11ca5539 | 4 hrs (Hours (product development / startup labor)) |
+| 2026-07-22 | Code Deployment | Exhibit 4 v2 polish + index redesign + 404 page + README developments | **divorce-custody-assistant-public-preview**<br>https://github.com/drasticstatic/divorce-custody-assistant-public-preview/commit/1ba768f29b78be885cd2a0c9fa1f582d2f3e8605 | 6 hrs (Hours (technical portfolio build)) |
 | 2026-07-26 | Product Development | Add my-template, drasticstatic, and divorce-custody-assistant access links to profile readme | **drasticstatic**<br>https://github.com/drasticstatic/drasticstatic/commit/61cc6902daff0d1ea92e26f9a5459429f03ea346 | 4 hrs (Hours (product development / startup labor)) |
 | 2026-07-26 | Product Development | add interpuncts | **drasticstatic**<br>https://github.com/drasticstatic/drasticstatic/commit/80141e2957b03887f6b7ac874f02cf4521d1bfa4 | 4 hrs (Hours (product development / startup labor)) |
 | 2026-07-26 | Product Development | Fix formatting in README.md for Agent Workflows section | **drasticstatic**<br>https://github.com/drasticstatic/drasticstatic/commit/c72fcf4ab661e769b4d44beae50ce5b63f9628f4 | 4 hrs (Hours (product development / startup labor)) |
