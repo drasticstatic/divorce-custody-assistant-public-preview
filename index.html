@@ -179,6 +179,11 @@
         animation: ctaGlow 3.4s ease-in-out infinite;
       }
       .exhibit-panel .links a:hover { text-decoration: underline; }
+      .exhibit-panel .links a.purple-link {
+        color: #a855f7;
+        font-weight: 800;
+      }
+      .exhibit-panel .links a.purple-link:hover { text-decoration: underline; }
       .compliance {
         margin: 28px auto 0;
         padding: 22px 24px;
@@ -331,7 +336,7 @@
           <li><a href="https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/overview.md">overview &#8599;</a></li>
           <li><a href="https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/journey-context.md">the journey &#8599;</a></li>
           <li><a href="https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/reporting-context.md">reporting context &#8599;</a></li>
-          <li><a href="https://drasticstatic.github.io/divorce-custody-assistant-public-preview/vocational-compliance/exhibit-4.html" target="_blank" rel="noopener">open &lt;iframe&gt; in new tab &#8599;</a></li>
+          <li><a href="https://drasticstatic.github.io/divorce-custody-assistant-public-preview/vocational-compliance/exhibit-4.html" target="_blank" rel="noopener" class="purple-link">open&lt;iframe&gt; in new tab &#8599;</a></li>
         </ul>
       </nav>
       <iframe
@@ -350,18 +355,16 @@
     <dialog id="acim" class="acim" aria-label="A quiet word — on mercy and judgment">
       <p class="modal-head">a quiet word on mercy, then back to the work</p>
       <hr class="segue" />
-      <p class="q">&ldquo;He represents your Self and your Creator, Who are One. ³He speaks for God and also for you, being joined with Both.&rdquo;
-        <span class="ref"><a href="https://acim.org/acim/en/s/857#4:2-3">C-6.4:2-3</a> &middot; acim.org</span>
-      </p>
-      <hr class="segue" />
       <p class="q">&ldquo;⁶The strain of constant judgment is virtually intolerable. ⁷It is curious that an ability so debilitating would be so deeply cherished. ⁸Yet if you wish to be the author of reality, you will insist on holding on to judgment. ⁹You will also regard judgment with fear, believing that it will someday be used against you. ¹⁰This belief can exist only to the extent that you believe in the efficacy of judgment as a weapon of defense for your own authority.<br /><br />
         6. ²God offers only mercy. ³Your words should reflect only mercy, because that is what you have received and that is what you should give. ⁴Justice is a temporary expedient, or an attempt to teach you the meaning of mercy. ⁵It is judgmental only because you are capable of injustice.&rdquo;
         <span class="ref"><a href="https://acim.org/acim/en/s/76#5:6-6:4">T-3.VI.5:6&ndash;6:4</a> &middot; acim.org</span>
       </p>
-      <div class="modal-actions">
-        <a class="meetdev" href="https://drasticstatic.github.io" target="_blank" rel="noopener">Meet the Developer &#8599;</a>
-        <button class="close" onclick="document.getElementById('acim').close()">Close</button>
-      </div>
+      <hr class="segue" />
+      <a class="meetdev" href="https://drasticstatic.github.io" target="_blank" rel="noopener">Meet the Developer &#8599;</a>
+      <p class="q">&ldquo;He represents your Self and your Creator, Who are One. ³He speaks for God and also for you, being joined with Both.&rdquo;
+        <span class="ref"><a href="https://acim.org/acim/en/s/857#4:2-3">C-6.4:2-3</a> &middot; acim.org</span>
+      </p>
+      <button class="close" onclick="document.getElementById('acim').close()">Close</button>
     </dialog>
 
     <script>

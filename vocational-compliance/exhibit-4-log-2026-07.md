@@ -4,7 +4,7 @@ _Part of the full Exhibit 4 — [table of contents](https://github.com/drasticst
  · [public-preview homepage](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/)_
 
 **Reporting month:** July 2026  
-**Commits this month:** 28 · **Hours-equiv:** 124 · **Actions-equiv:** 0
+**Commits this month:** 29 · **Hours-equiv:** 127 · **Actions-equiv:** 0
 
 ---
 
@@ -65,7 +65,7 @@ _Commits this week:_ 3 · _Hours-equiv:_ 18 · _Actions-equiv:_ 0
 
 **Compliance target (context):** 8 attributable actions/week
 
-_Commits this week:_ 14 · _Hours-equiv:_ 62 · _Actions-equiv:_ 0
+_Commits this week:_ 15 · _Hours-equiv:_ 65 · _Actions-equiv:_ 0
 
 ### Weekly Vocational Activity & Work-Search & Effort Report
 
@@ -85,6 +85,7 @@ _Commits this week:_ 14 · _Hours-equiv:_ 62 · _Actions-equiv:_ 0
 | 2026-07-26 | Product Development | Fix formatting and update links in README.md | **drasticstatic**<br>https://github.com/drasticstatic/drasticstatic/commit/cbfc7066d5706b98998f4e4ab73cdc9f4c7fdcfb | 4 hrs (Hours (product development / startup labor)) |
 | 2026-07-26 | Product Development | Fix formatting | **drasticstatic**<br>https://github.com/drasticstatic/drasticstatic/commit/fd6efed084ed8ff52f8380b3024ac994ff1c04ec | 4 hrs (Hours (product development / startup labor)) |
 | 2026-07-26 | Product Development | Format bulleting | **drasticstatic**<br>https://github.com/drasticstatic/drasticstatic/commit/490fff91eee28d8e13b8f5aab01f183d868d14e9 | 4 hrs (Hours (product development / startup labor)) |
+| 2026-07-26 | Audit / Education | Exhibit 4 polish: fix iframe text breaking render, hero/footer text, per-month toggle visibility, modal layout | **divorce-custody-assistant-public-preview**<br>https://github.com/drasticstatic/divorce-custody-assistant-public-preview/commit/67f64b629b28cb8703264f9d461a47e61028edcb | 3 hrs (Hours (professional performance review)) |
 
 ---
 
@@ -92,7 +93,7 @@ _Commits this week:_ 14 · _Hours-equiv:_ 62 · _Actions-equiv:_ 0
 
 **Compliance target (context):** 8 attributable actions/week
 
-_Upcoming as of 2026-07-26 — to be populated by continued development through the report's end date._
+_No attributable commits recorded this week._
 
 ### Weekly Vocational Activity & Work-Search & Effort Report
 

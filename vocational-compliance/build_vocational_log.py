@@ -727,6 +727,9 @@ button.cta.expandall { background:#e0f2fe; color:#083344; border:2px solid var(-
 .hero-btns { display:flex; flex-wrap:wrap; align-items:center; justify-content:center;
   gap:0; margin:18px 0 4px; }
 .hero-btns .sep { padding:0 10px; color:var(--accent-2); font-weight:700; }
+.nav-row { display:flex; flex-wrap:wrap; align-items:center; justify-content:center;
+  gap:0; margin:10px 0 4px; }
+.nav-row .sep { padding:0 10px; color:var(--accent-2); font-weight:700; }
 .month-actions { text-align:right; padding:10px 20px 7px; }
 .deck { margin:14px auto 4px; max-width:46rem; color:var(--text);
   font-size:.9rem; line-height:1.6; }
@@ -788,7 +791,7 @@ footer { text-align:center; color:var(--muted); font-size:.82rem; margin:32px 0 
   .wrap { max-width:100%; }
   details[open] > .week, details > .week { display:block !important; }
   .month > summary::after, button.cta.expandall, button.cta.monthtoggle,
-  .month-actions, .hero-btns .sep { display:none; }
+  .month-actions, .hero-btns .sep, .nav-row .sep { display:none; }
   .month, .week { border:1px solid #999; border-radius:0; break-inside:avoid;
     overflow:visible; }
   summary { break-after:avoid; break-inside:avoid; }
@@ -907,29 +910,40 @@ def render_html(weeks: list[Week], since: str, until: str,
         f'<a class="cta" target="_blank" rel="noopener" href="{blob_url("journey-context.md")}">the journey</a>'
         '<span class="sep">&#183;</span>'
         f'<a class="cta" target="_blank" rel="noopener" href="{blob_url("reporting-context.md")}">reporting context</a>'
-        '<span class="sep">&#183;</span>'
-        # Collapse / expand all monthly accordions.
-        '<button class="cta expandall" type="button" onclick="toggleAll(this)">'
-        "expand all months</button>"
         "</div>"
-        # Navigational deck — what the page IS, before the verification line.
-        '<p class="deck">(Re)Generated straight from the public commit record, '
-        "not hand-edited &mdash; Each traces to a verifiable pushed commit "
-        "on GitHub.com<br>Sworn verification rests with the memorandum "
-        "filed with the prothonotary.</p>"
-        # Verification line in the hero (navigational guidance).
-        '<p class="verify-hero">Expand any month and open each row to view details.</p>'
-        "</header>"
-        + "".join(months_html)
-        + "<footer style=\"text-align:center\">"
-        f"<a class=\"cta\" target=\"_blank\" rel=\"noopener\" href=\"{HOMEPAGE_URL}\">"
+        # Nav row — every expand control + site home button grouped together
+        # so a reviewing officer finds everything intuitively without asking.
+        '<div class="nav-row">'
+        '<button class="cta expandall" type="button" onclick="toggleAll(this)">'
+        "expand all</button>"
+        '<span class="sep">&#183;</span>'
+        '<button class="cta expandall" type="button" onclick="toggleAllMonths(this)">'
+        "expand all months</button>"
+        '<span class="sep">&#183;</span>'
+        f'<a class="cta" target="_blank" rel="noopener" href="{HOMEPAGE_URL}">'
         "divorce-custody-assistant home &#8599;</a>"
-        " &nbsp;&middot;&nbsp; "
+        '<span class="sep">&#183;</span>'
         '<a class="cta green" target="_blank" rel="noopener" '
         'href="https://drasticstatic.github.io/trading-assistant-public-preview/">'
-        "trading-assistant home &#8599;</a></footer>"
-        "<script>"
+        "trading-assistant home &#8599;</a>"
+        "</div>"
+        # Navigational deck — what the page IS, before the verification line.
+        '<p class="deck">Each entry traces to a verifiable push on GitHub.com; '
+        "generated straight from the unadulterated commit record via python "
+        "script &mdash; made available in the public repo</p>"
+        # Verification line in the hero (navigational guidance).
+        '<p class="verify-hero">Expand any month and open each row to view details</p>'
+        "</header>"
+        + "".join(months_html)
+        + "<script>"
         "function toggleAll(btn){var ms=Array.from(document.querySelectorAll('.month'));"
+        "var ws=Array.from(document.querySelectorAll('.week'));"
+        "var open=ms.filter(function(d){return d.open;}).length+ws.filter(function(d){return d.open;}).length;"
+        "var make=!(open>=(ms.length+ws.length)/2);ms.forEach(function(d){d.open=make;});"
+        "ws.forEach(function(d){d.open=make;});btn.textContent=make?'collapse all':'expand all';"
+        "var tg=document.querySelectorAll('.monthtoggle');"
+        "for(var i=0;i<tg.length;i++){tg[i].textContent=make?'collapse weeks':'expand weeks';}}"
+        "function toggleAllMonths(btn){var ms=Array.from(document.querySelectorAll('.month'));"
         "var open=ms.filter(function(d){return d.open;}).length;"
         "var make=!(open>=ms.length/2);ms.forEach(function(d){d.open=make;});"
         "btn.textContent=make?'collapse all months':'expand all months';}"

@@ -12,7 +12,7 @@ _Part of the full Exhibit 4 — [table of contents](https://github.com/drasticst
 
 **Compliance target (context):** 8 attributable actions/week
 
-_Upcoming as of 2026-07-26 — to be populated by continued development through the report's end date._
+_Upcoming as of 2026-07-27 — to be populated by continued development through the report's end date._
 
 ### Weekly Vocational Activity & Work-Search & Effort Report
 
@@ -24,7 +24,7 @@ _No attributable commits recorded this week._
 
 **Compliance target (context):** 8 attributable actions/week
 
-_Upcoming as of 2026-07-26 — to be populated by continued development through the report's end date._
+_Upcoming as of 2026-07-27 — to be populated by continued development through the report's end date._
 
 ### Weekly Vocational Activity & Work-Search & Effort Report
 
