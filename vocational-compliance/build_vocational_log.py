@@ -172,6 +172,77 @@ DEFAULT_CATEGORY = {
     "equiv": "Hours (product development / startup labor)",
 }
 
+# Visual color per category — hues spread around the wheel so adjacent
+# categories stay distinct, used for the Category cell, the Equivalence cell,
+# and the legend dot/key. One source of truth shared by the cells + legend.
+CATEGORY_COLORS = {
+    "Code Deployment": "#3b82f6",
+    "Risk Evaluation": "#ef4444",
+    "Retraining Milestone": "#a855f7",
+    "Technical Outreach": "#34d399",
+    "Beta-Testing & Calibration": "#f59e0b",
+    "Audit / Education": "#f472b6",
+    "Product Development": "#818cf8",
+}
+
+
+def cat_slug(name: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "-", (name or "").lower()).strip("-")
+
+
+# Category metadata (color + equivalence label) keyed by category name. Pulled
+# from the rubric + default so the legend and the cells always agree.
+CAT_META = {}
+for _entry in CATEGORY_RUBRIC + [DEFAULT_CATEGORY]:
+    CAT_META[_entry["category"]] = {
+        "color": CATEGORY_COLORS.get(_entry["category"], "#94a3b8"),
+        "equiv": _entry["equiv"],
+        "slug": cat_slug(_entry["category"]),
+    }
+
+
+def _build_category_css() -> str:
+    # One CSS class per category: colorizes the Category text, the dot chip, and
+    # the colored left-rule on the Equivalence cell. Unused classes are harmless.
+    out = []
+    for _meta in CAT_META.values():
+        _s, _c = _meta["slug"], _meta["color"]
+        out.append(f".cat.cat-{_s}{{color:{_c};}}")
+        out.append(f".cat-name.cat-{_s}{{color:{_c};}}")
+        out.append(f".cat-dot.cat-{_s}{{background:{_c};}}")
+        out.append(f".eq.eq-{_s}{{border-left:3px solid {_c};}}")
+    return "\n".join(out) + "\n"
+
+
+# Appended to the base <style> so the category palette flows into the page.
+_CATEGORY_CSS = _build_category_css()
+
+
+def _legend_html() -> str:
+    """On-page color key for the activity categories.
+
+    Deterministic order: rubric categories first (first-seen), then the default
+    fallback last — so the legend and the table cells always agree and the
+    reading order is stable across regenerations.
+    """
+    seen: list[str] = []
+    for _entry in CATEGORY_RUBRIC + [DEFAULT_CATEGORY]:
+        if _entry["category"] not in seen:
+            seen.append(_entry["category"])
+    items = []
+    for _name in seen:
+        _m = CAT_META[_name]
+        _s = _m["slug"]
+        items.append(
+            f'<li><span class="cat-dot cat-{_s}"></span>'
+            f'<span class="cat-name cat-{_s}">{_html_escape(_name)}</span>'
+            f'<span class="legend-eq">{_html_escape(_m["equiv"])}</span></li>'
+        )
+    return ('<section class="legend" aria-label="Category color key">'
+            '<p class="legend-title">Category key</p><ul>'
+            + "".join(items) + '</ul></section>')
+
+
 # Weekly compliance target (number of attributable "actions" or hours-equiv
 # entries). The order called for 16 job contacts bi-weekly => 8/week as a
 # nominal target; we surface it as context, not a fabricated count.
@@ -688,7 +759,8 @@ def render_log(weeks: list[Week], since: str, until: str,
 _HTML_STYLE = """
 *, *::before, *::after { box-sizing: border-box; }
 :root { color-scheme: dark; --bg:#020617; --panel:rgba(15,23,42,.88);
-  --text:#e2e8f0; --muted:#94a3b8; --accent:#38bdf8; --border:rgba(148,163,184,.22); }
+  --text:#e2e8f0; --muted:#94a3b8; --accent:#38bdf8; --accent-2:#818cf8;
+  --container:rgba(15,23,42,.55); --border:rgba(148,163,184,.22); }
 html { scroll-behavior: smooth; }
 body { margin:0; min-height:100vh; padding:32px 16px;
   font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
@@ -720,17 +792,36 @@ h1 { margin:0; font-size:clamp(1.6rem,4vw,2.6rem); }
 .cta.green { background:linear-gradient(135deg,#22c55e,#16a34a); color:#fff;
   border:none; }
 .cta.green:hover { filter:brightness(1.06); }
-button.cta.expandall { background:#e0f2fe; color:#083344; border:2px solid var(--accent);
-  font-weight:800; }
-.cta.monthtoggle { background:#e0f2fe; color:#083344; border:2px solid var(--accent-2);
-  font-size:.76rem; padding:5px 12px; font-weight:800; }
+
+/* Nav-row + expand controls read on the dark panel — no near-white buttons,
+   so toggling never flashes a "light mode". The two home buttons get a dark
+   fill with white text (per Christopher's explicit ask) and accent / green
+   borders; the expand-all buttons keep a bold accent outline + slow pulse. */
+button.cta.expandall { background:#0b1220; color:#e2e8f0; border:2px solid var(--accent);
+  font-weight:800; animation: ctaPulse 3.2s ease-in-out infinite; }
+button.cta.expandall:hover { filter:brightness(1.12); background:#111c33; }
+.cta.monthtoggle { background:#0b1220; color:#e2e8f0; border:1px solid var(--accent-2);
+  font-size:.74rem; padding:4px 11px; font-weight:800; border-radius:999px;
+  cursor:pointer; animation:none; }
+.cta.monthtoggle:hover { filter:brightness(1.12); background:#111c33; }
+.nav-row .cta { background:#0b1220; color:#e2e8f0; border:1px solid var(--accent);
+  animation:none; }
+.nav-row .cta.green { background:#0b1220; color:#e2e8f0; border:1px solid #22c55e; }
+.nav-row .cta:hover, .nav-row .cta.green:hover { filter:brightness(1.12); background:#111c33; }
+
 .hero-btns { display:flex; flex-wrap:wrap; align-items:center; justify-content:center;
   gap:0; margin:18px 0 4px; }
 .hero-btns .sep { padding:0 10px; color:var(--accent-2); font-weight:700; }
 .nav-row { display:flex; flex-wrap:wrap; align-items:center; justify-content:center;
   gap:0; margin:10px 0 4px; }
 .nav-row .sep { padding:0 10px; color:var(--accent-2); font-weight:700; }
-.month-actions { text-align:right; padding:10px 20px 7px; }
+
+/* Expand-weeks button sits inline on the month summary — alongside the
+   chevron, the month label, and the mstat line — and only surfaces once the
+   month is open. The mstat's margin-left:auto packs it + the chevron right. */
+.month > summary .mstat { margin-left:auto; }
+.month > summary .cta.monthtoggle { margin-left:10px; }
+.month:not([open]) > summary .cta.monthtoggle { display:none; }
 .deck { margin:14px auto 4px; max-width:46rem; color:var(--text);
   font-size:.9rem; line-height:1.6; }
 .verify-hero { margin:10px auto 0; max-width:42rem; color:var(--muted);
@@ -776,6 +867,54 @@ td.proof .url { display:block; font-size:.72rem; color:#7dd3fc; word-break:break
 a { color:var(--accent); }
 footer { text-align:center; color:var(--muted); font-size:.82rem; margin:32px 0 0; line-height:1.6; }
 
+/* Subtle vertical gradient on the month cards for depth — easy on the eyes,
+   still unmistakably part of the dark theme (replaces the flat --panel fill). */
+.month { background:linear-gradient(180deg, rgba(15,23,42,.94), rgba(15,23,42,.86)); }
+
+/* Zebra striping in the tables — alternating slate bands track the eye down a
+   long commit list; the row hover nudges toward the accent. */
+tbody tr { transition: background .15s ease; }
+tbody tr:nth-child(even) { background: rgba(148,163,184,.06); }
+tbody tr:hover { background: rgba(56,189,248,.10); }
+
+/* Category color-coding: a colored dot chips the Category cell and a matching
+   left-rule marks the Equivalence cell. The per-category .cat-<slug> classes
+   are emitted by _build_category_css() (one rule per category above). */
+td.cat { white-space:nowrap; }
+td.cat .cat-dot { display:inline-block; width:.62em; height:.62em; border-radius:50%;
+  margin-right:.46em; vertical-align:middle; }
+td.cat .cat-name { font-weight:600; }
+td.eq { border-left:3px solid transparent; padding-left:12px; }
+td.eq .eq-label { display:block; color:var(--muted); font-size:.78rem; }
+
+/* Category key / legend — explains the dot colors at a glance, sits between
+   the hero and the month cards. */
+.legend { margin:20px auto 0; max-width:46rem; border:1px solid var(--border);
+  border-radius:14px; background:var(--container); padding:16px 20px; }
+.legend-title { margin:0 0 12px; font-size:.74rem; font-weight:700;
+  letter-spacing:.12em; text-transform:uppercase; color:var(--accent-2);
+  text-align:center; }
+.legend ul { margin:0; padding:0; list-style:none;
+  display:grid; gap:8px 18px; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); }
+.legend li { display:flex; align-items:center; gap:.5em; font-size:.82rem;
+  color:var(--text); flex-wrap:wrap; }
+.legend li .cat-dot { width:.6em; height:.6em; border-radius:50%; flex:0 0 auto; }
+.legend li .cat-name { font-weight:600; }
+.legend li .legend-eq { margin-left:auto; font-size:.74rem; color:var(--muted);
+  text-align:right; }
+
+/* Smooth open animation for the accordions — content fades + rises in as a
+   month or week unfolds. The chevron rotation transition (above) carries the
+   close-direction cue (native <details> cannot animate the fold on its own;
+   kept off this critical exhibit rather than risk a flaky CSS-grid rewrite). */
+@keyframes accordionOpen {
+  from { opacity:0; transform: translateY(-4px); }
+  to   { opacity:1; transform: translateY(0); }
+}
+.month[open] > .week,
+.week[open] > .tablewrap,
+.week[open] > .empty { animation: accordionOpen .26s ease both; }
+
 /* Tailored scrollbar — matches the public-preview landing-page accent */
 * { scrollbar-width: thin; scrollbar-color: #38bdf8 var(--bg); }
 *::-webkit-scrollbar { width:12px; height:12px; }
@@ -801,6 +940,11 @@ footer { text-align:center; color:var(--muted); font-size:.82rem; margin:32px 0 
   table, tr, td, th { break-inside:avoid; }
   thead { display:table-header-group; }
   footer { color:#000; }
+  .legend { border:1px solid #999; background:#fff; }
+  .legend li .legend-eq, .legend li .cat-name { color:#000; }
+  tr { background:#fff !important; }
+  .month[open] > .week, .week[open] > .tablewrap, .week[open] > .empty
+    { animation:none !important; }
   *::-webkit-scrollbar { display:none; }
 }
 """
@@ -830,17 +974,19 @@ def render_html(weeks: list[Week], since: str, until: str,
         body = []
         for r in rows:
             url = _html_escape(r.proof_url)
+            sl = cat_slug(r.category)
             body.append(
                 "<tr>"
                 f'<td>{_html_escape(r.commit_date)}</td>'
-                f'<td>{_html_escape(r.category)}</td>'
+                f'<td class="cat cat-{sl}">'
+                f'<span class="cat-dot cat-{sl}"></span>'
+                f'<span class="cat-name">{_html_escape(r.category)}</span></td>'
                 f'<td class="desc">{_html_escape(r.description)}</td>'
                 f'<td class="proof"><strong><a href="{url}">'
                 f'{_html_escape(r.repo)}</a></strong>'
                 f'<span class="url">{url}</span></td>'
-                f'<td>{metric_cell(r)} '
-                f'<span style="color:var(--muted);font-size:.78rem">'
-                f'({_html_escape(r.equiv_label)})</span></td>'
+                f'<td class="eq eq-{sl}">{metric_cell(r)} '
+                f'<span class="eq-label">{_html_escape(r.equiv_label)}</span></td>'
                 "</tr>"
             )
         return ('<div class="tablewrap">'
@@ -880,10 +1026,10 @@ def render_html(weeks: list[Week], since: str, until: str,
             f'<details class="month" id="{mk}"><summary>'
             f'<span>{_html_escape(lbl)}</span>'
             f'<span class="mstat">{commits} commits &#183; {hrs:g} hrs '
-            f'&#183; {acts:g} actions</span></summary>'
-            '<div class="month-actions"><button class="cta monthtoggle" '
-            'type="button" onclick="toggleMonth(this)">expand weeks</button>'
-            '</div>'
+            f'&#183; {acts:g} actions</span>'
+            '<button class="cta monthtoggle" type="button" '
+            'onclick="event.stopPropagation();toggleMonth(this)">'
+            'expand weeks</button></summary>'
             f'{inner}</details>'
         )
 
@@ -891,7 +1037,7 @@ def render_html(weeks: list[Week], since: str, until: str,
         "<!doctype html><html lang=\"en\"><head><meta charset=\"UTF-8\">"
         "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">"
         f"<title>Exhibit 4 — Vocational Log ({since} → {until})</title>"
-        f"<style>{_HTML_STYLE}</style></head><body><div class=\"wrap\">"
+        f"<style>{_HTML_STYLE}{_CATEGORY_CSS}</style></head><body><div class=\"wrap\">"
         "<header><p class=\"eyebrow\">Exhibit 4</p>"
         "<h1>Vocational Status & Tech Work-Search Log</h1>"
         "<p class=\"meta\"><strong>Maintainer:</strong> drasticstatic &middot; "
@@ -933,7 +1079,8 @@ def render_html(weeks: list[Week], since: str, until: str,
         "script &mdash; made available in the public repo</p>"
         # Verification line in the hero (navigational guidance).
         '<p class="verify-hero">Expand any month and open each row to view details</p>'
-        "</header>"
+        + _legend_html()
+        + "</header>"
         + "".join(months_html)
         + "<script>"
         "function toggleAll(btn){var ms=Array.from(document.querySelectorAll('.month'));"

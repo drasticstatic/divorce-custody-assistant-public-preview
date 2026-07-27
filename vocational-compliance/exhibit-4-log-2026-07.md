@@ -4,7 +4,7 @@ _Part of the full Exhibit 4 — [table of contents](https://github.com/drasticst
  · [public-preview homepage](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/)_
 
 **Reporting month:** July 2026  
-**Commits this month:** 29 · **Hours-equiv:** 127 · **Actions-equiv:** 0
+**Commits this month:** 31 · **Hours-equiv:** 136 · **Actions-equiv:** 0
 
 ---
 
@@ -93,11 +93,14 @@ _Commits this week:_ 15 · _Hours-equiv:_ 65 · _Actions-equiv:_ 0
 
 **Compliance target (context):** 8 attributable actions/week
 
-_No attributable commits recorded this week._
+_Commits this week:_ 2 · _Hours-equiv:_ 9 · _Actions-equiv:_ 0
 
 ### Weekly Vocational Activity & Work-Search & Effort Report
 
-_No attributable commits recorded this week._
+| Date | Category | Activity / Description | Proof (repo — full commit URL) | Equivalence |
+|---|---|---|---|---|
+| 2026-07-27 | Beta-Testing & Calibration | Exhibit 4 v3 polish: modal reorder, purple iframe link, top nav row, deck text | **divorce-custody-assistant-public-preview**<br>https://github.com/drasticstatic/divorce-custody-assistant-public-preview/commit/b75331c3597d7b33414c68484b2aff52decb06b0 | 5 hrs (Hours (product development / startup labor)) |
+| 2026-07-27 | Product Development | tweak <iframe> in new tab format | **divorce-custody-assistant-public-preview**<br>https://github.com/drasticstatic/divorce-custody-assistant-public-preview/commit/aa46e69973520015bf7060764a637e439abc2499 | 4 hrs (Hours (product development / startup labor)) |
 
 ---
 
