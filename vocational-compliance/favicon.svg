@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Divorce and Custody Assistant — the son and daughter hold hands at the center, uniting mommy and daddy as one family">
+  <defs>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.62">
+      <stop offset="0" stop-color="#38bdf8" stop-opacity="0.42"/>
+      <stop offset="1" stop-color="#38bdf8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="64" height="64" rx="12" fill="#020617"/>
+  <rect x="4" y="4" width="56" height="56" rx="11" fill="url(#glow)"/>
+  <rect x="8" y="8" width="48" height="48" rx="11" fill="none" stroke="#818cf8" stroke-opacity="0.22" stroke-width="1.1"/>
+  <line x1="9" y1="42.5" x2="55" y2="42.5" stroke="#818cf8" stroke-opacity="0.22" stroke-width="1.3" stroke-linecap="round"/>
+  <!-- MOMMY (indigo): flared dress, no legs -->
+  <circle cx="13" cy="18" r="2.6" fill="#818cf8"/>
+  <path d="M10.8 20.6 H15.2 L18 41 H8 Z" fill="#818cf8"/>
+  <!-- DADDY (indigo): straight body + two legs -->
+  <circle cx="51" cy="18" r="2.6" fill="#818cf8"/>
+  <path d="M48.5 20.6 H53.5 V33 H48.5 Z" fill="#818cf8"/>
+  <line x1="49.8" y1="33" x2="49.8" y2="40" stroke="#818cf8" stroke-width="1.15" stroke-linecap="round"/>
+  <line x1="52.2" y1="33" x2="52.2" y2="40" stroke="#818cf8" stroke-width="1.15" stroke-linecap="round"/>
+  <!-- SON (sky): straight body + two legs, reaches right toward sister -->
+  <circle cx="25" cy="23.5" r="1.9" fill="#38bdf8"/>
+  <path d="M23.5 25.5 H26.5 V31.5 H23.5 Z" fill="#38bdf8"/>
+  <line x1="24.3" y1="31.5" x2="24.3" y2="37.5" stroke="#38bdf8" stroke-width="1" stroke-linecap="round"/>
+  <line x1="25.7" y1="31.5" x2="25.7" y2="37.5" stroke="#38bdf8" stroke-width="1" stroke-linecap="round"/>
+  <!-- DAUGHTER (sky): flared dress, no legs, reaches left toward brother -->
+  <circle cx="39" cy="23.5" r="1.9" fill="#38bdf8"/>
+  <path d="M37.5 25.5 H40.5 L42.5 39 H35.5 Z" fill="#38bdf8"/>
+  <!-- ONE UNBROKEN HAND-CHAIN across the family; the held-hands at center is the union -->
+  <line x1="16.2" y1="28" x2="23.5" y2="28" stroke="#38bdf8" stroke-width="1.2" stroke-linecap="round"/>
+  <line x1="26.5" y1="28" x2="31.7" y2="28" stroke="#38bdf8" stroke-width="1.3" stroke-linecap="round"/>
+  <line x1="32.3" y1="28" x2="37.1" y2="28" stroke="#38bdf8" stroke-width="1.3" stroke-linecap="round"/>
+  <line x1="40.9" y1="28" x2="48.5" y2="28" stroke="#38bdf8" stroke-width="1.2" stroke-linecap="round"/>
+  <circle cx="16.2" cy="28" r="0.95" fill="#38bdf8"/>
+  <circle cx="32" cy="28" r="1.8" fill="#38bdf8"/>
+  <circle cx="48.5" cy="28" r="0.95" fill="#38bdf8"/>
+</svg>

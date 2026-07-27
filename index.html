@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="https://drasticstatic.github.io/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="./vocational-compliance/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="https://drasticstatic.github.io/apple-touch-icon.png" />
     <title>Divorce & Custody Assistant — Public Preview</title>
     <style>
@@ -45,7 +45,24 @@
           linear-gradient(180deg, #0f172a 0%, var(--bg) 100%);
         color: var(--text);
       }
+      /* Watermark flanking the hero: a blended family across several homes,
+         the children holding hands with the pets. Sits behind the opaque hero
+         panel so it reads as texture only in the side gutters (desktop); hidden
+         on narrow screens where there are no gutters. texture, not wall-art. */
+      .hero-mark {
+        position: fixed;
+        left: 0; right: 0;
+        top: 86px;
+        height: 150px;
+        z-index: 0;
+        pointer-events: none;
+        background: url("./vocational-compliance/hero-watermark.svg") left center / 600px 150px repeat-x;
+        opacity: 0.14;
+        filter: saturate(0.9);
+      }
       main {
+        position: relative;
+        z-index: 1;
         width: min(100%, 760px);
         margin: 0 auto;
         padding: 40px 24px 8px;
@@ -137,6 +154,8 @@
         font-style: normal;
       }
       .exhibit-panel {
+        position: relative;
+        z-index: 1;
         width: min(100%, 1200px);
         margin: 40px auto 24px;
         padding: 28px 24px;
@@ -224,6 +243,8 @@
         background: var(--bg);
       }
       footer {
+        position: relative;
+        z-index: 1;
         margin: 0 auto 24px;
         text-align: center;
       }
@@ -307,10 +328,12 @@
       @media (max-width: 640px) {
         body { padding: 14px; }
         main { padding: 32px 18px 8px; }
+        .hero-mark { display: none; }
       }
     </style>
   </head>
   <body>
+    <div class="hero-mark" aria-hidden="true"></div>
     <main>
       <p class="eyebrow">Public Preview · Intentional Minimal</p>
       <h1>Divorce & Custody Assistant</h1>

@@ -190,14 +190,39 @@ def cat_slug(name: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", (name or "").lower()).strip("-")
 
 
-# Category metadata (color + equivalence label) keyed by category name. Pulled
-# from the rubric + default so the legend and the cells always agree.
+# Short, professional, technically-applicable legend descriptors per category.
+# These trim the redundant metric-type prefix ("Hours " / "Actions ") from the
+# full equivalence strings already shown in the table cells, keeping just the
+# meaningful activity label so each legend row fits a single line alongside the
+# colored category name. Where two categories shared the same parenthetical in
+# the rubric (Beta-Testing & the default Product Development), the legend uses a
+# distinct descriptor so the key reads unambiguously. Latitude per Christopher:
+# related/shorter wording is fine where it stays professional + technically apt.
+CATEGORY_LEGEND_BLURB = {
+    "Code Deployment": "technical portfolio build",
+    "Risk Evaluation": "prop firm combine / risk audit",
+    "Retraining Milestone": "vocational schooling / curriculum",
+    "Technical Outreach": "direct lead generation",
+    "Beta-Testing & Calibration": "product build & calibration",
+    "Audit / Education": "professional performance review",
+    "Product Development": "product development / startup labor",
+}
+
+# Category metadata (color + equivalence label + legend blurb) keyed by category
+# name. Pulled from the rubric + default so the legend and the cells always agree.
 CAT_META = {}
 for _entry in CATEGORY_RUBRIC + [DEFAULT_CATEGORY]:
-    CAT_META[_entry["category"]] = {
-        "color": CATEGORY_COLORS.get(_entry["category"], "#94a3b8"),
+    _name = _entry["category"]
+    # Legend blurb: prefer the hand-tuned short descriptor; fall back to the
+    # parenthetical of the full equiv string (metric-type prefix stripped).
+    _blurb = CATEGORY_LEGEND_BLURB.get(_name) or re.sub(
+        r"^\s*(?:Hours|Actions)\s*\((.*)\)\s*$", r"\1", _entry["equiv"]
+    ) or _entry["equiv"]
+    CAT_META[_name] = {
+        "color": CATEGORY_COLORS.get(_name, "#94a3b8"),
         "equiv": _entry["equiv"],
-        "slug": cat_slug(_entry["category"]),
+        "slug": cat_slug(_name),
+        "blurb": _blurb,
     }
 
 
@@ -236,11 +261,108 @@ def _legend_html() -> str:
         items.append(
             f'<li><span class="cat-dot cat-{_s}"></span>'
             f'<span class="cat-name cat-{_s}">{_html_escape(_name)}</span>'
-            f'<span class="legend-eq">{_html_escape(_m["equiv"])}</span></li>'
+            f'<span class="legend-eq">{_html_escape(_m["blurb"])}</span></li>'
         )
     return ('<section class="legend" aria-label="Category color key">'
             '<p class="legend-title">Category key</p><ul>'
             + "".join(items) + '</ul></section>')
+
+
+def _contribution_heatmap_html(weeks: list, since: str, until: str) -> str:
+    """GitHub-style year-grid heatmap of daily attributable commit counts.
+
+    Minimal variant: low-saturation slate squares, no month labels, Sunday-
+    anchored columns. One square per calendar day in the reporting window,
+    shaded by commit count that day -- the SAME per-day record the tables below
+    already show, summarized to a single glance. No GitHub API, no external
+    dependency, no rate limit: the data is our own attributable commit record
+    (asked for as the componentry github-calendar variant="minimal"; built
+    inline so the artifact stays zero-build / zero-JS-framework static).
+    """
+    counts: dict[str, int] = {}
+    for _wk in weeks:
+        for _r in _wk.rows:
+            counts[_r.commit_date] = counts.get(_r.commit_date, 0) + 1
+
+    _start = datetime.strptime(since, "%Y-%m-%d")
+    _end = datetime.strptime(until, "%Y-%m-%d")
+
+    # Sunday-anchored columns (GitHub contribution-graph convention).
+    _sunday = lambda _dt: _dt - timedelta(days=(_dt.weekday() + 1) % 7)
+    _first = _sunday(_start)
+    _last = _sunday(_end) + timedelta(days=6)
+
+    def _level(_n: int) -> int:
+        if _n <= 0:
+            return 0
+        if _n <= 2:
+            return 1
+        if _n <= 5:
+            return 2
+        if _n <= 9:
+            return 3
+        return 4
+
+    _pal = ("#0e1b2e", "#0e3a5c", "#155e8a", "#1d7eb8", "#38bdf8")
+    _cell, _gap, _stride = 13, 3, 16
+    _pad_l, _pad_t = 28, 6
+    _cols: list = []
+    _cur = _first
+    while _cur <= _last:
+        _cols.append(_cur)
+        _cur += timedelta(days=7)
+    _w = _pad_l + len(_cols) * _stride + _gap
+    _h = _pad_t + 7 * _stride + _gap
+
+    _cells: list[str] = []
+    for _ci, _cw in enumerate(_cols):
+        for _di in range(7):
+            _day = _cw + timedelta(days=_di)
+            _iso = _day.date().isoformat()
+            _in = _start <= _day <= _end
+            _n = counts.get(_iso, 0) if _in else -1
+            _x = _pad_l + _ci * _stride
+            _y = _pad_t + _di * _stride
+            if _n < 0:
+                _cells.append(
+                    f'<rect x="{_x:.1f}" y="{_y:.1f}" width="{_cell}" '
+                    f'height="{_cell}" rx="2" fill="#0b1220" opacity="0.25">'
+                    f'<title>{_iso}: outside range</title></rect>'
+                )
+            else:
+                _lbl = "commit" if _n == 1 else "commits"
+                _cells.append(
+                    f'<rect x="{_x:.1f}" y="{_y:.1f}" width="{_cell}" '
+                    f'height="{_cell}" rx="2" fill="{_pal[_level(_n)]}">'
+                    f'<title>{_iso}: {_n} {_lbl}</title></rect>'
+                )
+
+    _row_lbl = {0: "Sun", 2: "Tue", 4: "Thu", 6: "Sat"}
+    _lbls = [
+        f'<text x="0" y="{_pad_t + _di * _stride + 10:.1f}" font-size="9" '
+        f'fill="#94a3b8">{_nm}</text>'
+        for _di, _nm in _row_lbl.items()
+    ]
+
+    _svg = (
+        f'<svg class="heat-svg" viewBox="0 0 {_w:.0f} {_h:.0f}" width="100%" '
+        f'preserveAspectRatio="xMidYMid meet" role="img" '
+        f'aria-label="Daily contribution heatmap {_start.date()} to {_end.date()}">'
+        + "".join(_lbls) + "".join(_cells) + '</svg>'
+    )
+
+    _scale = "".join(f'<i style="background:{_c}"></i>' for _c in _pal)
+    return (
+        '<section class="heatmap" aria-label="Daily contribution heatmap">'
+        '<p class="heatmap-title">Daily contributions</p>'
+        '<p class="heatmap-sub">Each square is one calendar day in the reporting '
+        f'window ({_start.date()} &rarr; {_end.date()}); shading tracks '
+        'attributable commits that day.</p>'
+        + _svg
+        + '<div class="heat-scale" aria-hidden="true"><span>Less</span>'
+        + _scale + '<span>More</span></div>'
+        '</section>'
+    )
 
 
 # Weekly compliance target (number of attributable "actions" or hours-equiv
@@ -766,7 +888,16 @@ body { margin:0; min-height:100vh; padding:32px 16px;
   font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   color:var(--text); background:
     radial-gradient(circle at top, rgba(56,189,248,.18), transparent 32%),
-    linear-gradient(180deg,#0f172a 0%, var(--bg) 100%); }
+    linear-gradient(180deg,#0f172a 0%, var(--bg) 100%);
+  /* Glassmorphism fix (v5): pin the background to the VIEWPORT, not the
+     document. A document-height linear-gradient stretches as accordions open,
+     shifting each panel's position up toward the lighter #0f172a top — so
+     panels appeared to lighten as others unfolded. With the background fixed
+     to the viewport, the glow sits still behind the glass; opening a panel
+     never re-maps the gradient beneath it. Combined with the flat .month
+     glass (no gradient) + transparent .week (no own fill), the rendered
+     surface is now height-independent. */
+  background-attachment: fixed; }
 .wrap { max-width:1100px; margin:0 auto; }
 header { text-align:center; margin-bottom:28px; }
 .eyebrow { margin:0 0 8px; font-size:.78rem; font-weight:700;
@@ -828,10 +959,16 @@ button.cta.expandall:hover { filter:brightness(1.12); background:#111c33; }
   font-size:.82rem; line-height:1.6; }
 summary { cursor:pointer; list-style:none; }
 summary::-webkit-details-marker { display:none; }
-/* Month accordion: rounded card. overflow:hidden so the CARD never initiates
-   horizontal scroll; only inner tables are allowed to scroll-x on mobile. */
+/* Month accordion: a single glass panel. ONE consistent translucent fill +
+   backdrop blur so the rendered background is HEIGHT-INDEPENDENT — opening a
+   month (adding panel area) never lightens the surface, because the glass
+   is a fixed alpha everywhere, not a stacked/gradient fill. overflow:hidden
+   so the card never initiates horizontal scroll (only inner tables scroll-x). */
 .month { margin:22px 0; border:1px solid var(--border); border-radius:16px;
-  background:var(--panel); overflow:hidden; }
+  background:rgba(15,23,42,.72); -webkit-backdrop-filter:blur(8px);
+  backdrop-filter:blur(8px);
+  box-shadow:0 8px 24px rgba(2,6,23,.35), inset 0 1px 0 rgba(148,163,184,.10);
+  overflow:hidden; }
 .month > summary { padding:16px 20px; font-size:1.15rem; font-weight:700;
   display:flex; justify-content:space-between; gap:12px; align-items:center; }
 /* Month chevron — accent-triangle that rotates, with the CTA text-glow pulse. */
@@ -843,7 +980,11 @@ summary::-webkit-details-marker { display:none; }
 .week > summary::after { content:"\\2023"; color:var(--accent-2); font-size:.85em;
   transition:transform .2s; opacity:.85; }
 .week[open] > summary::after { transform:rotate(90deg); }
-.week { margin:0; border-top:1px solid var(--border); }
+/* Glassmorphism (v5): the week has NO background of its own — it inherits the
+   month's glass. A translucent .week fill stacked inside the translucent .month
+   multiplied the alphas and lightened the surface; transparent here keeps an
+   expanded month + its open weeks reading as ONE continuous glass panel. */
+.week { margin:0; border-top:1px solid var(--border); background:transparent; }
 .week > summary { padding:12px 20px; font-weight:600; font-size:.98rem;
   display:flex; justify-content:space-between; gap:10px; align-items:center; }
 /* On narrow screens, let the stat wrap rather than forcing horizontal scroll. */
@@ -867,9 +1008,13 @@ td.proof .url { display:block; font-size:.72rem; color:#7dd3fc; word-break:break
 a { color:var(--accent); }
 footer { text-align:center; color:var(--muted); font-size:.82rem; margin:32px 0 0; line-height:1.6; }
 
-/* Subtle vertical gradient on the month cards for depth — easy on the eyes,
-   still unmistakably part of the dark theme (replaces the flat --panel fill). */
-.month { background:linear-gradient(180deg, rgba(15,23,42,.94), rgba(15,23,42,.86)); }
+/* Glassmorphism note (v4→v5): the earlier vertical gradient on .month was
+   removed. Its bottom stop (.86 alpha, lighter than the .94 top) was one
+   contributor to the "background lightens as accordions unfold" effect, and
+   stacking a translucent .week fill inside multiplied the alphas further. The
+   .month is now a single flat translucent glass (declared above); the .week
+   inherits it with no fill of its own (declared below), so expanding a month
+   adds flat-dark area, never a lighter layer. */
 
 /* Zebra striping in the tables — alternating slate bands track the eye down a
    long commit list; the row hover nudges toward the accent. */
@@ -895,13 +1040,33 @@ td.eq .eq-label { display:block; color:var(--muted); font-size:.78rem; }
   letter-spacing:.12em; text-transform:uppercase; color:var(--accent-2);
   text-align:center; }
 .legend ul { margin:0; padding:0; list-style:none;
-  display:grid; gap:8px 18px; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); }
+  display:grid; gap:6px 18px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); }
 .legend li { display:flex; align-items:center; gap:.5em; font-size:.82rem;
-  color:var(--text); flex-wrap:wrap; }
+  color:var(--text); flex-wrap:nowrap; white-space:nowrap; }
 .legend li .cat-dot { width:.6em; height:.6em; border-radius:50%; flex:0 0 auto; }
 .legend li .cat-name { font-weight:600; }
 .legend li .legend-eq { margin-left:auto; font-size:.74rem; color:var(--muted);
-  text-align:right; }
+  text-align:right; flex:0 0 auto; }
+
+/* Daily contribution heatmap — a year-at-a-glance summary above the monthly
+   detail. Own data, variant="minimal" aesthetic (low-saturation slate-to-accent
+   squares, no month labels, Sunday-anchored columns). */
+.heatmap { margin:22px auto 0; max-width:52rem; border:1px solid var(--border);
+  border-radius:14px; background:var(--container); padding:16px 20px 14px; }
+.heatmap-title { margin:0 0 4px; font-size:.74rem; font-weight:700;
+  letter-spacing:.12em; text-transform:uppercase; color:var(--accent-2);
+  text-align:center; }
+.heatmap-sub { margin:0 0 10px; font-size:.72rem; color:var(--muted);
+  text-align:center; line-height:1.45; }
+.heat-svg { display:block; margin:0 auto; max-width:100%; height:auto;
+  font-family:inherit; }
+.heat-svg rect { shape-rendering:crispEdges; }
+.heat-svg text { font-family:inherit; }
+.heat-scale { display:flex; align-items:center; justify-content:flex-end;
+  gap:4px; margin:8px 2px 0; font-size:.68rem; color:var(--muted); }
+.heat-scale span { line-height:1; }
+.heat-scale i { width:11px; height:11px; border-radius:2px; display:inline-block;
+  border:1px solid rgba(148,163,184,.16); }
 
 /* Smooth open animation for the accordions — content fades + rises in as a
    month or week unfolds. The chevron rotation transition (above) carries the
@@ -932,7 +1097,8 @@ td.eq .eq-label { display:block; color:var(--muted); font-size:.78rem; }
   .month > summary::after, button.cta.expandall, button.cta.monthtoggle,
   .month-actions, .hero-btns .sep, .nav-row .sep { display:none; }
   .month, .week { border:1px solid #999; border-radius:0; break-inside:avoid;
-    overflow:visible; }
+    overflow:visible; background:#fff !important;
+    -webkit-backdrop-filter:none; backdrop-filter:none; box-shadow:none; }
   summary { break-after:avoid; break-inside:avoid; }
   th, td { border-color:#ccc; color:#000; }
   th { background:#fff; }
@@ -942,6 +1108,12 @@ td.eq .eq-label { display:block; color:var(--muted); font-size:.78rem; }
   footer { color:#000; }
   .legend { border:1px solid #999; background:#fff; }
   .legend li .legend-eq, .legend li .cat-name { color:#000; }
+  .heatmap { border:1px solid #999; background:#fff; -webkit-print-color-adjust:exact;
+    print-color-adjust:exact; break-inside:avoid; }
+  .heatmap-title, .heatmap-sub, .heat-scale span { color:#000; }
+  .heat-svg { print-color-adjust:exact; -webkit-print-color-adjust:exact; }
+  .heat-svg rect, .heat-scale i { -webkit-print-color-adjust:exact;
+    print-color-adjust:exact; }
   tr { background:#fff !important; }
   .month[open] > .week, .week[open] > .tablewrap, .week[open] > .empty
     { animation:none !important; }
@@ -1037,6 +1209,7 @@ def render_html(weeks: list[Week], since: str, until: str,
         "<!doctype html><html lang=\"en\"><head><meta charset=\"UTF-8\">"
         "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">"
         f"<title>Exhibit 4 — Vocational Log ({since} → {until})</title>"
+        "<link rel=\"icon\" href=\"favicon.svg\" type=\"image/svg+xml\">"
         f"<style>{_HTML_STYLE}{_CATEGORY_CSS}</style></head><body><div class=\"wrap\">"
         "<header><p class=\"eyebrow\">Exhibit 4</p>"
         "<h1>Vocational Status & Tech Work-Search Log</h1>"
@@ -1057,6 +1230,15 @@ def render_html(weeks: list[Week], since: str, until: str,
         '<span class="sep">&#183;</span>'
         f'<a class="cta" target="_blank" rel="noopener" href="{blob_url("reporting-context.md")}">reporting context</a>'
         "</div>"
+        # Navigational deck — what the page IS, before the category key + guidance.
+        '<p class="deck">Each entry traces to a verifiable push on GitHub.com; '
+        "generated straight from the unadulterated commit record via python "
+        "script &mdash; made available in the public repo</p>"
+        # Category key sits above the verification line so the legend reads first.
+        + _legend_html()
+        # Verification line in the hero (navigational guidance), under the key.
+        + '<p class="verify-hero">Expand any month and open each row to view '
+        "details</p>"
         # Nav row — every expand control + site home button grouped together
         # so a reviewing officer finds everything intuitively without asking.
         '<div class="nav-row">'
@@ -1073,14 +1255,8 @@ def render_html(weeks: list[Week], since: str, until: str,
         'href="https://drasticstatic.github.io/trading-assistant-public-preview/">'
         "trading-assistant home &#8599;</a>"
         "</div>"
-        # Navigational deck — what the page IS, before the verification line.
-        '<p class="deck">Each entry traces to a verifiable push on GitHub.com; '
-        "generated straight from the unadulterated commit record via python "
-        "script &mdash; made available in the public repo</p>"
-        # Verification line in the hero (navigational guidance).
-        '<p class="verify-hero">Expand any month and open each row to view details</p>'
-        + _legend_html()
         + "</header>"
+        + _contribution_heatmap_html(weeks, since, until)
         + "".join(months_html)
         + "<script>"
         "function toggleAll(btn){var ms=Array.from(document.querySelectorAll('.month'));"
