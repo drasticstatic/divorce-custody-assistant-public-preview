@@ -4,7 +4,7 @@ _Part of the full Exhibit 4 — [table of contents](https://github.com/drasticst
  · [public-preview homepage](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/)_
 
 **Reporting month:** July 2026  
-**Commits this month:** 32 · **Hours-equiv:** 140 · **Actions-equiv:** 0
+**Commits this month:** 33 · **Hours-equiv:** 143 · **Actions-equiv:** 0
 
 ---
 
@@ -93,7 +93,7 @@ _Commits this week:_ 15 · _Hours-equiv:_ 65 · _Actions-equiv:_ 0
 
 **Compliance target (context):** 8 attributable actions/week
 
-_Commits this week:_ 3 · _Hours-equiv:_ 13 · _Actions-equiv:_ 0
+_Commits this week:_ 4 · _Hours-equiv:_ 16 · _Actions-equiv:_ 0
 
 ### Weekly Vocational Activity & Work-Search & Effort Report
 
@@ -102,6 +102,7 @@ _Commits this week:_ 3 · _Hours-equiv:_ 13 · _Actions-equiv:_ 0
 | 2026-07-27 | Beta-Testing & Calibration | Exhibit 4 v3 polish: modal reorder, purple iframe link, top nav row, deck text | **divorce-custody-assistant-public-preview**<br>https://github.com/drasticstatic/divorce-custody-assistant-public-preview/commit/b75331c3597d7b33414c68484b2aff52decb06b0 | 5 hrs (Hours (product development / startup labor)) |
 | 2026-07-27 | Product Development | tweak <iframe> in new tab format | **divorce-custody-assistant-public-preview**<br>https://github.com/drasticstatic/divorce-custody-assistant-public-preview/commit/aa46e69973520015bf7060764a637e439abc2499 | 4 hrs (Hours (product development / startup labor)) |
 | 2026-07-27 | Product Development | Exhibit 4 polish: zebra rows, category color-coding + legend, dark nav buttons, accordion open-animation | **divorce-custody-assistant-public-preview**<br>https://github.com/drasticstatic/divorce-custody-assistant-public-preview/commit/b067b7b58a4553b13eab8605e71c1d98a9a49296 | 4 hrs (Hours (product development / startup labor)) |
+| 2026-07-27 | Audit / Education | Exhibit 4 v5 polish + daily heatmap + hero watermark | **divorce-custody-assistant-public-preview**<br>https://github.com/drasticstatic/divorce-custody-assistant-public-preview/commit/2dd455500cc4eba8e53c7ea4d258daff8cde17c1 | 3 hrs (Hours (professional performance review)) |
 
 ---
 

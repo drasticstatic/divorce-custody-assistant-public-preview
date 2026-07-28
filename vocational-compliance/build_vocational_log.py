@@ -205,7 +205,7 @@ CATEGORY_LEGEND_BLURB = {
     "Technical Outreach": "direct lead generation",
     "Beta-Testing & Calibration": "product build & calibration",
     "Audit / Education": "professional performance review",
-    "Product Development": "product development / startup labor",
+    "Product Development": "innovation management / startup labor",
 }
 
 # Category metadata (color + equivalence label + legend blurb) keyed by category
@@ -263,8 +263,8 @@ def _legend_html() -> str:
             f'<span class="cat-name cat-{_s}">{_html_escape(_name)}</span>'
             f'<span class="legend-eq">{_html_escape(_m["blurb"])}</span></li>'
         )
-    return ('<section class="legend" aria-label="Category color key">'
-            '<p class="legend-title">Category key</p><ul>'
+    return ('<section class="legend" aria-label="Category color key / legend">'
+            '<p class="legend-title">Category key / legend</p><ul>'
             + "".join(items) + '</ul></section>')
 
 
@@ -353,11 +353,11 @@ def _contribution_heatmap_html(weeks: list, since: str, until: str) -> str:
 
     _scale = "".join(f'<i style="background:{_c}"></i>' for _c in _pal)
     return (
-        '<section class="heatmap" aria-label="Daily contribution heatmap">'
-        '<p class="heatmap-title">Daily contributions</p>'
+        '<section class="heatmap" aria-label="Contributions heatmap">'
+        '<p class="heatmap-title">Contributions Heatmap</p>'
         '<p class="heatmap-sub">Each square is one calendar day in the reporting '
         f'window ({_start.date()} &rarr; {_end.date()}); shading tracks '
-        'attributable commits that day.</p>'
+        'attributable commits that day</p>'
         + _svg
         + '<div class="heat-scale" aria-hidden="true"><span>Less</span>'
         + _scale + '<span>More</span></div>'
@@ -941,10 +941,10 @@ button.cta.expandall:hover { filter:brightness(1.12); background:#111c33; }
 .nav-row .cta:hover, .nav-row .cta.green:hover { filter:brightness(1.12); background:#111c33; }
 
 .hero-btns { display:flex; flex-wrap:wrap; align-items:center; justify-content:center;
-  gap:0; margin:18px 0 4px; }
+  gap:9px 0; margin:18px 0 4px; }
 .hero-btns .sep { padding:0 10px; color:var(--accent-2); font-weight:700; }
 .nav-row { display:flex; flex-wrap:wrap; align-items:center; justify-content:center;
-  gap:0; margin:10px 0 4px; }
+  gap:9px 0; margin:10px 0 4px; }
 .nav-row .sep { padding:0 10px; color:var(--accent-2); font-weight:700; }
 
 /* Expand-weeks button sits inline on the month summary — alongside the
@@ -991,6 +991,30 @@ summary::-webkit-details-marker { display:none; }
 @media (max-width:640px) {
   .week > summary, .month > summary { flex-wrap:wrap; }
   .wstat, .mstat { white-space:normal; }
+}
+/* Mobile (screen only): let the legend wrap so blurbs stop overflowing the
+   iframe, and linearize the commit table into stacked labeled cards so the
+   iframe never scrolls horizontally on a phone. Desktop keeps the one-line
+   legend rows; print is untouched (print width is always above the breakpoint). */
+@media screen and (max-width:640px) {
+  .legend li { flex-wrap:wrap; white-space:normal; }
+  .legend li .legend-eq { margin-left:0; text-align:left; flex:1 1 100%;
+    padding-left:1.7em; }
+  .tablewrap { overflow:visible; }
+  table, tbody, tr, td { display:block; box-sizing:border-box; }
+  table { min-width:0; }
+  thead { display:none; }
+  tbody tr { margin:10px 0; padding:10px 12px;
+    border:1px solid var(--border); border-radius:10px;
+    background:rgba(15,23,42,.35); }
+  td { display:flex; flex-wrap:wrap; align-items:baseline;
+    justify-content:flex-start; gap:6px 12px; padding:7px 0; border:0;
+    border-bottom:1px solid rgba(148,163,184,.08); }
+  td:last-child { border-bottom:0; }
+  td::before { content:attr(data-label); flex:0 0 5.5rem;
+    font-size:.68rem; font-weight:700; text-transform:uppercase;
+    letter-spacing:.04em; color:var(--muted); }
+  td.proof a { word-break:break-all; }
 }
 .wstat { font-size:.8rem; color:var(--muted); white-space:nowrap; }
 /* The TABLE is the one element allowed to scroll horizontally on small screens —
@@ -1149,15 +1173,15 @@ def render_html(weeks: list[Week], since: str, until: str,
             sl = cat_slug(r.category)
             body.append(
                 "<tr>"
-                f'<td>{_html_escape(r.commit_date)}</td>'
-                f'<td class="cat cat-{sl}">'
+                f'<td data-label="Date">{_html_escape(r.commit_date)}</td>'
+                f'<td class="cat cat-{sl}" data-label="Category">'
                 f'<span class="cat-dot cat-{sl}"></span>'
                 f'<span class="cat-name">{_html_escape(r.category)}</span></td>'
-                f'<td class="desc">{_html_escape(r.description)}</td>'
-                f'<td class="proof"><strong><a href="{url}">'
+                f'<td class="desc" data-label="Activity">{_html_escape(r.description)}</td>'
+                f'<td class="proof" data-label="Proof"><strong><a href="{url}">'
                 f'{_html_escape(r.repo)}</a></strong>'
                 f'<span class="url">{url}</span></td>'
-                f'<td class="eq eq-{sl}">{metric_cell(r)} '
+                f'<td class="eq eq-{sl}" data-label="Equivalence">{metric_cell(r)} '
                 f'<span class="eq-label">{_html_escape(r.equiv_label)}</span></td>'
                 "</tr>"
             )
@@ -1234,6 +1258,9 @@ def render_html(weeks: list[Week], since: str, until: str,
         '<p class="deck">Each entry traces to a verifiable push on GitHub.com; '
         "generated straight from the unadulterated commit record via python "
         "script &mdash; made available in the public repo</p>"
+        # Contributions heatmap sits above the category key so a reviewer sees
+        # the year-at-a-glance grid before the color key + the monthly detail.
+        + _contribution_heatmap_html(weeks, since, until)
         # Category key sits above the verification line so the legend reads first.
         + _legend_html()
         # Verification line in the hero (navigational guidance), under the key.
@@ -1256,7 +1283,6 @@ def render_html(weeks: list[Week], since: str, until: str,
         "trading-assistant home &#8599;</a>"
         "</div>"
         + "</header>"
-        + _contribution_heatmap_html(weeks, since, until)
         + "".join(months_html)
         + "<script>"
         "function toggleAll(btn){var ms=Array.from(document.querySelectorAll('.month'));"
@@ -1296,8 +1322,9 @@ def main(argv: list[str]) -> int:
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--since", required=True,
                    help="ISO start date YYYY-MM-DD")
-    p.add_argument("--until", required=True,
-                   help="ISO end date YYYY-MM-DD")
+    p.add_argument("--until", default=None,
+                   help="ISO end date YYYY-MM-DD (default: today, UTC — so the "
+                        "log auto-extends on each re-run for the followup hearing)")
     p.add_argument("--author", default=ACCOUNT,
                    help="GitHub account to pull public repos from")
     deny = p.add_argument("--deny", action="append", default=[],
@@ -1306,6 +1333,11 @@ def main(argv: list[str]) -> int:
                    help="Output path for the TOC index (default: "
                         "vocational-compliance/exhibit-4-log.md)")
     args = p.parse_args(argv)
+    # Default --until to today (UTC) so each regen auto-extends through the
+    # present — after the conference we re-run and the log appends for the
+    # followup hearing without touching the flags.
+    if not args.until:
+        args.until = datetime.now(timezone.utc).date().isoformat()
 
     base_dir = os.path.dirname(os.path.abspath(__file__))
     index_path = args.out or os.path.join(base_dir, INDEX_FILE)

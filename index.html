@@ -153,6 +153,20 @@
         color: var(--accent);
         font-style: normal;
       }
+      .acim .jump-bottom {
+        display: none;
+        margin: 0 0 12px;
+        padding: 8px 16px;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        background: var(--container);
+        color: var(--accent-2);
+        font-size: 0.78rem;
+        font-weight: 600;
+        cursor: pointer;
+        width: auto;
+      }
+      .acim .jump-bottom:hover { filter: brightness(1.1); text-decoration: underline; }
       .exhibit-panel {
         position: relative;
         z-index: 1;
@@ -330,6 +344,9 @@
         main { padding: 32px 18px 8px; }
         .hero-mark { display: none; }
       }
+      @media screen and (max-width: 640px) {
+        .acim .jump-bottom { display: inline-block; }
+      }
     </style>
   </head>
   <body>
@@ -377,6 +394,7 @@
 
     <dialog id="acim" class="acim" aria-label="A quiet word — on mercy and judgment">
       <p class="modal-head">a quiet word on mercy, then back to the work</p>
+      <p style="text-align:center;"><button class="jump-bottom" type="button" onclick="var d=document.getElementById('acim');d.scrollTop=d.scrollHeight;this.style.display='none';">&#8595; jump to the bottom</button></p>
       <hr class="segue" />
       <p class="q">&ldquo;⁶The strain of constant judgment is virtually intolerable. ⁷It is curious that an ability so debilitating would be so deeply cherished. ⁸Yet if you wish to be the author of reality, you will insist on holding on to judgment. ⁹You will also regard judgment with fear, believing that it will someday be used against you. ¹⁰This belief can exist only to the extent that you believe in the efficacy of judgment as a weapon of defense for your own authority.<br /><br />
         6. ²God offers only mercy. ³Your words should reflect only mercy, because that is what you have received and that is what you should give. ⁴Justice is a temporary expedient, or an attempt to teach you the meaning of mercy. ⁵It is judgmental only because you are capable of injustice.&rdquo;
