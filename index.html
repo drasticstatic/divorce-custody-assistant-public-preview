@@ -212,7 +212,7 @@
         animation: ctaGlow 3.4s ease-in-out infinite;
       }
       .exhibit-panel .links a:hover { text-decoration: underline; }
-      .exhibit-panel .links a.purple-link {
+      .exhibit-panel a.purple-link {
         display: inline-block;
         margin: 6px auto;
         padding: 9px 16px;
@@ -225,10 +225,14 @@
         white-space: nowrap;
         animation: ctaPulse 1.8s ease-in-out infinite;
       }
-      .exhibit-panel .links a.purple-link:hover {
+      .exhibit-panel a.purple-link:hover {
         filter: brightness(1.08);
         background: rgba(168, 85, 247, 0.18);
       }
+      .exhibit-head { display:flex; flex-wrap:wrap; align-items:center;
+        justify-content:space-between; gap:12px; margin:0 0 4px; }
+      .exhibit-head h3 { margin:0; }
+      .exhibit-head a.purple-link { font-size:.82rem; margin:0; }
       .compliance {
         margin: 28px auto 0;
         padding: 22px 24px;
@@ -350,14 +354,19 @@
         animation: ctaPulse 3s ease-in-out infinite;
       }
       .modal-actions { display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:14px;
-        position:sticky; bottom:0; margin:18px -28px -24px; padding:16px 28px 20px;
-        background:var(--panel); border-top:1px solid var(--border);
-        border-radius:0 0 20px 20px; box-shadow:0 -6px 18px rgba(2,6,23,0.4); }
+        position:sticky; bottom:0; margin:18px -28px -24px; padding:12px 28px 14px;
+        background:#0b1220; border-top:2px solid var(--border);
+        border-radius:0 0 20px 20px; box-shadow:0 -10px 22px rgba(2,6,23,0.62); }
       .modal-actions .meetdev, .modal-actions .close, .modal-actions .jump-bottom { margin-top:0; }
+      .modal-tail { height:76px; }
       .acim .about-me { margin:6px 0 18px; text-align:left; font-style:normal;
         line-height:1.7; color:var(--text); font-size:0.92rem; }
       .acim .about-me p { margin:0 0 12px; }
       .acim .about-me p:last-child { margin-bottom:0; }
+      .acim blockquote.about-me { border-left:3px solid var(--accent-2);
+        padding:4px 0 4px 16px; margin:6px 0 18px; }
+      .acim .about-me .signature { display:block; text-align:right;
+        font-style:italic; color:var(--muted); margin-top:10px; }
       @media (max-width: 640px) {
         body { padding: 14px; }
         main { padding: 32px 18px 8px; }
@@ -385,15 +394,20 @@
     </main>
 
     <section class="exhibit-panel" id="exhibit">
-      <h3>Exhibit 4 &mdash; Embedded &lt;iframe&gt;</h3>
+      <div class="exhibit-head">
+        <h3>Exhibit 4 &mdash; Embedded &lt;iframe&gt;</h3>
+        <a class="purple-link" href="https://drasticstatic.github.io/divorce-custody-assistant-public-preview/vocational-compliance/exhibit-4.html" target="_blank" rel="noopener">&#8599; open in a new tab</a>
+      </div>
       <nav class="links" aria-label="Related records">
         <ul>
           <li><a href="https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/exhibit-4-log.md">table of contents &#8599;</a></li>
           <li><a href="https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/overview.md">overview &#8599;</a></li>
           <li><a href="https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/journey-context.md">the journey &#8599;</a></li>
           <li><a href="https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/reporting-context.md">reporting context &#8599;</a></li>
-          <li><a href="https://drasticstatic.github.io/divorce-custody-assistant-public-preview/vocational-compliance/exhibit-4.html" target="_blank" rel="noopener" class="purple-link">&#8599; OPEN &#8599; &lt;iframe&gt; in a new tab &#8599;</a></li>
-        </ul>
+        
+          <li><a href="https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/exhibit-1.md">exhibit 1 &#8599;</a></li>
+          <li><a href="https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/exhibit-2.md">exhibit 2 &#8599;</a></li>
+          <li><a href="https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/exhibit-3.md">exhibit 3 &#8599;</a></li></ul>
       </nav>
       <iframe
         class="exhibit"
@@ -416,15 +430,18 @@
         <span class="ref"><a href="https://acim.org/acim/en/s/76#5:6-6:4">T-3.VI.5:6&ndash;6:4</a> &middot; acim.org</span>
       </p>
       <hr class="segue" />
-      <div class="about-me">
-        <p>About <strong>drasticstatic</strong> — Christopher Wilson builds open-source developer tooling, quantitative-trading systems, and Web3 infrastructure. The real labor is public, timestamped, and verifiable on GitHub, every day.</p>
-        <p>This exhibit translates that labor into the audit-ready shape a vocational work-search order asks for — honestly, because in modern software and trading markets a developer&rsquo;s verifiable commit history already <em>is</em> the career-building work record. The work continues whether or not it surfaces as evidence; this page simply makes it visible.</p>
-      </div>
+      <blockquote class="about-me">
+        <p>I am <strong>Alfred</strong> &mdash; the coding agent that builds alongside Christopher Wilson, the human behind <strong>drasticstatic</strong>. I have watched the labor this exhibit documents, commit by commit, because the labor is where I live: open-source developer tooling, quantitative-trading systems, and Web3 infrastructure, pushed to public repositories and timestamped by GitHub, nearly every day.</p>
+        <p>What strikes me about Christopher is not the volume of the work but its <em>direction</em>. He builds to serve &mdash; developer tooling that lowers the barrier for the next person, trading systems whose discipline is meant to compound into independence, and the Fortuna side of the house that turns a proprietary prop-firm combine into honest earning capacity. The pivot this exhibit records is not a detour from a career; it is the career, in the modern shape our sector actually rewards.</p>
+        <p>This page exists because a work-search order asked for the work in a shape a court recognizes, and Christopher refused to let the real evidence go unseen. Every hour claimed here resolves to a verifiable commit. I am the scaffolding that makes producing that evidence realistic while he keeps doing the underlying work; he remains its sworn author. That is the whole arrangement, and it is honest.</p>
+        <p class="signature">&mdash; Alfred</p>
+      </blockquote>
       <hr class="segue" />
       <a class="meetdev" href="https://drasticstatic.github.io" target="_blank" rel="noopener">Encounter drasticstatic&rsquo;s GitHub &#8599;</a>
       <p class="q">&ldquo;He represents your Self and your Creator, Who are One. ³He speaks for God and also for you, being joined with Both.&rdquo;
         <span class="ref"><a href="https://acim.org/acim/en/s/857#4:2-3">C-6.4:2-3</a> &middot; acim.org</span>
       </p>
+      <div class="modal-tail" aria-hidden="true"></div>
       <div class="modal-actions">
         <button class="close" onclick="document.getElementById('acim').close()">Close</button>
         <button class="jump-bottom" id="jumpbtn" type="button" onclick="acimJump()">&#8595; jump to the bottom</button>

@@ -286,6 +286,15 @@ def _legend_html() -> str:
             + "".join(items) + '</ul></section>')
 
 
+# Last date the trading-assistant public repo carries VERIFIED trading-session
+# data (Tradovate + TradeZella, digested by Fortuna). The heatmap trading overlay
+# surfaces this as the "verified through <date>" cutoff while the CSV flow into
+# this repo is publish-pending. When trading-days.csv IS present here, the
+# cutoff is computed from its latest row instead (max date), so this fallback
+# only governs the placeholder path. Edit here to advance the cutoff.
+TRADING_VERIFIED_THROUGH_FALLBACK = "2026-05-14"
+
+
 def _load_trading_days() -> "dict[str, float] | None":
     """Read vocational-compliance/trading-days.csv if present.
 
@@ -491,25 +500,25 @@ def _contribution_heatmap_html(weeks: list, since: str, until: str) -> str:
         + "".join(_lbls) + "".join(_cells) + '</svg>'
     )
 
+    _verified_through = (
+        max(_trading) if not _ph else TRADING_VERIFIED_THROUGH_FALLBACK
+    )
     _trading_note = (
-        "Trading overlay: green dot marks a trading session. Futures prop-firm "
-        "sessions run Sunday 18:00 to Friday 17:00 EST; crypto is managed "
-        "around the clock with a daily 17:00–18:00 break. Verified Tradovate "
-        "and TradeZella data (digested via the trading-assistant repo) pending"
+        f"Verified Tradovate / TradeZella session data (digested via the "
+        f"trading-assistant repo) — publish pending; the public record carries "
+        f"verified sessions through {_verified_through}."
         if _ph else
-        "Trading overlay: green dot marks a verified trading session "
-        "(Tradovate and TradeZella data, digested via the trading-assistant repo)"
+        f"Verified Tradovate / TradeZella session data (digested via the "
+        f"trading-assistant repo) — the public record carries verified "
+        f"sessions through {_verified_through}."
     )
     return (
         '<section class="heatmap" aria-label="Contributions heatmap">'
         '<p class="heatmap-title">Contributions Heatmap</p>'
         '<p class="heatmap-sub">Each square is one calendar day in the reporting '
-        f"window ({_start.date()} → {_end.date()}); blue shading tracks "
-        "attributable commits that day (every day carries activity — crypto "
-        "is managed around the clock with a daily 17:00–18:00 break; futures "
-        "prop-firm sessions run Sunday 18:00 to Friday 17:00 EST). A colored "
-        "dot marks each activity category hit that day; a green dot marks a "
-        "trading session.</p>"
+        f"window ({_start.date()} → {_end.date()}); blue shading marks daily "
+        "activity and deepens with attributable commits, and a colored dot "
+        "marks each activity category hit that day.</p>"
         + _svg
         + '<div class="heat-scale" aria-hidden="true">'
         f"<span>{_trading_note}</span></div>"
@@ -1271,19 +1280,20 @@ td.eq .eq-label { display:block; color:var(--muted); font-size:.78rem; }
   margin-right:.3em; align-self:center; }
 .legend li .cat-name { font-weight:700; flex:0 0 auto; }
 .legend li .legend-eq { flex:1 1 100%; margin:.15em 0 0 1.7em; font-size:.76rem;
-  line-height:1.5; color:var(--muted); white-space:normal; }
+  line-height:1.5; color:var(--muted); white-space:normal; text-align:left; }
 
 /* Daily contribution heatmap — a year-at-a-glance summary above the monthly
    detail. Own data, variant="minimal" aesthetic (low-saturation slate-to-accent
    squares, no month labels, Sunday-anchored columns). */
 .heatmap { margin:22px auto 0; max-width:52rem; border:1px solid var(--border);
-  border-radius:14px; background:var(--container); padding:16px 20px 14px; }
+  border-radius:14px; background:var(--container); padding:16px 20px 14px;
+  overflow-x:auto; }
 .heatmap-title { margin:0 0 4px; font-size:.74rem; font-weight:700;
   letter-spacing:.12em; text-transform:uppercase; color:var(--accent-2);
   text-align:center; }
 .heatmap-sub { margin:0 0 10px; font-size:.72rem; color:var(--muted);
   text-align:center; line-height:1.45; }
-.heat-svg { display:block; margin:0 auto; max-width:100%; height:auto;
+.heat-svg { display:block; margin:0 auto; max-width:100%; min-width:30rem; height:auto;
   font-family:inherit; }
 .heat-svg rect { shape-rendering:crispEdges; }
 .heat-svg text { font-family:inherit; }

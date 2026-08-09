@@ -3,9 +3,9 @@
 **Maintainer:** drasticstatic  
 **Reporting period:** 2026-01-01 → 2026-08-09  
 **Generated:** 2026-08-09 (regenerable via `vocational-compliance/build_vocational_log.py`)  
-**Public commits attributed in range:** 1023  
+**Public commits attributed in range:** 1024  
 **Active development weeks:** 26 / 32  
-**Aggregate equivalence:** 4603 product development hours · 30 job-search actions  
+**Aggregate equivalence:** 4611 product development hours · 30 job-search actions  
 
 ---
 
@@ -136,13 +136,21 @@ not generate attributable public commit events, which is why that stretch of
 weeks shows no rows here. It is logged as context, not counted toward the
 equivalence totals (which by design count only verifiable public commits).
 
-### 3. Screen-awareness backfill
+### 3. Screen-awareness backfill (Littlebird, alongside Fortuna's Tradelog)
 
-To make the backfill accurate rather than reconstructed from memory, an
-on-device screen-awareness assistant that observed the work in real time will
-be consulted to confirm dates and tasks before the gap is closed. That review
-is pending; until then, this note stands as an honest marker that the window
-contained active labor awaiting its attributable record.
+To make the backfill accurate rather than reconstructed from memory,
+**Littlebird** — an on-device screen-awareness assistant that observed the work
+in real time — will be consulted to confirm dates and tasks before the gap is
+closed. That review is pending; until then, this note stands as an honest
+marker that the window contained active labor awaiting its attributable record.
+
+The Littlebird back-dating is scheduled to be completed alongside **Fortuna's
+Tradelog** work in the trading-assistant repo — the same effort that digests
+the verified Tradovate and TradeZella session CSVs into this log's trading
+overlay — so the non-GitHub labor (including the mid-May → mid-June
+**Psychedelics In Recovery™ (PIR®)** web-infrastructure overhaul above) and the
+verified trading sessions land in one coherent, corroborated backfill rather
+than two separate guesses.
 
 ### 4. Trading-session overlay (heatmap)
 
@@ -199,7 +207,7 @@ verified evidence rather than a placeholder frame.
 | May 2026 | [`exhibit-4-log-2026-05.md`](https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/exhibit-4-log-2026-05.md) | [exhibit-4.html#2026-05](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/vocational-compliance/exhibit-4.html#2026-05) | 267 | 1163 | 8 |
 | June 2026 | [`exhibit-4-log-2026-06.md`](https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/exhibit-4-log-2026-06.md) | [exhibit-4.html#2026-06](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/vocational-compliance/exhibit-4.html#2026-06) | 29 | 128 | 0 |
 | July 2026 | [`exhibit-4-log-2026-07.md`](https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/exhibit-4-log-2026-07.md) | [exhibit-4.html#2026-07](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/vocational-compliance/exhibit-4.html#2026-07) | 34 | 147 | 0 |
-| August 2026 | [`exhibit-4-log-2026-08.md`](https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/exhibit-4-log-2026-08.md) | [exhibit-4.html#2026-08](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/vocational-compliance/exhibit-4.html#2026-08) | 1 | 2 | 2 |
+| August 2026 | [`exhibit-4-log-2026-08.md`](https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/exhibit-4-log-2026-08.md) | [exhibit-4.html#2026-08](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/vocational-compliance/exhibit-4.html#2026-08) | 2 | 10 | 2 |
 
 ---
 
