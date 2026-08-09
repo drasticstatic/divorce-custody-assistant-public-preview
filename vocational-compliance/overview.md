@@ -71,17 +71,20 @@ the public commit record shows."
 A single commit does **not** equal one job contact. Each commit is classified
 by activity category (keyword match over repo name + message), and each
 category carries an equivalence — "hours" of product development or "actions"
-of job-search equivalent:
+of job-search equivalent. A final category, **Trading**, is sourced from an
+external Tradovate CSV (live futures session screen-time) rather than from the
+commit record, so time on the charts is visible even on days with no commits:
 
 | Activity Category | Equivalence | What it represents |
 |---|---|---|
-| Code Deployment | 6 hrs | Technical portfolio build (ship to prod/Pages) |
-| Risk Evaluation | 8 hrs | Prop-firm combine / risk-management audit |
-| Retraining Milestone | 4 hrs | Vocational schooling / curriculum |
-| Technical Outreach | 2 actions | Direct business-lead generation |
-| Beta-Testing & Calibration | 5 hrs | Product development / startup labor |
-| Audit / Education | 3 hrs | Professional performance review |
-| Product Development (default) | 4 hrs | General R&D / startup labor |
+| Code Deployment | 6 hrs | Technical infrastructure / production releases / portfolio architecture |
+| Risk Evaluation | 8 hrs | Quantitative compliance audits / combine evaluation / trading-model stress testing |
+| Retraining Milestone | 4 hrs | Vocational skill advancement / curriculum mastery / applied self-study |
+| Technical Outreach | 2 actions | Direct business development / employer-client engagement / lead generation |
+| Beta-Testing & Calibration | 5 hrs | System integration / QA / product optimization / performance tuning |
+| Audit / Education | 3 hrs | Performance assessments / codebase auditing / peer-coach dissection |
+| Product Management (default) | 4 hrs | Full-stack engineering / innovation / startup labor / platform builds / MVP iterations |
+| Trading | session hrs | Live futures session screen-time / chart dedication / combine execution |
 
 The compliance target shown per week (8 attributable actions) is **context**,
 not a fabricated count — the log shows what actually happened, then surfaces
@@ -205,6 +208,7 @@ result.
 | [`journey-context.md`](https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/journey-context.md) | Pre-2026 classroom→portfolio narrative (injected into the TOC index) |
 | [`reporting-context.md`](https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/reporting-context.md) | Known reporting gaps & context (injected into the TOC index) |
 | [`build_vocational_log.py`](https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/build_vocational_log.py) | The reproducible generator |
+| [`trading-days.csv.example`](https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/trading-days.csv.example) | Tradovate trading-session ingestion template — copy to `trading-days.csv` to verify the heatmap overlay |
 
 ---
 

@@ -1,0 +1,20 @@
+# Tradovate trading-session ingestion — template
+#
+# Copy this file to trading-days.csv (same directory) and fill in real values.
+# The generator reads trading-days.csv at regen time; the .example file is
+# ignored. Columns: date,hours,note (note optional). Header row optional.
+#
+#   date   — ISO YYYY-MM-DD of the session (one row per day)
+#   hours  — hours on the charts that day (decimal, e.g. 6.0)
+#   note   — short context (optional; e.g. "ES session", "combine eval")
+#
+# Once trading-days.csv exists, the heatmap flips the green marker from a
+# hollow ring (placeholder scheduled session) to a SOLID DOT (verified
+# session carrying real hours). Regen: python3 build_vocational_log.py
+# --since 2026-01-01
+#
+# REPLACE the lines below with your own Tradovate-derived data. These are
+# PLACEHOLDER rows showing the format only — not real sessions.
+date,hours,note
+2026-01-05,6.0,placeholder — replace with real Tradovate session
+2026-01-06,5.5,placeholder — replace with real Tradovate session

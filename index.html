@@ -154,9 +154,9 @@
         font-style: normal;
       }
       .acim .jump-bottom {
-        display: none;
-        margin: 0 0 12px;
-        padding: 8px 16px;
+        display: block;
+        margin: 14px 0 0;
+        padding: 9px 16px;
         border: 1px solid var(--border);
         border-radius: 999px;
         background: var(--container);
@@ -215,6 +215,7 @@
       .exhibit-panel .links a.purple-link {
         color: #a855f7;
         font-weight: 800;
+        animation: ctaPulse 1.8s ease-in-out infinite;
       }
       .exhibit-panel .links a.purple-link:hover { text-decoration: underline; }
       .compliance {
@@ -394,7 +395,6 @@
 
     <dialog id="acim" class="acim" aria-label="A quiet word — on mercy and judgment">
       <p class="modal-head">a quiet word on mercy, then back to the work</p>
-      <p style="text-align:center;"><button class="jump-bottom" type="button" onclick="var d=document.getElementById('acim');d.scrollTop=d.scrollHeight;this.style.display='none';">&#8595; jump to the bottom</button></p>
       <hr class="segue" />
       <p class="q">&ldquo;⁶The strain of constant judgment is virtually intolerable. ⁷It is curious that an ability so debilitating would be so deeply cherished. ⁸Yet if you wish to be the author of reality, you will insist on holding on to judgment. ⁹You will also regard judgment with fear, believing that it will someday be used against you. ¹⁰This belief can exist only to the extent that you believe in the efficacy of judgment as a weapon of defense for your own authority.<br /><br />
         6. ²God offers only mercy. ³Your words should reflect only mercy, because that is what you have received and that is what you should give. ⁴Justice is a temporary expedient, or an attempt to teach you the meaning of mercy. ⁵It is judgmental only because you are capable of injustice.&rdquo;
@@ -406,6 +406,7 @@
         <span class="ref"><a href="https://acim.org/acim/en/s/857#4:2-3">C-6.4:2-3</a> &middot; acim.org</span>
       </p>
       <button class="close" onclick="document.getElementById('acim').close()">Close</button>
+      <button class="jump-bottom" id="jumpbtn" type="button" onclick="acimJump()">&#8595; jump to the bottom</button>
     </dialog>
 
     <script>
@@ -415,6 +416,24 @@
         d.addEventListener('click', function (e) {
           if (e.target === d) d.close();
         });
+        // Toggle jump-to-bottom / jump-to-top based on scroll position — at the
+        // top it offers to skip to the bottom, at the bottom it offers to return
+        // to the top, so both ends of the modal are always one tap away (desktop
+        // and mobile). The label also follows the user's own manual scrolling.
+        var jb = document.getElementById('jumpbtn');
+        function syncLabel() {
+          var nearBottom = d.scrollTop + d.clientHeight >= d.scrollHeight - 40;
+          jb.innerHTML = nearBottom
+            ? '&#8593; jump to the top'
+            : '&#8595; jump to the bottom';
+        }
+        window.acimJump = function () {
+          var nearBottom = d.scrollTop + d.clientHeight >= d.scrollHeight - 40;
+          d.scrollTop = nearBottom ? 0 : d.scrollHeight;
+        };
+        d.addEventListener('scroll', syncLabel, { passive: true });
+        d.addEventListener('toggle', function () { if (d.open) setTimeout(syncLabel, 0); });
+        syncLabel();
       })();
     </script>
   </body>

@@ -1,11 +1,11 @@
 # Exhibit 4 — Vocational Status & Tech Work-Search Log
 
 **Maintainer:** drasticstatic  
-**Reporting period:** 2026-01-01 → 2026-07-28  
-**Generated:** 2026-07-28 (regenerable via `vocational-compliance/build_vocational_log.py`)  
-**Public commits attributed in range:** 1021  
-**Active development weeks:** 25 / 31  
-**Aggregate equivalence:** 4597 product development hours · 28 job-search actions  
+**Reporting period:** 2026-01-01 → 2026-08-08  
+**Generated:** 2026-08-08 (regenerable via `vocational-compliance/build_vocational_log.py`)  
+**Public commits attributed in range:** 1022  
+**Active development weeks:** 25 / 32  
+**Aggregate equivalence:** 4601 product development hours · 28 job-search actions  
 
 ---
 
@@ -144,6 +144,30 @@ be consulted to confirm dates and tasks before the gap is closed. That review
 is pending; until then, this note stands as an honest marker that the window
 contained active labor awaiting its attributable record.
 
+### 4. Trading-session overlay (heatmap)
+
+The **Contributions Heatmap** carries a green trading overlay so that time
+spent on the futures charts is visible even when no GitHub commit was pushed
+that day. There are two states, and the distinction matters:
+
+- **Hollow green ring** — a *scheduled-session placeholder*. Until the
+  verified Tradovate trade-history CSV is ingested, the overlay marks the
+  stated weekly session (Sunday 18:00 → Friday 17:00 EST) on every session day.
+  This is a framework, **not a verified claim** — it shows where real session
+  data will land once the CSV is in, so the structure is honest today.
+- **Solid green dot** — a *verified trading session*. Once
+  `vocational-compliance/trading-days.csv` (columns `date,hours,note`; see
+  `trading-days.csv.example`) is present, the generator reads it and each
+  matching day flips from the hollow placeholder to a solid dot carrying the
+  real session hours. Regeneration is one command: `python3
+  vocational-compliance/build_vocational_log.py --since 2026-01-01`.
+
+Trading time is **displayed** on the heatmap as context — it is not folded
+into the commit-derived equivalence totals in the tables (which by design
+count only verifiable public commits), keeping the sworn equivalence numbers
+conservative and the trading layer additive. When the CSV arrives, the
+sessions become verified evidence rather than a placeholder frame.
+
 ---
 
 ## Monthly index
@@ -156,7 +180,8 @@ contained active labor awaiting its attributable record.
 | April 2026 | [`exhibit-4-log-2026-04.md`](https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/exhibit-4-log-2026-04.md) | [exhibit-4.html#2026-04](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/vocational-compliance/exhibit-4.html#2026-04) | 350 | 1582 | 18 |
 | May 2026 | [`exhibit-4-log-2026-05.md`](https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/exhibit-4-log-2026-05.md) | [exhibit-4.html#2026-05](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/vocational-compliance/exhibit-4.html#2026-05) | 267 | 1163 | 8 |
 | June 2026 | [`exhibit-4-log-2026-06.md`](https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/exhibit-4-log-2026-06.md) | [exhibit-4.html#2026-06](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/vocational-compliance/exhibit-4.html#2026-06) | 29 | 128 | 0 |
-| July 2026 | [`exhibit-4-log-2026-07.md`](https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/exhibit-4-log-2026-07.md) | [exhibit-4.html#2026-07](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/vocational-compliance/exhibit-4.html#2026-07) | 33 | 143 | 0 |
+| July 2026 | [`exhibit-4-log-2026-07.md`](https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/exhibit-4-log-2026-07.md) | [exhibit-4.html#2026-07](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/vocational-compliance/exhibit-4.html#2026-07) | 34 | 147 | 0 |
+| August 2026 | [`exhibit-4-log-2026-08.md`](https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/exhibit-4-log-2026-08.md) | [exhibit-4.html#2026-08](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/vocational-compliance/exhibit-4.html#2026-08) | 0 | 0 | 0 |
 
 ---
 

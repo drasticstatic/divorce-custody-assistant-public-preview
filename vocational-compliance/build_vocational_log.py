@@ -166,10 +166,10 @@ CATEGORY_RUBRIC = [
 ]
 
 DEFAULT_CATEGORY = {
-    "category": "Product Development",
+    "category": "Product Management",
     "hours": 4.0,
     "action": 0.0,
-    "equiv": "Hours (product development / startup labor)",
+    "equiv": "Hours (product management / startup labor)",
 }
 
 # Visual color per category — hues spread around the wheel so adjacent
@@ -179,10 +179,11 @@ CATEGORY_COLORS = {
     "Code Deployment": "#3b82f6",
     "Risk Evaluation": "#ef4444",
     "Retraining Milestone": "#a855f7",
-    "Technical Outreach": "#34d399",
+    "Technical Outreach": "#06b8a4",
     "Beta-Testing & Calibration": "#f59e0b",
     "Audit / Education": "#f472b6",
-    "Product Development": "#818cf8",
+    "Trading": "#22c55e",
+    "Product Management": "#818cf8",
 }
 
 
@@ -199,13 +200,14 @@ def cat_slug(name: str) -> str:
 # distinct descriptor so the key reads unambiguously. Latitude per Christopher:
 # related/shorter wording is fine where it stays professional + technically apt.
 CATEGORY_LEGEND_BLURB = {
-    "Code Deployment": "technical portfolio build",
-    "Risk Evaluation": "prop firm combine / risk audit",
-    "Retraining Milestone": "vocational schooling / curriculum",
-    "Technical Outreach": "direct lead generation",
-    "Beta-Testing & Calibration": "product build & calibration",
-    "Audit / Education": "professional performance review",
-    "Product Development": "innovation management / startup labor",
+    "Code Deployment": "Technical infrastructure / core design / production releases / feature implementation / portfolio architecture",
+    "Risk Evaluation": "Quantitative compliance audits / combine evaluation frameworks / trading model stress testing / strategy analysis",
+    "Retraining Milestone": "Targeted vocational skill advancement / certifications / curriculum mastery / ongoing applied self-study",
+    "Technical Outreach": "Direct business development / employer-client engagement / prospective lead generation / industry networking",
+    "Beta-Testing & Calibration": "System integration / quality assurance / product optimization / troubleshooting / performance tuning / bug remediation",
+    "Audit / Education": "Professional performance assessments / codebase auditing / peer-coach dissection / domain research",
+    "Product Management": "Full-stack, end-to-end, software engineering / innovation / startup labor / proprietary platform builds / MVP iterations",
+    "Trading": "Live futures session screen-time / chart dedication / discretionary and systematic risk-taking / proprietary-firm combine execution",
 }
 
 # Category metadata (color + equivalence label + legend blurb) keyed by category
@@ -224,6 +226,17 @@ for _entry in CATEGORY_RUBRIC + [DEFAULT_CATEGORY]:
         "slug": cat_slug(_name),
         "blurb": _blurb,
     }
+
+# Trading is NOT a commit-classified category (it comes from an external
+# Tradovate CSV, not the GitHub commit record), so it isn't in CATEGORY_RUBRIC.
+# It gets its own CAT_META entry so the legend + heatmap palette include it as
+# the 8th key (green, matching the trading-assistant home button).
+CAT_META["Trading"] = {
+    "color": CATEGORY_COLORS["Trading"],
+    "equiv": "Hours (live futures trading session)",
+    "slug": cat_slug("Trading"),
+    "blurb": CATEGORY_LEGEND_BLURB["Trading"],
+}
 
 
 def _build_category_css() -> str:
@@ -254,6 +267,11 @@ def _legend_html() -> str:
     for _entry in CATEGORY_RUBRIC + [DEFAULT_CATEGORY]:
         if _entry["category"] not in seen:
             seen.append(_entry["category"])
+    # Trading is the external (CSV-sourced) layer; show it last, after the
+    # commit-classified categories, so the legend reads commit-activity first
+    # then the trading-session overlay.
+    if "Trading" not in seen:
+        seen.append("Trading")
     items = []
     for _name in seen:
         _m = CAT_META[_name]
@@ -268,21 +286,55 @@ def _legend_html() -> str:
             + "".join(items) + '</ul></section>')
 
 
-def _contribution_heatmap_html(weeks: list, since: str, until: str) -> str:
-    """GitHub-style year-grid heatmap of daily attributable commit counts.
+def _load_trading_days() -> "dict[str, float] | None":
+    """Read vocational-compliance/trading-days.csv if present.
 
-    Minimal variant: low-saturation slate squares, no month labels, Sunday-
-    anchored columns. One square per calendar day in the reporting window,
-    shaded by commit count that day -- the SAME per-day record the tables below
-    already show, summarized to a single glance. No GitHub API, no external
-    dependency, no rate limit: the data is our own attributable commit record
-    (asked for as the componentry github-calendar variant="minimal"; built
-    inline so the artifact stays zero-build / zero-JS-framework static).
+    Columns: date,hours,note  (note optional; header row 'date' skipped).
+    Returns {ISO_date: hours} or None when the file is absent. None tells the
+    heatmap to fall back to the placeholder scheduled session (Sun 18:00 to
+    Fri 17:00 EST) and label itself as a placeholder pending the verified CSV.
     """
-    counts: dict[str, int] = {}
+    import csv as _csv
+    _path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                         "trading-days.csv")
+    if not os.path.exists(_path):
+        return None
+    out: dict[str, float] = {}
+    with open(_path, newline="", encoding="utf-8") as _fh:
+        for _row in _csv.reader(_fh):
+            if not _row:
+                continue
+            _d = _row[0].strip()
+            if not _d or _d.startswith("#") or _d.lower() == "date":
+                continue
+            try:
+                _iso = datetime.strptime(_d, "%Y-%m-%d").date().isoformat()
+                _hrs = float(_row[1]) if len(_row) > 1 and _row[1].strip() else 0.0
+            except (ValueError, IndexError):
+                continue
+            out[_iso] = _hrs
+    return out or None
+
+
+def _contribution_heatmap_html(weeks: list, since: str, until: str) -> str:
+    """GitHub-style year-grid heatmap — per-day category partition + trading.
+
+    Each day-cell partitions horizontally into category-colored segments sized
+    by that category's share of the day's commits (color = the legend key),
+    so a day spanning four categories reads as four colored bands, not just
+    the dominant one. Segment opacity carries the day's intensity (light vs
+    heavy). Days with no commits but a trading session carry a green marker:
+    a HOLLOW ring while running on the placeholder scheduled session, a SOLID
+    dot once the verified Tradovate CSV is ingested — so 'verified' vs
+    'scheduled' is visible at a glance. Own data, no GitHub API, no rate limit;
+    stays zero-build / zero-JS-framework static.
+    """
+    # Per-day per-category commit counts + day totals.
+    day_cats: dict[str, dict[str, int]] = {}
     for _wk in weeks:
         for _r in _wk.rows:
-            counts[_r.commit_date] = counts.get(_r.commit_date, 0) + 1
+            _d = day_cats.setdefault(_r.commit_date, {})
+            _d[_r.category] = _d.get(_r.category, 0) + 1
 
     _start = datetime.strptime(since, "%Y-%m-%d")
     _end = datetime.strptime(until, "%Y-%m-%d")
@@ -292,18 +344,21 @@ def _contribution_heatmap_html(weeks: list, since: str, until: str) -> str:
     _first = _sunday(_start)
     _last = _sunday(_end) + timedelta(days=6)
 
-    def _level(_n: int) -> int:
-        if _n <= 0:
-            return 0
-        if _n <= 2:
-            return 1
-        if _n <= 5:
-            return 2
-        if _n <= 9:
-            return 3
-        return 4
+    # Trading-day overlay. Verified CSV wins if trading-days.csv is present;
+    # otherwise the placeholder scheduled session (Sun 18:00 to Fri 17:00 EST)
+    # so the framework is visible while labeled as a placeholder.
+    _trading = _load_trading_days()
+    _ph = _trading is None
+    if _ph:
+        _trading = {}
+        _cur = _start
+        while _cur <= _end:
+            # Mon(0)..Fri(4) + Sun(6) are session days; Sat(5) is the only off day.
+            if _cur.weekday() != 5:
+                _trading[_cur.date().isoformat()] = 6.0
+            _cur += timedelta(days=1)
 
-    _pal = ("#0e1b2e", "#0e3a5c", "#155e8a", "#1d7eb8", "#38bdf8")
+    _TRADING_COLOR = CATEGORY_COLORS["Trading"]
     _cell, _gap, _stride = 13, 3, 16
     _pad_l, _pad_t = 28, 6
     _cols: list = []
@@ -314,28 +369,95 @@ def _contribution_heatmap_html(weeks: list, since: str, until: str) -> str:
     _w = _pad_l + len(_cols) * _stride + _gap
     _h = _pad_t + 7 * _stride + _gap
 
+    def _opacity(_total: int) -> float:
+        if _total <= 0:
+            return 0.0
+        if _total == 1:
+            return 0.45
+        if _total <= 3:
+            return 0.65
+        if _total <= 6:
+            return 0.82
+        return 1.0
+
     _cells: list[str] = []
     for _ci, _cw in enumerate(_cols):
         for _di in range(7):
             _day = _cw + timedelta(days=_di)
             _iso = _day.date().isoformat()
             _in = _start <= _day <= _end
-            _n = counts.get(_iso, 0) if _in else -1
             _x = _pad_l + _ci * _stride
             _y = _pad_t + _di * _stride
-            if _n < 0:
+            if not _in:
                 _cells.append(
                     f'<rect x="{_x:.1f}" y="{_y:.1f}" width="{_cell}" '
                     f'height="{_cell}" rx="2" fill="#0b1220" opacity="0.25">'
                     f'<title>{_iso}: outside range</title></rect>'
                 )
-            else:
-                _lbl = "commit" if _n == 1 else "commits"
+                continue
+            _cats = day_cats.get(_iso, {})
+            _total = sum(_cats.values())
+            _traded = _iso in _trading
+            if not _cats and not _traded:
                 _cells.append(
                     f'<rect x="{_x:.1f}" y="{_y:.1f}" width="{_cell}" '
-                    f'height="{_cell}" rx="2" fill="{_pal[_level(_n)]}">'
-                    f'<title>{_iso}: {_n} {_lbl}</title></rect>'
+                    f'height="{_cell}" rx="2" fill="#0e1b2e" opacity="0.3">'
+                    f'<title>{_iso}: no recorded activity</title></rect>'
                 )
+                continue
+            if not _cats and _traded:
+                _cx, _cy = _x + _cell / 2, _y + _cell / 2
+                if _ph:
+                    _cells.append(
+                        f'<rect x="{_x:.1f}" y="{_y:.1f}" width="{_cell}" '
+                        f'height="{_cell}" rx="2" fill="#0e1b2e" opacity="0.3"/>'
+                        f'<circle cx="{_cx:.1f}" cy="{_cy:.1f}" r="4.2" '
+                        f'fill="none" stroke="{_TRADING_COLOR}" stroke-width="1.5">'
+                        f'<title>{_iso}: scheduled trading session (placeholder, '
+                        f'Tradovate CSV pending)</title></circle>'
+                    )
+                else:
+                    _hrs = _trading[_iso]
+                    _cells.append(
+                        f'<rect x="{_x:.1f}" y="{_y:.1f}" width="{_cell}" '
+                        f'height="{_cell}" rx="2" fill="#0e1b2e" opacity="0.3"/>'
+                        f'<circle cx="{_cx:.1f}" cy="{_cy:.1f}" r="4.2" '
+                        f'fill="{_TRADING_COLOR}">'
+                        f'<title>{_iso}: {_hrs:g} hrs trading session '
+                        f'(Tradovate CSV)</title></circle>'
+                    )
+                continue
+            # Commit day: stacked category segments (width = share), opacity = intensity.
+            _op = _opacity(_total)
+            _seg_x = _x
+            _ordered = sorted(_cats.items(), key=lambda kv: (-kv[1], kv[0]))
+            _tparts = [f"{_total} commit{'s' if _total != 1 else ''}"]
+            for _idx, (_cat, _cnt) in enumerate(_ordered):
+                _is_last = _idx == len(_ordered) - 1
+                _seg_w = (_cell - (_seg_x - _x)) if _is_last \
+                    else (_cnt / _total) * _cell
+                _col = CATEGORY_COLORS.get(_cat, "#94a3b8")
+                _cells.append(
+                    f'<rect x="{_seg_x:.1f}" y="{_y:.1f}" width="{_seg_w:.2f}" '
+                    f'height="{_cell}" fill="{_col}" opacity="{_op}"/>'
+                )
+                _tparts.append(f"{_cat}: {_cnt}")
+                _seg_x += _seg_w
+            if _traded:
+                _cells.append(
+                    f'<circle cx="{_x + _cell - 2.0:.1f}" cy="{_y + 2.0:.1f}" '
+                    f'r="1.6" fill="{_TRADING_COLOR}"/>'
+                )
+                _tparts.append(
+                    f"trading session {_trading[_iso]:g} hrs (CSV)"
+                    if not _ph else "scheduled trading session (placeholder)"
+                )
+            _cells.append(
+                f'<rect x="{_x:.1f}" y="{_y:.1f}" width="{_cell}" '
+                f'height="{_cell}" rx="2" fill="none" '
+                f'stroke="rgba(148,163,184,0.18)" stroke-width="0.5">'
+                f'<title>{_iso}: {" &middot; ".join(_tparts)}</title></rect>'
+            )
 
     _row_lbl = {0: "Sun", 2: "Tue", 4: "Thu", 6: "Sat"}
     _lbls = [
@@ -351,16 +473,22 @@ def _contribution_heatmap_html(weeks: list, since: str, until: str) -> str:
         + "".join(_lbls) + "".join(_cells) + '</svg>'
     )
 
-    _scale = "".join(f'<i style="background:{_c}"></i>' for _c in _pal)
+    _trading_note = (
+        "Trading overlay: scheduled-session placeholder (Sun 18:00 to Fri 17:00 "
+        "EST); verified Tradovate CSV pending"
+        if _ph else
+        "Trading overlay: verified Tradovate session data"
+    )
     return (
         '<section class="heatmap" aria-label="Contributions heatmap">'
         '<p class="heatmap-title">Contributions Heatmap</p>'
         '<p class="heatmap-sub">Each square is one calendar day in the reporting '
-        f'window ({_start.date()} &rarr; {_end.date()}); shading tracks '
-        'attributable commits that day</p>'
+        f'window ({_start.date()} &rarr; {_end.date()}); color marks the category '
+        'mix that day &mdash; a hollow green ring is a scheduled trading '
+        'session, a solid green dot is a verified trading session</p>'
         + _svg
-        + '<div class="heat-scale" aria-hidden="true"><span>Less</span>'
-        + _scale + '<span>More</span></div>'
+        + '<div class="heat-scale" aria-hidden="true">'
+        f'<span>{_trading_note}</span></div>'
         '</section>'
     )
 
@@ -897,7 +1025,12 @@ body { margin:0; min-height:100vh; padding:32px 16px;
      never re-maps the gradient beneath it. Combined with the flat .month
      glass (no gradient) + transparent .week (no own fill), the rendered
      surface is now height-independent. */
-  background-attachment: fixed; }
+  background-attachment: fixed;
+  /* Horizontal pan lock: clip anything wider than the viewport so the embedded
+     iframe cannot scroll left/right as a whole on mobile (the linearized card
+     tables + responsive heatmap already keep content within width; this is the
+     belt-and-braces guard). Vertical scroll is untouched. */
+  overflow-x: hidden; }
 .wrap { max-width:1100px; margin:0 auto; }
 header { text-align:center; margin-bottom:28px; }
 .eyebrow { margin:0 0 8px; font-size:.78rem; font-weight:700;
@@ -946,6 +1079,39 @@ button.cta.expandall:hover { filter:brightness(1.12); background:#111c33; }
 .nav-row { display:flex; flex-wrap:wrap; align-items:center; justify-content:center;
   gap:9px 0; margin:10px 0 4px; }
 .nav-row .sep { padding:0 10px; color:var(--accent-2); font-weight:700; }
+
+/* Sticky hamburger menu (desktop + mobile) — replaces the in-hero nav-row so
+   the hero gets straight to business (deck + heatmap + legend) and the expand
+   controls + home links live in a fixed corner pocket reachable anywhere on
+   the page. The 3-line icon animates to an X when open. */
+.hamburger { position:fixed; top:14px; right:14px; z-index:50;
+  width:42px; height:42px; border-radius:12px; cursor:pointer;
+  border:1px solid var(--border); background:rgba(15,23,42,.82);
+  -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
+  box-shadow:0 8px 24px rgba(2,6,23,.35);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:5px; padding:0; }
+.hamburger span { display:block; width:18px; height:2px; border-radius:2px;
+  background:var(--accent); transition:transform .22s, opacity .18s; }
+.hamburger:hover { filter:brightness(1.12); }
+.hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity:0; }
+.hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+.hamburger-menu { position:fixed; top:62px; right:14px; z-index:49;
+  min-width:220px; padding:12px 14px; border:1px solid var(--border);
+  border-radius:14px; background:rgba(15,23,42,.92);
+  -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
+  box-shadow:0 12px 32px rgba(2,6,23,.45);
+  display:none; flex-direction:column; gap:8px; }
+.hamburger.open + .hamburger-menu { display:flex; }
+.hamburger-menu .cta { width:100%; text-align:left; margin:0;
+  background:#0b1220; color:#e2e8f0; border:1px solid var(--accent);
+  animation:none; }
+.hamburger-menu .cta.green { border:1px solid #22c55e; }
+.hamburger-menu .cta:hover { filter:brightness(1.12); background:#111c33; }
+.hamburger-menu .hmenu-title { font-size:.66rem; font-weight:700;
+  letter-spacing:.1em; text-transform:uppercase; color:var(--accent-2);
+  padding:2px 4px 4px; border-bottom:1px solid var(--border); margin-bottom:2px; }
 
 /* Expand-weeks button sits inline on the month summary — alongside the
    chevron, the month label, and the mstat line — and only surfaces once the
@@ -1058,19 +1224,20 @@ td.eq .eq-label { display:block; color:var(--muted); font-size:.78rem; }
 
 /* Category key / legend — explains the dot colors at a glance, sits between
    the hero and the month cards. */
-.legend { margin:20px auto 0; max-width:46rem; border:1px solid var(--border);
-  border-radius:14px; background:var(--container); padding:16px 20px; }
-.legend-title { margin:0 0 12px; font-size:.74rem; font-weight:700;
+.legend { margin:20px auto 0; max-width:64rem; border:1px solid var(--border);
+  border-radius:14px; background:var(--container); padding:18px 20px; }
+.legend-title { margin:0 0 14px; font-size:.74rem; font-weight:700;
   letter-spacing:.12em; text-transform:uppercase; color:var(--accent-2);
   text-align:center; }
 .legend ul { margin:0; padding:0; list-style:none;
-  display:grid; gap:6px 18px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); }
-.legend li { display:flex; align-items:center; gap:.5em; font-size:.82rem;
-  color:var(--text); flex-wrap:nowrap; white-space:nowrap; }
-.legend li .cat-dot { width:.6em; height:.6em; border-radius:50%; flex:0 0 auto; }
-.legend li .cat-name { font-weight:600; }
-.legend li .legend-eq { margin-left:auto; font-size:.74rem; color:var(--muted);
-  text-align:right; flex:0 0 auto; }
+  display:grid; gap:14px 18px; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); }
+.legend li { display:flex; flex-wrap:wrap; align-items:baseline; gap:.25em .5em;
+  font-size:.82rem; color:var(--text); }
+.legend li .cat-dot { width:.62em; height:.62em; border-radius:50%; flex:0 0 auto;
+  margin-right:.3em; align-self:center; }
+.legend li .cat-name { font-weight:700; flex:0 0 auto; }
+.legend li .legend-eq { flex:1 1 100%; margin:.15em 0 0 1.7em; font-size:.76rem;
+  line-height:1.5; color:var(--muted); white-space:normal; }
 
 /* Daily contribution heatmap — a year-at-a-glance summary above the monthly
    detail. Own data, variant="minimal" aesthetic (low-saturation slate-to-accent
@@ -1119,7 +1286,8 @@ td.eq .eq-label { display:block; color:var(--muted); font-size:.78rem; }
   .wrap { max-width:100%; }
   details[open] > .week, details > .week { display:block !important; }
   .month > summary::after, button.cta.expandall, button.cta.monthtoggle,
-  .month-actions, .hero-btns .sep, .nav-row .sep { display:none; }
+  .month-actions, .hero-btns .sep, .nav-row .sep,
+  .hamburger, .hamburger-menu { display:none; }
   .month, .week { border:1px solid #999; border-radius:0; break-inside:avoid;
     overflow:visible; background:#fff !important;
     -webkit-backdrop-filter:none; backdrop-filter:none; box-shadow:none; }
@@ -1235,6 +1403,24 @@ def render_html(weeks: list[Week], since: str, until: str,
         f"<title>Exhibit 4 — Vocational Log ({since} → {until})</title>"
         "<link rel=\"icon\" href=\"favicon.svg\" type=\"image/svg+xml\">"
         f"<style>{_HTML_STYLE}{_CATEGORY_CSS}</style></head><body><div class=\"wrap\">"
+        # Sticky hamburger menu (desktop + mobile) — the expand controls + home
+        # links live here so the hero reads deck -> heatmap -> legend without
+        # a nav rail. Fixed top-right, opens to a dropdown, click-outside closes.
+        '<button class="hamburger" type="button" aria-label="Open navigation menu" '
+        'aria-expanded="false" onclick="toggleMenu(this)">'
+        '<span></span><span></span><span></span></button>'
+        '<div class="hamburger-menu" id="hmenu" role="menu">'
+        '<p class="hmenu-title">expand & navigate</p>'
+        '<button class="cta expandall" type="button" role="menuitem" '
+        'onclick="toggleAll(this)">expand all</button>'
+        '<button class="cta expandall" type="button" role="menuitem" '
+        'onclick="toggleAllMonths(this)">expand all months</button>'
+        f'<a class="cta" role="menuitem" target="_blank" rel="noopener" '
+        f'href="{HOMEPAGE_URL}">divorce-custody-assistant home &#8599;</a>'
+        '<a class="cta green" role="menuitem" target="_blank" rel="noopener" '
+        'href="https://drasticstatic.github.io/trading-assistant-public-preview/">'
+        "trading-assistant home &#8599;</a>"
+        "</div>"
         "<header><p class=\"eyebrow\">Exhibit 4</p>"
         "<h1>Vocational Status & Tech Work-Search Log</h1>"
         "<p class=\"meta\"><strong>Maintainer:</strong> drasticstatic &middot; "
@@ -1266,22 +1452,6 @@ def render_html(weeks: list[Week], since: str, until: str,
         # Verification line in the hero (navigational guidance), under the key.
         + '<p class="verify-hero">Expand any month and open each row to view '
         "details</p>"
-        # Nav row — every expand control + site home button grouped together
-        # so a reviewing officer finds everything intuitively without asking.
-        '<div class="nav-row">'
-        '<button class="cta expandall" type="button" onclick="toggleAll(this)">'
-        "expand all</button>"
-        '<span class="sep">&#183;</span>'
-        '<button class="cta expandall" type="button" onclick="toggleAllMonths(this)">'
-        "expand all months</button>"
-        '<span class="sep">&#183;</span>'
-        f'<a class="cta" target="_blank" rel="noopener" href="{HOMEPAGE_URL}">'
-        "divorce-custody-assistant home &#8599;</a>"
-        '<span class="sep">&#183;</span>'
-        '<a class="cta green" target="_blank" rel="noopener" '
-        'href="https://drasticstatic.github.io/trading-assistant-public-preview/">'
-        "trading-assistant home &#8599;</a>"
-        "</div>"
         + "</header>"
         + "".join(months_html)
         + "<script>"
@@ -1301,6 +1471,19 @@ def render_html(weeks: list[Week], since: str, until: str,
         "var open=ws.filter(function(w){return w.open;}).length;"
         "var make=!(open>=ws.length/2);ws.forEach(function(w){w.open=make;});"
         "btn.textContent=make?'collapse weeks':'expand weeks';}"
+        "function toggleMenu(btn){var open=btn.classList.toggle('open');"
+        "btn.setAttribute('aria-expanded',open?'true':'false');"
+        "if(!open)return;"
+        "var m=document.getElementById('hmenu');"
+        "setTimeout(function(){"
+        "document.addEventListener('click',function cls(e){"
+        "if(!btn.contains(e.target)&&!m.contains(e.target)){"
+        "btn.classList.remove('open');btn.setAttribute('aria-expanded','false');"
+        "document.removeEventListener('click',cls);}});},0);"
+        "document.addEventListener('keydown',function esc(e){"
+        "if(e.key==='Escape'){btn.classList.remove('open');"
+        "btn.setAttribute('aria-expanded','false');"
+        "document.removeEventListener('keydown',esc);}});}"
         "</script>"
         "</div></body></html>"
     )

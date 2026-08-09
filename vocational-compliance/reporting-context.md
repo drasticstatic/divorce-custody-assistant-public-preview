@@ -36,3 +36,27 @@ on-device screen-awareness assistant that observed the work in real time will
 be consulted to confirm dates and tasks before the gap is closed. That review
 is pending; until then, this note stands as an honest marker that the window
 contained active labor awaiting its attributable record.
+
+### 4. Trading-session overlay (heatmap)
+
+The **Contributions Heatmap** carries a green trading overlay so that time
+spent on the futures charts is visible even when no GitHub commit was pushed
+that day. There are two states, and the distinction matters:
+
+- **Hollow green ring** — a *scheduled-session placeholder*. Until the
+  verified Tradovate trade-history CSV is ingested, the overlay marks the
+  stated weekly session (Sunday 18:00 → Friday 17:00 EST) on every session day.
+  This is a framework, **not a verified claim** — it shows where real session
+  data will land once the CSV is in, so the structure is honest today.
+- **Solid green dot** — a *verified trading session*. Once
+  `vocational-compliance/trading-days.csv` (columns `date,hours,note`; see
+  `trading-days.csv.example`) is present, the generator reads it and each
+  matching day flips from the hollow placeholder to a solid dot carrying the
+  real session hours. Regeneration is one command: `python3
+  vocational-compliance/build_vocational_log.py --since 2026-01-01`.
+
+Trading time is **displayed** on the heatmap as context — it is not folded
+into the commit-derived equivalence totals in the tables (which by design
+count only verifiable public commits), keeping the sworn equivalence numbers
+conservative and the trading layer additive. When the CSV arrives, the
+sessions become verified evidence rather than a placeholder frame.
