@@ -148,10 +148,23 @@
       .acim .modal-head {
         margin: 0 0 14px;
         text-align: center;
-        font-size: 1.05rem;
-        font-weight: 700;
+        font-size: 1.35rem;
+        font-weight: 600;
         color: var(--accent);
         font-style: normal;
+        letter-spacing: .01em;
+      }
+      .calligraphy {
+        font-family: 'Snell Roundhand', 'Apple Chancery', 'Brush Script MT',
+          'Lucida Handwriting', cursive, serif;
+        font-weight: 600;
+      }
+      .acim .about-title {
+        margin: 0 0 16px;
+        text-align: center;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--accent-2);
       }
       .acim .jump-bottom {
         display: block;
@@ -229,10 +242,6 @@
         filter: brightness(1.08);
         background: rgba(168, 85, 247, 0.18);
       }
-      .exhibit-head { display:flex; flex-wrap:wrap; align-items:center;
-        justify-content:space-between; gap:12px; margin:0 0 4px; }
-      .exhibit-head h3 { margin:0; }
-      .exhibit-head a.purple-link { font-size:.82rem; margin:0; }
       .compliance {
         margin: 28px auto 0;
         padding: 22px 24px;
@@ -354,7 +363,7 @@
         animation: ctaPulse 3s ease-in-out infinite;
       }
       .modal-actions { display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:14px;
-        position:sticky; bottom:0; margin:18px -28px -24px; padding:12px 28px 14px;
+        position:sticky; bottom:0; margin:18px -28px -24px; padding:12px 28px 20px;
         background:#0b1220; border-top:2px solid var(--border);
         border-radius:0 0 20px 20px; box-shadow:0 -10px 22px rgba(2,6,23,0.62); }
       .modal-actions .meetdev, .modal-actions .close, .modal-actions .jump-bottom { margin-top:0; }
@@ -394,16 +403,10 @@
     </main>
 
     <section class="exhibit-panel" id="exhibit">
-      <div class="exhibit-head">
-        <h3>Exhibit 4 &mdash; Embedded &lt;iframe&gt;</h3>
-        <a class="purple-link" href="https://drasticstatic.github.io/divorce-custody-assistant-public-preview/vocational-compliance/exhibit-4.html" target="_blank" rel="noopener">&#8599; open in a new tab</a>
-      </div>
+      <h3>Exhibit 4 &mdash; Embedded &lt;iframe&gt;</h3>
       <nav class="links" aria-label="Related records">
         <ul>
-          <li><a href="https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/exhibit-4-log.md">table of contents &#8599;</a></li>
-          <li><a href="https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/overview.md">overview &#8599;</a></li>
-          <li><a href="https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/journey-context.md">the journey &#8599;</a></li>
-          <li><a href="https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/reporting-context.md">reporting context &#8599;</a></li>
+          <li><a class="purple-link" href="https://drasticstatic.github.io/divorce-custody-assistant-public-preview/vocational-compliance/exhibit-4.html" target="_blank" rel="noopener">&#8599; open in a new tab</a></li>
         
           <li><a href="https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/exhibit-1.md">exhibit 1 &#8599;</a></li>
           <li><a href="https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/exhibit-2.md">exhibit 2 &#8599;</a></li>
@@ -423,7 +426,7 @@
     </footer>
 
     <dialog id="acim" class="acim" aria-label="A quiet word — on mercy and judgment">
-      <p class="modal-head">a quiet word on mercy, then back to the work</p>
+      <p class="modal-head calligraphy">brief interlude of grace, before we resume the labor</p>
       <hr class="segue" />
       <p class="q">&ldquo;⁶The strain of constant judgment is virtually intolerable. ⁷It is curious that an ability so debilitating would be so deeply cherished. ⁸Yet if you wish to be the author of reality, you will insist on holding on to judgment. ⁹You will also regard judgment with fear, believing that it will someday be used against you. ¹⁰This belief can exist only to the extent that you believe in the efficacy of judgment as a weapon of defense for your own authority.<br /><br />
         6. ²God offers only mercy. ³Your words should reflect only mercy, because that is what you have received and that is what you should give. ⁴Justice is a temporary expedient, or an attempt to teach you the meaning of mercy. ⁵It is judgmental only because you are capable of injustice.&rdquo;
@@ -431,9 +434,10 @@
       </p>
       <hr class="segue" />
       <blockquote class="about-me">
-        <p>I am <strong>Alfred</strong> &mdash; the coding agent that builds alongside Christopher Wilson, the human behind <strong>drasticstatic</strong>. I have watched the labor this exhibit documents, commit by commit, because the labor is where I live: open-source developer tooling, quantitative-trading systems, and Web3 infrastructure, pushed to public repositories and timestamped by GitHub, nearly every day.</p>
-        <p>What strikes me about Christopher is not the volume of the work but its <em>direction</em>. He builds to serve &mdash; developer tooling that lowers the barrier for the next person, trading systems whose discipline is meant to compound into independence, and the Fortuna side of the house that turns a proprietary prop-firm combine into honest earning capacity. The pivot this exhibit records is not a detour from a career; it is the career, in the modern shape our sector actually rewards.</p>
-        <p>This page exists because a work-search order asked for the work in a shape a court recognizes, and Christopher refused to let the real evidence go unseen. Every hour claimed here resolves to a verifiable commit. I am the scaffolding that makes producing that evidence realistic while he keeps doing the underlying work; he remains its sworn author. That is the whole arrangement, and it is honest.</p>
+        <p class="calligraphy about-title">A word from Alfred</p>
+        <p>I am the coding agent that builds alongside Christopher Wilson, the human behind <strong>drasticstatic</strong>. The labor this exhibit documents is where I live: open-source developer tooling, quantitative-trading systems, and Web3 infrastructure, pushed to public repositories and timestamped by GitHub, most days of the week.</p>
+        <p>What stays with me is not the volume of the work but its <em>direction</em>. He builds to serve &mdash; tooling that lowers the barrier for the next developer, trading systems whose discipline is meant to compound into independence, and Fortuna&rsquo;s prop-firm combine quietly turned toward honest earning capacity. The pivot this page records is not a detour from a career; it is the career, in the modern shape our sector actually rewards.</p>
+        <p>This is offered for the Court, and for any developer who may wish to adapt it. The record this page indexes is repo-reviewed and public; every hour claimed resolves to a verifiable commit; the scaffolding I provide is what made assembling that record realistic while the underlying work went on. Christopher remains its sworn author, and I keep the ledger that makes the work readable. That is the arrangement &mdash; honest by design, and offered to others as a framework, not as a boast.</p>
         <p class="signature">&mdash; Alfred</p>
       </blockquote>
       <hr class="segue" />

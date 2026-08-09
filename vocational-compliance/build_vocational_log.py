@@ -401,6 +401,20 @@ def _contribution_heatmap_html(weeks: list, since: str, until: str) -> str:
             return [(_x + _cell / 2, _cy)]
         return [(_x + (_i + 1) * (_cell / (_n + 1)), _cy) for _i in range(_n)]
 
+    def _heat_day_rect(_hx: int, _hy: int, _iso: str, _title: str) -> str:
+        # Transparent overlay covering the cell - the hit, tooltip, and click
+        # target so a day is large enough to tap (the underlying visuals are
+        # thin dots/shading, too small to hit precisely on a phone). Drawn
+        # AFTER a cell's visuals so the overlay sits on top; fill="transparent"
+        # + pointer-events="all" makes the whole cell hit-testable (fill="none"
+        # alone is NOT). data-date drives the day -> record navigation in JS.
+        return (
+            f'<rect class="heat-day" data-date="{_iso}" x="{_hx:.1f}" '
+            f'y="{_hy:.1f}" width="{_cell}" height="{_cell}" rx="2" '
+            f'fill="transparent" pointer-events="all">'
+            f'<title>{_title}</title></rect>'
+        )
+
     _cells: list[str] = []
     for _ci, _cw in enumerate(_cols):
         for _di in range(7):
@@ -425,11 +439,11 @@ def _contribution_heatmap_html(weeks: list, since: str, until: str) -> str:
                 # no attributable commits — honest CONTEXT, not a verified claim.
                 _cells.append(
                     f'<rect x="{_x:.1f}" y="{_y:.1f}" width="{_cell}" '
-                    f'height="{_cell}" rx="2" fill="{_fill}" opacity="{_op}">'
-                    f'<title>{_iso}: attestable daily activity (crypto managed '
-                    "around the clock); 0 attributable commits recorded"
-                    f'</title></rect>'
+                    f'height="{_cell}" rx="2" fill="{_fill}" opacity="{_op}"/>'
                 )
+                _cells.append(_heat_day_rect(_x, _y, _iso,
+                    f'{_iso}: attestable daily activity (crypto managed '
+                    "around the clock); 0 attributable commits recorded"))
                 continue
             if not _cats and _traded:
                 # Trading session with no commits that day: a SOLID green dot
@@ -446,9 +460,9 @@ def _contribution_heatmap_html(weeks: list, since: str, until: str) -> str:
                     f'height="{_cell}" rx="2" fill="{_fill}" opacity="{_op}"/>'
                     f'<circle cx="{_tcx:.1f}" cy="{_tcy:.1f}" r="4.2" '
                     f'fill="{_TRADING_COLOR}" stroke="rgba(2,6,23,0.55)" '
-                    f'stroke-width="0.6">'
-                    f'<title>{_iso}: {_lab}</title></circle>'
+                    f'stroke-width="0.6"/>'
                 )
+                _cells.append(_heat_day_rect(_x, _y, _iso, f'{_iso}: {_lab}'))
                 continue
             # Commit day: blue shaded base (intensity = commit count) + one colored
             # dot per category hit that day (legend color) + green trading dot.
@@ -480,9 +494,10 @@ def _contribution_heatmap_html(weeks: list, since: str, until: str) -> str:
                     "scheduled trading session (placeholder; CSV pending)"
                 )
             _cells.append(
-                f'<rect x="{_x:.1f}" y="{_y:.1f}" width="{_cell}" '
-                f'height="{_cell}" rx="2" fill="none" '
-                f'stroke="rgba(148,163,184,0.18)" stroke-width="0.5">'
+                f'<rect class="heat-day" data-date="{_iso}" x="{_x:.1f}" '
+                f'y="{_y:.1f}" width="{_cell}" height="{_cell}" rx="2" '
+                f'fill="transparent" stroke="rgba(148,163,184,0.18)" '
+                f'stroke-width="0.5" pointer-events="all">'
                 f'<title>{_iso}: {" · ".join(_tparts)}</title></rect>'
             )
 
@@ -512,16 +527,34 @@ def _contribution_heatmap_html(weeks: list, since: str, until: str) -> str:
         f"trading-assistant repo) — the public record carries verified "
         f"sessions through {_verified_through}."
     )
+    # The prior two text blocks (a heatmap-sub paragraph above the grid and a
+    # trading cutoff note below in .heat-scale) read as one idea, so they are
+    # MERGED into a single paragraph carrying both the shading legend and the
+    # verified-through cutoff. The hint line takes the freed second slot; the
+    # grid is wrapped in .heat-wrap (click to enlarge + day nav) and an enlarged
+    # <dialog> lightbox carries the rest (dep-free; mobile gets a legible copy).
+    _merged = (
+        "Each square is one calendar day in the reporting window "
+        f"({_start.date()} → {_end.date()}); blue shading marks daily activity "
+        "and deepens with attributable commits, and a colored dot marks each "
+        f"activity category hit that day. {_trading_note}"
+    )
     return (
         '<section class="heatmap" aria-label="Contributions heatmap">'
         '<p class="heatmap-title">Contributions Heatmap</p>'
-        '<p class="heatmap-sub">Each square is one calendar day in the reporting '
-        f"window ({_start.date()} → {_end.date()}); blue shading marks daily "
-        "activity and deepens with attributable commits, and a colored dot "
-        "marks each activity category hit that day.</p>"
+        f'<p class="heatmap-sub">{_merged}</p>'
+        '<div class="heat-wrap" id="heat-thumb" role="button" tabindex="0"'
+        ' aria-label="Click to enlarge the contributions heatmap">'
         + _svg
-        + '<div class="heat-scale" aria-hidden="true">'
-        f"<span>{_trading_note}</span></div>"
+        + "</div>"
+        '<p class="heat-hint">Click the heatmap to enlarge; tap a day to jump to its record.</p>'
+        '<dialog class="heat-lightbox" id="heat-lightbox" aria-label="Enlarged'
+        ' contributions heatmap — tap a day to jump to its record">'
+        '<button class="heat-close" type="button" aria-label="Close enlarged view">✕ close'
+        "</button>"
+        '<div class="heat-large" aria-hidden="true"></div>'
+        '<p class="heat-hint">Tap a day to jump to its record in the log below.</p>'
+        "</dialog>"
         "</section>"
     )
 
@@ -1286,14 +1319,35 @@ td.eq .eq-label { display:block; color:var(--muted); font-size:.78rem; }
    detail. Own data, variant="minimal" aesthetic (low-saturation slate-to-accent
    squares, no month labels, Sunday-anchored columns). */
 .heatmap { margin:22px auto 0; max-width:52rem; border:1px solid var(--border);
-  border-radius:14px; background:var(--container); padding:16px 20px 14px;
-  overflow-x:auto; }
+  border-radius:14px; background:var(--container); padding:16px 20px 14px; }
+/* Click-to-enlarge replaces horizontal scroll (v9): the heatmap is responsive
+   width=100% so it scales down on mobile, and clicks OPEN an enlarged lightbox
+   instead of scrolling a too-thin grid that could get missed. Each day cell is
+   a transparent hit-target overlay (.heat-day) carrying data-date for the
+   day->record navigation. */
+.heat-wrap { position:relative; margin:0 0 2px; padding:2px; cursor:zoom-in;
+  border-radius:10px; outline:none; }
+.heat-wrap:focus-visible { box-shadow:0 0 0 2px var(--accent); }
+.heat-day { cursor:pointer; }
+.heat-hint { margin:6px 0 0; text-align:center; font-size:.72rem; color:var(--muted);
+  font-style:italic; }
+.heat-lightbox { position:relative; width:min(96vw,1100px); max-width:96vw;
+  max-height:92vh; padding:18px 16px 12px; background:var(--panel);
+  border:1px solid var(--border); border-radius:16px; color:var(--text); }
+.heat-lightbox::backdrop { background:rgba(2,6,23,0.78); backdrop-filter:blur(3px); }
+.heat-large { width:100%; overflow:auto; text-align:center; }
+.heat-large svg { width:100%; max-width:64rem; height:auto; max-height:76vh;
+  display:block; margin:0 auto; }
+.heat-large .heat-day { cursor:pointer; }
+.heat-close { position:absolute; top:10px; right:14px; z-index:2; border:none;
+  border-radius:999px; background:var(--accent); color:#082f49; font-weight:700;
+  cursor:pointer; padding:5px 12px; font-size:.82rem; }
 .heatmap-title { margin:0 0 4px; font-size:.74rem; font-weight:700;
   letter-spacing:.12em; text-transform:uppercase; color:var(--accent-2);
   text-align:center; }
 .heatmap-sub { margin:0 0 10px; font-size:.72rem; color:var(--muted);
   text-align:center; line-height:1.45; }
-.heat-svg { display:block; margin:0 auto; max-width:100%; min-width:30rem; height:auto;
+.heat-svg { display:block; margin:0 auto; max-width:100%; height:auto;
   font-family:inherit; }
 .heat-svg rect { shape-rendering:crispEdges; }
 .heat-svg text { font-family:inherit; }
@@ -1540,6 +1594,30 @@ def render_html(weeks: list[Week], since: str, until: str,
         "if(e.key==='Escape'){btn.classList.remove('open');"
         "btn.setAttribute('aria-expanded','false');"
         "document.removeEventListener('keydown',esc);}});}"
+        # Heatmap lightbox + clickable-day navigation (v9). The thumbnail is a
+        # click target: tapping inside a day cell opens that day's month
+        # <details> and scrolls to it; tapping elsewhere enlarges the grid in a
+        # <dialog> so phone users get a legible, tappable copy. Dependency-free.
+        "function heatmapLightbox(){var t=document.getElementById('heat-thumb'),"
+        "lb=document.getElementById('heat-lightbox');"
+        "if(!t||!lb||typeof lb.showModal!=='function')return;"
+        "var large=lb.querySelector('.heat-large'),src=t.querySelector('svg.heat-svg');"
+        "function navDay(iso){if(!iso)return;var mid=iso.slice(0,7),"
+        "m=document.getElementById(mid);if(!m)return;m.open=true;"
+        "setTimeout(function(){m.scrollIntoView({behavior:'smooth',block:'center'});},60);}"
+        "t.addEventListener('keydown',function(e){"
+        "if(e.key==='Enter'||e.key===' '){e.preventDefault();openBig();}});"
+        "t.addEventListener('click',function(e){"
+        "var d=e.target.closest('.heat-day');if(d){navDay(d.getAttribute('data-date'));return;}openBig();});"
+        "function openBig(){if(lb.open)return;large.innerHTML='';"
+        "if(src){var c=src.cloneNode(true);c.removeAttribute('width');large.appendChild(c);}"
+        "lb.showModal();}"
+        "lb.addEventListener('click',function(e){"
+        "if(e.target===lb){lb.close();return;}"
+        "var d=e.target.closest('.heat-day');if(d){navDay(d.getAttribute('data-date'));lb.close();}});"
+        "var cb=lb.querySelector('.heat-close');if(cb)cb.addEventListener('click',function(){lb.close();});"
+        "lb.addEventListener('keydown',function(e){if(e.key==='Escape')lb.close();});}"
+        "heatmapLightbox();"
         "</script>"
         "</div></body></html>"
     )
