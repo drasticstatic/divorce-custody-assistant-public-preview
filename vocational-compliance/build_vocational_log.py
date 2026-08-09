@@ -201,13 +201,13 @@ def cat_slug(name: str) -> str:
 # related/shorter wording is fine where it stays professional + technically apt.
 CATEGORY_LEGEND_BLURB = {
     "Code Deployment": "Technical infrastructure / core design / production releases / feature implementation / portfolio architecture",
-    "Risk Evaluation": "Quantitative compliance audits / combine evaluation frameworks / trading model stress testing / strategy analysis",
+    "Risk Evaluation": "Quantitative compliance audits / security verification / behavioral case studies / sandbox frameworks / sophisticated safeguards",
     "Retraining Milestone": "Targeted vocational skill advancement / certifications / curriculum mastery / ongoing applied self-study",
     "Technical Outreach": "Direct business development / employer-client engagement / prospective lead generation / industry networking",
     "Beta-Testing & Calibration": "System integration / quality assurance / product optimization / troubleshooting / performance tuning / bug remediation",
     "Audit / Education": "Professional performance assessments / codebase auditing / peer-coach dissection / domain research",
     "Product Management": "Full-stack, end-to-end, software engineering / innovation / startup labor / proprietary platform builds / MVP iterations",
-    "Trading": "Live futures session screen-time / chart dedication / discretionary and systematic risk-taking / proprietary-firm combine execution",
+    "Trading": "Live futures session screen-time / chart dedication / discretionary model stress testing / systematic strategy analysis / proprietary combine execution",
 }
 
 # Category metadata (color + equivalence label + legend blurb) keyed by category
@@ -317,17 +317,16 @@ def _load_trading_days() -> "dict[str, float] | None":
 
 
 def _contribution_heatmap_html(weeks: list, since: str, until: str) -> str:
-    """GitHub-style year-grid heatmap — per-day category partition + trading.
+    """Year-grid heatmap — blue-shaded days + colored category dots + trading dot.
 
-    Each day-cell partitions horizontally into category-colored segments sized
-    by that category's share of the day's commits (color = the legend key),
-    so a day spanning four categories reads as four colored bands, not just
-    the dominant one. Segment opacity carries the day's intensity (light vs
-    heavy). Days with no commits but a trading session carry a green marker:
-    a HOLLOW ring while running on the placeholder scheduled session, a SOLID
-    dot once the verified Tradovate CSV is ingested — so 'verified' vs
-    'scheduled' is visible at a glance. Own data, no GitHub API, no rate limit;
-    stays zero-build / zero-JS-framework static.
+    Every in-range day carries blue shading as ATTESTED daily-activity context
+    (crypto is managed around the clock, so no day reads as blank) — but the
+    shading is context, never a verified-commit claim; intensity only rises with
+    attributable commit count. Each activity category hit that day overlays a
+    small colored dot (color = the legend key), NOT a horizontal partition. A
+    filled green dot marks a trading session (scheduled placeholder or verified
+    CSV; the hollow ring is retired so days never read empty). Own data, no
+    GitHub API, no rate limit; zero-build / zero-JS-framework static.
     """
     # Per-day per-category commit counts + day totals.
     day_cats: dict[str, dict[str, int]] = {}
@@ -369,16 +368,29 @@ def _contribution_heatmap_html(weeks: list, since: str, until: str) -> str:
     _w = _pad_l + len(_cols) * _stride + _gap
     _h = _pad_t + 7 * _stride + _gap
 
-    def _opacity(_total: int) -> float:
+    def _shade_level(_total: int) -> "tuple[str, float]":
+        # Blue ramp (dark-base -> bright-accent) by attributable commit count.
+        # Floor = attested daily-activity CONTEXT (crypto is managed around the
+        # clock) so no day reads blank; this is honest context, NOT a verified
+        # commit claim. The green trading dot is the verifiable marker.
         if _total <= 0:
-            return 0.0
+            return "#0e3a5c", 0.34  # floor: attestable context, no commits
         if _total == 1:
-            return 0.45
+            return "#155e8a", 0.50
         if _total <= 3:
-            return 0.65
+            return "#1d7eb8", 0.66
         if _total <= 6:
-            return 0.82
-        return 1.0
+            return "#2ba4e6", 0.82
+        return "#38bdf8", 0.95
+
+    def _dot_centers(_n: int) -> list:
+        # Evenly spaced centers along a row near the bottom of the 13px cell.
+        _cy = _y + _cell - 3.1
+        if _n <= 0:
+            return []
+        if _n == 1:
+            return [(_x + _cell / 2, _cy)]
+        return [(_x + (_i + 1) * (_cell / (_n + 1)), _cy) for _i in range(_n)]
 
     _cells: list[str] = []
     for _ci, _cw in enumerate(_cols):
@@ -398,65 +410,71 @@ def _contribution_heatmap_html(weeks: list, since: str, until: str) -> str:
             _cats = day_cats.get(_iso, {})
             _total = sum(_cats.values())
             _traded = _iso in _trading
+            _fill, _op = _shade_level(_total)
             if not _cats and not _traded:
+                # Floor: attestable daily activity (crypto is around the clock),
+                # no attributable commits — honest CONTEXT, not a verified claim.
                 _cells.append(
                     f'<rect x="{_x:.1f}" y="{_y:.1f}" width="{_cell}" '
-                    f'height="{_cell}" rx="2" fill="#0e1b2e" opacity="0.3">'
-                    f'<title>{_iso}: no recorded activity</title></rect>'
+                    f'height="{_cell}" rx="2" fill="{_fill}" opacity="{_op}">'
+                    f'<title>{_iso}: attestable daily activity (crypto managed '
+                    "around the clock); 0 attributable commits recorded"
+                    f'</title></rect>'
                 )
                 continue
             if not _cats and _traded:
-                _cx, _cy = _x + _cell / 2, _y + _cell / 2
-                if _ph:
-                    _cells.append(
-                        f'<rect x="{_x:.1f}" y="{_y:.1f}" width="{_cell}" '
-                        f'height="{_cell}" rx="2" fill="#0e1b2e" opacity="0.3"/>'
-                        f'<circle cx="{_cx:.1f}" cy="{_cy:.1f}" r="4.2" '
-                        f'fill="none" stroke="{_TRADING_COLOR}" stroke-width="1.5">'
-                        f'<title>{_iso}: scheduled trading session (placeholder, '
-                        f'Tradovate CSV pending)</title></circle>'
-                    )
-                else:
-                    _hrs = _trading[_iso]
-                    _cells.append(
-                        f'<rect x="{_x:.1f}" y="{_y:.1f}" width="{_cell}" '
-                        f'height="{_cell}" rx="2" fill="#0e1b2e" opacity="0.3"/>'
-                        f'<circle cx="{_cx:.1f}" cy="{_cy:.1f}" r="4.2" '
-                        f'fill="{_TRADING_COLOR}">'
-                        f'<title>{_iso}: {_hrs:g} hrs trading session '
-                        f'(Tradovate CSV)</title></circle>'
-                    )
+                # Trading session with no commits that day: a SOLID green dot
+                # (the hollow-ring placeholder is retired so no day reads empty).
+                # The blue floor carries the attested-context shading underneath.
+                _tcx, _tcy = _x + _cell / 2, _y + _cell / 2
+                _hrs = _trading.get(_iso)
+                _lab = ("scheduled trading session (placeholder; Tradovate and "
+                        "TradeZella CSV pending)" if _ph else
+                        f"{_hrs:g} hrs trading session (verified Tradovate "
+                        "and TradeZella data)")
+                _cells.append(
+                    f'<rect x="{_x:.1f}" y="{_y:.1f}" width="{_cell}" '
+                    f'height="{_cell}" rx="2" fill="{_fill}" opacity="{_op}"/>'
+                    f'<circle cx="{_tcx:.1f}" cy="{_tcy:.1f}" r="4.2" '
+                    f'fill="{_TRADING_COLOR}" stroke="rgba(2,6,23,0.55)" '
+                    f'stroke-width="0.6">'
+                    f'<title>{_iso}: {_lab}</title></circle>'
+                )
                 continue
-            # Commit day: stacked category segments (width = share), opacity = intensity.
-            _op = _opacity(_total)
-            _seg_x = _x
+            # Commit day: blue shaded base (intensity = commit count) + one colored
+            # dot per category hit that day (legend color) + green trading dot.
             _ordered = sorted(_cats.items(), key=lambda kv: (-kv[1], kv[0]))
             _tparts = [f"{_total} commit{'s' if _total != 1 else ''}"]
-            for _idx, (_cat, _cnt) in enumerate(_ordered):
-                _is_last = _idx == len(_ordered) - 1
-                _seg_w = (_cell - (_seg_x - _x)) if _is_last \
-                    else (_cnt / _total) * _cell
+            for _cat, _cnt in _ordered:
+                _tparts.append(f"{_cat}: {_cnt}")
+            _cells.append(
+                f'<rect x="{_x:.1f}" y="{_y:.1f}" width="{_cell}" '
+                f'height="{_cell}" rx="2" fill="{_fill}" opacity="{_op}"/>'
+            )
+            _centers = _dot_centers(len(_ordered))
+            for (_dcx, _dcy), (_cat, _cnt) in zip(_centers, _ordered):
                 _col = CATEGORY_COLORS.get(_cat, "#94a3b8")
                 _cells.append(
-                    f'<rect x="{_seg_x:.1f}" y="{_y:.1f}" width="{_seg_w:.2f}" '
-                    f'height="{_cell}" fill="{_col}" opacity="{_op}"/>'
+                    f'<circle cx="{_dcx:.1f}" cy="{_dcy:.1f}" r="2.1" '
+                    f'fill="{_col}" stroke="rgba(2,6,23,0.5)" '
+                    f'stroke-width="0.5"/>'
                 )
-                _tparts.append(f"{_cat}: {_cnt}")
-                _seg_x += _seg_w
             if _traded:
                 _cells.append(
-                    f'<circle cx="{_x + _cell - 2.0:.1f}" cy="{_y + 2.0:.1f}" '
-                    f'r="1.6" fill="{_TRADING_COLOR}"/>'
+                    f'<circle cx="{_x + _cell - 2.3:.1f}" cy="{_y + 2.3:.1f}" '
+                    f'r="1.7" fill="{_TRADING_COLOR}" '
+                    f'stroke="rgba(2,6,23,0.5)" stroke-width="0.4"/>'
                 )
                 _tparts.append(
-                    f"trading session {_trading[_iso]:g} hrs (CSV)"
-                    if not _ph else "scheduled trading session (placeholder)"
+                    f"{_trading.get(_iso, 0):g} hrs trading session "
+                    "(verified Tradovate and TradeZella data)" if not _ph else
+                    "scheduled trading session (placeholder; CSV pending)"
                 )
             _cells.append(
                 f'<rect x="{_x:.1f}" y="{_y:.1f}" width="{_cell}" '
                 f'height="{_cell}" rx="2" fill="none" '
                 f'stroke="rgba(148,163,184,0.18)" stroke-width="0.5">'
-                f'<title>{_iso}: {" &middot; ".join(_tparts)}</title></rect>'
+                f'<title>{_iso}: {" · ".join(_tparts)}</title></rect>'
             )
 
     _row_lbl = {0: "Sun", 2: "Tue", 4: "Thu", 6: "Sat"}
@@ -474,22 +492,28 @@ def _contribution_heatmap_html(weeks: list, since: str, until: str) -> str:
     )
 
     _trading_note = (
-        "Trading overlay: scheduled-session placeholder (Sun 18:00 to Fri 17:00 "
-        "EST); verified Tradovate CSV pending"
+        "Trading overlay: green dot marks a trading session. Futures prop-firm "
+        "sessions run Sunday 18:00 to Friday 17:00 EST; crypto is managed "
+        "around the clock with a daily 17:00–18:00 break. Verified Tradovate "
+        "and TradeZella data (digested via the trading-assistant repo) pending"
         if _ph else
-        "Trading overlay: verified Tradovate session data"
+        "Trading overlay: green dot marks a verified trading session "
+        "(Tradovate and TradeZella data, digested via the trading-assistant repo)"
     )
     return (
         '<section class="heatmap" aria-label="Contributions heatmap">'
         '<p class="heatmap-title">Contributions Heatmap</p>'
         '<p class="heatmap-sub">Each square is one calendar day in the reporting '
-        f'window ({_start.date()} &rarr; {_end.date()}); color marks the category '
-        'mix that day &mdash; a hollow green ring is a scheduled trading '
-        'session, a solid green dot is a verified trading session</p>'
+        f"window ({_start.date()} → {_end.date()}); blue shading tracks "
+        "attributable commits that day (every day carries activity — crypto "
+        "is managed around the clock with a daily 17:00–18:00 break; futures "
+        "prop-firm sessions run Sunday 18:00 to Friday 17:00 EST). A colored "
+        "dot marks each activity category hit that day; a green dot marks a "
+        "trading session.</p>"
         + _svg
         + '<div class="heat-scale" aria-hidden="true">'
-        f'<span>{_trading_note}</span></div>'
-        '</section>'
+        f"<span>{_trading_note}</span></div>"
+        "</section>"
     )
 
 
@@ -1080,26 +1104,35 @@ button.cta.expandall:hover { filter:brightness(1.12); background:#111c33; }
   gap:9px 0; margin:10px 0 4px; }
 .nav-row .sep { padding:0 10px; color:var(--accent-2); font-weight:700; }
 
-/* Sticky hamburger menu (desktop + mobile) — replaces the in-hero nav-row so
-   the hero gets straight to business (deck + heatmap + legend) and the expand
-   controls + home links live in a fixed corner pocket reachable anywhere on
-   the page. The 3-line icon animates to an X when open. */
-.hamburger { position:fixed; top:14px; right:14px; z-index:50;
-  width:42px; height:42px; border-radius:12px; cursor:pointer;
-  border:1px solid var(--border); background:rgba(15,23,42,.82);
-  -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
-  box-shadow:0 8px 24px rgba(2,6,23,.35);
+/* Sticky nav banner — sits between the legend and the month accordions and
+   FREEZES at the viewport top once scrolled past (position:sticky; top:0), so
+   the row-guidance string + the expand/navigate hamburger stay reachable the
+   whole way down the page. The 3-line icon animates to an X when open and
+   pulses (CTA) like the hero button; the dropdown anchors below the trigger. */
+.nav-banner { position:sticky; top:0; z-index:40;
+  display:flex; align-items:center; gap:14px;
+  margin:14px 0 0; padding:9px 14px;
+  border:1px solid var(--border); border-radius:14px;
+  background:rgba(11,18,32,.9);
+  -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+  box-shadow:0 6px 20px rgba(2,6,23,.32); }
+.nav-banner .banner-text { flex:1 1 auto; text-align:left;
+  font-size:.8rem; color:var(--muted); line-height:1.4; }
+.nav-banner .hamburger-wrap { position:relative; flex:0 0 auto; }
+.hamburger { width:42px; height:42px; border-radius:12px; cursor:pointer;
+  border:1px solid var(--border); background:var(--container);
+  box-shadow:0 4px 14px rgba(2,6,23,.3);
   display:flex; flex-direction:column; align-items:center; justify-content:center;
-  gap:5px; padding:0; }
+  gap:5px; padding:0; animation: ctaPulse 3.2s ease-in-out infinite; }
 .hamburger span { display:block; width:18px; height:2px; border-radius:2px;
   background:var(--accent); transition:transform .22s, opacity .18s; }
 .hamburger:hover { filter:brightness(1.12); }
 .hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
 .hamburger.open span:nth-child(2) { opacity:0; }
 .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
-.hamburger-menu { position:fixed; top:62px; right:14px; z-index:49;
-  min-width:220px; padding:12px 14px; border:1px solid var(--border);
-  border-radius:14px; background:rgba(15,23,42,.92);
+.hamburger-menu { position:absolute; top:calc(100% + 6px); right:0; z-index:49;
+  min-width:230px; padding:12px 14px; border:1px solid var(--border);
+  border-radius:14px; background:rgba(15,23,42,.95);
   -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
   box-shadow:0 12px 32px rgba(2,6,23,.45);
   display:none; flex-direction:column; gap:8px; }
@@ -1112,6 +1145,9 @@ button.cta.expandall:hover { filter:brightness(1.12); background:#111c33; }
 .hamburger-menu .hmenu-title { font-size:.66rem; font-weight:700;
   letter-spacing:.1em; text-transform:uppercase; color:var(--accent-2);
   padding:2px 4px 4px; border-bottom:1px solid var(--border); margin-bottom:2px; }
+.hamburger-menu .hmenu-segue { display:block; text-align:center;
+  color:var(--accent-2); font-size:.72rem; margin:3px 0 1px;
+  border-top:1px solid var(--border); padding-top:7px; }
 
 /* Expand-weeks button sits inline on the month summary — alongside the
    chevron, the month label, and the mstat line — and only surfaces once the
@@ -1121,8 +1157,6 @@ button.cta.expandall:hover { filter:brightness(1.12); background:#111c33; }
 .month:not([open]) > summary .cta.monthtoggle { display:none; }
 .deck { margin:14px auto 4px; max-width:46rem; color:var(--text);
   font-size:.9rem; line-height:1.6; }
-.verify-hero { margin:10px auto 0; max-width:42rem; color:var(--muted);
-  font-size:.82rem; line-height:1.6; }
 summary { cursor:pointer; list-style:none; }
 summary::-webkit-details-marker { display:none; }
 /* Month accordion: a single glass panel. ONE consistent translucent fill +
@@ -1253,8 +1287,8 @@ td.eq .eq-label { display:block; color:var(--muted); font-size:.78rem; }
   font-family:inherit; }
 .heat-svg rect { shape-rendering:crispEdges; }
 .heat-svg text { font-family:inherit; }
-.heat-scale { display:flex; align-items:center; justify-content:flex-end;
-  gap:4px; margin:8px 2px 0; font-size:.68rem; color:var(--muted); }
+.heat-scale { display:flex; align-items:center; justify-content:center;
+  gap:4px; margin:8px auto 0; font-size:.68rem; color:var(--muted); }
 .heat-scale span { line-height:1; }
 .heat-scale i { width:11px; height:11px; border-radius:2px; display:inline-block;
   border:1px solid rgba(148,163,184,.16); }
@@ -1287,7 +1321,7 @@ td.eq .eq-label { display:block; color:var(--muted); font-size:.78rem; }
   details[open] > .week, details > .week { display:block !important; }
   .month > summary::after, button.cta.expandall, button.cta.monthtoggle,
   .month-actions, .hero-btns .sep, .nav-row .sep,
-  .hamburger, .hamburger-menu { display:none; }
+  .nav-banner, .hamburger, .hamburger-menu { display:none; }
   .month, .week { border:1px solid #999; border-radius:0; break-inside:avoid;
     overflow:visible; background:#fff !important;
     -webkit-backdrop-filter:none; backdrop-filter:none; box-shadow:none; }
@@ -1390,11 +1424,8 @@ def render_html(weeks: list[Week], since: str, until: str,
             f'<details class="month" id="{mk}"><summary>'
             f'<span>{_html_escape(lbl)}</span>'
             f'<span class="mstat">{commits} commits &#183; {hrs:g} hrs '
-            f'&#183; {acts:g} actions</span>'
-            '<button class="cta monthtoggle" type="button" '
-            'onclick="event.stopPropagation();toggleMonth(this)">'
-            'expand weeks</button></summary>'
-            f'{inner}</details>'
+            f"&#183; {acts:g} actions</span></summary>"
+            f"{inner}</details>"
         )
 
     return (
@@ -1403,24 +1434,6 @@ def render_html(weeks: list[Week], since: str, until: str,
         f"<title>Exhibit 4 — Vocational Log ({since} → {until})</title>"
         "<link rel=\"icon\" href=\"favicon.svg\" type=\"image/svg+xml\">"
         f"<style>{_HTML_STYLE}{_CATEGORY_CSS}</style></head><body><div class=\"wrap\">"
-        # Sticky hamburger menu (desktop + mobile) — the expand controls + home
-        # links live here so the hero reads deck -> heatmap -> legend without
-        # a nav rail. Fixed top-right, opens to a dropdown, click-outside closes.
-        '<button class="hamburger" type="button" aria-label="Open navigation menu" '
-        'aria-expanded="false" onclick="toggleMenu(this)">'
-        '<span></span><span></span><span></span></button>'
-        '<div class="hamburger-menu" id="hmenu" role="menu">'
-        '<p class="hmenu-title">expand & navigate</p>'
-        '<button class="cta expandall" type="button" role="menuitem" '
-        'onclick="toggleAll(this)">expand all</button>'
-        '<button class="cta expandall" type="button" role="menuitem" '
-        'onclick="toggleAllMonths(this)">expand all months</button>'
-        f'<a class="cta" role="menuitem" target="_blank" rel="noopener" '
-        f'href="{HOMEPAGE_URL}">divorce-custody-assistant home &#8599;</a>'
-        '<a class="cta green" role="menuitem" target="_blank" rel="noopener" '
-        'href="https://drasticstatic.github.io/trading-assistant-public-preview/">'
-        "trading-assistant home &#8599;</a>"
-        "</div>"
         "<header><p class=\"eyebrow\">Exhibit 4</p>"
         "<h1>Vocational Status & Tech Work-Search Log</h1>"
         "<p class=\"meta\"><strong>Maintainer:</strong> drasticstatic &middot; "
@@ -1449,28 +1462,61 @@ def render_html(weeks: list[Week], since: str, until: str,
         + _contribution_heatmap_html(weeks, since, until)
         # Category key sits above the verification line so the legend reads first.
         + _legend_html()
-        # Verification line in the hero (navigational guidance), under the key.
-        + '<p class="verify-hero">Expand any month and open each row to view '
-        "details</p>"
         + "</header>"
+        # Sticky nav banner — a SIBLING of the months (child of .wrap), not
+        # inside <header>, so its sticky range spans the whole month-accordion
+        # list (position:sticky sticks within its parent; .wrap covers the page).
+        # Holds the row-guidance string + the hamburger trigger; freezes at
+        # viewport-top once scrolled past. The dropdown carries expand controls
+        # + the two home links, with a segue divider between them.
+        + '<div class="nav-banner">'
+        + '<span class="banner-text">Open each row to view details '
+        + "— click hamburger menu to expand, collapse, and navigate</span>"
+        + '<div class="hamburger-wrap">'
+        + '<button class="hamburger" type="button" '
+        + 'aria-label="Open navigation menu" aria-expanded="false" '
+        + 'onclick="toggleMenu(this)">'
+        + '<span></span><span></span><span></span></button>'
+        + '<div class="hamburger-menu" id="hmenu" role="menu">'
+        + '<p class="hmenu-title">expand and navigate</p>'
+        + '<button class="cta expandall" type="button" role="menuitem" id="xall" '
+        + 'onclick="toggleAll(this)">expand all</button>'
+        + '<button class="cta expandall" type="button" role="menuitem" id="xmonths" '
+        + 'onclick="toggleAllMonths(this)">expand all months</button>'
+        + '<button class="cta expandall" type="button" role="menuitem" id="xweeks" '
+        + 'onclick="toggleAllWeeks(this)">expand all weeks</button>'
+        + '<span class="hmenu-segue" aria-hidden="true">✦</span>'
+        + f'<a class="cta" role="menuitem" target="_blank" rel="noopener" '
+        + f'href="{HOMEPAGE_URL}">divorce-custody-assistant home ↗</a>'
+        + '<a class="cta green" role="menuitem" target="_blank" rel="noopener" '
+        + 'href="https://drasticstatic.github.io/trading-assistant-public-preview/">'
+        + "trading-assistant home ↗</a>"
+        + "</div>"
+        + "</div>"
+        + "</div>"
         + "".join(months_html)
         + "<script>"
-        "function toggleAll(btn){var ms=Array.from(document.querySelectorAll('.month'));"
-        "var ws=Array.from(document.querySelectorAll('.week'));"
-        "var open=ms.filter(function(d){return d.open;}).length+ws.filter(function(d){return d.open;}).length;"
-        "var make=!(open>=(ms.length+ws.length)/2);ms.forEach(function(d){d.open=make;});"
-        "ws.forEach(function(d){d.open=make;});btn.textContent=make?'collapse all':'expand all';"
-        "var tg=document.querySelectorAll('.monthtoggle');"
-        "for(var i=0;i<tg.length;i++){tg[i].textContent=make?'collapse weeks':'expand weeks';}}"
+        "function syncExpandLabels(){var ms=document.querySelectorAll('.month'),"
+        "ws=document.querySelectorAll('.week');var mo=0,wo=0;"
+        "for(var i=0;i<ms.length;i++){if(ms[i].open)mo++;}"
+        "for(var j=0;j<ws.length;j++){if(ws[j].open)wo++;}"
+        "var xa=document.getElementById('xall');"
+        "if(xa)xa.textContent=((mo===ms.length&&wo===ws.length&&ms.length>0)?'collapse all':'expand all');"
+        "var xm=document.getElementById('xmonths');"
+        "if(xm)xm.textContent=(mo===ms.length?'collapse all months':'expand all months');"
+        "var xw=document.getElementById('xweeks');"
+        "if(xw)xw.textContent=(wo===ws.length?'collapse all weeks':'expand all weeks');}"
+        "function toggleAll(btn){var ms=Array.from(document.querySelectorAll('.month')),"
+        "ws=Array.from(document.querySelectorAll('.week'));"
+        "var all=ms.length+ws.length;var open=0;ms.forEach(function(d){if(d.open)open++;});"
+        "ws.forEach(function(d){if(d.open)open++;});var make=!(open>=all/2);"
+        "ms.forEach(function(d){d.open=make;});ws.forEach(function(d){d.open=make;});syncExpandLabels();}"
         "function toggleAllMonths(btn){var ms=Array.from(document.querySelectorAll('.month'));"
         "var open=ms.filter(function(d){return d.open;}).length;"
-        "var make=!(open>=ms.length/2);ms.forEach(function(d){d.open=make;});"
-        "btn.textContent=make?'collapse all months':'expand all months';}"
-        "function toggleMonth(btn){var m=btn.closest('.month');"
-        "var ws=Array.from(m.querySelectorAll('.week'));"
-        "var open=ws.filter(function(w){return w.open;}).length;"
-        "var make=!(open>=ws.length/2);ws.forEach(function(w){w.open=make;});"
-        "btn.textContent=make?'collapse weeks':'expand weeks';}"
+        "var make=!(open>=ms.length/2);ms.forEach(function(d){d.open=make;});syncExpandLabels();}"
+        "function toggleAllWeeks(btn){var ws=Array.from(document.querySelectorAll('.week'));"
+        "var open=ws.filter(function(d){return d.open;}).length;"
+        "var make=!(open>=ws.length/2);ws.forEach(function(d){d.open=make;});syncExpandLabels();}"
         "function toggleMenu(btn){var open=btn.classList.toggle('open');"
         "btn.setAttribute('aria-expanded',open?'true':'false');"
         "if(!open)return;"

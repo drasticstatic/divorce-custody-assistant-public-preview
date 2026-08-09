@@ -71,24 +71,43 @@ the public commit record shows."
 A single commit does **not** equal one job contact. Each commit is classified
 by activity category (keyword match over repo name + message), and each
 category carries an equivalence — "hours" of product development or "actions"
-of job-search equivalent. A final category, **Trading**, is sourced from an
-external Tradovate CSV (live futures session screen-time) rather than from the
-commit record, so time on the charts is visible even on days with no commits:
+of job-search equivalent. A final category, **Trading**, is sourced from
+external Tradovate and TradeZella trade-history CSVs (digested via the
+separate trading-assistant repo) rather than from the commit record, so time
+on the charts is visible even on days with no commits. Futures prop-firm
+sessions run Sunday 18:00 to Friday 17:00 EST; crypto is managed around the
+clock, with an attempted daily break from 17:00–18:00:
 
 | Activity Category | Equivalence | What it represents |
 |---|---|---|
 | Code Deployment | 6 hrs | Technical infrastructure / production releases / portfolio architecture |
-| Risk Evaluation | 8 hrs | Quantitative compliance audits / combine evaluation / trading-model stress testing |
+| Risk Evaluation | 8 hrs | Quantitative compliance audits / security verification / behavioral case studies / sandbox frameworks / sophisticated safeguards |
 | Retraining Milestone | 4 hrs | Vocational skill advancement / curriculum mastery / applied self-study |
 | Technical Outreach | 2 actions | Direct business development / employer-client engagement / lead generation |
 | Beta-Testing & Calibration | 5 hrs | System integration / QA / product optimization / performance tuning |
 | Audit / Education | 3 hrs | Performance assessments / codebase auditing / peer-coach dissection |
 | Product Management (default) | 4 hrs | Full-stack engineering / innovation / startup labor / platform builds / MVP iterations |
-| Trading | session hrs | Live futures session screen-time / chart dedication / combine execution |
+| Trading | session hrs | Live futures session screen-time / chart dedication / discretionary model stress testing / systematic strategy analysis / proprietary combine execution |
 
 The compliance target shown per week (8 attributable actions) is **context**,
 not a fabricated count — the log shows what actually happened, then surfaces
 the aggregate so a reviewer can see the real shape of the labor.
+
+### Contributions heatmap
+
+The interactive export (`exhibit-4.html`) opens with a year-at-a-glance
+**Contributions Heatmap** so a reviewer can see the cadence of the labor
+before opening any month. Every calendar day in the reporting window carries
+blue shading — a floor level of attestable daily-activity **context** (crypto
+is managed around the clock, so no day reads as blank), deepening with the
+number of attributable commits that day. A small **colored dot** marks each
+activity category hit that day (color = the legend key), so the category mix
+reads at a glance without partitioning the square. A **green dot** marks a
+trading session — a *placeholder* scheduled session until the verified
+Tradovate/TradeZella CSVs land (digested via the trading-assistant repo), then
+a *verified* session carrying real hours. The distinction is kept honest in
+`reporting-context.md`: blue shading is attestable context, not a verified
+commit claim; the dots are the verifiable markers.
 
 ### Reproducibility
 
@@ -208,7 +227,7 @@ result.
 | [`journey-context.md`](https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/journey-context.md) | Pre-2026 classroom→portfolio narrative (injected into the TOC index) |
 | [`reporting-context.md`](https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/reporting-context.md) | Known reporting gaps & context (injected into the TOC index) |
 | [`build_vocational_log.py`](https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/build_vocational_log.py) | The reproducible generator |
-| [`trading-days.csv.example`](https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/trading-days.csv.example) | Tradovate trading-session ingestion template — copy to `trading-days.csv` to verify the heatmap overlay |
+| [`trading-days.csv.example`](https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/trading-days.csv.example) | Tradovate + TradeZella trading-session ingestion template — copy to `trading-days.csv` (or flow verified CSVs in via the trading-assistant repo) to flip the heatmap overlay from placeholder to verified |
 
 ---
 

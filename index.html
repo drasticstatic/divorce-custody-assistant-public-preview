@@ -213,11 +213,22 @@
       }
       .exhibit-panel .links a:hover { text-decoration: underline; }
       .exhibit-panel .links a.purple-link {
-        color: #a855f7;
+        display: inline-block;
+        margin: 6px auto;
+        padding: 9px 16px;
+        border-radius: 999px;
+        border: 1px solid #a855f7;
+        background: rgba(168, 85, 247, 0.10);
+        color: #c084fc;
         font-weight: 800;
+        text-decoration: none;
+        white-space: nowrap;
         animation: ctaPulse 1.8s ease-in-out infinite;
       }
-      .exhibit-panel .links a.purple-link:hover { text-decoration: underline; }
+      .exhibit-panel .links a.purple-link:hover {
+        filter: brightness(1.08);
+        background: rgba(168, 85, 247, 0.18);
+      }
       .compliance {
         margin: 28px auto 0;
         padding: 22px 24px;
@@ -338,15 +349,19 @@
         cursor: pointer;
         animation: ctaPulse 3s ease-in-out infinite;
       }
-      .modal-actions { display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:14px; margin-top:18px; }
-      .modal-actions .meetdev, .modal-actions .close { margin-top:0; }
+      .modal-actions { display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:14px;
+        position:sticky; bottom:0; margin:18px -28px -24px; padding:16px 28px 20px;
+        background:var(--panel); border-top:1px solid var(--border);
+        border-radius:0 0 20px 20px; box-shadow:0 -6px 18px rgba(2,6,23,0.4); }
+      .modal-actions .meetdev, .modal-actions .close, .modal-actions .jump-bottom { margin-top:0; }
+      .acim .about-me { margin:6px 0 18px; text-align:left; font-style:normal;
+        line-height:1.7; color:var(--text); font-size:0.92rem; }
+      .acim .about-me p { margin:0 0 12px; }
+      .acim .about-me p:last-child { margin-bottom:0; }
       @media (max-width: 640px) {
         body { padding: 14px; }
         main { padding: 32px 18px 8px; }
         .hero-mark { display: none; }
-      }
-      @media screen and (max-width: 640px) {
-        .acim .jump-bottom { display: inline-block; }
       }
     </style>
   </head>
@@ -401,12 +416,19 @@
         <span class="ref"><a href="https://acim.org/acim/en/s/76#5:6-6:4">T-3.VI.5:6&ndash;6:4</a> &middot; acim.org</span>
       </p>
       <hr class="segue" />
-      <a class="meetdev" href="https://drasticstatic.github.io" target="_blank" rel="noopener">Meet the Developer &#8599;</a>
+      <div class="about-me">
+        <p>About <strong>drasticstatic</strong> — Christopher Wilson builds open-source developer tooling, quantitative-trading systems, and Web3 infrastructure. The real labor is public, timestamped, and verifiable on GitHub, every day.</p>
+        <p>This exhibit translates that labor into the audit-ready shape a vocational work-search order asks for — honestly, because in modern software and trading markets a developer&rsquo;s verifiable commit history already <em>is</em> the career-building work record. The work continues whether or not it surfaces as evidence; this page simply makes it visible.</p>
+      </div>
+      <hr class="segue" />
+      <a class="meetdev" href="https://drasticstatic.github.io" target="_blank" rel="noopener">Encounter drasticstatic&rsquo;s GitHub &#8599;</a>
       <p class="q">&ldquo;He represents your Self and your Creator, Who are One. ³He speaks for God and also for you, being joined with Both.&rdquo;
         <span class="ref"><a href="https://acim.org/acim/en/s/857#4:2-3">C-6.4:2-3</a> &middot; acim.org</span>
       </p>
-      <button class="close" onclick="document.getElementById('acim').close()">Close</button>
-      <button class="jump-bottom" id="jumpbtn" type="button" onclick="acimJump()">&#8595; jump to the bottom</button>
+      <div class="modal-actions">
+        <button class="close" onclick="document.getElementById('acim').close()">Close</button>
+        <button class="jump-bottom" id="jumpbtn" type="button" onclick="acimJump()">&#8595; jump to the bottom</button>
+      </div>
     </dialog>
 
     <script>

@@ -1,11 +1,11 @@
 # Exhibit 4 — Vocational Status & Tech Work-Search Log
 
 **Maintainer:** drasticstatic  
-**Reporting period:** 2026-01-01 → 2026-08-08  
-**Generated:** 2026-08-08 (regenerable via `vocational-compliance/build_vocational_log.py`)  
-**Public commits attributed in range:** 1022  
-**Active development weeks:** 25 / 32  
-**Aggregate equivalence:** 4601 product development hours · 28 job-search actions  
+**Reporting period:** 2026-01-01 → 2026-08-09  
+**Generated:** 2026-08-09 (regenerable via `vocational-compliance/build_vocational_log.py`)  
+**Public commits attributed in range:** 1023  
+**Active development weeks:** 26 / 32  
+**Aggregate equivalence:** 4603 product development hours · 30 job-search actions  
 
 ---
 
@@ -147,26 +147,44 @@ contained active labor awaiting its attributable record.
 ### 4. Trading-session overlay (heatmap)
 
 The **Contributions Heatmap** carries a green trading overlay so that time
-spent on the futures charts is visible even when no GitHub commit was pushed
-that day. There are two states, and the distinction matters:
+spent on the charts is visible even when no GitHub commit was pushed that day.
+Two trading modes are reflected: **futures prop-firm sessions** run Sunday
+18:00 to Friday 17:00 EST, and **crypto** is managed around the clock with an
+attempted daily break from 17:00 to 18:00. A **green dot** marks a trading
+session on the day it falls.
 
-- **Hollow green ring** — a *scheduled-session placeholder*. Until the
-  verified Tradovate trade-history CSV is ingested, the overlay marks the
-  stated weekly session (Sunday 18:00 → Friday 17:00 EST) on every session day.
-  This is a framework, **not a verified claim** — it shows where real session
-  data will land once the CSV is in, so the structure is honest today.
-- **Solid green dot** — a *verified trading session*. Once
-  `vocational-compliance/trading-days.csv` (columns `date,hours,note`; see
-  `trading-days.csv.example`) is present, the generator reads it and each
-  matching day flips from the hollow placeholder to a solid dot carrying the
-  real session hours. Regeneration is one command: `python3
+Each calendar day in the heatmap also carries **blue shading** and small
+**colored category dots**, and an honesty distinction between them matters:
+
+- **Blue shading** — *attestable daily-activity context.* Because crypto is
+  managed around the clock, **every day carries at least some shading, and no
+  day reads as blank**. The shading only deepens with the number of
+  attributable public commits that day. This is honest **context**, **not a
+  verified-commit claim** — a faintly-shaded day with no commits attests that
+  activity happened, not that a verifiable public commit was pushed.
+- **Colored category dots** — each activity category hit that day overlays a
+  small dot in the legend's color, so the **category mix** reads at a glance
+  (these *are* tied to attributable commits).
+- **Green dot** — a **trading session**. Until the verified Tradovate and
+  TradeZella trade-history CSVs are in, every session day shows a **placeholder
+  green dot** (the hollow ring is retired so no day reads empty). This is a
+  framework, **not a verified claim** — it shows where real session data will
+  land once the CSVs are ingested. Once `vocational-compliance/trading-days.csv`
+  (columns `date,hours,note`; see `trading-days.csv.example`) is present, the
+  generator reads it and each matching day carries a **verified green dot** with
+  the real session hours. Regeneration is one command: `python3
   vocational-compliance/build_vocational_log.py --since 2026-01-01`.
 
-Trading time is **displayed** on the heatmap as context — it is not folded
-into the commit-derived equivalence totals in the tables (which by design
-count only verifiable public commits), keeping the sworn equivalence numbers
-conservative and the trading layer additive. When the CSV arrives, the
-sessions become verified evidence rather than a placeholder frame.
+The Tradovate and TradeZella CSVs themselves are digested by the separate
+**trading-assistant** repo (Fortuna) and flow into `trading-days.csv` here, so
+the verified overlay is produced without exposing raw trading data in this
+repo — only the daily session hours, as additive heatmap context.
+
+Trading time is **displayed** on the heatmap as context — it is not folded into
+the commit-derived equivalence totals in the tables (which by design count only
+verifiable public commits), keeping the sworn equivalence numbers conservative
+and the trading layer additive. When the CSVs arrive, the sessions become
+verified evidence rather than a placeholder frame.
 
 ---
 
@@ -181,7 +199,7 @@ sessions become verified evidence rather than a placeholder frame.
 | May 2026 | [`exhibit-4-log-2026-05.md`](https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/exhibit-4-log-2026-05.md) | [exhibit-4.html#2026-05](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/vocational-compliance/exhibit-4.html#2026-05) | 267 | 1163 | 8 |
 | June 2026 | [`exhibit-4-log-2026-06.md`](https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/exhibit-4-log-2026-06.md) | [exhibit-4.html#2026-06](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/vocational-compliance/exhibit-4.html#2026-06) | 29 | 128 | 0 |
 | July 2026 | [`exhibit-4-log-2026-07.md`](https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/exhibit-4-log-2026-07.md) | [exhibit-4.html#2026-07](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/vocational-compliance/exhibit-4.html#2026-07) | 34 | 147 | 0 |
-| August 2026 | [`exhibit-4-log-2026-08.md`](https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/exhibit-4-log-2026-08.md) | [exhibit-4.html#2026-08](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/vocational-compliance/exhibit-4.html#2026-08) | 0 | 0 | 0 |
+| August 2026 | [`exhibit-4-log-2026-08.md`](https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/exhibit-4-log-2026-08.md) | [exhibit-4.html#2026-08](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/vocational-compliance/exhibit-4.html#2026-08) | 1 | 2 | 2 |
 
 ---
 
