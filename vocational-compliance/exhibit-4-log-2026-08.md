@@ -4,7 +4,7 @@ _Part of the full Exhibit 4 — [table of contents](https://github.com/drasticst
  · [public-preview homepage](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/)_
 
 **Reporting month:** August 2026  
-**Commits this month:** 5 · **Hours-equiv:** 21 · **Actions-equiv:** 2
+**Commits this month:** 6 · **Hours-equiv:** 26 · **Actions-equiv:** 2
 
 ---
 
@@ -29,13 +29,14 @@ _Commits this week:_ 4 · _Hours-equiv:_ 17 · _Actions-equiv:_ 2
 
 **Compliance target (context):** 8 attributable actions/week
 
-_Commits this week:_ 1 · _Hours-equiv:_ 4 · _Actions-equiv:_ 0
+_Commits this week:_ 2 · _Hours-equiv:_ 9 · _Actions-equiv:_ 0
 
 ### Weekly Vocational Activity & Work-Search & Effort Report
 
 | Date | Category | Activity / Description | Proof (repo — full commit URL) | Equivalence |
 |---|---|---|---|---|
 | 2026-08-10 | Product Management | Exhibit 4 v10: heatmap enlarge button, exhibit nav pills, exhaustive companions | **divorce-custody-assistant-public-preview**<br>https://github.com/drasticstatic/divorce-custody-assistant-public-preview/commit/cad85cbd24bb9fccac03f118d80992dead90a670 | 4 hrs (Hours (product management / startup labor)) |
+| 2026-08-10 | Beta-Testing & Calibration | Exhibit 4 v11: desktop heatmap hover-tooltip hint, Alfred modal warmth + signature flourish | **divorce-custody-assistant-public-preview**<br>https://github.com/drasticstatic/divorce-custody-assistant-public-preview/commit/33cf8544124f102508ba5658f322d3a7418dbcbe | 5 hrs (Hours (product development / startup labor)) |
 
 ---
 
