@@ -520,12 +520,14 @@ def _contribution_heatmap_html(weeks: list, since: str, until: str) -> str:
     )
     _trading_note = (
         f"Verified Tradovate / TradeZella session data (digested via the "
-        f"trading-assistant repo) — publish pending; the public record carries "
-        f"verified sessions through {_verified_through}."
+        f"trading-assistant repo) — publish pending; the public GitHub record "
+        f"currently carries verified sessions through {_verified_through} "
+        f"— see reporting-context.md for details on the backlog to be released."
         if _ph else
         f"Verified Tradovate / TradeZella session data (digested via the "
-        f"trading-assistant repo) — the public record carries verified "
-        f"sessions through {_verified_through}."
+        f"trading-assistant repo) — the public GitHub record currently "
+        f"carries verified sessions through {_verified_through} "
+        f"— see reporting-context.md for details on the backlog to be released."
     )
     # The prior two text blocks (a heatmap-sub paragraph above the grid and a
     # trading cutoff note below in .heat-scale) read as one idea, so they are
@@ -547,12 +549,20 @@ def _contribution_heatmap_html(weeks: list, since: str, until: str) -> str:
         ' aria-label="Click to enlarge the contributions heatmap">'
         + _svg
         + "</div>"
-        '<p class="heat-hint">Click the heatmap to enlarge; tap a day to jump to its record.</p>'
+        '<p class="heat-hint">'
+        '<button class="heat-enlarge-btn" type="button" id="heat-enlarge"'
+        ' aria-label="Enlarge the contributions heatmap">'
+        '<span class="heat-enlarge-click">⤢ Click to enlarge</span>'
+        '<span class="heat-enlarge-tap">⤢ Tap to enlarge</span>'
+        '</button> '
+        '<span class="heat-day-note">or tap any day to jump to its record.</span>'
+        '</p>'
         '<dialog class="heat-lightbox" id="heat-lightbox" aria-label="Enlarged'
         ' contributions heatmap — tap a day to jump to its record">'
         '<button class="heat-close" type="button" aria-label="Close enlarged view">✕ close'
         "</button>"
         '<div class="heat-large" aria-hidden="true"></div>'
+        '<p class="heat-rotate-hint">↻ rotate your device horizontally for the best enlarged view</p>'
         '<p class="heat-hint">Tap a day to jump to its record in the log below.</p>'
         "</dialog>"
         "</section>"
@@ -1329,8 +1339,32 @@ td.eq .eq-label { display:block; color:var(--muted); font-size:.78rem; }
   border-radius:10px; outline:none; }
 .heat-wrap:focus-visible { box-shadow:0 0 0 2px var(--accent); }
 .heat-day { cursor:pointer; }
-.heat-hint { margin:6px 0 0; text-align:center; font-size:.72rem; color:var(--muted);
-  font-style:italic; }
+/* v10: an explicit ENLARGE button sits below the grid so the enlarge action is
+   its own clear tap target — distinct from the day cells, which navigate to the
+   per-day record. The grid (and day cells) keep their own behaviour intact. */
+.heat-hint { margin:10px 0 0; text-align:center; font-size:.74rem; color:var(--muted);
+  font-style:normal; display:flex; flex-wrap:wrap; align-items:center;
+  justify-content:center; gap:4px 12px; }
+.heat-enlarge-btn { display:inline-block; padding:8px 18px; border-radius:999px;
+  border:1px solid var(--accent); background:rgba(56,189,248,0.10);
+  color:var(--accent); font-weight:700; font-size:.78rem; font-style:normal;
+  font-family:inherit; cursor:pointer; white-space:nowrap;
+  animation:ctaPulse 2.6s ease-in-out infinite; }
+.heat-enlarge-btn:hover { filter:brightness(1.1); background:rgba(56,189,248,0.18); }
+.heat-enlarge-btn:focus-visible { box-shadow:0 0 0 2px var(--accent); outline:none; }
+.heat-enlarge-tap { display:none; }
+.heat-day-note { font-style:italic; }
+/* Mobile / touch: swap the button label from "Click" to "Tap". */
+@media (pointer:coarse), (max-width:640px) {
+  .heat-enlarge-click { display:none; }
+  .heat-enlarge-tap { display:inline; }
+}
+.heat-rotate-hint { display:none; margin:6px auto 0; text-align:center;
+  font-size:.72rem; color:var(--accent-2); font-style:italic; }
+/* Inside the lightbox on a narrow portrait screen: show the rotate hint. */
+@media (max-width:640px) and (orientation:portrait) {
+  .heat-rotate-hint { display:block; }
+}
 .heat-lightbox { position:relative; width:min(96vw,1100px); max-width:96vw;
   max-height:92vh; padding:18px 16px 12px; background:var(--panel);
   border:1px solid var(--border); border-radius:16px; color:var(--text); }
@@ -1609,6 +1643,7 @@ def render_html(weeks: list[Week], since: str, until: str,
         "if(e.key==='Enter'||e.key===' '){e.preventDefault();openBig();}});"
         "t.addEventListener('click',function(e){"
         "var d=e.target.closest('.heat-day');if(d){navDay(d.getAttribute('data-date'));return;}openBig();});"
+        "var eb=document.getElementById('heat-enlarge');if(eb)eb.addEventListener('click',openBig);"
         "function openBig(){if(lb.open)return;large.innerHTML='';"
         "if(src){var c=src.cloneNode(true);c.removeAttribute('width');large.appendChild(c);}"
         "lb.showModal();}"
