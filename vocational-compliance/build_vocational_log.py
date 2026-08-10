@@ -557,6 +557,7 @@ def _contribution_heatmap_html(weeks: list, since: str, until: str) -> str:
         '</button> '
         '<span class="heat-day-note">or tap any day to jump to its record.</span>'
         '</p>'
+        '<p class="heat-hover-hint">Hover any day for a tooltip.</p>'
         '<dialog class="heat-lightbox" id="heat-lightbox" aria-label="Enlarged'
         ' contributions heatmap — tap a day to jump to its record">'
         '<button class="heat-close" type="button" aria-label="Close enlarged view">✕ close'
@@ -1354,10 +1355,16 @@ td.eq .eq-label { display:block; color:var(--muted); font-size:.78rem; }
 .heat-enlarge-btn:focus-visible { box-shadow:0 0 0 2px var(--accent); outline:none; }
 .heat-enlarge-tap { display:none; }
 .heat-day-note { font-style:italic; }
-/* Mobile / touch: swap the button label from "Click" to "Tap". */
+/* Desktop pointer only: a small hint that each day cell carries a hover
+   tooltip. Hidden on touch/narrow (no hover affordance there). */
+.heat-hover-hint { margin:4px 0 0; text-align:center; font-size:.7rem;
+  color:var(--muted); font-style:italic; }
+/* Mobile / touch: swap the button label from "Click" to "Tap" and hide the
+   desktop-only hover-tooltip hint. */
 @media (pointer:coarse), (max-width:640px) {
   .heat-enlarge-click { display:none; }
   .heat-enlarge-tap { display:inline; }
+  .heat-hover-hint { display:none; }
 }
 .heat-rotate-hint { display:none; margin:6px auto 0; text-align:center;
   font-size:.72rem; color:var(--accent-2); font-style:italic; }
