@@ -74,6 +74,18 @@ Every row carries a **full** commit URL (not abbreviated) so a printed or PDF co
 
 The public-preview landing (`index.html`) was rebuilt as an intentional-minimal framing page that embeds the interactive Exhibit 4, exposes the related records as GitHub blob links, and carries a small mercy-themed modal. A custom `404.html` now returns a hard GitHub Pages 404 for any pruned or never-published path (previously these rendered the default Jekyll soft-404 placeholder at HTTP 200).
 
+### Interactive contribution heatmap & exhaustive Exhibit 1–3 companions
+
+Exhibit 4's centerpiece is now a **GitHub-style contribution heatmap** rendered from the same attribution data as the log — a clickable full-year SVG thumbnail that opens a fullscreen lightbox via an enlarge button (or by tapping any day). Each day carries category-colored dots for the eight activity classes plus a teal trading-day marker; clicking a day jumps straight to that week's recorded entry in the log below. Desktop visitors get a hover tooltip; mobile visitors get a rotate-for-best-view hint, and an on-page color key rolls the eight categories up so a printed or PDF copy stays legible without the live site.
+
+The three companion exhibits that frame Exhibit 4 were rewritten as **exhaustive public companions** rather than stubs, each describing its document's role and structure only — no private figures, account balances, or case-specific detail are published:
+
+- **Exhibit 1 — Vocational Pivot & Good-Faith Work Search:** the structural argument — liquid-capital exhaustion, a contractually-allocated internal offset that clears the arrears to a zero balance, and a 40+ hour/week retraining schedule across four live technical-trading programs (each with its published weekly cadence) — followed by a redefinition of "good-faith work search" for the modern web3 / DAO-grant economy, where verifiable commits and deployments replace the résumé-and-application loop.
+- **Exhibit 2 — Trader Tax Status & Profit Motive:** a briefing memorandum on the controlling standard (IRC §183 hobby-loss rules and trader-tax-status factors) and how an attributable, timestamped public record defeats a willful-underemployment posture.
+- **Exhibit 3 — Income & Guidelines Expense Statement:** the economic reference point, plus a formal Prayer Request for Special Relief asking the Court to recognize the documented operational insolvency, accept the structural offset as the good-faith compliance path, and accept Exhibit 4 as a valid work-search equivalent during the pre-revenue launch phase.
+
+The landing page exposes these as dark-blue navigation pills alongside the Exhibit 4 embed, and a hard guard keeps the escaped `<iframe>` text token inert — it appears as text exactly twice and never resolves to a real element — so the embedded viewer cannot swallow the rest of the page. The "meet-the-developer" modal was likewise polished: Alfred's third-person review sits in a cool blue-grey, with the closing signature set in calligraphy.
+
 ---
 
 ## Google Workspace CLI (`gws`) setup — sterilized overview
