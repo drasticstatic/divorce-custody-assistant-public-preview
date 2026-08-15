@@ -246,7 +246,8 @@
          every nav item sits on one consistent baseline (purple pill + 3 blue
          pills, all the same pill shape). Scoped to override the plain .links a
          glow/animation (static, readable; Christopher: dark-blue bg, light text). */
-      .exhibit-panel a.blue-pill {
+      .exhibit-panel a.blue-pill,
+      .custody a.blue-pill {
         display: inline-block;
         margin: 6px auto;
         padding: 9px 16px;
@@ -259,7 +260,8 @@
         white-space: nowrap;
         animation: none;
       }
-      .exhibit-panel a.blue-pill:hover {
+      .exhibit-panel a.blue-pill:hover,
+      .custody a.blue-pill:hover {
         filter: brightness(1.12);
         background: #1d4ed8;
         text-decoration: none;
@@ -294,6 +296,103 @@
         animation: ctaGlow 3.4s ease-in-out infinite;
       }
       .compliance li a:hover { text-decoration: underline; }
+
+      /* Custody portal — the north-star surface, sits above the vocational
+         compliance record. Statute frame + principle + Factor #1 priority,
+         stated once and safely. No protected detail; the companion carries the
+         factor-by-factor position. Reuses the established navy-glass language
+         (Inter substance, accent/indigo weight, glass cards, blue-pill nav). */
+      .custody {
+        margin: 30px auto 24px;
+        padding: 26px 26px 22px;
+        text-align: center;
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        background: var(--container);
+      }
+      .custody .eyebrow { margin: 0 auto 18px; }
+      .custody .north-star {
+        margin: 0 auto 18px;
+        max-width: 34rem;
+        font-size: clamp(1.3rem, 3.4vw, 1.75rem);
+        line-height: 1.3;
+        font-weight: 800;
+        letter-spacing: -0.01em;
+        color: var(--text);
+      }
+      .custody .north-star em { color: var(--accent); font-style: italic; font-weight: 800; }
+      .custody .frame {
+        margin: 0 auto 22px;
+        max-width: 36rem;
+        font-size: 0.97rem;
+        line-height: 1.7;
+        color: var(--muted);
+      }
+      .custody .frame strong { color: var(--text); font-weight: 700; }
+      .custody .factor-callout {
+        position: relative;
+        margin: 0 auto 18px;
+        max-width: 38rem;
+        padding: 18px 20px 16px;
+        text-align: left;
+        border: 1px solid rgba(56, 189, 248, 0.38);
+        border-left: 3px solid var(--accent);
+        border-radius: 14px;
+        background: rgba(56, 189, 248, 0.06);
+      }
+      .custody .factor-callout .rank {
+        display: inline-block;
+        margin-bottom: 8px;
+        font-size: 0.74rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+      .custody .factor-callout h3 {
+        margin: 0 0 10px;
+        font-size: 1.02rem;
+        font-weight: 700;
+        line-height: 1.35;
+        color: var(--text);
+      }
+      .custody .factor-callout .qualifier {
+        display: block;
+        margin-top: 2px;
+        font-size: 0.88rem;
+        font-weight: 500;
+        font-style: italic;
+        color: var(--accent-2);
+      }
+      .custody .factor-callout p {
+        margin: 0;
+        font-size: 0.95rem;
+        line-height: 1.65;
+        color: var(--muted);
+      }
+      .custody .factor-callout strong { color: var(--text); font-weight: 700; }
+      .custody .factor-callout em { color: var(--accent); font-style: italic; }
+      .custody .safety-note {
+        margin: 0 auto 16px;
+        max-width: 36rem;
+        display: flex; gap: 9px; justify-content: center; align-items: flex-start;
+        text-align: left;
+        font-size: 0.85rem;
+        line-height: 1.6;
+        color: var(--muted);
+      }
+      .custody .safety-note .glyph { flex: 0 0 auto; font-size: 1.05rem; line-height: 1.45; }
+      .custody .companion-note {
+        margin: 0 auto 16px;
+        max-width: 34rem;
+        font-size: 0.82rem;
+        line-height: 1.6;
+        font-style: italic;
+        color: var(--muted);
+      }
+      .custody .links { margin-top: 4px; }
+      .custody .links ul { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 22px; }
+      .custody .companion-note em { color: var(--text); font-style: italic; }
       .exhibit {
         display: block;
         margin: 0 auto;
@@ -399,10 +498,19 @@
       .acim .about-me .signature { display:block; text-align:right;
         font-family:'Snell Roundhand','Apple Chancery','Brush Script MT','Lucida Handwriting',cursive;
         font-weight:600; font-size:1.4rem; color:var(--accent-2); margin-top:12px; }
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          animation-duration: 0.001ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.001ms !important;
+        }
+        html { scroll-behavior: auto; }
+      }
       @media (max-width: 640px) {
         body { padding: 14px; }
         main { padding: 32px 18px 8px; }
         .hero-mark { display: none; }
+        .custody { padding: 20px 16px; }
       }
     </style>
   </head>
@@ -411,6 +519,60 @@
     <main>
       <p class="eyebrow">Public Preview · Intentional Minimal</p>
       <h1>Divorce & Custody Assistant</h1>
+      <section class="custody" id="custody">
+        <p class="eyebrow">Custody &middot; 23 Pa.C.S. &sect; 5328 &middot; the law is the frame</p>
+        <h2 class="north-star">
+          The children&rsquo;s best interest is two loving parents in their lives
+          <em>and</em> a secure foundation to build a family upon &mdash;
+          even after divorce.
+        </h2>
+        <p class="frame">
+          The controlling statute was rewritten by <strong>Act 8 of 2024</strong> and
+          <strong>Act 11 of 2025</strong> (effective ~Aug 2025). <strong>Safety is now
+          paramount</strong>: the court must give substantial weighted consideration to the
+          safety of the child. And the factor this father pursued from the outset &mdash;
+          <em>which party is more likely to encourage & permit frequent and continuing
+          contact</em> &mdash; once &ldquo;Factor (1),&rdquo; is now
+          <strong>(2.3)(i)</strong>, with a tail attached: contact is encouraged &ldquo;if
+          consistent with the safety needs of the child.&rdquo; The contest over access now
+          runs through safety, not around it.
+        </p>
+        <div class="factor-callout" id="factor-contact">
+          <span class="rank">&#11088;&ensp;#1&ensp;priority</span>
+          <h3>Factor (2.3)(i) &mdash; frequent & continuing contact
+            <span class="qualifier">if consistent with the child&rsquo;s safety</span>
+          </h3>
+          <p>
+            From the outset, the father has sought <strong>shared & equal custodial
+            access (50/50)</strong> and holds that the children shall always have
+            <strong>equal access to both loving parents</strong>. A verifiable record of
+            denied and disrupted contact exists and is held with the court &mdash; offered
+            as <em>proof, not presumption</em>, that contact was not the father&rsquo;s gate
+            to close. The statutory qualifier is acknowledged: the father&rsquo;s position is
+            that equal access <em>is</em> consistent with the children&rsquo;s safety.
+          </p>
+        </div>
+        <p class="safety-note">
+          <span class="glyph" aria-hidden="true">&#128737;&#65039;</span>
+          <span>The safety cluster carries substantial weighted consideration:
+          <strong>(1)</strong> which party is more likely to ensure the child&rsquo;s safety;
+          <strong>(2)</strong> present/past abuse where there has been a finding;
+          <strong>(2.1)</strong> protective-services involvement;
+          <strong>(2.2)</strong> violent or assaultive behavior.</span>
+        </p>
+        <p class="companion-note">
+          A fuller, factor-by-factor companion &mdash; the old&rarr;new factor map and the
+          father&rsquo;s public-safe position on each &mdash; was filed with the Court. The
+          detailed filed document is scrubbed from this public preview: this surface holds the
+          <em>structure and posture</em>, not protected detail.
+        </p>
+        <nav class="links" aria-label="Custody companion">
+          <ul>
+            <li><a class="blue-pill"
+              href="https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/custody-factors/custody-factors.md">Full custody-factors companion &#8599;</a></li>
+          </ul>
+        </nav>
+      </section>
       <section class="compliance">
         <p class="ribbon"><big>Public-facing compliance record</big><br> <small>vocational & technical work-search</small></p>
         <a class="cta-strong" href="#exhibit">&#8595; Interactive Exhibit 4 &#8595;</a><br><br>
