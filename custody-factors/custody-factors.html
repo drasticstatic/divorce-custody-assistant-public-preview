@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Custody Factors — §5328 Companion</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #020617;
+        --panel: rgba(15, 23, 42, 0.88);
+        --container: rgba(15, 23, 42, 0.55);
+        --text: #e2e8f0;
+        --muted: #94a3b8;
+        --accent: #38bdf8;
+        --accent-2: #818cf8;
+        --border: rgba(148, 163, 184, 0.22);
+      }
+      * { box-sizing: border-box; scrollbar-width: thin; scrollbar-color: var(--accent) var(--bg); }
+      *::-webkit-scrollbar { width: 11px; height: 11px; }
+      *::-webkit-scrollbar-track { background: var(--bg); }
+      *::-webkit-scrollbar-thumb { border-radius: 8px; border: 2px solid var(--bg); background: linear-gradient(180deg, var(--accent), var(--accent-2)); }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0; padding: 24px;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: radial-gradient(circle at top, rgba(56, 189, 248, 0.18), transparent 32%), linear-gradient(180deg, #0f172a 0%, var(--bg) 100%);
+        color: var(--text);
+      }
+      main { max-width: 820px; margin: 0 auto; padding: 40px 24px 60px; }
+      a.back { display:inline-block; margin-bottom: 22px; padding: 9px 16px; border-radius: 999px; border:1px solid var(--border); background:var(--container); color:var(--accent); text-decoration:none; font-weight:700; font-size:0.85rem; }
+      a.back:hover { text-decoration:underline; }
+      .eyebrow { margin:0 0 12px; font-size:0.78rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent); }
+      h1 { margin:0 0 6px; font-size: clamp(2rem, 5vw, 2.8rem); line-height:1.08; }
+      .lede { margin:0 0 26px; font-size:1.05rem; line-height:1.7; color:var(--muted); }
+      h2 { margin: 32px 0 10px; font-size:1.35rem; color:var(--text); }
+      p { font-size:0.97rem; line-height:1.7; color:var(--muted); }
+      p strong { color:var(--text); }
+      p em { color:var(--accent); font-style:italic; }
+      hr { border:0; border-top:1px solid var(--border); margin:28px 0; }
+      table { width:100%; border-collapse:collapse; margin:14px 0; font-size:0.88rem; }
+      th, td { border:1px solid var(--border); padding:9px 11px; text-align:left; vertical-align:top; }
+      th { background:var(--container); color:var(--text); }
+      td:has-code, code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+      .box { border:1px solid var(--border); border-left:3px solid var(--accent); border-radius:14px; background:rgba(56,189,248,0.06); padding:18px 20px; margin:16px 0; }
+      .box .rank { display:inline-block; margin-bottom:8px; font-size:0.74rem; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent); }
+      .box h3 { margin:0 0 10px; font-size:1.02rem; color:var(--text); }
+      .box .qualifier { display:block; margin-top:2px; font-size:0.88rem; font-style:italic; color:var(--accent-2); }
+      .pills { display:flex; flex-wrap:wrap; gap:10px; margin-top:20px; }
+      a.pill { display:inline-block; padding:9px 16px; border-radius:999px; border:1px solid #1e3a8a; background:#1e3a8a; color:#dbeafe; font-weight:700; text-decoration:none; white-space:nowrap; }
+      a.pill:hover { filter:brightness(1.12); background:#1d4ed8; }
+      a.pill.outline { background:transparent; border-color:var(--border); color:var(--accent); }
+      .callout { margin:22px 0; padding:14px 18px; border:1px solid var(--border); border-radius:12px; background:var(--container); font-size:0.9rem; line-height:1.6; }
+      @media (prefers-reduced-motion: reduce) { html { scroll-behavior:auto; } }
+      @media (max-width:640px){ body{padding:14px;} main{padding:28px 16px 40px;} table{font-size:0.8rem;} }
+    </style>
+  </head>
+  <body>
+    <main>
+      <a class="back" href="../index.html#custody">&#8592; back to the portal</a>
+      <p class="eyebrow">Custody &middot; 23 Pa.C.S. &sect; 5328 &middot; the law is the frame</p>
+      <h1>Custody Factors &mdash; Public Companion</h1>
+      <p class="lede">
+        The children&rsquo;s best interest is <strong>two loving parents in their lives
+        and a secure foundation to build a family upon &mdash; even after divorce.</strong>
+        A father who has sought <strong>shared & equal access (50/50)</strong> from the
+        very beginning, and who holds that the children shall <em>always</em> have equal
+        access to both loving parents.
+      </p>
+
+      <h2>What this is <em>(and what it isn&rsquo;t)</em></h2>
+      <p>
+        This is the <strong>public-facing companion</strong> to a contested custody record &mdash;
+        the scrubbed, public-safe <strong>structure and posture</strong> of a father&rsquo;s position
+        under the controlling PA statute. It is the controlling law (old and current), in verified
+        language, plus the father&rsquo;s position on each factor, in <em>principle</em> (not allegation).
+      </p>
+      <p>
+        It is <strong>not</strong> names, addresses, case numbers, dates of specific incidents, dollar
+        figures, or the substance of the pending protective-services matter &mdash; those live
+        <strong>court-side, never here</strong>. An accompanying, more detailed document was completed
+        and filed with Domestic Relations; its substance requires scrubbing before anything reaches a
+        public surface, so it is intentionally omitted from this public preview. This surface holds the
+        <em>structure and public-safe posture</em> so the public can see what was filed without exposing
+        protected detail.
+      </p>
+
+      <hr />
+      <p class="eyebrow">The law changed</p>
+      <h2>We speak to <em>both</em> versions</h2>
+      <p>
+        <strong>23 Pa.C.S. &sect; 5328</strong> was rewritten by <strong>Act 8 of 2024</strong> and
+        <strong>Act 11 of 2025</strong> (effective ~Aug 2025). Most older sources online still quote the
+        pre-amendment &ldquo;16 factors.&rdquo; The Court applies the <strong>current</strong> version
+        &mdash; but because filings, precedent, and public discussion still use the old numbering, we address
+        <em>both</em> so the argument speaks the same language as the record.
+      </p>
+      <p>
+        <strong>The headline change:</strong> <strong>safety is now paramount.</strong> The court must give
+        <strong>&ldquo;substantial weighted consideration&rdquo;</strong> to the factors that affect the
+        safety of the child. And the factor this father has fought under since day one &mdash;
+        <em>&ldquo;which party encourages frequent and continuing contact&rdquo;</em> &mdash; was the old
+        <strong>Factor (1)</strong>. It is now <strong>(2.3)(i)</strong>, and the legislature attached a
+        tail to it: contact is encouraged <strong>&ldquo;if consistent with the safety needs of the
+        child.&rdquo;</strong> The contest over access now runs <em>through</em> safety, not around it.
+      </p>
+
+      <table>
+        <thead><tr><th>Old #</th><th>Old factor (paraphrased)</th><th>New #</th><th>New factor &mdash; what changed</th></tr></thead>
+        <tbody>
+          <tr><td><strong>1</strong></td><td>Encourage frequent & continuing contact</td><td><strong>2.3(i)</strong></td><td>Moved under &ldquo;cooperation & conflict&rdquo;; + safety qualifier</td></tr>
+          <tr><td><strong>2</strong></td><td>Present/past abuse</td><td><strong>2</strong></td><td>Expanded: PFA/SVPO count where there has been a finding of abuse</td></tr>
+          <tr><td>&mdash;</td><td>(safety of the child &mdash; not its own factor)</td><td><strong>1</strong></td><td><strong>NEW</strong> &mdash; &ldquo;Which party more likely ensures the safety of the child&rdquo;</td></tr>
+          <tr><td>&mdash;</td><td>(child abuse / protective services)</td><td><strong>2.1</strong></td><td><strong>NEW</strong> &mdash; protective-services involvement (cf. &sect; 5329.1)</td></tr>
+          <tr><td>&mdash;</td><td>(violent/assaultive behavior)</td><td><strong>2.2</strong></td><td><strong>NEW</strong></td></tr>
+          <tr><td><strong>8</strong></td><td>Attempts to turn child against other parent (alienation)</td><td><strong>2.3(ii)</strong></td><td>+ carve-outs: good-faith safety efforts &ne; uncooperative; a deficient relationship is not presumed caused by the other parent</td></tr>
+          <tr><td><strong>13</strong></td><td>Level of conflict & willingness to cooperate</td><td><strong>2.3</strong></td><td>Now the parent heading for (i)+(ii) above</td></tr>
+          <tr><td><strong>3 / 9 / 10</strong></td><td>Parental duties &middot; loving/stable/nurturing &middot; daily needs</td><td><strong>3</strong></td><td>Merged into one capacity factor</td></tr>
+          <tr><td><strong>4</strong></td><td>Stability in education, family, community</td><td><strong>4</strong></td><td>Kept; + safety exception (&ldquo;except where change is necessary to protect safety&rdquo;)</td></tr>
+          <tr><td><strong>6</strong></td><td>Sibling relationships</td><td><strong>6</strong></td><td>Kept (now &ldquo;sibling and other familial relationships&rdquo;)</td></tr>
+          <tr><td><strong>7</strong></td><td>Child&rsquo;s preference</td><td><strong>7</strong></td><td>Kept (&ldquo;well-reasoned preference&hellip; developmental stage, maturity, judgment&rdquo;)</td></tr>
+          <tr><td><strong>11</strong></td><td>Proximity of residences</td><td><strong>11</strong></td><td>Kept</td></tr>
+          <tr><td><strong>12</strong></td><td>Availability / child-care</td><td><strong>12</strong></td><td>Kept (now &ldquo;employment schedule and availability&hellip; child-care arrangements&rdquo;)</td></tr>
+          <tr><td><strong>14</strong></td><td>Drug/alcohol history</td><td><strong>14</strong></td><td>Kept</td></tr>
+          <tr><td><strong>15</strong></td><td>Mental & physical condition</td><td><strong>15</strong></td><td>Kept</td></tr>
+          <tr><td><strong>16</strong></td><td>Any other relevant factor</td><td><strong>16</strong></td><td>Kept</td></tr>
+          <tr><td><strong>5 / 8 / 9 / 10 / 13</strong></td><td>Extended family &middot; alienation &middot; nurturing &middot; daily needs &middot; conflict</td><td>&mdash;</td><td>DELETED by amendment (folded into the above or removed)</td></tr>
+        </tbody>
+      </table>
+
+      <hr />
+      <p class="eyebrow">Substantial weight</p>
+      <h2>&#128737;&#65039; The safety cluster &mdash; <em>substantial weighted consideration</em></h2>
+      <p>The court must give substantial weighted consideration to these. They are stated in verified posture, not paraphrase &mdash; placeholders until source documents are reviewed.</p>
+
+      <h2>&#128737;&#65039; (1) Which party is more likely to ensure the safety of the child</h2>
+      <p><strong>Father&rsquo;s position:</strong> <em>&#9633; placeholder &mdash; awaiting source docs; stated in verified posture.</em></p>
+
+      <h2>&#128308; (2) Present & past abuse &mdash; including PFA/SVPO where there has been a finding of abuse</h2>
+      <p><strong>Posture note:</strong> <em>&#9633; No finding of abuse has been entered against the father; any protection order was entered by consent, without admission &mdash; to be confirmed against verified source documents before public characterization. Under the statute&rsquo;s own language, an order entered without a finding of abuse does not carry the substantial-weight trigger this factor assigns to findings.</em></p>
+      <p><strong>Father&rsquo;s position:</strong> <em>&#9633; placeholder &mdash; awaiting source docs.</em></p>
+
+      <h2>&#128139; (2.1) Child abuse & involvement with protective services <em>(cf. &sect; 5329.1)</em></h2>
+      <p><strong>Father&rsquo;s position:</strong> <em>&#9633; placeholder &mdash; pending matter; characterized only against verified source documents.</em></p>
+
+      <h2>&#9876;&#65039; (2.2) Violent or assaultive behavior committed by a party</h2>
+      <p><strong>Father&rsquo;s position:</strong> <em>&#9633; placeholder &mdash; awaiting source docs.</em></p>
+
+      <hr />
+      <p class="eyebrow">Cooperation, conflict & contact</p>
+      <h2>&#129309; The level of cooperation and conflict between the parties</h2>
+
+      <div class="box" id="factor-contact">
+        <span class="rank">&#11088;&ensp;#1&ensp;priority</span>
+        <h3>Factor (2.3)(i) &mdash; frequent & continuing contact
+          <span class="qualifier">if consistent with the child&rsquo;s safety</span>
+        </h3>
+        <p>This is the factor most older sources (and the old law) call &ldquo;(1).&rdquo; It is the father&rsquo;s #1 priority.</p>
+        <p><strong>Father&rsquo;s position (scrubbed, public-safe):</strong></p>
+        <p>From the outset, the father has sought <strong>shared & equal custodial access (50/50)</strong> and holds that the children shall always have <strong>equal access to both loving parents</strong>.</p>
+        <p>He has consistently expressed that frequent, continuing contact with each parent is in the <strong>children&rsquo;s</strong> best interest.</p>
+        <p>A <strong>verifiable record of denied and disrupted contact exists</strong> and is held with the court-facing evidence (not published here) &mdash; offered as <em>proof, not presumption</em>, that contact was not the father&rsquo;s gate to close.</p>
+        <p>The statutory qualifier (&ldquo;if contact is consistent with the safety needs of the child&rdquo;) is acknowledged: the father&rsquo;s position is that <strong>equal access <em>is</em> consistent with the children&rsquo;s safety</strong> &mdash; a posture supported by the safety factors above.</p>
+      </div>
+
+      <h3>&#128683; (2.3)(ii) Alienation / the &ldquo;deficient relationship&rdquo; presumption</h3>
+      <p>The statute does <strong>not</strong> presume a child&rsquo;s deficient relationship with a parent was caused by the other parent.</p>
+      <p>It does <strong>not forbid proof</strong>, either. The father&rsquo;s position is established by <strong>documented, attributable evidence</strong> (court-side), not by presumption.</p>
+      <p><strong>Carve-out:</strong> a party&rsquo;s good-faith, reasonable effort to protect the safety of a child or self is <strong>not</strong> evidence of unwillingness to cooperate.</p>
+
+      <hr />
+      <p class="eyebrow">Capacity, stability & the daily work of parenting</p>
+      <h2>&#128221; (3) Willingness & ability to prioritize the child&rsquo;s needs</h2>
+      <p>Care, stability, continuity; parental duties past <em>and</em> future; daily physical, emotional, developmental, educational & special needs.</p>
+      <p><strong>Evidence backbone &rarr;</strong> &#128998;&#65039; <strong>Exhibit 4</strong> &mdash; the attributable, verifiable applied-learning & work record demonstrates <strong>recent, sustained capacity</strong>: a <strong>40+ hour/week</strong> retraining and applied-development schedule. <em>(Merges old factors 3 &middot; 9 &middot; 10.)</em></p>
+      <p><strong>Father&rsquo;s position:</strong> <em>&#9633; placeholder detail &mdash; awaiting source docs.</em></p>
+
+      <h2>&#127968; (4) Need for stability & continuity in the child&rsquo;s education, family & community life</h2>
+      <p><em>except where change is necessary to protect safety</em></p>
+      <p><strong>Evidence backbone &rarr;</strong> &#128998;&#65039; <strong>Exhibit 4</strong> evidences a stable, continuity-oriented rebuilding trajectory. <em>(Old factor 4; now with a safety exception.)</em></p>
+      <p><strong>Father&rsquo;s position:</strong> <em>&#9633; placeholder &mdash; awaiting source docs.</em></p>
+
+      <hr />
+      <p class="eyebrow">The child&rsquo;s world</p>
+      <h2>&#128104;&#8205;&#128105;&#8205;&#128103;&#8205;&#128102; (6) Sibling & other familial relationships</h2>
+      <p><strong>Father&rsquo;s position:</strong> <em>&#9633; placeholder &mdash; awaiting source docs.</em> <em>(Old factor 6, kept.)</em></p>
+
+      <h2>&#128173; (7) Well-reasoned preference of the child</h2>
+      <p><em>based on developmental stage, maturity & judgment</em></p>
+      <p><strong>Father&rsquo;s position:</strong> <em>&#9633; placeholder &mdash; children too young for a dispositive preference; noted as context, not waiver.</em> <em>(Old factor 7, kept.)</em></p>
+
+      <hr />
+      <p class="eyebrow">Logistics</p>
+      <h2>&#128205; (11) Proximity of the parties&rsquo; residences</h2>
+      <p><strong>Father&rsquo;s position:</strong> <em>&#9633; placeholder &mdash; awaiting source docs.</em> <em>(Old factor 11, kept.)</em></p>
+
+      <h2>&#128197; (12) Employment schedule & availability to care for the child</h2>
+      <p>&hellip;or ability to make appropriate child-care arrangements</p>
+      <p><strong>Evidence backbone &rarr;</strong> &#128998;&#65039; <strong>Exhibit 4</strong> evidences <strong>flexible, self-directed availability</strong> built around applied remote work & study &mdash; a schedule that <strong>accommodates, rather than competes with, parenting time</strong>. <em>(Old factor 12, kept.)</em></p>
+      <p><strong>Father&rsquo;s position:</strong> <em>&#9633; placeholder &mdash; awaiting source docs.</em></p>
+
+      <hr />
+      <p class="eyebrow">Health & condition (neutral factors)</p>
+      <h2>&#127807;&#65039; (14) History of drug or alcohol abuse</h2>
+      <p>(a party or household member)</p>
+      <p><strong>Father&rsquo;s position:</strong> <em>&#9633; medical-cannabis patient status and recovery context to be stated in verified terms, not paraphrase.</em> <em>(Old factor 14, kept.)</em></p>
+
+      <h2>&#129658;&#65039; (15) Mental & physical condition of a party or household member</h2>
+      <p><strong>Father&rsquo;s position:</strong> <em>&#9633; placeholder &mdash; awaiting source docs.</em> <em>(Old factor 15, kept.)</em></p>
+
+      <hr />
+      <p class="eyebrow">Catch-all</p>
+      <h2>&#10022; (16) Any other relevant factor</h2>
+      <p><strong>Father&rsquo;s position:</strong> <em>&#9633;</em> the father&rsquo;s <strong>sustained, attributable diligence through a period of genuine hardship</strong> &mdash; documented in the public Exhibit 4 record &mdash; is offered as a (16) factor: a <strong>verifiable demonstration</strong> that the &ldquo;impossible&rdquo; can be pursued in good faith and turned, by labor and grace, into the possible. <em>(Old 16, kept.)</em></p>
+
+      <hr />
+      <p class="eyebrow">Cross-cutting rules</p>
+      <div class="callout">
+        <p><strong>(a.1) &#128737;&#65039; The protective-response exception:</strong> a factor shall <strong>not</strong> be weighed against a party where the circumstances were a <strong>response to protect the safety</strong> of the child or party; <strong>temporary housing instability</strong> resulting from abuse is <strong>not</strong> counted against the alleging party.</p>
+        <p><strong>(a.2) &#9878;&#65039; No single factor is determinative</strong> &mdash; substantial weight goes to the safety factors when issuing an order in the child&rsquo;s best interest.</p>
+        <p><strong>(b) &#128692;&#65039; Gender-neutral:</strong> no party receives preference based on gender.</p>
+      </div>
+
+      <h2>&#10060; Deleted by amendment (shown for completeness)</h2>
+      <p>Factors <strong>(5), (8), (9), (10), and (13)</strong> were <strong>deleted</strong> from &sect; 5328(a) by the 2024/2025 amendments &mdash; <strong>folded into the surviving factors or removed</strong>. They are named here only so readers comparing this document against older sources understand why the numbering differs.</p>
+
+      <hr />
+      <p class="eyebrow">Two takeaways for the record</p>
+      <div class="callout">
+        <p><strong>1. The north star didn&rsquo;t move &mdash; the law did.</strong> Equal access to both loving parents remains the goal; the path now runs <em>through</em> the safety cluster, with the contact factor re-housed and conditioned.</p>
+        <p><strong>2. The father&rsquo;s record-keeping is the right instrument under the new law.</strong> No presumption does the work either way &mdash; so the <strong>denied-contact ledger</strong>, the <strong>supervised-call log</strong>, and the <strong>run-out-of-resources timeline</strong> (all court-side) are <em>proof</em>, exactly what the rewritten statute calls for.</p>
+      </div>
+
+      <div class="pills">
+        <a class="pill outline" href="../index.html">Home</a>
+        <a class="pill outline" href="../index.html#custody">Portal</a>
+        <a class="pill" href="https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/custody-factors/custody-factors.md">Raw companion (.md) &#8599;</a>
+        <a class="pill outline" href="../index.html#exhibit">Exhibit 4 &#8599;</a>
+      </div>
+    </main>
+  </body>
+</html>
