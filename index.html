@@ -310,17 +310,16 @@
         border-radius: 18px;
         background: var(--container);
       }
-      .custody .eyebrow { margin: 0 auto 18px; }
-      .custody .north-star {
-        margin: 0 auto 18px;
-        max-width: 34rem;
-        font-size: clamp(1.3rem, 3.4vw, 1.75rem);
-        line-height: 1.3;
-        font-weight: 800;
-        letter-spacing: -0.01em;
-        color: var(--text);
+      .custody .ribbon {
+        margin: 0 0 16px;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--accent-2);
       }
-      .custody .north-star em { color: var(--accent); font-style: italic; font-weight: 800; }
+      .custody .ribbon big { font-size: 1.15rem; letter-spacing: 0.02em; color: var(--text); text-transform: none; font-weight: 800; display: block; margin-bottom: 4px; }
+      .custody .ribbon small { font-style: italic; font-weight: 600; letter-spacing: 0.02em; text-transform: none; color: var(--accent); }
       .custody .frame {
         margin: 0 auto 22px;
         max-width: 36rem;
@@ -512,7 +511,7 @@
         .hero-mark { display: none; }
         .custody { padding: 20px 16px; }
       }
-      .custody .blurb { font-size: 1rem; line-height: 1.66; color: #94a3b8; margin: 0 0 18px; max-width: 60ch; }
+      .custody .blurb { font-size: 1rem; line-height: 1.66; color: #94a3b8; margin: 16px auto 0; max-width: 46ch; }
     </style>
   </head>
   <body>
@@ -521,22 +520,18 @@
       <p class="eyebrow">Public Preview · Intentional Minimal</p>
       <h1>Divorce & Custody Assistant</h1>
       <section class="custody" id="custody">
-        <p class="eyebrow">Custody &middot; 23 Pa.C.S. &sect; 5328 &middot; the law is the frame</p>
-        <h2 class="north-star">
-          Two loving parents in their children&rsquo;s lives &mdash;
-          <em>and</em> a secure foundation to build a family upon, even after divorce.
-        </h2>
-        <p class="blurb">
-          A public-safe companion to a contested custody record: the controlling statute
-          (old and new), the safety cluster, and the father&rsquo;s position on each factor
-          &mdash; stated in principle, with protected detail kept court-side.
-        </p>
+        <p class="ribbon"><big>Public-safe custody companion</big><br> <small>a father&rsquo;s journey back to his children</small></p>
         <nav class="links" aria-label="Custody companion">
           <ul>
             <li><a class="blue-pill"
               href="./custody-factors/custody-factors.html">Open the custody companion &#8599;</a></li>
           </ul>
         </nav>
+        <p class="blurb">
+          One page, matched line for line to the law the Court applies &mdash;
+          offered in good faith, so anyone reading can see exactly what&rsquo;s
+          being asked for, and why.
+        </p>
       </section>
       <section class="compliance">
         <p class="ribbon"><big>Public-facing compliance record</big><br> <small>vocational & technical work-search</small></p>
