@@ -100,3 +100,15 @@ This workspace uses the `gws` CLI to talk to a dedicated, isolated Google accoun
 
 **Privacy model.** Config directories are local-only — never synced, never committed. Profiles are strictly isolated from one another by config dir, GCP project, and OAuth client. Anything accessed through `gws` stays local; per the security rules nothing case-specific is committed to this repo. The full step-by-step guide lives in `GWS_SETUP.md` in the private working repository alongside the example commands for read/write Drive, Docs, and Gmail operations.
 
+---
+
+## Custody companion — public-safe §5328 surface
+
+Alongside the vocational compliance record, the public preview carries a second surface: a factor-by-factor, public-safe account of the custody position under the controlling Pennsylvania statute (23 Pa.C.S. § 5328). It follows the same publish discipline as Exhibit 4 — structure and principle only, no case-specific detail.
+
+**Two-surface privacy model.** `custody-factors/` is the export-eligible public surface (mirrors `vocational-compliance/` in the allowlist); `custody/` is reserved, empty, for later private/court-facing content that is never committed. The public surface carries the statute's own language (old numbering and the current 2024/2025-amended numbering, side by side, since filings and precedent still use both), the safety cluster the court must give substantial weighted consideration to, and this father's position on each factor stated as principle rather than allegation. Protected detail — names, case numbers, incident dates, dollar figures, the substance of the pending protective-services matter — stays court-side; several factors are marked as awaiting source documents until the underlying filings (court orders, drug-testing results, forensic psychological evaluations) are reviewed and scrubbed.
+
+**Two pages, one purpose.** `index.html` carries a minimal entry point — a title, a one-line description, and a link — matching the same container pattern as the Exhibit 4 entry point. The detail lives on a dedicated page, `custody-factors/custody-factors.html`: a frozen header with the site navigation, a parallax family watermark, the factors presented as an accordion (so a reader opens what they want to read rather than scrolling past everything at once), a glass modal that expands on the reasoning behind the custody request without crowding the page's opening, and a closing note in the site's voice. A raw Markdown companion (`custody-factors/custody-factors.md`) carries the same content in plain form for anyone who wants to read or link the source text directly.
+
+**Editorial posture.** The safety cluster is presented as pure statutory structure — the page does not assert findings, conclusions, or characterizations that require a verified source record to state publicly. Where a hedge is necessary (for example, the status of a protective order), it is stated narrowly and only where it's directly relevant, never asserted in the page's opening framing. The goal throughout is to be readable without minimizing the law, and direct without arguing at the reader.
+
