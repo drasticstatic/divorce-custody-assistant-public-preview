@@ -71,7 +71,8 @@ main { position: relative; z-index: 1; }
 /* ── body / journey spacing ─────────────────────────── */
 main.wrap { max-width: 820px; margin: 0 auto; padding: clamp(28px, 6vw, 64px) clamp(16px, 4vw, 40px) 0; }
 
-.hero { padding: 12px 0 18px; }
+.hero { padding: 12px 0 18px; scroll-margin-top: 84px; }
+#top { scroll-margin-top: 84px; }
 .eyebrow {
   margin: 0 0 12px; font-size: 0.74rem; font-weight: 800;
   letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent);
@@ -97,7 +98,16 @@ hr.rule { border: 0; border-top: 1px solid var(--border); margin: 32px 0; }
   line-height: 1; flex: none;
 }
 .movement .label { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); }
-section.mv { margin-bottom: 8px; }
+section.mv {
+  margin-bottom: 8px; padding: 22px clamp(18px, 4vw, 30px); border-radius: 20px;
+  background: linear-gradient(165deg, rgba(15,23,42,0.5), rgba(15,23,42,0.28));
+  border: 1px solid rgba(148,163,184,0.14);
+  backdrop-filter: blur(18px) saturate(130%);
+  -webkit-backdrop-filter: blur(18px) saturate(130%);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.04) inset, 0 20px 50px -30px rgba(0,0,0,0.6);
+}
+section.mv > h2:first-child,
+section.mv > .movement:first-child { margin-top: 0; }
 
 /* ── accordion factor cards ─────────────────────────── */
 details.fac {
@@ -130,9 +140,22 @@ details.fac[open] .chev { transform: rotate(180deg); }
 .star { color: var(--amber); }
 
 /* ── table ──────────────────────────────────────────── */
-table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 0.86rem; }
-th, td { border: 1px solid var(--border); padding: 9px 11px; text-align: left; vertical-align: top; }
-th { background: var(--container); color: var(--text); font-size: 0.8rem; }
+.table-wrap {
+  margin: 20px 0; border-radius: 16px; overflow: auto; max-width: 100%;
+  border: 1px solid rgba(148,163,184,0.2);
+  background: rgba(2,6,23,0.35);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.05) inset;
+}
+table { width: 100%; border-collapse: separate; border-spacing: 0; margin: 0; font-size: 0.86rem; min-width: 640px; }
+th, td { padding: 11px 13px; text-align: left; vertical-align: top; border-bottom: 1px solid rgba(148,163,184,0.14); }
+th {
+  position: sticky; top: 0; background: rgba(15,23,42,0.92); color: var(--accent);
+  font-size: 0.72rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase;
+  backdrop-filter: blur(6px); border-bottom: 1px solid rgba(56,189,248,0.3);
+}
+tbody tr:hover td { background: rgba(56,189,248,0.05); }
+tbody tr:last-child td { border-bottom: none; }
+td:nth-child(3) strong { color: var(--accent); }
 td code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
 
 /* ── callouts ───────────────────────────────────────── */
@@ -267,12 +290,10 @@ footer.segue {
     <p class="eyebrow">Custody &middot; 23 Pa.C.S. &sect; 5328 &middot; the law is the frame</p>
     <h1>A father, the law, <span class="amp">&</span> his children</h1>
     <p class="lede reveal">
-      This father believes his children deserve <strong>two loving parents in their lives
-      and a secure foundation to build on &mdash; even after divorce.</strong> He has asked for
-      <strong>shared & equal access (50/50)</strong> since the very beginning, in the belief that
-      children should <em>always</em> have equal access to both parents who love them. What follows
-      is that position, walked through the law that governs it &mdash; plainly, so anyone can see
-      what&rsquo;s being asked for and why.
+      A father&rsquo;s public, good-faith account of a contested custody matter &mdash; walked
+      through the law that governs it, plainly, so the reasoning can be read on its own terms.
+      He is still contesting the allegations against him; nothing here asks a reader to take
+      that on faith, only to see the position and the law side by side.
     </p>
     <button class="cta-north" id="openNorth" aria-haspopup="dialog"><span class="heart">&#10084;</span> Read the north star</button>
   </section>
@@ -289,9 +310,10 @@ footer.segue {
     <p class="reveal">
       What&rsquo;s <strong>not</strong> here: names, addresses, case numbers, incident dates, dollar
       figures, or the substance of the pending protective-services matter. Those stay
-      <strong>court-side</strong>. A fuller document was filed with Domestic Relations; it needs
-      scrubbing before any of it can be shown publicly, so for now it stays private. What&rsquo;s
-      shown here is enough to see what was filed and why &mdash; without the protected detail.
+      <strong>court-side</strong>. Additional filings tied to this litigation &mdash; court orders,
+      drug-testing results, and forensic psychological evaluations &mdash; speak directly to several
+      factors below and are still being reviewed and scrubbed for public release; those factors are
+      marked as awaiting source documents until that work is done.
     </p>
   </section>
 
@@ -315,7 +337,8 @@ footer.segue {
       child.&rdquo;</strong> The contest over access now runs <em>through</em> safety, not around it.
     </p>
 
-    <table class="reveal">
+    <div class="table-wrap reveal">
+    <table>
       <thead><tr><th>Old #</th><th>Old factor (paraphrased)</th><th>New #</th><th>New factor &mdash; what changed</th></tr></thead>
       <tbody>
         <tr><td><strong>1</strong></td><td>Encourage frequent & continuing contact</td><td><strong>2.3(i)</strong></td><td>Moved under &ldquo;cooperation & conflict&rdquo;; + safety qualifier</td></tr>
@@ -337,6 +360,7 @@ footer.segue {
         <tr><td><strong>5 / 8 / 9 / 10 / 13</strong></td><td>Extended family &middot; alienation &middot; nurturing &middot; daily needs &middot; conflict</td><td>&mdash;</td><td>DELETED by amendment (folded into the above or removed)</td></tr>
       </tbody>
     </table>
+    </div>
   </section>
 
   <div class="movement reveal"><span class="rom">III</span><span class="label">Substantial weighted consideration</span></div>
@@ -505,8 +529,9 @@ footer.segue {
 <footer class="segue" id="segue">
   <span class="orn">&#10022; &#10084; &#10022;</span>
   <p class="vow">
-    Made with love, for my children &mdash; and in hope that
-    every family reading this finds its way back to <em>whole</em>.
+    Built out of a father&rsquo;s love for his children &mdash;
+    the quiet work of <em>keeping a family together</em>,
+    even when the shape of it has to change.
   </p>
   <p class="sig">&mdash; for them, always.</p>
   <p class="meta">
@@ -521,6 +546,7 @@ footer.segue {
     <span class="orn">&#10022; &#10084; &#10022;</span>
     <h3 id="northTitle">The north star</h3>
     <p>The children shall <strong>always</strong> have equal access to both loving parents. Every factor below is read through that one sentence &mdash; and through their safety, which the law now places first.</p>
+    <p>Why ask for equal access now, mid-litigation? Because the request doesn&rsquo;t depend on winning an argument first &mdash; it rests on a sustained, documentable record of showing up: on retraining and applied work through hardship (Exhibit 4), on pursuing contact rather than avoiding it, and on cooperating with the safety process rather than resisting it. The allegations against him are still contested and unresolved; this page doesn&rsquo;t ask anyone to set that aside. It asks that the record be read in full.</p>
     <button class="close" id="closeNorth" type="button">Close</button>
   </div>
 </div>
