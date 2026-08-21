@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Case Timeline — Divorce &amp; Custody Assistant</title>
+<link rel="icon" href="../vocational-compliance/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+<style>
+:root {
+  color-scheme: dark;
+  --bg: #020617;
+  --panel: rgba(15, 23, 42, 0.88);
+  --container: rgba(15, 23, 42, 0.55);
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --accent: #38bdf8;
+  --accent-2: #818cf8;
+  --amber: #f4c067;
+  --border: rgba(148, 163, 184, 0.22);
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+}
+* { box-sizing: border-box; scrollbar-width: thin; scrollbar-color: var(--accent) var(--bg); }
+*::-webkit-scrollbar { width: 11px; height: 11px; }
+*::-webkit-scrollbar-track { background: var(--bg); }
+*::-webkit-scrollbar-thumb { border-radius: 8px; border: 2px solid var(--bg); background: linear-gradient(180deg, var(--accent), var(--accent-2)); }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; padding: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: radial-gradient(circle at 50% -10%, rgba(56,189,248,0.16), transparent 34%), linear-gradient(180deg, #0f172a 0%, var(--bg) 100%);
+  color: var(--text);
+}
+header.site {
+  position: sticky; top: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; padding: 12px clamp(16px, 4vw, 40px);
+  background: rgba(2, 6, 23, 0.72);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border-bottom: 1px solid var(--border);
+}
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 800; text-decoration: none; color: var(--text); white-space: nowrap; }
+.brand small { font-weight: 600; color: var(--accent); letter-spacing: 0.14em; text-transform: uppercase; font-size: 0.62rem; }
+.nav { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.nav a { padding: 7px 14px; border-radius: 999px; font-size: 0.82rem; font-weight: 700; text-decoration: none; color: var(--accent); border: 1px solid transparent; white-space: nowrap; }
+.nav a:hover { background: var(--container); border-color: var(--border); }
+
+main.wrap { max-width: 900px; margin: 0 auto; padding: clamp(28px, 6vw, 64px) clamp(16px, 4vw, 40px) 60px; scroll-margin-top: 84px; text-align: center; }
+#top { scroll-margin-top: 84px; }
+.eyebrow { margin: 0 0 12px; font-size: 0.74rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); }
+h1 { margin: 0 0 12px; font-size: clamp(2rem, 5.4vw, 2.9rem); line-height: 1.08; }
+.lede { margin: 0 auto 8px; font-size: 1.05rem; line-height: 1.7; color: var(--muted); max-width: 62ch; text-align: center; }
+.lede strong { color: var(--text); }
+.note {
+  margin: 22px auto 0; max-width: 62ch; text-align: left; padding: 14px 18px; border: 1px solid var(--border);
+  border-left: 3px solid var(--amber); border-radius: 12px;
+  background: rgba(244,192,103,0.06); font-size: 0.9rem; line-height: 1.6; color: var(--muted);
+}
+
+/* ── vertical alternating timeline ──────────────────────
+   Desktop: a center spine, entries alternate left/right of it.
+   Mobile: spine moves to the left edge, every entry sits to its right. */
+.timeline { position: relative; margin: 44px auto 0; max-width: 760px; text-align: left; }
+.timeline::before {
+  content: ""; position: absolute; top: 0; bottom: 0; left: 50%;
+  width: 2px; margin-left: -1px;
+  background: linear-gradient(180deg, transparent, var(--border) 6%, var(--border) 94%, transparent);
+}
+.entry { position: relative; width: 50%; padding: 0 34px 40px; box-sizing: border-box; }
+.entry:nth-child(odd) { left: 0; text-align: right; }
+.entry:nth-child(even) { left: 50%; text-align: left; }
+.entry:last-child { padding-bottom: 4px; }
+.entry .dot {
+  position: absolute; top: 4px; width: 14px; height: 14px; border-radius: 50%;
+  background: var(--bg); border: 2px solid var(--accent); z-index: 2;
+}
+.entry:nth-child(odd) .dot { right: -7px; }
+.entry:nth-child(even) .dot { left: -7px; }
+.entry.placeholder .dot { border-color: var(--muted); }
+.entry.linked .dot { border-color: var(--amber); }
+
+.node {
+  display: inline-block; width: 100%; text-align: left; cursor: pointer;
+  border: 1px solid var(--border); border-radius: 16px;
+  background: linear-gradient(165deg, rgba(15,23,42,0.7), rgba(15,23,42,0.4));
+  padding: 16px 18px 14px; text-decoration: none;
+  transition: border-color .2s ease, transform .2s ease, background .2s ease;
+}
+.node:hover, .node:focus-visible { border-color: rgba(56,189,248,0.5); transform: translateY(-2px); background: rgba(56,189,248,0.08); outline: none; }
+.node .date { display: block; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+.node .title { display: block; margin-top: 8px; font-size: 1rem; font-weight: 700; color: var(--text); line-height: 1.35; }
+.node .tag {
+  display: inline-block; margin-top: 10px; padding: 3px 10px; border-radius: 999px;
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.04em;
+  background: rgba(244,192,103,0.12); color: var(--amber); border: 1px solid rgba(244,192,103,0.3);
+}
+.entry.placeholder .node { opacity: 0.6; border-style: dashed; cursor: default; }
+.entry.placeholder .node:hover { transform: none; background: linear-gradient(165deg, rgba(15,23,42,0.7), rgba(15,23,42,0.4)); border-color: var(--border); }
+.entry.placeholder .node .tag { background: var(--container); color: var(--muted); border-color: var(--border); }
+
+@media (max-width: 640px) {
+  .timeline::before { left: 18px; margin-left: 0; }
+  .entry, .entry:nth-child(odd), .entry:nth-child(even) {
+    left: 0; width: 100%; text-align: left; padding: 0 0 32px 46px;
+  }
+  .entry .dot, .entry:nth-child(odd) .dot, .entry:nth-child(even) .dot { left: 11px; right: auto; }
+  .node { text-align: left; }
+}
+
+/* ── event modal ─────────────────────────────────────── */
+.modal-veil {
+  position: fixed; inset: 0; z-index: 100; display: none; place-items: center;
+  background: rgba(2,6,23,0.72); backdrop-filter: blur(8px); padding: 20px;
+}
+.modal-veil.open { display: grid; }
+.modal-card {
+  max-width: 520px; width: 100%; padding: 28px 26px 24px;
+  border-radius: 20px; border: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(15,23,42,0.97), rgba(11,17,32,0.97));
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+}
+.modal-card .date { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+.modal-card h3 { margin: 8px 0 12px; font-size: 1.3rem; color: #fff; }
+.modal-card p { color: var(--muted); font-size: 0.95rem; line-height: 1.65; }
+.modal-card .close {
+  margin-top: 20px; padding: 9px 20px; border-radius: 999px; cursor: pointer;
+  border: 1px solid var(--border); background: var(--container); color: var(--accent);
+  font-weight: 700; font-size: 0.85rem;
+}
+.modal-card .close:hover { background: var(--accent); color: #052; }
+
+@media (max-width: 640px) { .timeline-grid { grid-template-columns: 1fr 1fr; } }
+</style>
+</head>
+<body>
+<header class="site">
+  <a class="brand" href="#top">
+    <span>Case Timeline <small>a journey, told in order</small></span>
+  </a>
+  <nav class="nav">
+    <a href="../index.html">Home</a>
+    <a href="../index.html#custody">Custody Companion</a>
+    <a href="../index.html#exhibit">Exhibit 4</a>
+  </nav>
+</header>
+
+<main class="wrap" id="top">
+  <p class="eyebrow">Case Timeline &middot; public preview</p>
+  <h1>The record, in order</h1>
+  <p class="lede">
+    An interactive walk through this case, from separation forward &mdash; each
+    node opens into the fuller story behind it. <strong>This page is a work in
+    progress:</strong> the events below are placeholders showing the intended
+    shape of the timeline. Real entries are added only once the underlying
+    source documents have been reviewed and scrubbed for public release.
+  </p>
+  <div class="note">
+    <strong>What this will become:</strong> as filings, orders, and evidentiary
+    exhibits are cleared for public release, each placeholder below is replaced
+    with a real dated entry &mdash; title, a short public-safe summary, and
+    (where appropriate) a link out to the supporting exhibit.
+  </div>
+
+  <div class="timeline" id="grid"></div>
+</main>
+
+<div class="modal-veil" id="eventModal" role="dialog" aria-modal="true" aria-labelledby="eventTitle">
+  <div class="modal-card">
+    <span class="date" id="eventDate"></span>
+    <h3 id="eventTitle"></h3>
+    <p id="eventBody"></p>
+    <button class="close" id="closeEvent" type="button">Close</button>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var events = [
+    { date: "2015", title: "Marriage", tag: "placeholder", body: "Reserved for a public-safe summary once this entry is ready to publish." },
+    { date: "2023", title: "Separation", tag: "placeholder", body: "Reserved for a public-safe summary once this entry is ready to publish." },
+    { date: "2023", title: "Complaint filed", tag: "placeholder", body: "Reserved for a public-safe summary once this entry is ready to publish." },
+    { date: "2024", title: "Custody proceedings begin", tag: "placeholder", body: "Reserved for a public-safe summary once this entry is ready to publish." },
+    { date: "2025–26", title: "Vocational retraining (Exhibit 4)", tag: "linked", body: "This entry is already backed by a live public exhibit.", href: "../index.html#exhibit" },
+    { date: "2026", title: "Custody factors companion published", tag: "linked", body: "This entry is already backed by a live public page.", href: "../index.html#custody" },
+    { date: "TBD", title: "More entries as they are cleared", tag: "placeholder", body: "Additional events are added here only once reviewed and scrubbed for public release." }
+  ];
+
+  var grid = document.getElementById("grid");
+  events.forEach(function (ev) {
+    var entry = document.createElement("div");
+    entry.className = "entry " + ev.tag;
+
+    var dot = document.createElement("span");
+    dot.className = "dot";
+    entry.appendChild(dot);
+
+    var node = document.createElement(ev.tag === "linked" ? "a" : "button");
+    node.className = "node";
+    if (ev.tag === "linked") { node.href = ev.href; }
+    else { node.type = "button"; }
+    node.innerHTML =
+      '<span class="date">' + ev.date + '</span>' +
+      '<span class="title">' + ev.title + '</span>' +
+      '<span class="tag">' + (ev.tag === "linked" ? "view source" : "placeholder") + '</span>';
+    if (ev.tag !== "linked") {
+      node.addEventListener("click", function () { openModal(ev); });
+    }
+    entry.appendChild(node);
+    grid.appendChild(entry);
+  });
+
+  var veil = document.getElementById("eventModal");
+  var closeB = document.getElementById("closeEvent");
+  function openModal(ev) {
+    document.getElementById("eventDate").textContent = ev.date;
+    document.getElementById("eventTitle").textContent = ev.title;
+    document.getElementById("eventBody").textContent = ev.body;
+    veil.classList.add("open");
+    closeB.focus();
+  }
+  function closeModal() { veil.classList.remove("open"); }
+  closeB.addEventListener("click", closeModal);
+  veil.addEventListener("click", function (e) { if (e.target === veil) closeModal(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && veil.classList.contains("open")) closeModal(); });
+})();
+</script>
+</body>
+</html>

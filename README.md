@@ -54,29 +54,36 @@ This mirror is for sharing structure, automation patterns, and explicitly approv
 
 ---
 
-## Recent developments
+## 🧩 Critical components
 
-### Vocational compliance log (Exhibit 4)
+### 🔑 Google Workspace CLI (`gws`) setup — sterilized overview
+
+This workspace uses the `gws` CLI to talk to a dedicated, isolated Google account for case correspondence, court documents, and legal filings. The local setup guide (`GWS_SETUP.md`, kept private) walks through the one-time configuration; this README documents only the **mechanism**, so the pattern is reusable without exposing any account identifiers or document IDs.
+
+- 🧭 **Multi-account architecture.** The machine runs several isolated `gws` profiles — one per Google account / repo context. Each profile gets a shell alias of the form `gws<abbrev>` (the abbreviation denotes the project) so the account is always explicit at the command line and a bare `gws` is never used. Aliases include one for this repo's account and one for a separate devine-news automation project; each alias sets a per-profile `GOOGLE_WORKSPACE_CLI_CONFIG_DIR` so credentials and token caches never cross accounts.
+- ⚙️ **One-time setup (the documented flow).** For each account: create an OAuth 2.0 **Desktop app** credential inside a dedicated GCP project, enable the Workspace APIs the account needs, drop the downloaded `client_secret.json` into the profile's config directory (gitignored), add the account as a **test user** on the OAuth consent screen, and run `gws auth login` through the alias to complete the OAuth flow in the browser. The token is stored encrypted in the config dir and never touches the repository.
+- 📄 **Drive API vs. Docs API — the key distinction.** The **Drive API** can *create* a Google Doc by uploading content with the Google Doc mime type, but it cannot read or modify the *contents* of an existing doc. The **Docs API** (`documents.get`, `documents.batchUpdate`) is required for any in-place content editing — inserting text, filling tables, replacing placeholders. Profiles scoped to drafting-only get away with Drive alone; profiles that need to edit existing shared docs require the Docs API enabled.
+- 🔒 **Privacy model.** Config directories are local-only — never synced, never committed. Profiles are strictly isolated from one another by config dir, GCP project, and OAuth client. Anything accessed through `gws` stays local; per the security rules nothing case-specific is committed to the public mirror. The full step-by-step guide lives in `GWS_SETUP.md` in the private working repository alongside the example commands for read/write Drive, Docs, and Gmail operations.
+
+---
+
+### 📊 Vocational compliance log (Exhibit 4)
 
 A `vocational-compliance/` suite translates real, public software-development and quantitative-trading work into the formal categories a domestic-relations work-search order expects ("hours of effort," "job contacts," "vocational activity"). It is **generated, not hand-edited** — `build_vocational_log.py` queries the maintainer's public repositories (and the `-public-preview` / `-public` mirrors of private repos) in one reproducible pass, so there is never a gap between what the log claims and what the public commit record shows.
 
 The generator emits three cross-linked artifacts:
 
-- **`exhibit-4-log.md`** — the table-of-contents index (journey summary, aggregate totals, and monthly links)
-- **`exhibit-4-log-YYYY-MM.md`** — one per-month weekly log, each fileable as a standalone date-range exhibit
-- **`exhibit-4.html`** — an interactive accordion version of the full record, served live on GitHub Pages
+- 📇 **`exhibit-4-log.md`** — the table-of-contents index (journey summary, aggregate totals, and monthly links)
+- 🗓️ **`exhibit-4-log-YYYY-MM.md`** — one per-month weekly log, each fileable as a standalone date-range exhibit
+- 🖥️ **`exhibit-4.html`** — an interactive accordion version of the full record, served live on GitHub Pages
 
 Every row carries a **full** commit URL (not abbreviated) so a printed or PDF copy — filed with the prothonotary — lets a reader type the link into a browser. Each artifact cross-links to the others and back to the public-preview homepage. The directory also carries `overview.md`, `journey-context.md`, and `reporting-context.md` sidecars that frame the methodology, the pre-2026 classroom→portfolio arc, and the known reporting gaps.
 
-**Honesty contract:** every row derives from a real attributable public commit (no padding), only the maintainer's known GitHub identities are counted, commit subjects are sanitized before quoting (emails, hex tokens, and case-number patterns stripped), and commits that touched only private paths never surface (they are pruned by the sync pipeline).
+> ✅ **Honesty contract:** every row derives from a real attributable public commit (no padding), only the maintainer's known GitHub identities are counted, commit subjects are sanitized before quoting (emails, hex tokens, and case-number patterns stripped), and commits that touched only private paths never surface (they are pruned by the sync pipeline).
 
-### Landing page redesign
+**🖼️ Landing page redesign.** The public-preview landing (`index.html`) was rebuilt as an intentional-minimal framing page that embeds the interactive Exhibit 4, exposes the related records as GitHub blob links, and carries a small mercy-themed modal. A custom `404.html` now returns a hard GitHub Pages 404 for any pruned or never-published path (previously these rendered the default Jekyll soft-404 placeholder at HTTP 200).
 
-The public-preview landing (`index.html`) was rebuilt as an intentional-minimal framing page that embeds the interactive Exhibit 4, exposes the related records as GitHub blob links, and carries a small mercy-themed modal. A custom `404.html` now returns a hard GitHub Pages 404 for any pruned or never-published path (previously these rendered the default Jekyll soft-404 placeholder at HTTP 200).
-
-### Interactive contribution heatmap & exhaustive Exhibit 1–3 companions
-
-Exhibit 4's centerpiece is now a **GitHub-style contribution heatmap** rendered from the same attribution data as the log — a clickable full-year SVG thumbnail that opens a fullscreen lightbox via an enlarge button (or by tapping any day). Each day carries category-colored dots for the eight activity classes plus a teal trading-day marker; clicking a day jumps straight to that week's recorded entry in the log below. Desktop visitors get a hover tooltip; mobile visitors get a rotate-for-best-view hint, and an on-page color key rolls the eight categories up so a printed or PDF copy stays legible without the live site.
+**🔥 Interactive contribution heatmap & exhaustive Exhibit 1–3 companions.** Exhibit 4's centerpiece is a **GitHub-style contribution heatmap** rendered from the same attribution data as the log — a clickable full-year SVG thumbnail that opens a fullscreen lightbox via an enlarge button (or by tapping any day). Each day carries category-colored dots for the eight activity classes plus a teal trading-day marker; clicking a day jumps straight to that week's recorded entry in the log below. Desktop visitors get a hover tooltip; mobile visitors get a rotate-for-best-view hint, and an on-page color key rolls the eight categories up so a printed or PDF copy stays legible without the live site.
 
 The three companion exhibits that frame Exhibit 4 were rewritten as **exhaustive public companions** rather than stubs, each describing its document's role and structure only — no private figures, account balances, or case-specific detail are published:
 
@@ -88,27 +95,11 @@ The landing page exposes these as dark-blue navigation pills alongside the Exhib
 
 ---
 
-## Google Workspace CLI (`gws`) setup — sterilized overview
-
-This workspace uses the `gws` CLI to talk to a dedicated, isolated Google account for case correspondence, court documents, and legal filings. The local setup guide (`GWS_SETUP.md`, kept private) walks through the one-time configuration; this README documents only the **mechanism**, so the pattern is reusable without exposing any account identifiers or document IDs.
-
-**Multi-account architecture.** The machine runs several isolated `gws` profiles — one per Google account / repo context. Each profile gets a shell alias of the form `gws<abbrev>` (the abbreviation denotes the project) so the account is always explicit at the command line and a bare `gws` is never used. Aliases include one for this repo's account and one for a separate devine-news automation project; each alias sets a per-profile `GOOGLE_WORKSPACE_CLI_CONFIG_DIR` so credentials and token caches never cross accounts.
-
-**One-time setup (the documented flow).** For each account: create an OAuth 2.0 **Desktop app** credential inside a dedicated GCP project, enable the Workspace APIs the account needs, drop the downloaded `client_secret.json` into the profile's config directory (gitignored), add the account as a **test user** on the OAuth consent screen, and run `gws auth login` through the alias to complete the OAuth flow in the browser. The token is stored encrypted in the config dir and never touches the repository.
-
-**Drive API vs. Docs API — the key distinction.** The **Drive API** can *create* a Google Doc by uploading content with the Google Doc mime type, but it cannot read or modify the *contents* of an existing doc. The **Docs API** (`documents.get`, `documents.batchUpdate`) is required for any in-place content editing — inserting text, filling tables, replacing placeholders. Profiles scoped to drafting-only get away with Drive alone; profiles that need to edit existing shared docs require the Docs API enabled.
-
-**Privacy model.** Config directories are local-only — never synced, never committed. Profiles are strictly isolated from one another by config dir, GCP project, and OAuth client. Anything accessed through `gws` stays local; per the security rules nothing case-specific is committed to this repo. The full step-by-step guide lives in `GWS_SETUP.md` in the private working repository alongside the example commands for read/write Drive, Docs, and Gmail operations.
-
----
-
-## Custody companion — public-safe §5328 surface
+### 👨‍👧 Custody companion — public-safe §5328 surface
 
 Alongside the vocational compliance record, the public preview carries a second surface: a factor-by-factor, public-safe account of the custody position under the controlling Pennsylvania statute (23 Pa.C.S. § 5328). It follows the same publish discipline as Exhibit 4 — structure and principle only, no case-specific detail.
 
-**Two-surface privacy model.** `custody-factors/` is the export-eligible public surface (mirrors `vocational-compliance/` in the allowlist); `custody/` is reserved, empty, for later private/court-facing content that is never committed. The public surface carries the statute's own language (old numbering and the current 2024/2025-amended numbering, side by side, since filings and precedent still use both), the safety cluster the court must give substantial weighted consideration to, and this father's position on each factor stated as principle rather than allegation. Protected detail — names, case numbers, incident dates, dollar figures, the substance of the pending protective-services matter — stays court-side; several factors are marked as awaiting source documents until the underlying filings (court orders, drug-testing results, forensic psychological evaluations) are reviewed and scrubbed.
-
-**Two pages, one purpose.** `index.html` carries a minimal entry point — a title, a one-line description, and a link — matching the same container pattern as the Exhibit 4 entry point. The detail lives on a dedicated page, `custody-factors/custody-factors.html`: a frozen header with the site navigation, a parallax family watermark, the factors presented as an accordion (so a reader opens what they want to read rather than scrolling past everything at once), a glass modal that expands on the reasoning behind the custody request without crowding the page's opening, and a closing note in the site's voice. A raw Markdown companion (`custody-factors/custody-factors.md`) carries the same content in plain form for anyone who wants to read or link the source text directly.
-
-**Editorial posture.** The safety cluster is presented as pure statutory structure — the page does not assert findings, conclusions, or characterizations that require a verified source record to state publicly. Where a hedge is necessary (for example, the status of a protective order), it is stated narrowly and only where it's directly relevant, never asserted in the page's opening framing. The goal throughout is to be readable without minimizing the law, and direct without arguing at the reader.
+- ⚖️ **Two-surface privacy model.** `custody-factors/` is the export-eligible public surface (mirrors `vocational-compliance/` in the allowlist); `custody/` is reserved, empty, for later private/court-facing content that is never committed. The public surface carries the statute's own language (old numbering and the current 2024/2025-amended numbering, side by side, since filings and precedent still use both), the safety cluster the court must give substantial weighted consideration to, and this father's position on each factor stated as principle rather than allegation. Protected detail — names, case numbers, incident dates, dollar figures, the substance of the pending protective-services matter — stays court-side; several factors are marked as awaiting source documents until the underlying filings (court orders, drug-testing results, forensic psychological evaluations) are reviewed and scrubbed.
+- 📄 **Two pages, one purpose.** `index.html` carries a minimal entry point — a title, a one-line description, and a link — matching the same container pattern as the Exhibit 4 entry point. The detail lives on a dedicated page, `custody-factors/custody-factors.html`: a frozen header with the site navigation, a parallax family watermark, the factors presented as an accordion (so a reader opens what they want to read rather than scrolling past everything at once), a glass modal that expands on the reasoning behind the custody request without crowding the page's opening, and a closing note in the site's voice. A raw Markdown companion (`custody-factors/custody-factors.md`) carries the same content in plain form for anyone who wants to read or link the source text directly.
+- 🕊️ **Editorial posture.** The safety cluster is presented as pure statutory structure — the page does not assert findings, conclusions, or characterizations that require a verified source record to state publicly. Where a hedge is necessary (for example, the status of a protective order), it is stated narrowly and only where it's directly relevant, never asserted in the page's opening framing. The goal throughout is to be readable without minimizing the law, and direct without arguing at the reader.
 
