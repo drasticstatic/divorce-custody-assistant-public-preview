@@ -45,6 +45,11 @@ header.site {
 .nav { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
 .nav a { padding: 7px 14px; border-radius: 999px; font-size: 0.82rem; font-weight: 700; text-decoration: none; color: var(--accent); border: 1px solid transparent; white-space: nowrap; }
 .nav a:hover { background: var(--container); border-color: var(--border); }
+.burger { display: none; width: 42px; height: 42px; border: 1px solid var(--border); border-radius: 10px; background: var(--container); cursor: pointer; padding: 0; }
+.burger span { display: block; margin: 4px auto; width: 18px; height: 2px; background: var(--accent); border-radius: 2px; transition: transform .25s ease, opacity .2s ease; }
+body.nav-open .burger span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+body.nav-open .burger span:nth-child(2) { opacity: 0; }
+body.nav-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
 main.wrap { max-width: 900px; margin: 0 auto; padding: clamp(28px, 6vw, 64px) clamp(16px, 4vw, 40px) 60px; scroll-margin-top: 84px; text-align: center; }
 #top { scroll-margin-top: 84px; }
@@ -106,6 +111,14 @@ h1 { margin: 0 0 12px; font-size: clamp(2rem, 5.4vw, 2.9rem); line-height: 1.08;
   }
   .entry .dot, .entry:nth-child(odd) .dot, .entry:nth-child(even) .dot { left: 11px; right: auto; }
   .node { text-align: left; }
+  header.site { flex-wrap: wrap; }
+  .burger { display: block; }
+  .nav {
+    order: 3; flex-basis: 100%; flex-direction: column; align-items: stretch; gap: 4px;
+    max-height: 0; overflow: hidden; opacity: 0; transition: max-height .3s ease, opacity .25s ease, margin .3s ease;
+  }
+  body.nav-open .nav { max-height: 280px; opacity: 1; margin-top: 10px; }
+  body.nav-open .nav a { justify-content: center; text-align: center; }
 }
 
 /* ── event modal ─────────────────────────────────────── */
@@ -129,8 +142,6 @@ h1 { margin: 0 0 12px; font-size: clamp(2rem, 5.4vw, 2.9rem); line-height: 1.08;
   font-weight: 700; font-size: 0.85rem;
 }
 .modal-card .close:hover { background: var(--accent); color: #052; }
-
-@media (max-width: 640px) { .timeline-grid { grid-template-columns: 1fr 1fr; } }
 </style>
 </head>
 <body>
@@ -138,11 +149,12 @@ h1 { margin: 0 0 12px; font-size: clamp(2rem, 5.4vw, 2.9rem); line-height: 1.08;
   <a class="brand" href="#top">
     <span>Case Timeline <small>a journey, told in order</small></span>
   </a>
-  <nav class="nav">
+  <nav class="nav" id="nav">
     <a href="../index.html">Home</a>
     <a href="../index.html#custody">Custody Companion</a>
     <a href="../index.html#exhibit">Exhibit 4</a>
   </nav>
+  <button class="burger" id="burger" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
 </header>
 
 <main class="wrap" id="top">
@@ -177,6 +189,22 @@ h1 { margin: 0 0 12px; font-size: clamp(2rem, 5.4vw, 2.9rem); line-height: 1.08;
 <script>
 (function () {
   "use strict";
+
+  // hamburger nav
+  var burger = document.getElementById("burger");
+  var body = document.body;
+  if (burger) {
+    burger.addEventListener("click", function () {
+      var open = body.classList.toggle("nav-open");
+      burger.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+    document.getElementById("nav").addEventListener("click", function (e) {
+      if (e.target.tagName === "A" && body.classList.contains("nav-open")) {
+        body.classList.remove("nav-open");
+        burger.setAttribute("aria-expanded", "false");
+      }
+    });
+  }
 
   var events = [
     { date: "2015", title: "Marriage", tag: "placeholder", body: "Reserved for a public-safe summary once this entry is ready to publish." },
