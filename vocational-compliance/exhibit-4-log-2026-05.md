@@ -4,7 +4,7 @@ _Part of the full Exhibit 4 — [table of contents](https://github.com/drasticst
  · [public-preview homepage](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/)_
 
 **Reporting month:** May 2026  
-**Commits this month:** 267 · **Hours-equiv:** 1163 · **Actions-equiv:** 8
+**Commits this month:** 266 · **Hours-equiv:** 1159 · **Actions-equiv:** 8
 
 ---
 
@@ -263,7 +263,7 @@ _Commits this week:_ 238 · _Hours-equiv:_ 1023 · _Actions-equiv:_ 8
 
 **Compliance target (context):** 8 attributable actions/week
 
-_Commits this week:_ 29 · _Hours-equiv:_ 140 · _Actions-equiv:_ 0
+_Commits this week:_ 28 · _Hours-equiv:_ 136 · _Actions-equiv:_ 0
 
 ### Weekly Vocational Activity & Work-Search & Effort Report
 
@@ -297,7 +297,6 @@ _Commits this week:_ 29 · _Hours-equiv:_ 140 · _Actions-equiv:_ 0
 | 2026-05-12 | Product Management | infra 2026-05-12 — add commit footer convention to CLAUDE.md | **nft_dappu-punks**<br>https://github.com/drasticstatic/nft_dappu-punks/commit/f80d978eaf5eeef1e61e5f84d5943bbf6c2f7a60 | 4 hrs (Hours (product management / startup labor)) |
 | 2026-05-12 | Product Management | infra 2026-05-12 — update template cross-references for alfred reclassification | **my-template**<br>https://github.com/drasticstatic/my-template/commit/c100c8e6af9090eb5079f1188e77ecedba180702 | 4 hrs (Hours (product management / startup labor)) |
 | 2026-05-12 | Beta-Testing & Calibration | docs: add Firecrawl MCP setup guide with correct config location | **anthropas-argus-alfred-public-preview**<br>https://github.com/drasticstatic/anthropas-argus-alfred-public-preview/commit/d7d56a8f3cd90ea72c3ec86a0a87af8e43b50b3a | 5 hrs (Hours (product development / startup labor)) |
-| 2026-05-12 | Product Management | sync: restore live data.json | **pir-devine-news-public**<br>https://github.com/drasticstatic/pir-devine-news-public/commit/8765c539cb8125bdc363f87016f914364f7b22aa | 4 hrs (Hours (product management / startup labor)) |
 
 ---
 
