@@ -76,3 +76,25 @@ They will tell you whether a checkout is attached to a branch, whether it tracks
 ## Practical takeaway
 
 **Detached HEAD is fine for helper work. Named branches are better for durable work.**
+
+---
+
+## Update — 2026-08-23: how Christopher actually uses this setup
+
+This split isn't a leftover to eventually clean up — Christopher keeps it this way on purpose, as a
+standing, hands-on git-learning environment:
+
+- The **Intent workspace** stays the single durable home for `main` — every real commit that needs to
+  survive lives there, tracked against `origin/main` like any normal repo.
+- The **detached home-repo worktree** (this checkout) is kept detached *deliberately*, as a low-stakes
+  sandbox for actually practicing git concepts — checking out arbitrary commits, comparing states,
+  trying small experimental edits — without any risk of accidentally moving `main` or disturbing the
+  Intent workspace's history. It's a "safe to poke at" mirror of the same commit, not stale-and-forgotten.
+- The value isn't just technical isolation — it's pedagogical. Seeing `git status --short --branch`
+  report `HEAD (no branch)` here, right next to a normal attached checkout elsewhere, is a live, concrete
+  example of the branch-vs-commit distinction this guide explains in the abstract above. Any agent
+  session that lands in this checkout and finds it detached should treat that as expected state, not a
+  problem to fix by switching to `main` (which is already checked out elsewhere and can't be checked out
+  here simultaneously anyway).
+- A quick-access redirect stub for this file lives in `my-template/workflow-templates/` so other repos'
+  sessions can find this explanation without duplicating it.
