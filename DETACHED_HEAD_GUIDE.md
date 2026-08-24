@@ -98,3 +98,37 @@ standing, hands-on git-learning environment:
   here simultaneously anyway).
 - A quick-access redirect stub for this file lives in `my-template/workflow-templates/` so other repos'
   sessions can find this explanation without duplicating it.
+
+---
+
+## Update — 2026-08-24: correction, checked against git history
+
+Christopher flagged that the 2026-08-23 update above may have gotten the mechanics backwards, and
+pointed at the actual commit history as ground truth rather than his recollection. Checked it — the
+real story is narrower and more mechanical than "Intent workspace is the durable home":
+
+- `git log` on this detached checkout shows `origin/main` and the local detached HEAD landing on the
+  **same commit** — every push from this checkout has been reaching GitHub successfully, including
+  plain, undecorated commits (`+ trading-assistant link`, `add exhibit4 link`, etc.) that read as
+  Christopher's own manual edits, alongside Claude-authored commits carrying a `Co-Authored-By` trailer.
+- Meanwhile `git worktree list --porcelain` shows the Augment Intent worktree's `main` sitting **33
+  commits behind** `origin/main` at the same point in time. It is not where real work has actually been
+  landing — it's the stale one.
+- The actual pattern: Christopher commits fine from VS Code even while this checkout is detached (local
+  commits don't care about branch state). What doesn't reliably work is **VS Code's push flow** —
+  pushing a detached HEAD to a named remote branch isn't VS Code's default one-click git action, so his
+  manual pushes from here sometimes fail or hang. When that happens, he brings it to Alfred (Claude Code
+  CLI), who runs `git push origin HEAD:main` directly — which is exactly what closes the gap, every
+  time.
+- Augment Intent's worktree still technically has `main` checked out, and Kavanah (its orchestration
+  persona) was separately inactive for a stretch due to an Augment login auth error — since resolved by
+  running Augment Intent against the Anthropic API instead of Augment's native login. But that's a
+  parallel, mostly-unused track, not "the durable home for `main`" as the previous update claimed.
+
+**Practical takeaway, corrected:** this checkout, staying detached, is where the real work has actually
+been happening and successfully reaching `origin/main` — the value of staying detached here is less
+about a deliberate pedagogical choice from day one, and more about a workflow that happens to work
+(commit locally, let Alfred handle the push when VS Code's doesn't) that Christopher kept using because
+it works, and has since folded into how he explains/teaches the branch-vs-commit distinction to himself.
+Both things can be true — it's a working pattern *and* a teaching example — but the git history is the
+part worth trusting over memory when the two disagree.
