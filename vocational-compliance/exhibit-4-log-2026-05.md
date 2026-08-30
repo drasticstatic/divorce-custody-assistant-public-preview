@@ -4,7 +4,7 @@ _Part of the full Exhibit 4 — [table of contents](https://github.com/drasticst
  · [public-preview homepage](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/)_
 
 **Reporting month:** May 2026  
-**Commits this month:** 266 · **Hours-equiv:** 1159 · **Actions-equiv:** 8
+**Commits this month:** 268 · **Hours-equiv:** 1167 · **Actions-equiv:** 8
 
 ---
 
@@ -12,7 +12,7 @@ _Part of the full Exhibit 4 — [table of contents](https://github.com/drasticst
 
 **Compliance target (context):** 8 attributable actions/week
 
-_Commits this week:_ 238 · _Hours-equiv:_ 1023 · _Actions-equiv:_ 8
+_Commits this week:_ 240 · _Hours-equiv:_ 1031 · _Actions-equiv:_ 8
 
 ### Weekly Vocational Activity & Work-Search & Effort Report
 
@@ -240,6 +240,7 @@ _Commits this week:_ 238 · _Hours-equiv:_ 1023 · _Actions-equiv:_ 8
 | 2026-05-10 | Product Management | Update .gitignore: add graphify output entries | **robinhood-mcp**<br>https://github.com/drasticstatic/robinhood-mcp/commit/99a17fdef96f29edc64972d73ecd2fca6dec6fa4 | 4 hrs (Hours (product management / startup labor)) |
 | 2026-05-10 | Product Management | Update .gitignore: add graphify output entries | **tradingview-mcp-jackson**<br>https://github.com/drasticstatic/tradingview-mcp-jackson/commit/63eabb5d5107f42e3f89809c34c8e81b622150b3 | 4 hrs (Hours (product management / startup labor)) |
 | 2026-05-10 | Product Management | Update .gitignore: add graphify output entries | **drasticstatic.github.io**<br>https://github.com/drasticstatic/drasticstatic.github.io/commit/3d2f99a6032930e320db4a748adaf0f04902d820 | 4 hrs (Hours (product management / startup labor)) |
+| 2026-05-10 | Product Management | Update .gitignore: add graphify output entries | **drasticstatic**<br>https://github.com/drasticstatic/drasticstatic/commit/30cd7117a7263dba2e712f144533725bb79a6c83 | 4 hrs (Hours (product management / startup labor)) |
 | 2026-05-10 | Product Management | Update .gitignore: add graphify output entries | **my-template**<br>https://github.com/drasticstatic/my-template/commit/9501050ccbe69523162ade74c3aab1ac267f0503 | 4 hrs (Hours (product management / startup labor)) |
 | 2026-05-10 | Product Management | Update .gitignore: add graphify output entries | **TradeZella_STB**<br>https://github.com/drasticstatic/TradeZella_STB/commit/1637f121a7292f521499b74b11d759f99bdde903 | 4 hrs (Hours (product management / startup labor)) |
 | 2026-05-10 | Product Management | Update .gitignore: add graphify output entries | **amm**<br>https://github.com/drasticstatic/amm/commit/3ce72333f5dfb2af47df282ef1c138c311c53f2e | 4 hrs (Hours (product management / startup labor)) |
@@ -249,6 +250,7 @@ _Commits this week:_ 238 · _Hours-equiv:_ 1023 · _Actions-equiv:_ 8
 | 2026-05-10 | Beta-Testing & Calibration | Update .gitignore: add graphify output entries | **gratitude-token-project_docs**<br>https://github.com/drasticstatic/gratitude-token-project_docs/commit/ca842d648cdf9b51bcc22b67e551eb457e64bf00 | 5 hrs (Hours (product development / startup labor)) |
 | 2026-05-10 | Product Management | Update .gitignore: add graphify output entries | **hardhat_example**<br>https://github.com/drasticstatic/hardhat_example/commit/05a05b9e62cde7fa02712eda80fa1053776d702f | 4 hrs (Hours (product management / startup labor)) |
 | 2026-05-10 | Product Management | Update .gitignore: add graphify output entries | **nft_dappu-punks**<br>https://github.com/drasticstatic/nft_dappu-punks/commit/125cbcda61cc539bb4a51a02a052cd2332355030 | 4 hrs (Hours (product management / startup labor)) |
+| 2026-05-10 | Product Management | Update .gitignore: add graphify output entries | **resume**<br>https://github.com/drasticstatic/resume/commit/bcad271d0891c6d74c9c5a036988734f696e165e | 4 hrs (Hours (product management / startup labor)) |
 | 2026-05-10 | Product Management | Update startup + session-sync skills: add graphify orientation steps | **anthropas-argus-alfred-public-preview**<br>https://github.com/drasticstatic/anthropas-argus-alfred-public-preview/commit/99aa74fe06f19a8b82a4a93338fa11d74d125661 | 4 hrs (Hours (product management / startup labor)) |
 | 2026-05-10 | Code Deployment | Update .graphifyignore: deploy from template | **my-template**<br>https://github.com/drasticstatic/my-template/commit/00e8e6cfa475d46ce5464c80b796fc9635fdf1f3 | 6 hrs (Hours (technical portfolio build)) |
 | 2026-05-10 | Risk Evaluation | Update create-skill.marp.md: prop-firm-status rename + startup promoted from roadmap | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/214c23dc44bf4e037351c81b41974b6e023d55c1 | 8 hrs (Hours (prop firm combine / risk audit)) |

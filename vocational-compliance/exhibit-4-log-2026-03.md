@@ -4,7 +4,7 @@ _Part of the full Exhibit 4 — [table of contents](https://github.com/drasticst
  · [public-preview homepage](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/)_
 
 **Reporting month:** March 2026  
-**Commits this month:** 243 · **Hours-equiv:** 1099 · **Actions-equiv:** 2
+**Commits this month:** 244 · **Hours-equiv:** 1103 · **Actions-equiv:** 2
 
 ---
 
@@ -110,7 +110,7 @@ _Commits this week:_ 85 · _Hours-equiv:_ 380 · _Actions-equiv:_ 0
 
 **Compliance target (context):** 8 attributable actions/week
 
-_Commits this week:_ 48 · _Hours-equiv:_ 209 · _Actions-equiv:_ 0
+_Commits this week:_ 49 · _Hours-equiv:_ 213 · _Actions-equiv:_ 0
 
 ### Weekly Vocational Activity & Work-Search & Effort Report
 
@@ -143,6 +143,7 @@ _Commits this week:_ 48 · _Hours-equiv:_ 209 · _Actions-equiv:_ 0
 | 2026-03-11 | Beta-Testing & Calibration | Sync mirrored workspace changes and perp monitoring updates | **trading-bot-arbitrage-public**<br>https://github.com/drasticstatic/trading-bot-arbitrage-public/commit/f06a08bc3a3cdf8e75bcfeb8b22c5ca5b4e3792b | 5 hrs (Hours (product development / startup labor)) |
 | 2026-03-11 | Beta-Testing & Calibration | Stabilize screener and perp runtime delivery | **trading-bot-arbitrage-public**<br>https://github.com/drasticstatic/trading-bot-arbitrage-public/commit/d8d65d18cc5152c9f6d40229c1bb20022a056265 | 5 hrs (Hours (product development / startup labor)) |
 | 2026-03-11 | Beta-Testing & Calibration | Clarify startup and perp UI states | **trading-bot-arbitrage-public**<br>https://github.com/drasticstatic/trading-bot-arbitrage-public/commit/545a63aad4b5722a7d3e1342974a1936d0519373 | 5 hrs (Hours (product development / startup labor)) |
+| 2026-03-11 | Product Management | Fix tooltip runtime lifecycle and network-3d visibility | **resume**<br>https://github.com/drasticstatic/resume/commit/39bcd6904d51f1731da006951cb5e06615241d40 | 4 hrs (Hours (product management / startup labor)) |
 | 2026-03-11 | Code Deployment | Finalize auto-levels v2.5 package and public pages | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/2f03f43947201b8a5ced062c2cd563aaea2b6e3d | 6 hrs (Hours (technical portfolio build)) |
 | 2026-03-12 | Code Deployment | Polish auto-levels public pages and sync handoff | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/dc3d0ec8d77aef93679fa649b3006fe345a92b7b | 6 hrs (Hours (technical portfolio build)) |
 | 2026-03-13 | Risk Evaluation | Add course workbooks and STB context — Inevitrade + STB coursework session | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/7968703c1aa218cd3c9b3379b10456b1f0d1c45d | 8 hrs (Hours (prop firm combine / risk audit)) |
