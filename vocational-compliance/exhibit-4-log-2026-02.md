@@ -32,6 +32,14 @@ _Commits this week:_ 1 · _Hours-equiv:_ 5 · _Actions-equiv:_ 0
 |---|---|---|---|---|
 | 2026-02-12 | Beta-Testing & Calibration | commit b4 adding perp DEXs | **trading-bot-arbitrage-public**<br>https://github.com/drasticstatic/trading-bot-arbitrage-public/commit/be8515251db4e5dff589cc899732e5adf4adfb87 | 5 hrs (Hours (product development / startup labor)) |
 
+#### Private Work (Attested, Not Independently Verifiable)
+
+Real work in repos that are private by design and never mirrored publicly, so no commit link can resolve for them. Rows below use the same category rubric and message sanitization as the public table above, and each names its real local commit SHA — a git-verifiable attestation the account owner can produce the underlying commit for on request — but not a link a reader can independently follow the way a public row's github.com URL can.
+
+| Date | Category | Activity / Description | Attestation (repo — local commit SHA) | Equivalence |
+|---|---|---|---|---|
+| 2026-02-12 | Product Management | commit b4 adding perp DEXs | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`577f600` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+
 ---
 
 ## Week of 2026-02-16 → 2026-02-22

@@ -86,6 +86,25 @@ _Commits this week:_ 9 · _Hours-equiv:_ 45 · _Actions-equiv:_ 0
 | 2026-01-24 | Beta-Testing & Calibration | getting there, finally succesful simualtion and auto-execute | **trading-bot-arbitrage-public**<br>https://github.com/drasticstatic/trading-bot-arbitrage-public/commit/699a6d379f95e455f8127e18e47ab83ae79dcc0c | 5 hrs (Hours (product development / startup labor)) |
 | 2026-01-25 | Beta-Testing & Calibration | update screener, clean activity, mainnet RPC troubleshoot, terminal overlay | **trading-bot-arbitrage-public**<br>https://github.com/drasticstatic/trading-bot-arbitrage-public/commit/a5ac9a60a4960dc79ead438a743f5b380a3f4944 | 5 hrs (Hours (product development / startup labor)) |
 
+#### Private Work (Attested, Not Independently Verifiable)
+
+Real work in repos that are private by design and never mirrored publicly, so no commit link can resolve for them. Rows below use the same category rubric and message sanitization as the public table above, and each names its real local commit SHA — a git-verifiable attestation the account owner can produce the underlying commit for on request — but not a link a reader can independently follow the way a public row's github.com URL can.
+
+| Date | Category | Activity / Description | Attestation (repo — local commit SHA) | Equivalence |
+|---|---|---|---|---|
+| 2026-01-22 | Product Management | getting started with Augment :-) | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`a16d655` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-01-23 | Product Management | tooltips + save opus4.5 process before consulting gpt5.2 | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`4d702e7` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-01-23 | Product Management | confirmation modals | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`bf770ad` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-01-23 | Product Management | muilt-dex - still working on profitable senario | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`7272394` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-01-23 | Audit / Education | add feedback loop | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`76a3447` (local, not on github.com) | 3 hrs (Hours (professional performance review)) |
+| 2026-01-23 | Product Management | ooops too psychedelic lol but progress :-) | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`fff7ea9` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-01-23 | Audit / Education | built front-end, restarted machine, time to test :-) | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`2ff8d6a` (local, not on github.com) | 3 hrs (Hours (professional performance review)) |
+| 2026-01-24 | Product Management | getting there, finally succesful simualtion and auto-execute | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`2472e1b` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-01-24 | Product Management | more accurate swaps, fee, and gas calculations + succussful manipulation profitable senario | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`c33edad` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-01-24 | Product Management | many backend UI enhancements + modify trade calculations | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`f2cf096` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-01-25 | Product Management | making progress, deep dive into the nitty gritty | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`8cb50ee` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-01-25 | Product Management | update screener, clean activity, mainnet RPC troubleshoot, terminal overlay | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`35073d9` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+
 ---
 
 ## Week of 2026-01-26 → 2026-02-01
@@ -105,6 +124,20 @@ _Commits this week:_ 7 · _Hours-equiv:_ 36 · _Actions-equiv:_ 0
 | 2026-01-27 | Beta-Testing & Calibration | fixed slider bugs, alignment and order in cards, charts, continue MEV, export logs buttons | **trading-bot-arbitrage-public**<br>https://github.com/drasticstatic/trading-bot-arbitrage-public/commit/21105471c3defa613918d4fb9288241c0dc74d11 | 5 hrs (Hours (product development / startup labor)) |
 | 2026-01-30 | Beta-Testing & Calibration | UI polish & logs details, debugg ing mainnet | **trading-bot-arbitrage-public**<br>https://github.com/drasticstatic/trading-bot-arbitrage-public/commit/8c6d7fb6f78fb043cf4f3d7337a17c176b4dc424 | 5 hrs (Hours (product development / startup labor)) |
 | 2026-01-30 | Beta-Testing & Calibration | MEV indicators, evm_mine/refork toggle, Route mismatch UI badge | **trading-bot-arbitrage-public**<br>https://github.com/drasticstatic/trading-bot-arbitrage-public/commit/453eb5678c423a5746e72dc32480a3b509f1d675 | 5 hrs (Hours (product development / startup labor)) |
+
+#### Private Work (Attested, Not Independently Verifiable)
+
+Real work in repos that are private by design and never mirrored publicly, so no commit link can resolve for them. Rows below use the same category rubric and message sanitization as the public table above, and each names its real local commit SHA — a git-verifiable attestation the account owner can produce the underlying commit for on request — but not a link a reader can independently follow the way a public row's github.com URL can.
+
+| Date | Category | Activity / Description | Attestation (repo — local commit SHA) | Equivalence |
+|---|---|---|---|---|
+| 2026-01-26 | Product Management | redesigned hero, footer, trade terminal mod, margins, sticky screener header/collapse | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`962018e` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-01-26 | Product Management | revamp trade execution panel, activity log, styling | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`e350a15` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-01-26 | Code Deployment | estimate deploy to arb, analyze/trade each pair, slider styling | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`70e14d4` (local, not on github.com) | 6 hrs (Hours (technical portfolio build)) |
+| 2026-01-27 | Beta-Testing & Calibration | fixed slider bugs, alignment and order in cards, charts, continue MEV, export logs buttons | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`b17af07` (local, not on github.com) | 5 hrs (Hours (product development / startup labor)) |
+| 2026-01-27 | Beta-Testing & Calibration | Start MEV shield implementation, UI clean up/expand | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`4c72322` (local, not on github.com) | 5 hrs (Hours (product development / startup labor)) |
+| 2026-01-30 | Beta-Testing & Calibration | MEV indicators, evm_mine/refork toggle, Route mismatch UI badge | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`6683562` (local, not on github.com) | 5 hrs (Hours (product development / startup labor)) |
+| 2026-01-30 | Product Management | UI polish & logs details, debugg ing mainnet | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`d6cd60b` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
 
 ---
 

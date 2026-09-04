@@ -166,6 +166,16 @@ _Commits this week:_ 49 · _Hours-equiv:_ 213 · _Actions-equiv:_ 0
 | 2026-03-15 | Code Deployment | Finalize auto-levels follow-up release package | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/c8eb6ceff975081328deb7b5707e866111a52626 | 6 hrs (Hours (technical portfolio build)) |
 | 2026-03-15 | Product Management | polished index + readme | **drasticstatic.github.io**<br>https://github.com/drasticstatic/drasticstatic.github.io/commit/93adc2dacf4ebc5095b0b5c5fba5c0fbaa070cd8 | 4 hrs (Hours (product management / startup labor)) |
 
+#### Private Work (Attested, Not Independently Verifiable)
+
+Real work in repos that are private by design and never mirrored publicly, so no commit link can resolve for them. Rows below use the same category rubric and message sanitization as the public table above, and each names its real local commit SHA — a git-verifiable attestation the account owner can produce the underlying commit for on request — but not a link a reader can independently follow the way a public row's github.com URL can.
+
+| Date | Category | Activity / Description | Attestation (repo — local commit SHA) | Equivalence |
+|---|---|---|---|---|
+| 2026-03-11 | Product Management | Clarify startup and perp UI states | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`bc4a8d9` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-03-11 | Product Management | Stabilize screener and perp runtime delivery | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`b08ef38` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-03-11 | Product Management | Sync mirrored workspace changes and perp monitoring updates | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`8084991` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+
 ---
 
 ## Week of 2026-03-16 → 2026-03-22
@@ -301,6 +311,16 @@ _Commits this week:_ 51 · _Hours-equiv:_ 240 · _Actions-equiv:_ 2
 | 2026-03-29 | Audit / Education | Mar 27 daily + weekly review + MGC-TPT-003 trade review (account blown) | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/6aa416d23717c3bd43cab66c7c63b21958d7fa22 | 3 hrs (Hours (professional performance review)) |
 | 2026-03-29 | Code Deployment | Fix frozen navbars: position sticky → fixed on all progression pages | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/168e88d23cdc6e291daecab7bf594c3971b54937 | 6 hrs (Hours (technical portfolio build)) |
 | 2026-03-29 | Beta-Testing & Calibration | Humanize settings update feedback | **trading-bot-arbitrage-public**<br>https://github.com/drasticstatic/trading-bot-arbitrage-public/commit/a3143b35561b040eb0f065ac8cc04be2b8c3bf8e | 5 hrs (Hours (product development / startup labor)) |
+
+#### Private Work (Attested, Not Independently Verifiable)
+
+Real work in repos that are private by design and never mirrored publicly, so no commit link can resolve for them. Rows below use the same category rubric and message sanitization as the public table above, and each names its real local commit SHA — a git-verifiable attestation the account owner can produce the underlying commit for on request — but not a link a reader can independently follow the way a public row's github.com URL can.
+
+| Date | Category | Activity / Description | Attestation (repo — local commit SHA) | Equivalence |
+|---|---|---|---|---|
+| 2026-03-29 | Audit / Education | Humanize settings update feedback | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`bd4791f` (local, not on github.com) | 3 hrs (Hours (professional performance review)) |
+| 2026-03-29 | Product Management | Refresh archive snapshots and pending task mirror | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`70ec8a4` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-03-29 | Product Management | docs: add blank lines between PROGRESS.md sections for readability | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`a7a1ab7` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
 
 ---
 

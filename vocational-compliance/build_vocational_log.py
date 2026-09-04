@@ -65,6 +65,11 @@ from urllib.parse import quote
 
 import privatewitness_scan
 
+try:
+    _SUPPRESS_TERMS = privatewitness_scan.load_suppress_terms()
+except Exception:  # noqa: BLE001 - opt-in local state, never break the generator
+    _SUPPRESS_TERMS = []
+
 
 # --------------------------------------------------------------------------- #
 # Configuration
@@ -617,6 +622,22 @@ class ActivityRow:
 
 
 @dataclass
+class PrivateWitnessRow:
+    """Same shape as ActivityRow, minus a resolvable proof link. `sha` is the
+    real local commit hash — a git-verifiable attestation, not a claim of
+    independent public verifiability. See privatewitness_scan.py."""
+    commit_date: str
+    repo: str
+    category: str
+    description: str        # sanitized with the SAME classify()/sanitize_message()
+                            # pipeline as public rows — see privatewitness_scan.py
+    sha: str
+    hours: float
+    action: float
+    equiv_label: str
+
+
+@dataclass
 class Week:
     start: datetime          # Monday 00:00 local-ish (we use the commit's date)
     end: datetime
@@ -624,9 +645,9 @@ class Week:
     total_hours: float = 0.0
     total_actions: float = 0.0
     commit_count: int = 0
-    # [(display_name, commit_count), ...] for included private repos this week.
-    # Attested, NOT independently verifiable — see privatewitness_scan.py and the
-    # "Private Work" section this renders into, kept visually separate from the
+    # PrivateWitnessRow entries for included private repos this week. Attested,
+    # NOT independently verifiable — see privatewitness_scan.py and the
+    # "Private Work" table this renders into, kept visually separate from the
     # public-commit-linked rows above so the honesty contract for THOSE rows
     # (every one traces to a real, resolvable github.com URL) is never diluted.
     private_witness: list = field(default_factory=list)
@@ -726,10 +747,24 @@ def sanitize_message(msg: str) -> str:
     s = msg.splitlines()[0] if msg else ""
     s = re.sub(r"[\w.+-]+@[\w-]+\.[\w.-]+", "[email]", s)           # emails
     s = re.sub(r"\b[0-9a-fA-F]{32,}\b", "[redacted]", s)           # hashes/tokens
-    s = re.sub(r"(?i)\b(token|key|secret|password|api[_-]?key)\s*=\s*\S+",
+    # Wallet addresses (0x + 20+ hex, e.g. Ethereum) — NOT caught by the hex rule
+    # above because the "0x" prefix breaks hex-run contiguity. Added specifically
+    # ahead of any repo whose commits may reference a real funded wallet.
+    s = re.sub(r"\b0x[0-9a-fA-F]{20,}\b", "[wallet-redacted]", s)
+    # Base58-style keys/addresses (Solana pubkeys/private keys, ~32-44 chars,
+    # no 0/O/I/l). Same rationale as above — defense in depth, not a guarantee.
+    s = re.sub(r"\b[1-9A-HJ-NP-Za-km-z]{32,44}\b", "[key-redacted]", s)
+    s = re.sub(r"(?i)\b(token|key|secret|password|api[_-]?key|seed|mnemonic|"
+               r"wallet|private[_ -]?key)\s*[:=]\s*\S+",
                "[redacted]", s)
     # Collapse any remaining case identifiers / docket patterns defensively.
     s = re.sub(r"(?i)\b(F[A-Z]{1,3}-??\d{4,}-\d{2,})\b", "[docket]", s)
+    # Deliberately-unnamed projects (privatewitness_scan.py exclude-silent) —
+    # scrub even here, since a private commit's message can surface in the
+    # public mirror if that SAME commit also touched a public path. Applied to
+    # every row, public included, not just Private Work ones.
+    for term in _SUPPRESS_TERMS:
+        s = re.sub(re.escape(term), "[private project]", s, flags=re.IGNORECASE)
     s = s.replace("`", "'")  # avoid markdown code-span surprises in tables
     s = s.strip()
     return s[:180] or "(work session commit)"
@@ -909,6 +944,31 @@ def render_table(rows: list[ActivityRow]) -> str:
     return "\n".join(lines)
 
 
+def render_privatewitness_table(rows: list[PrivateWitnessRow]) -> str:
+    """Same column layout as render_table(), except the Proof column carries a
+    local commit SHA instead of a resolvable github.com URL — there isn't one
+    to give, by definition, for a repo with no public mirror."""
+    if not rows:
+        return ""
+    header = ("| Date | Category | Activity / Description "
+              "| Attestation (repo — local commit SHA) | Equivalence |")
+    sep = "|---|---|---|---|---|"
+    lines = [header, sep]
+    for r in rows:
+        metric = f"{r.hours:g} hrs" if r.hours else ""
+        if r.action:
+            metric = (f"{r.action:g} action" if not metric
+                      else f"{metric} / {r.action:g} action")
+        if not metric:
+            metric = "—"
+        proof = f"**{r.repo}**<br>`{r.sha}` (local, not on github.com)"
+        lines.append(
+            f"| {r.commit_date} | {r.category} | "
+            f"{r.description} | {proof} | {metric} ({r.equiv_label}) |"
+        )
+    return "\n".join(lines)
+
+
 def group_months(weeks: list[Week]) -> "dict[str, list[Week]]":
     """Group week buckets by 'YYYY-MM', keyed on each week's Thursday so a
     boundary week lands in the month that contains most of it."""
@@ -969,14 +1029,14 @@ def render_month_md(month_k: str, weeks: list[Week]) -> str:
             p.append("")
             p.append("Real work in repos that are private by design and never "
                      "mirrored publicly, so no commit link can resolve for them. "
-                     "Named repo and commit count/date only — no message, diff, "
-                     "or content is read or shown. Kept separate from the table "
-                     "above on purpose: those rows each resolve to a real "
-                     "github.com URL; these do not, and are not claimed to.")
+                     "Rows below use the same category rubric and message "
+                     "sanitization as the public table above, and each names its "
+                     "real local commit SHA — a git-verifiable attestation the "
+                     "account owner can produce the underlying commit for on "
+                     "request — but not a link a reader can independently follow "
+                     "the way a public row's github.com URL can.")
             p.append("")
-            for display, count in wk.private_witness:
-                p.append(f"- **{html.escape(display)}** — {count} commit"
-                         f"{'s' if count != 1 else ''}")
+            p.append(render_privatewitness_table(wk.private_witness))
             p.append("")
         p.append("---")
         p.append("")
@@ -1316,8 +1376,7 @@ td.proof .url { display:block; font-size:.72rem; color:#7dd3fc; word-break:break
 .pw-head { margin:0 0 4px; font-size:.78rem; font-weight:700; letter-spacing:.03em;
   text-transform:uppercase; color:var(--accent-2); }
 .pw-note { margin:0 0 8px; font-size:.78rem; color:var(--muted); line-height:1.5; }
-.pw-list { margin:0; padding-left:1.1rem; font-size:.86rem; }
-.pw-list li { margin:2px 0; }
+.pw-block table { font-size:.82rem; }
 a { color:var(--accent); }
 footer { text-align:center; color:var(--muted); font-size:.82rem; margin:32px 0 0; line-height:1.6; }
 
@@ -1535,6 +1594,37 @@ def render_html(weeks: list[Week], since: str, until: str,
                 + "".join(body) + "</tbody></table>"
                 + '</div>')
 
+    def pw_table_for(rows: list) -> str:
+        """Same visual structure as table_for(), except the Proof-equivalent
+        column carries a local commit SHA — never a github.com link, since one
+        doesn't exist for a repo with no public mirror."""
+        if not rows:
+            return ""
+        body = []
+        for r in rows:
+            sl = cat_slug(r.category)
+            body.append(
+                "<tr>"
+                f'<td data-label="Date">{_html_escape(r.commit_date)}</td>'
+                f'<td class="cat cat-{sl}" data-label="Category">'
+                f'<span class="cat-dot cat-{sl}"></span>'
+                f'<span class="cat-name">{_html_escape(r.category)}</span></td>'
+                f'<td class="desc" data-label="Activity">{_html_escape(r.description)}</td>'
+                f'<td class="proof" data-label="Attestation"><strong>'
+                f'{_html_escape(r.repo)}</strong>'
+                f'<span class="url">{_html_escape(r.sha)} (local, not on github.com)</span></td>'
+                f'<td class="eq eq-{sl}" data-label="Equivalence">{metric_cell(r)} '
+                f'<span class="eq-label">{_html_escape(r.equiv_label)}</span></td>'
+                "</tr>"
+            )
+        return ('<div class="tablewrap">'
+                "<table><thead><tr><th>Date</th><th>Category</th>"
+                "<th>Activity / Description</th>"
+                "<th>Attestation (repo &#183; local commit SHA)</th>"
+                "<th>Equivalence</th></tr></thead><tbody>"
+                + "".join(body) + "</tbody></table>"
+                + '</div>')
+
     def week_block(wk: Week) -> str:
         label = f"{wk.start.date().isoformat()} &#8594; {wk.end.date().isoformat()}"
         after = wk.start.date() > datetime.now(timezone.utc).date()
@@ -1546,24 +1636,20 @@ def render_html(weeks: list[Week], since: str, until: str,
         else:
             stat = "no attributable commits"
         if wk.private_witness:
-            pw_total = sum(c for _, c in wk.private_witness)
-            stat += f" &#183; +{pw_total} private (attested)"
+            stat += f" &#183; +{len(wk.private_witness)} private (attested)"
         body = (table_for(wk.rows) if wk.rows
                 else '<p class="empty">No attributable commits recorded this week.</p>')
         if wk.private_witness:
-            items = "".join(
-                f'<li><strong>{_html_escape(name)}</strong> &#8212; {count} commit'
-                f'{"s" if count != 1 else ""}</li>'
-                for name, count in wk.private_witness
-            )
             body += (
                 '<div class="pw-block">'
                 '<p class="pw-head">Private Work (Attested, Not Independently Verifiable)</p>'
                 '<p class="pw-note">Real work in repos that are private by design and '
-                'never mirrored publicly, so no commit link can resolve for them. Named '
-                'repo and commit count/date only &#8212; no message, diff, or content is '
-                'read or shown. Kept separate from the table above on purpose.</p>'
-                f'<ul class="pw-list">{items}</ul>'
+                'never mirrored publicly, so no commit link can resolve for them. Same '
+                'category rubric and message sanitization as the table above; each row '
+                'names its real local commit SHA as a git-verifiable attestation &#8212; '
+                'not a link a reader can independently follow the way a public row\'s '
+                'github.com URL can.</p>'
+                f'{pw_table_for(wk.private_witness)}'
                 '</div>'
             )
         return (f'<details class="week"><summary>'
@@ -1808,12 +1894,30 @@ def main(argv: list[str]) -> int:
     # (missing local config, bad repo path, etc.) must never break the public
     # generator; it's opt-in local-machine state.
     try:
-        pw_by_week = privatewitness_scan.get_privatewitness_by_week(args.since, args.until)
+        pw_commits_by_week = privatewitness_scan.get_privatewitness_commits_by_week(
+            args.since, args.until)
     except Exception as exc:  # noqa: BLE001 - deliberately broad, see above
         print(f"  [privatewitness] skipped: {exc}", file=sys.stderr)
-        pw_by_week = {}
+        pw_commits_by_week = {}
     for wk in weeks:
-        wk.private_witness = pw_by_week.get(wk.start, [])
+        pw_rows = []
+        for c in pw_commits_by_week.get(wk.start, []):
+            # classify() only reads .repo/.message — reuse it via a throwaway
+            # Commit so private and public rows share one rubric, not two.
+            rubric = classify(Commit(repo=c["repo"], sha=c["sha"], date=c["date"],
+                                     message=c["message"], html_url="",
+                                     author_login="", author_email=""))
+            pw_rows.append(PrivateWitnessRow(
+                commit_date=c["date"].date().isoformat(),
+                repo=c["repo"],
+                category=rubric["category"],
+                description=sanitize_message(c["message"]),
+                sha=c["sha"],
+                hours=rubric["hours"],
+                action=rubric["action"],
+                equiv_label=rubric["equiv"],
+            ))
+        wk.private_witness = pw_rows
 
     total_commits = sum(w.commit_count for w in weeks)
     by_month = group_months(weeks)

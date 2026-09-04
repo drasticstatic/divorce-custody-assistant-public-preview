@@ -23,14 +23,19 @@ Two-file model (mirrors the CSV split used elsewhere in this repo family):
         `scan_roots` — directories to sweep for repos not yet classified.
         Never committed anywhere, public or private.
 
-What gets read from each included repo: ONLY commit dates
-(`git log --pretty=format:%ad --date=short`). Never a commit message, diff,
-author email, or branch name. That is a deliberate ceiling, not an oversight —
-naming the repo was an explicit, deliberate choice; reading its actual commit
-content to summarize was not, and would require the same kind of scrub
-judgment call this project has repeatedly chosen to avoid by architecture
-instead of by discipline (see form-433f public/private split in tax-assistant
-for the same pattern).
+What gets read from each included repo: commit SHA + date + one-line subject
+(`git log --pretty=format:%h/%ad/%s`) — same three fields a public row's
+Category/Description/Proof columns are built from. Christopher's explicit call
+(2026-09-04): render Private Work rows in the same table format as public rows,
+which requires reading real subject lines, not just counting them. The subject
+line is run through build_vocational_log.py's own `sanitize_message()` +
+`classify()` — the SAME functions and rubric applied to every public row, not a
+second, looser pipeline — so private and public rows get identical redaction
+treatment. Full diffs, file contents, and branch names are still never read.
+The one thing a Private Work row can never carry is a working github.com link
+— there isn't one — so the "Proof" column shows the local commit SHA instead:
+real, git-verifiable, but not independently checkable by a reader the way a
+public row's URL is.
 
 New-repo default: excluded. A repo found under `scan_roots` that isn't already
 in the registry is reported, never auto-added — mirrors the sync-public.yml
@@ -89,40 +94,61 @@ def load_local_paths() -> tuple[dict, list[str]]:
     return data.get("paths", {}), data.get("scan_roots", [])
 
 
+def load_suppress_terms() -> list[str]:
+    """Terms (repo names/slugs the account owner has deliberately kept
+    unnamed) to scrub from EVERY row's description — public rows included,
+    since a private commit's message can surface in the public mirror if that
+    commit also touched a public-allowlisted path in the same commit. Local
+    file only; returns [] if it doesn't exist, same fail-open posture as the
+    rest of this module."""
+    return _load_json(LOCAL_PATHS_PATH).get("suppress_terms", [])
+
+
 def _is_git_repo(path: str) -> bool:
     return os.path.isdir(os.path.join(path, ".git"))
 
 
-def commit_dates(repo_path: str, since: str, until: str) -> list[datetime]:
-    """Return only commit DATES for repo_path in [since, until]. Never reads
-    messages, authors, diffs, or branch names — count + date only, by design."""
+_FIELD_SEP = "\x1f"  # unit separator — won't collide with real commit text
+
+
+def repo_commits(repo_path: str, since: str, until: str) -> list[dict]:
+    """Return [{sha, date, message}, ...] for repo_path in [since, until].
+    `message` is the raw one-line subject — sanitize_message()/classify() in
+    build_vocational_log.py are applied to it by the caller, the SAME functions
+    and rubric used for public rows, so private and public rows share one
+    redaction/categorization pipeline rather than a second, easier-to-drift one."""
     if not _is_git_repo(repo_path):
         return []
     result = subprocess.run(
         ["git", "-C", repo_path, "log",
          f"--since={since}", f"--until={until} 23:59:59",
-         "--date=short", "--pretty=format:%ad"],
+         "--date=short", f"--pretty=format:%h{_FIELD_SEP}%ad{_FIELD_SEP}%s"],
         capture_output=True, text=True, check=False,
     )
     if result.returncode != 0 or not result.stdout.strip():
         return []
     out = []
     for line in result.stdout.strip().splitlines():
+        parts = line.split(_FIELD_SEP, 2)
+        if len(parts) != 3:
+            continue
+        sha, date_s, subject = parts
         try:
-            out.append(datetime.strptime(line.strip(), "%Y-%m-%d"))
+            dt = datetime.strptime(date_s.strip(), "%Y-%m-%d")
         except ValueError:
             continue
+        out.append({"sha": sha, "date": dt, "message": subject})
     return out
 
 
-def get_privatewitness_by_week(since: str, until: str) -> dict[datetime, list[tuple[str, int]]]:
-    """Return {week_start_monday: [(display_name, commit_count), ...]} for every
+def get_privatewitness_commits_by_week(since: str, until: str) -> dict[datetime, list[dict]]:
+    """Return {week_start_monday: [{repo, sha, date, message}, ...]} for every
     repo with status == 'included' in the public registry, whose local path is
     known. Silently returns {} if either config file is missing — this feature
     is opt-in local-machine state, not a hard requirement for the generator."""
     registry = load_registry()
     paths, _ = load_local_paths()
-    result: dict[datetime, dict[str, int]] = {}
+    result: dict[datetime, list[dict]] = {}
     for repo_id, meta in registry.items():
         if meta.get("status") != "included":
             continue
@@ -132,11 +158,15 @@ def get_privatewitness_by_week(since: str, until: str) -> dict[datetime, list[tu
                   f"local path — skipping", file=sys.stderr)
             continue
         display = meta.get("display_name", repo_id)
-        for dt in commit_dates(path, since, until):
-            wk = week_key(dt)
-            result.setdefault(wk, {})
-            result[wk][display] = result[wk].get(display, 0) + 1
-    return {wk: sorted(counts.items()) for wk, counts in result.items()}
+        for c in repo_commits(path, since, until):
+            wk = week_key(c["date"])
+            result.setdefault(wk, []).append({
+                "repo": display, "sha": c["sha"],
+                "date": c["date"], "message": c["message"],
+            })
+    for wk in result:
+        result[wk].sort(key=lambda r: r["date"])
+    return result
 
 
 def scan(quiet: bool = False) -> list[str]:
@@ -168,12 +198,40 @@ def scan(quiet: bool = False) -> list[str]:
 
 
 def classify(repo_id: str, path: str, status: str, note: str) -> None:
-    if status not in ("include", "exclude"):
-        print("status must be 'include' or 'exclude'", file=sys.stderr)
+    """status: 'include' or 'exclude' writes a normal, named entry to the
+    PUBLIC registry (this is the honesty-contract-friendly path — anyone can
+    see what was reviewed and why). 'exclude-silent' is different on purpose:
+    it records the local path (so --scan stops re-flagging it) but writes
+    NOTHING to the public registry — not even an excluded entry naming it.
+    Use this for a repo whose very NAME/existence Christopher doesn't want
+    surfaced anywhere public — an 'excluded, here's why' audit entry would
+    itself defeat the point by naming the thing being hidden."""
+    if status not in ("include", "exclude", "exclude-silent"):
+        print("status must be 'include', 'exclude', or 'exclude-silent'", file=sys.stderr)
         sys.exit(2)
-    status = "included" if status == "include" else "excluded"
     slug = re.sub(r"[^a-z0-9_-]", "-", repo_id.lower())
 
+    local_data = _load_json(LOCAL_PATHS_PATH)
+    local_data.setdefault("paths", {})
+    local_data.setdefault("scan_roots", [])
+    local_data["paths"][slug] = os.path.abspath(os.path.expanduser(path))
+    _save_json(LOCAL_PATHS_PATH, local_data)
+
+    if status == "exclude-silent":
+        local_data.setdefault("suppress_terms", [])
+        basename = os.path.basename(os.path.normpath(path))
+        for term in {slug, basename}:
+            if term and term not in local_data["suppress_terms"]:
+                local_data["suppress_terms"].append(term)
+        _save_json(LOCAL_PATHS_PATH, local_data)
+        print(f"Recorded '{slug}' locally as silently excluded — --scan will no "
+              f"longer flag it, and it will NEVER appear in the public registry "
+              f"or Exhibit 4, not even as a named exclusion. Its name/slug were "
+              f"also added to suppress_terms, so sanitize_message() scrubs it "
+              f"even if it surfaces inside a DIFFERENT repo's real commit message.")
+        return
+
+    status = "included" if status == "include" else "excluded"
     reg_data = _load_json(REGISTRY_PATH)
     reg_data.setdefault("repos", {})
     display_name = os.path.basename(os.path.normpath(path))
@@ -184,12 +242,6 @@ def classify(repo_id: str, path: str, status: str, note: str) -> None:
         "note": note,
     }
     _save_json(REGISTRY_PATH, reg_data)
-
-    local_data = _load_json(LOCAL_PATHS_PATH)
-    local_data.setdefault("paths", {})
-    local_data.setdefault("scan_roots", [])
-    local_data["paths"][slug] = os.path.abspath(os.path.expanduser(path))
-    _save_json(LOCAL_PATHS_PATH, local_data)
 
     print(f"Classified '{slug}' as {status}. Public registry updated "
           f"(vocational-compliance/privatewitness-registry.json) — commit that. "

@@ -1,5 +1,5 @@
 {
-  "_readme": "Allowlist of private repos surfaced in Exhibit 4's 'Private Work' section. A repo shows up here \u2014 named, with commit COUNTS and DATES only, never commit messages, diffs, or content \u2014 only after being explicitly classified. New repos default to unlisted/excluded until reviewed; see privatewitness_scan.py --scan.",
+  "_readme": "Allowlist of private repos surfaced in Exhibit 4's 'Private Work' section. A repo shows up here \u2014 named, with real commit dates/SHAs/subject lines run through the SAME category rubric + sanitize_message() as public rows, never a diff or full file content \u2014 only after being explicitly classified. Only repos with NO existing public mirror belong here; a repo already covered by a public-preview export stays out to avoid double-counting the same work in two sections. New repos default to unlisted/excluded until reviewed; see privatewitness_scan.py --scan.",
   "repos": {
     "mystarch": {
       "display_name": "Mystarch",
@@ -7,11 +7,197 @@
       "added": "2026-09-04",
       "note": "Augment Intent chief-of-staff coordination workspace; private-forever by design, no public mirror. This path is a git worktree of the same repo Christopher originally pointed to (~/intent/workspaces/__chief__) \u2014 using the worktree checkout as the single canonical path to avoid double-registering the same history under two ids."
     },
-    "mystarch-acp-spoof": {
-      "display_name": "mystarch_chief-of-staff_acp-spoof",
+    "trading-bot-arbitrage": {
+      "display_name": "trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE",
+      "status": "included",
+      "added": "2026-09-04",
+      "note": "Private DEX-arbitrage bot (DAPPUv3, Hardhat, UNI-CAKE). No public mirror found. Christopher flagged: this repo will eventually connect a real funded web3 wallet -- sanitize_message() was hardened (0x-hex + base58 key redaction) specifically ahead of that, since commit messages here are read and shown (sanitized) in Exhibit 4."
+    },
+    "tradezella_stb": {
+      "display_name": "TradeZella_STB",
       "status": "excluded",
       "added": "2026-09-04",
-      "note": "Test/spoof variant of the mystarch worktree, not distinct vocational work product. Left out rather than partially masked -- the registry's included/excluded model doesn't support a partial-redaction display name, and this looked like the safer default given the name itself."
+      "note": "Already a public GitHub repo in its own right; its commits are already scanned and shown (with real links) in the normal public table above. Adding it here too would double-count the same work."
+    },
+    "drasticstatic": {
+      "display_name": "drasticstatic",
+      "status": "excluded",
+      "added": "2026-09-04",
+      "note": "Already a public GitHub repo in its own right; its commits are already scanned and shown (with real links) in the normal public table above. Adding it here too would double-count the same work."
+    },
+    "dot-github": {
+      "display_name": ".github",
+      "status": "excluded",
+      "added": "2026-09-04",
+      "note": "Already a public GitHub repo in its own right; its commits are already scanned and shown (with real links) in the normal public table above. Adding it here too would double-count the same work."
+    },
+    "drasticstatic-github-io": {
+      "display_name": "drasticstatic.github.io",
+      "status": "excluded",
+      "added": "2026-09-04",
+      "note": "Already a public GitHub repo in its own right; its commits are already scanned and shown (with real links) in the normal public table above. Adding it here too would double-count the same work."
+    },
+    "my-template": {
+      "display_name": "my-template",
+      "status": "excluded",
+      "added": "2026-09-04",
+      "note": "Already a public GitHub repo in its own right; its commits are already scanned and shown (with real links) in the normal public table above. Adding it here too would double-count the same work."
+    },
+    "dappu-amm": {
+      "display_name": "amm",
+      "status": "excluded",
+      "added": "2026-09-04",
+      "note": "Already a public GitHub repo in its own right; its commits are already scanned and shown (with real links) in the normal public table above. Adding it here too would double-count the same work."
+    },
+    "dappu-blockchain-developer-bootcamp": {
+      "display_name": "blockchain-developer-bootcamp",
+      "status": "excluded",
+      "added": "2026-09-04",
+      "note": "Already a public GitHub repo in its own right; its commits are already scanned and shown (with real links) in the normal public table above. Adding it here too would double-count the same work."
+    },
+    "dappu-crowdsale": {
+      "display_name": "crowdsale",
+      "status": "excluded",
+      "added": "2026-09-04",
+      "note": "Already a public GitHub repo in its own right; its commits are already scanned and shown (with real links) in the normal public table above. Adding it here too would double-count the same work."
+    },
+    "dappu-dao": {
+      "display_name": "dao",
+      "status": "excluded",
+      "added": "2026-09-04",
+      "note": "Already a public GitHub repo in its own right; its commits are already scanned and shown (with real links) in the normal public table above. Adding it here too would double-count the same work."
+    },
+    "dappu-dev-recruitment-safeguards": {
+      "display_name": "dev-recruitment-safeguards",
+      "status": "excluded",
+      "added": "2026-09-04",
+      "note": "Already a public GitHub repo in its own right; its commits are already scanned and shown (with real links) in the normal public table above. Adding it here too would double-count the same work."
+    },
+    "dappu-gratitude-token-project_docs": {
+      "display_name": "gratitude-token-project_docs",
+      "status": "excluded",
+      "added": "2026-09-04",
+      "note": "Already a public GitHub repo in its own right; its commits are already scanned and shown (with real links) in the normal public table above. Adding it here too would double-count the same work."
+    },
+    "dappu-gratitude-token-project_testpublish_2026-08-28": {
+      "display_name": "gratitude-token-project_testPublish_2026-08-28",
+      "status": "excluded",
+      "added": "2026-09-04",
+      "note": "Already a public GitHub repo in its own right; its commits are already scanned and shown (with real links) in the normal public table above. Adding it here too would double-count the same work."
+    },
+    "dappu-hardhat_example": {
+      "display_name": "hardhat_example",
+      "status": "excluded",
+      "added": "2026-09-04",
+      "note": "Already a public GitHub repo in its own right; its commits are already scanned and shown (with real links) in the normal public table above. Adding it here too would double-count the same work."
+    },
+    "dappu-nft_dappu-punks": {
+      "display_name": "nft_dappu-punks",
+      "status": "excluded",
+      "added": "2026-09-04",
+      "note": "Already a public GitHub repo in its own right; its commits are already scanned and shown (with real links) in the normal public table above. Adding it here too would double-count the same work."
+    },
+    "dappu-resume": {
+      "display_name": "resume",
+      "status": "excluded",
+      "added": "2026-09-04",
+      "note": "Already a public GitHub repo in its own right; its commits are already scanned and shown (with real links) in the normal public table above. Adding it here too would double-count the same work."
+    },
+    "dappu-solidity_intensive": {
+      "display_name": "solidity_intensive",
+      "status": "excluded",
+      "added": "2026-09-04",
+      "note": "Already a public GitHub repo in its own right; its commits are already scanned and shown (with real links) in the normal public table above. Adding it here too would double-count the same work."
+    },
+    "anthropas-argus-alfred": {
+      "display_name": "anthropas-argus-alfred",
+      "status": "excluded",
+      "added": "2026-09-04",
+      "note": "Private repo, but has a public-preview/public mirror already scanned by the normal public table. Adding the raw private history here too would double-count commits that also (partially) surface via that mirror."
+    },
+    "augment-intent-properties": {
+      "display_name": "augment-intent-properties",
+      "status": "excluded",
+      "added": "2026-09-04",
+      "note": "Private repo, but has a public-preview/public mirror already scanned by the normal public table. Adding the raw private history here too would double-count commits that also (partially) surface via that mirror."
+    },
+    "aunt-harriot": {
+      "display_name": "aunt-harriot",
+      "status": "excluded",
+      "added": "2026-09-04",
+      "note": "Private repo, but has a public-preview/public mirror already scanned by the normal public table. Adding the raw private history here too would double-count commits that also (partially) surface via that mirror."
+    },
+    "david-amaringo": {
+      "display_name": "david-amaringo",
+      "status": "excluded",
+      "added": "2026-09-04",
+      "note": "Private repo, but has a public-preview/public mirror already scanned by the normal public table. Adding the raw private history here too would double-count commits that also (partially) surface via that mirror."
+    },
+    "divorce-custody-assistant": {
+      "display_name": "divorce-custody-assistant",
+      "status": "excluded",
+      "added": "2026-09-04",
+      "note": "Private repo, but has a public-preview/public mirror already scanned by the normal public table. Adding the raw private history here too would double-count commits that also (partially) surface via that mirror."
+    },
+    "dpnelson": {
+      "display_name": "dpnelson",
+      "status": "excluded",
+      "added": "2026-09-04",
+      "note": "Private repo, but has a public-preview/public mirror already scanned by the normal public table. Adding the raw private history here too would double-count commits that also (partially) surface via that mirror."
+    },
+    "findyourfeathers": {
+      "display_name": "findyourfeathers",
+      "status": "excluded",
+      "added": "2026-09-04",
+      "note": "Private repo, but has a public-preview/public mirror already scanned by the normal public table. Adding the raw private history here too would double-count commits that also (partially) surface via that mirror."
+    },
+    "iamoneself": {
+      "display_name": "iamoneself",
+      "status": "excluded",
+      "added": "2026-09-04",
+      "note": "Private repo, but has a public-preview/public mirror already scanned by the normal public table. Adding the raw private history here too would double-count commits that also (partially) surface via that mirror."
+    },
+    "littlebird-ambassador": {
+      "display_name": "littlebird-ambassador",
+      "status": "excluded",
+      "added": "2026-09-04",
+      "note": "Private repo, but has a public-preview/public mirror already scanned by the normal public table. Adding the raw private history here too would double-count commits that also (partially) surface via that mirror."
+    },
+    "pir-devine-news": {
+      "display_name": "pir-devine-news",
+      "status": "excluded",
+      "added": "2026-09-04",
+      "note": "Private repo, but has a public-preview/public mirror already scanned by the normal public table. Adding the raw private history here too would double-count commits that also (partially) surface via that mirror."
+    },
+    "tax-assistant": {
+      "display_name": "tax-assistant",
+      "status": "excluded",
+      "added": "2026-09-04",
+      "note": "Private repo, but has a public-preview/public mirror already scanned by the normal public table. Adding the raw private history here too would double-count commits that also (partially) surface via that mirror."
+    },
+    "trading-assistant": {
+      "display_name": "trading-assistant",
+      "status": "excluded",
+      "added": "2026-09-04",
+      "note": "Private repo, but has a public-preview/public mirror already scanned by the normal public table. Adding the raw private history here too would double-count commits that also (partially) surface via that mirror."
+    },
+    "wilson-lawn-ai-assist": {
+      "display_name": "wilson-lawn-ai-assist",
+      "status": "excluded",
+      "added": "2026-09-04",
+      "note": "Private repo, but has a public-preview/public mirror already scanned by the normal public table. Adding the raw private history here too would double-count commits that also (partially) surface via that mirror."
+    },
+    "dappu-gratitude-token-project": {
+      "display_name": "gratitude-token-project",
+      "status": "excluded",
+      "added": "2026-09-04",
+      "note": "Private repo, but has a public-preview/public mirror already scanned by the normal public table. Adding the raw private history here too would double-count commits that also (partially) surface via that mirror."
+    },
+    "dappu-gratitude-token-project_astro": {
+      "display_name": "gratitude-token-project_astro",
+      "status": "excluded",
+      "added": "2026-09-04",
+      "note": "Private repo, but has a public-preview/public mirror already scanned by the normal public table. Adding the raw private history here too would double-count commits that also (partially) surface via that mirror."
     }
   }
 }

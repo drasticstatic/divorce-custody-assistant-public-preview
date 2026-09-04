@@ -77,6 +77,16 @@ _Commits this week:_ 22 · _Hours-equiv:_ 104 · _Actions-equiv:_ 0
 | 2026-04-10 | Product Management | Reformat Apr 10 live updates with tables; add /buddy to pending tasks | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/ec40fc861e4f91de9f74def3264b9e6c22e40754 | 4 hrs (Hours (product management / startup labor)) |
 | 2026-04-10 | Retraining Milestone | Add Apr 10 daily review: CPI Friday, no fills, ZTH 2R lesson | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/eb875fa4351ed110fa96f560f957015ecee6dbed | 4 hrs (Hours (vocational schooling / curriculum)) |
 
+#### Private Work (Attested, Not Independently Verifiable)
+
+Real work in repos that are private by design and never mirrored publicly, so no commit link can resolve for them. Rows below use the same category rubric and message sanitization as the public table above, and each names its real local commit SHA — a git-verifiable attestation the account owner can produce the underlying commit for on request — but not a link a reader can independently follow the way a public row's github.com URL can.
+
+| Date | Category | Activity / Description | Attestation (repo — local commit SHA) | Equivalence |
+|---|---|---|---|---|
+| 2026-04-09 | Product Management | Algebra/Camelot support, PRICE_UNITS=6, perp symbol fix, 0.3% threshold | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`8d5c8c6` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-04-10 | Beta-Testing & Calibration | feat: add Flashbots private mempool support for MEV protection | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`421cf83` (local, not on github.com) | 5 hrs (Hours (product development / startup labor)) |
+| 2026-04-10 | Product Management | docs: add Q&A section to RUNBOOK covering pre-mainnet checklist | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`b54aa32` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+
 ---
 
 ## Week of 2026-04-13 → 2026-04-19
@@ -166,6 +176,14 @@ _Commits this week:_ 77 · _Hours-equiv:_ 361 · _Actions-equiv:_ 10
 | 2026-04-18 | Technical Outreach | Add favicon, OG social card SVGs, and Open Graph meta tags | **dev-recruitment-safeguards**<br>https://github.com/drasticstatic/dev-recruitment-safeguards/commit/d4236b33517e4a8e251483c6c7c23bfe9072d1f7 | 2 hrs / 2 action (Actions (direct business lead generation)) |
 | 2026-04-18 | Technical Outreach | Center-align right panel of og-image.svg at x=834 | **dev-recruitment-safeguards**<br>https://github.com/drasticstatic/dev-recruitment-safeguards/commit/03a83b41f11806b74db267f0c8087d2c8a0050d7 | 2 hrs / 2 action (Actions (direct business lead generation)) |
 | 2026-04-18 | Technical Outreach | Add compressed PNGs for og:image, favicon, and apple-touch-icon | **dev-recruitment-safeguards**<br>https://github.com/drasticstatic/dev-recruitment-safeguards/commit/87a9797529ab5c4536cd4be6db6b98437bd20da4 | 2 hrs / 2 action (Actions (direct business lead generation)) |
+
+#### Private Work (Attested, Not Independently Verifiable)
+
+Real work in repos that are private by design and never mirrored publicly, so no commit link can resolve for them. Rows below use the same category rubric and message sanitization as the public table above, and each names its real local commit SHA — a git-verifiable attestation the account owner can produce the underlying commit for on request — but not a link a reader can independently follow the way a public row's github.com URL can.
+
+| Date | Category | Activity / Description | Attestation (repo — local commit SHA) | Equivalence |
+|---|---|---|---|---|
+| 2026-04-19 | Code Deployment | docs: update pending-tasks with V1 milestone, deploy checklist, and Rust/Alloy/REVM research summary | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`ff0e9dd` (local, not on github.com) | 6 hrs (Hours (technical portfolio build)) |
 
 ---
 
@@ -420,6 +438,22 @@ _Commits this week:_ 173 · _Hours-equiv:_ 771 · _Actions-equiv:_ 8
 | 2026-05-03 | Code Deployment | Suppress unsupported-network alert on GH Pages demo | **crowdsale**<br>https://github.com/drasticstatic/crowdsale/commit/b5d6bd4a4ab1843e851ccc1041360c9e6e783ee0 | 6 hrs (Hours (technical portfolio build)) |
 | 2026-05-03 | Code Deployment | Add GH Pages demo mode: inject seed proposals, fix wallet connect | **dao**<br>https://github.com/drasticstatic/dao/commit/e148e39571f5c201746325a3dc72a6575f500bbc | 6 hrs (Hours (technical portfolio build)) |
 | 2026-05-03 | Code Deployment | Force page reload on wallet connect/disconnect on GH Pages | **dao**<br>https://github.com/drasticstatic/dao/commit/9a84d7d540098d673316d42695002bc8cd4d90f1 | 6 hrs (Hours (technical portfolio build)) |
+
+#### Private Work (Attested, Not Independently Verifiable)
+
+Real work in repos that are private by design and never mirrored publicly, so no commit link can resolve for them. Rows below use the same category rubric and message sanitization as the public table above, and each names its real local commit SHA — a git-verifiable attestation the account owner can produce the underlying commit for on request — but not a link a reader can independently follow the way a public row's github.com URL can.
+
+| Date | Category | Activity / Description | Attestation (repo — local commit SHA) | Equivalence |
+|---|---|---|---|---|
+| 2026-05-02 | Product Management | Fix blob-callback: remove undefined filename var, tighten markers | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`f52226a` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-05-02 | Product Management | Add --blob-callback to scrub private README.md content from git history | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`d97a305` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-05-02 | Code Deployment | Fix deploy: outDir build not dist; push HEAD:main for inject commit | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`7f226ed` (local, not on github.com) | 6 hrs (Hours (technical portfolio build)) |
+| 2026-05-02 | Beta-Testing & Calibration | Fix: add .env.example to public allowlist + filter-repo path list | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`42d2045` (local, not on github.com) | 5 hrs (Hours (product development / startup labor)) |
+| 2026-05-02 | Product Management | Switch sync to allowlist model + message-callback to scrub private refs | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`860a388` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-05-02 | Code Deployment | Add PROGRESS.md/package exclusions, deploy.yml injection, preview link | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`b3c1bfc` (local, not on github.com) | 6 hrs (Hours (technical portfolio build)) |
+| 2026-05-02 | Audit / Education | Clean public sync: exclude contracts/test/ignition from public repo, rewrite README | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`70920a2` (local, not on github.com) | 3 hrs (Hours (professional performance review)) |
+| 2026-05-02 | Code Deployment | feat: add MIT license badge, sync-public workflow, gitexporter config, sanitized config.example.json | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`1f7646a` (local, not on github.com) | 6 hrs (Hours (technical portfolio build)) |
+| 2026-05-02 | Beta-Testing & Calibration | Add LICENSE, SECURITY.md, CONTRIBUTING.md, and Dependabot config | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`81a6a80` (local, not on github.com) | 5 hrs (Hours (product development / startup labor)) |
 
 ---
 

@@ -4,7 +4,7 @@ _Part of the full Exhibit 4 — [table of contents](https://github.com/drasticst
  · [public-preview homepage](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/)_
 
 **Reporting month:** September 2026  
-**Commits this month:** 151 · **Hours-equiv:** 722 · **Actions-equiv:** 14
+**Commits this month:** 155 · **Hours-equiv:** 745 · **Actions-equiv:** 14
 
 ---
 
@@ -12,7 +12,7 @@ _Part of the full Exhibit 4 — [table of contents](https://github.com/drasticst
 
 **Compliance target (context):** 8 attributable actions/week
 
-_Commits this week:_ 151 · _Hours-equiv:_ 722 · _Actions-equiv:_ 14
+_Commits this week:_ 155 · _Hours-equiv:_ 745 · _Actions-equiv:_ 14
 
 ### Weekly Vocational Activity & Work-Search & Effort Report
 
@@ -167,14 +167,43 @@ _Commits this week:_ 151 · _Hours-equiv:_ 722 · _Actions-equiv:_ 14
 | 2026-09-04 | Product Management | Skill: document the exact TopOne CSV reshape recipe, archive BTCC Numbers template | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/78163e53fbf8aeafbcb70cd3398185d5f5727d27 | 4 hrs (Hours (product management / startup labor)) |
 | 2026-09-04 | Audit / Education | pattern_tracker.md: Links to individual reviews as a year/month accordion | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/e3290d05c0651ae7cab57ee892bcc08cb70f1371 | 3 hrs (Hours (professional performance review)) |
 | 2026-09-04 | Risk Evaluation | Archive the last 206 unprocessed screenshots to data/screenshots/ | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/b1c989c0ca3c786accdf8f93178fd15a78ab0535 | 8 hrs (Hours (prop firm combine / risk audit)) |
+| 2026-09-04 | Audit / Education | Add Exhibit 4 privateWitness lane: named, allowlist-controlled private-repo attestation | **divorce-custody-assistant-public-preview**<br>https://github.com/drasticstatic/divorce-custody-assistant-public-preview/commit/a4d064fc23521d3f247262ed9f3fc29d1900a98d | 3 hrs (Hours (professional performance review)) |
 | 2026-09-04 | Audit / Education | pattern_tracker.md: bigger/link-styled accordion markers, dropdown the technical trade log, sync 8 new trades | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/0a32a3b765bfc1979f7161bce4df56522508f4e1 | 3 hrs (Hours (professional performance review)) |
 | 2026-09-04 | Product Management | Accordion: whole summary line clickable again; log 3 Apex open positions in PENDING-TASKS | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/be03b96aa663b44532105d5b9bba82eb0ee1a311 | 4 hrs (Hours (product management / startup labor)) |
+| 2026-09-04 | Risk Evaluation | Live-results carousel, pill restructuring, and Apex claim fix | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/d27fccedc4c9a28f9c8d39c5f13e66935dc0570e | 8 hrs (Hours (prop firm combine / risk audit)) |
+| 2026-09-04 | Product Management | tweak tradecopia bento langauge on community page to remove last word wrapping into row and making conatiner height different that tradesyncer & fcr_case_study.md footer link | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/1928823c1a81f16db3469f1fd799b83b1859e83f | 4 hrs (Hours (product management / startup labor)) |
+| 2026-09-04 | Risk Evaluation | copy-trading.html: reposition Live Results carousel after the daily-review card | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/3b90d7b07307da1a1da92c3b81ca528f46d4a06a | 8 hrs (Hours (prop firm combine / risk audit)) |
 
 #### Private Work (Attested, Not Independently Verifiable)
 
-Real work in repos that are private by design and never mirrored publicly, so no commit link can resolve for them. Named repo and commit count/date only — no message, diff, or content is read or shown. Kept separate from the table above on purpose: those rows each resolve to a real github.com URL; these do not, and are not claimed to.
+Real work in repos that are private by design and never mirrored publicly, so no commit link can resolve for them. Rows below use the same category rubric and message sanitization as the public table above, and each names its real local commit SHA — a git-verifiable attestation the account owner can produce the underlying commit for on request — but not a link a reader can independently follow the way a public row's github.com URL can.
 
-- **Mystarch** — 19 commits
+| Date | Category | Activity / Description | Attestation (repo — local commit SHA) | Equivalence |
+|---|---|---|---|---|
+| 2026-08-31 | Product Management | docs: add Mystarch pointer handoff | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`6fe355f` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-08-31 | Product Management | Reorganize repo: PRIVATE status, AGENT-SYNC restructure, flashloan boilerplate, perp-DEX helpers | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`f3125fb` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-09-01 | Product Management | PENDING-TASKS: add iCloud-backed git-clone pipeline entry (cross-repo, from Fortuna) | **Mystarch**<br>`f86211e` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-09-01 | Product Management | Update PENDING-TASKS.md to reflect that __chief__ is now git-tracked | **Mystarch**<br>`9c8ca88` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-09-01 | Product Management | Initial commit: Mystarch Chief of Staff coordination repo | **Mystarch**<br>`9f2f1de` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-09-02 | Product Management | CLAUDE.md: add Auggie/AugmentCLI line for full-scenario completeness | **Mystarch**<br>`21e05fd` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-09-02 | Product Management | Handoff from Alfred: fleet-wide commit-footer convention redesign | **Mystarch**<br>`175e4da` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-09-02 | Product Management | CLAUDE.md: redesign commit-footer convention — Agent · Engine · Model | **Mystarch**<br>`659c846` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-09-02 | Product Management | CLAUDE.md: add commit-footer attribution convention (fleet-wide checkpoint) | **Mystarch**<br>`eebae06` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-09-02 | Product Management | Append: testPublish README polish done + deployTest.sh automation observation | **Mystarch**<br>`9c74e35` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-09-02 | Product Management | Append correction: application decides created-by-*, not path | **Mystarch**<br>`993d5a2` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-09-02 | Product Management | Handoff from Alfred: /code fallback organization + jsonl attribution convention | **Mystarch**<br>`043331e` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-09-02 | Product Management | README overhaul: badges row, TOC, iamoneself-style formatting | **Mystarch**<br>`4a1cfba` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-09-02 | Product Management | Move handoff into AGENT-SYNC/created-by-mystarch; complete created-by-* skeleton | **Mystarch**<br>`09391dc` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-09-02 | Product Management | Handoff from Alfred: augment-intent-properties repos created | **Mystarch**<br>`bd0ee2d` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-09-02 | Product Management | Merge remote-tracking branch 'origin/main' into main | **Mystarch**<br>`6fc69e1` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-09-02 | Product Management | Add graphify: .graphifyignore + Claude Code hook install | **Mystarch**<br>`144d004` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-09-02 | Product Management | Checkpoint: commit pre-existing uncommitted Mystarch/Chief-of-Staff scaffolding | **Mystarch**<br>`41deb1e` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-09-02 | Product Management | CLAUDE.md: add Auggie/AugmentCLI line for full-scenario completeness | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`aff35cb` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-09-02 | Product Management | CLAUDE.md: redesign commit-footer convention — Agent · Engine · Model (Intent-paired) | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`14cc660` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-09-02 | Product Management | CLAUDE.md: add commit-footer attribution convention (fleet-wide checkpoint) | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`c4eeeb7` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-09-03 | Product Management | PENDING-TASKS.md: log [private project] + aunt-harriot repo creation, ACP/Auggie finding | **Mystarch**<br>`2343a76` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-09-03 | Audit / Education | Resume from code/ clone: verify + close doc-sync queue, document ws.app-reach limit | **Mystarch**<br>`9088b7d` (local, not on github.com) | 3 hrs (Hours (professional performance review)) |
+| 2026-09-03 | Product Management | Sync PENDING-TASKS.md and ACP-fallback handoff before switching to code/ clone | **Mystarch**<br>`c072419` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
 
 ---
 
