@@ -76,6 +76,23 @@ directly, not Kavanah (see `CLAUDE.md`'s agent-roster section).
 
 ## Step 4 — Push
 
+**First, check the commit messages themselves** — not just file contents. On
+2026-09-04 a commit's own message body named a repo Christopher had asked to
+keep unnamed; it touched a publicly-synced path, so the full message went
+live on the public mirror even though every file involved was written
+carefully. `sanitize_message()` scrubs exhibit *content*, but nothing checked
+the commit message artifact itself until now:
+
+```bash
+python3 vocational-compliance/check_commit_messages.py
+```
+
+If this exits non-zero, **stop — do not push.** It names the offending
+commit(s) and term(s); fix with `git rebase -i` (reword), don't skip this
+check as a shortcut. It only checks commits between `origin/main` and `HEAD`,
+so it's fast and safe to run before every push, not just when something
+seems risky.
+
 ```bash
 git push origin HEAD:main
 ```
@@ -84,6 +101,8 @@ If push fails (remote ahead):
 ```bash
 git pull --rebase origin main && git push origin HEAD:main
 ```
+Re-run the commit-message check after any rebase — new commit SHAs mean the
+check hasn't seen them yet.
 
 ---
 
@@ -140,10 +159,10 @@ Update agent sync [date]
 Co-Authored-By: [agent] · [engine] · [model]
 EOF
 )"
-git push origin main
+python3 vocational-compliance/check_commit_messages.py && git push origin main
 ```
 
-Same footer note as Step 3 — pull the current format from `CLAUDE.md`, don't hardcode it here.
+Same footer note as Step 3 — pull the current format from `CLAUDE.md`, don't hardcode it here. Same commit-message check as Step 4 — this is a second, separate commit, so it needs its own check.
 
 ---
 
