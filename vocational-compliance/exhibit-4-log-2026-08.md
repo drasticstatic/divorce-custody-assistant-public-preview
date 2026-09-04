@@ -4,7 +4,7 @@ _Part of the full Exhibit 4 — [table of contents](https://github.com/drasticst
  · [public-preview homepage](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/)_
 
 **Reporting month:** August 2026  
-**Commits this month:** 151 · **Hours-equiv:** 687 · **Actions-equiv:** 32
+**Commits this month:** 152 · **Hours-equiv:** 691 · **Actions-equiv:** 32
 
 ---
 
@@ -50,7 +50,7 @@ _Commits this week:_ 8 · _Hours-equiv:_ 32 · _Actions-equiv:_ 0
 
 **Compliance target (context):** 8 attributable actions/week
 
-_Commits this week:_ 70 · _Hours-equiv:_ 298 · _Actions-equiv:_ 28
+_Commits this week:_ 69 · _Hours-equiv:_ 294 · _Actions-equiv:_ 28
 
 ### Weekly Vocational Activity & Work-Search & Effort Report
 
@@ -117,7 +117,6 @@ _Commits this week:_ 70 · _Hours-equiv:_ 298 · _Actions-equiv:_ 28
 | 2026-08-22 | Product Management | docs: rename GitExporter badge/prose to GitHub Actions (GitExporter-inspired) | **divorce-custody-assistant-public-preview**<br>https://github.com/drasticstatic/divorce-custody-assistant-public-preview/commit/90358d7512c22fc48e5bca5114171f177667c071 | 4 hrs (Hours (product management / startup labor)) |
 | 2026-08-22 | Product Management | docs: rename GitExporter badge/prose to GitHub Actions (GitExporter-inspired) | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/6417723b6516d25986f0a19a36c4b2e60aea8aeb | 4 hrs (Hours (product management / startup labor)) |
 | 2026-08-22 | Product Management | docs: rename GitExporter badge/prose to GitHub Actions (GitExporter-inspired) | **pir-devine-news-public**<br>https://github.com/drasticstatic/pir-devine-news-public/commit/b01d9f617318f9174e7b65b3e07407341b9b242a | 4 hrs (Hours (product management / startup labor)) |
-| 2026-08-22 | Product Management | sync: restore live data.json | **pir-devine-news-public**<br>https://github.com/drasticstatic/pir-devine-news-public/commit/7846f74233ec7e4cdeb47bf3efe3793dc709564b | 4 hrs (Hours (product management / startup labor)) |
 | 2026-08-22 | Product Management | docs: rename GitExporter badge/prose to GitHub Actions (GitExporter-inspired) | **anthropas-argus-alfred-public-preview**<br>https://github.com/drasticstatic/anthropas-argus-alfred-public-preview/commit/84ac5924708ec266464a9c52859080ee2f194904 | 4 hrs (Hours (product management / startup labor)) |
 | 2026-08-22 | Risk Evaluation | progression 2026-08-22 — gallery overhaul: ribbon, full lightbox, autoplay, Prop Firm section | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/1bb6ba8d4d10f54205ca3bc9f2133b6ac7aa156f | 8 hrs (Hours (prop firm combine / risk audit)) |
 | 2026-08-22 | Retraining Milestone | progression 2026-08-22 — STB sidebar: full-length growth, pinned Back to hub | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/2efc6deaade33e5995ffb99592daaa58796b52af | 4 hrs (Hours (vocational schooling / curriculum)) |
@@ -133,7 +132,7 @@ _Commits this week:_ 70 · _Hours-equiv:_ 298 · _Actions-equiv:_ 28
 
 **Compliance target (context):** 8 attributable actions/week
 
-_Commits this week:_ 69 · _Hours-equiv:_ 340 · _Actions-equiv:_ 2
+_Commits this week:_ 71 · _Hours-equiv:_ 348 · _Actions-equiv:_ 2
 
 ### Weekly Vocational Activity & Work-Search & Effort Report
 
@@ -208,6 +207,8 @@ _Commits this week:_ 69 · _Hours-equiv:_ 340 · _Actions-equiv:_ 2
 | 2026-08-30 | Product Management | Merge remote-tracking branch 'intent-workspace/ground-repo-context' | **resume**<br>https://github.com/drasticstatic/resume/commit/c2b8bb98f85976a7e00703e8f8ddd001dbc200fa | 4 hrs (Hours (product management / startup labor)) |
 | 2026-08-30 | Retraining Milestone | Add Intent workspace <-> local worktree legend, link from GRAPHIFY_SETUP.md | **anthropas-argus-alfred-public-preview**<br>https://github.com/drasticstatic/anthropas-argus-alfred-public-preview/commit/9743add6e74f40369eabd04ddce50c8fcf34ae7a | 4 hrs (Hours (vocational schooling / curriculum)) |
 | 2026-08-30 | Beta-Testing & Calibration | Cross-link legend/GRAPHIFY_SETUP.md, fix docs-repo divergence in legend, land FREE_MODEL_SETUP.md updates | **anthropas-argus-alfred-public-preview**<br>https://github.com/drasticstatic/anthropas-argus-alfred-public-preview/commit/343e866884e69444267449af7ef0bbbf007029f0 | 5 hrs (Hours (product development / startup labor)) |
+| 2026-08-30 | Product Management | Regenerate Exhibit 4 through 2026-08-30 | **divorce-custody-assistant-public-preview**<br>https://github.com/drasticstatic/divorce-custody-assistant-public-preview/commit/d93be51beab10f575d5227b2752dc81820adc654 | 4 hrs (Hours (product management / startup labor)) |
+| 2026-08-30 | Product Management | Log 2026-08-30 NIM outage: total failure incl. kimi-k2.6 retry, Intent failover to Anthropic | **anthropas-argus-alfred-public-preview**<br>https://github.com/drasticstatic/anthropas-argus-alfred-public-preview/commit/548e518203f393f6cae676348d939db8db733d78 | 4 hrs (Hours (product management / startup labor)) |
 
 ---
 

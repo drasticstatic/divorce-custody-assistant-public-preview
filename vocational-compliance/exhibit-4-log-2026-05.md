@@ -4,7 +4,7 @@ _Part of the full Exhibit 4 — [table of contents](https://github.com/drasticst
  · [public-preview homepage](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/)_
 
 **Reporting month:** May 2026  
-**Commits this month:** 268 · **Hours-equiv:** 1167 · **Actions-equiv:** 8
+**Commits this month:** 271 · **Hours-equiv:** 1179 · **Actions-equiv:** 8
 
 ---
 
@@ -12,7 +12,7 @@ _Part of the full Exhibit 4 — [table of contents](https://github.com/drasticst
 
 **Compliance target (context):** 8 attributable actions/week
 
-_Commits this week:_ 240 · _Hours-equiv:_ 1031 · _Actions-equiv:_ 8
+_Commits this week:_ 243 · _Hours-equiv:_ 1043 · _Actions-equiv:_ 8
 
 ### Weekly Vocational Activity & Work-Search & Effort Report
 
@@ -141,6 +141,7 @@ _Commits this week:_ 240 · _Hours-equiv:_ 1031 · _Actions-equiv:_ 8
 | 2026-05-08 | Product Management | hover animation-duration + top,left,width,height of .pillar.capability.agent before | **anthropas-argus-alfred-public-preview**<br>https://github.com/drasticstatic/anthropas-argus-alfred-public-preview/commit/614a68fa91e16473d4b9a355159338c35b6718b4 | 4 hrs (Hours (product management / startup labor)) |
 | 2026-05-08 | Product Management | .card before/after translucency and hover effects | **anthropas-argus-alfred-public-preview**<br>https://github.com/drasticstatic/anthropas-argus-alfred-public-preview/commit/e3136cc333cd7ae881b7469fb1922d40683e6bba | 4 hrs (Hours (product management / startup labor)) |
 | 2026-05-08 | Product Management | Add .claudeignore — belt-and-suspenders secrets, deps, build, media exclusions | **amm**<br>https://github.com/drasticstatic/amm/commit/0da9ec962fe870ebdb9cd107945ef9d8a83f11a6 | 4 hrs (Hours (product management / startup labor)) |
+| 2026-05-08 | Retraining Milestone | Add .claudeignore — belt-and-suspenders secrets, deps, build, media exclusions | **blockchain-developer-bootcamp**<br>https://github.com/drasticstatic/blockchain-developer-bootcamp/commit/31f492ef298121000c3c59956b54bd85c3bd7e15 | 4 hrs (Hours (vocational schooling / curriculum)) |
 | 2026-05-08 | Product Management | Add .claudeignore — belt-and-suspenders secrets, deps, build, media exclusions | **crowdsale**<br>https://github.com/drasticstatic/crowdsale/commit/66b3befea93f0e4442893b4ed5f8b26cac169e03 | 4 hrs (Hours (product management / startup labor)) |
 | 2026-05-08 | Product Management | Add .claudeignore — belt-and-suspenders secrets, deps, build, media exclusions | **dao**<br>https://github.com/drasticstatic/dao/commit/36b721eadd246f78407ea95243eb24a539dccdf9 | 4 hrs (Hours (product management / startup labor)) |
 | 2026-05-08 | Technical Outreach | Add .claudeignore — belt-and-suspenders secrets, deps, build, media exclusions | **dev-recruitment-safeguards**<br>https://github.com/drasticstatic/dev-recruitment-safeguards/commit/e0b24c49d70073dec35bb612a4da3d332325de2f | 2 hrs / 2 action (Actions (direct business lead generation)) |
@@ -244,6 +245,7 @@ _Commits this week:_ 240 · _Hours-equiv:_ 1031 · _Actions-equiv:_ 8
 | 2026-05-10 | Product Management | Update .gitignore: add graphify output entries | **my-template**<br>https://github.com/drasticstatic/my-template/commit/9501050ccbe69523162ade74c3aab1ac267f0503 | 4 hrs (Hours (product management / startup labor)) |
 | 2026-05-10 | Product Management | Update .gitignore: add graphify output entries | **TradeZella_STB**<br>https://github.com/drasticstatic/TradeZella_STB/commit/1637f121a7292f521499b74b11d759f99bdde903 | 4 hrs (Hours (product management / startup labor)) |
 | 2026-05-10 | Product Management | Update .gitignore: add graphify output entries | **amm**<br>https://github.com/drasticstatic/amm/commit/3ce72333f5dfb2af47df282ef1c138c311c53f2e | 4 hrs (Hours (product management / startup labor)) |
+| 2026-05-10 | Retraining Milestone | Update .gitignore: add graphify output entries | **blockchain-developer-bootcamp**<br>https://github.com/drasticstatic/blockchain-developer-bootcamp/commit/d04a13652e39a972be2c5c1e080196e9699eea73 | 4 hrs (Hours (vocational schooling / curriculum)) |
 | 2026-05-10 | Product Management | Update .gitignore: add graphify output entries | **crowdsale**<br>https://github.com/drasticstatic/crowdsale/commit/fa9a36bdb2ad762755517c7a8320d33ecdea804f | 4 hrs (Hours (product management / startup labor)) |
 | 2026-05-10 | Product Management | Update .gitignore: add graphify output entries | **dao**<br>https://github.com/drasticstatic/dao/commit/ffb9dd006c57a018d826c52a1bf7617688962498 | 4 hrs (Hours (product management / startup labor)) |
 | 2026-05-10 | Technical Outreach | Update .gitignore: add graphify output entries | **dev-recruitment-safeguards**<br>https://github.com/drasticstatic/dev-recruitment-safeguards/commit/062607b0c1600f81da2f303b0cc26189cd699879 | 2 hrs / 2 action (Actions (direct business lead generation)) |
@@ -251,6 +253,7 @@ _Commits this week:_ 240 · _Hours-equiv:_ 1031 · _Actions-equiv:_ 8
 | 2026-05-10 | Product Management | Update .gitignore: add graphify output entries | **hardhat_example**<br>https://github.com/drasticstatic/hardhat_example/commit/05a05b9e62cde7fa02712eda80fa1053776d702f | 4 hrs (Hours (product management / startup labor)) |
 | 2026-05-10 | Product Management | Update .gitignore: add graphify output entries | **nft_dappu-punks**<br>https://github.com/drasticstatic/nft_dappu-punks/commit/125cbcda61cc539bb4a51a02a052cd2332355030 | 4 hrs (Hours (product management / startup labor)) |
 | 2026-05-10 | Product Management | Update .gitignore: add graphify output entries | **resume**<br>https://github.com/drasticstatic/resume/commit/bcad271d0891c6d74c9c5a036988734f696e165e | 4 hrs (Hours (product management / startup labor)) |
+| 2026-05-10 | Product Management | Update .gitignore: add graphify output entries | **solidity_intensive**<br>https://github.com/drasticstatic/solidity_intensive/commit/4358a047eb2099a2ee948c2cfb825e2169248881 | 4 hrs (Hours (product management / startup labor)) |
 | 2026-05-10 | Product Management | Update startup + session-sync skills: add graphify orientation steps | **anthropas-argus-alfred-public-preview**<br>https://github.com/drasticstatic/anthropas-argus-alfred-public-preview/commit/99aa74fe06f19a8b82a4a93338fa11d74d125661 | 4 hrs (Hours (product management / startup labor)) |
 | 2026-05-10 | Code Deployment | Update .graphifyignore: deploy from template | **my-template**<br>https://github.com/drasticstatic/my-template/commit/00e8e6cfa475d46ce5464c80b796fc9635fdf1f3 | 6 hrs (Hours (technical portfolio build)) |
 | 2026-05-10 | Risk Evaluation | Update create-skill.marp.md: prop-firm-status rename + startup promoted from roadmap | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/214c23dc44bf4e037351c81b41974b6e023d55c1 | 8 hrs (Hours (prop firm combine / risk audit)) |

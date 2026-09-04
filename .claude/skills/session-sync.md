@@ -17,7 +17,19 @@ Never include in commit messages: party names, case numbers, specific allegation
 
 ---
 
-## Step 1 — Check Status and Stage Work
+## Step 1 — Refresh Exhibit 4
+
+Run `/exhibit4-refresh` (see `.claude/skills/exhibit4-refresh.md`) before staging
+anything else. It regenerates `vocational-compliance/exhibit-4*` from live public
+commit history, runs its own privacy verification, and stages the result — or stops
+and reports if that verification fails. Don't skip this even if this session's own
+work didn't touch `vocational-compliance/` — the point is catching commits pushed to
+*other* public repos (trading-assistant, tax-assistant, etc.) since the last regen.
+(A commit-time hook was considered as a second trigger but deliberately not built —
+see `specs/exhibit4-auto-refresh.spec.md` for why. This session-sync step is currently
+the only automated trigger.)
+
+## Step 2 — Check Status and Stage Work
 
 If structural files changed this session, update the knowledge graph first:
 
@@ -40,7 +52,7 @@ Never stage: `sessions/`, `logs/`, `child-support/`, `custody/`, `divorce/`, `*a
 
 ---
 
-## Step 2 — Commit
+## Step 3 — Commit
 
 ```bash
 git commit -m "$(cat <<'EOF'
@@ -49,20 +61,20 @@ Brief structural description — no names, case numbers, or identifying details
 - What changed structurally
 - Why it changed
 
-Co-Authored-By: [agent] · Claude · [model] <noreply@anthropic.com>
+Co-Authored-By: [agent] · [engine] · [model]
 EOF
 )"
 ```
 
-Replace `[agent]` and `[model]` with the active session values:
-- Alfred-Anthropic (Sonnet): `Alfred · Claude · claude-sonnet-4-6 <noreply@anthropic.com>`
-- Alfred-Anthropic (Opus): `Alfred · Claude · claude-opus-4-7 <noreply@anthropic.com>`
-- Fortuna-Anthropic (Sonnet): `Fortuna · Claude · claude-sonnet-4-6 <noreply@anthropic.com>`
-- Alfred-NIM: `Alfred · Claude · NVIDIA NIM Z-AI GLM-4.7 <noreply@anthropic.com>`
+Footer format is `Agent · Engine · Model` — see this repo's own `CLAUDE.md` ("Commit footer" line) for
+the current values. Don't hardcode examples here; they drifted out of sync with `CLAUDE.md` once
+already (dropped the `<noreply@anthropic.com>` tail, `Claude` → `ClaudeCodeCLI`, 2026-09-02) and a
+second copy in this file is what let that happen unnoticed. This repo is managed by Alfred + Fortuna
+directly, not Kavanah (see `CLAUDE.md`'s agent-roster section).
 
 ---
 
-## Step 3 — Push
+## Step 4 — Push
 
 ```bash
 git push origin HEAD:main
@@ -75,7 +87,7 @@ git pull --rebase origin main && git push origin HEAD:main
 
 ---
 
-## Step 4 — Update AGENT_SYNC.md (every sync)
+## Step 5 — Update AGENT_SYNC.md (every sync)
 
 Append to `AGENT-SYNC/AGENT_SYNC.md`:
 
@@ -89,7 +101,7 @@ Append to `AGENT-SYNC/AGENT_SYNC.md`:
 
 ---
 
-## Step 5 — Backup Session JSONL (if small enough)
+## Step 6 — Backup Session JSONL (if small enough)
 
 ```bash
 PROJ="$HOME/.claude/projects/-Users-christopherwilson-code-divorce-custody-assistant"
@@ -103,7 +115,7 @@ SIZE=$(stat -f%z "$LATEST" 2>/dev/null)
 
 ---
 
-## Step 6 — Session Log (local only — gitignored)
+## Step 7 — Session Log (local only — gitignored)
 
 Path: `logs/{agent}/2026/05-May/session_YYYYMMDD_{anthropic|nvidia}.md`
 
@@ -118,18 +130,20 @@ Session logs are **never committed** in this repo (privacy). Local only.
 
 ---
 
-## Step 7 — Final Push
+## Step 8 — Final Push
 
 ```bash
 git add AGENT-SYNC/
 git commit -m "$(cat <<'EOF'
 Update agent sync [date]
 
-Co-Authored-By: [agent] · Claude · [model] <noreply@anthropic.com>
+Co-Authored-By: [agent] · [engine] · [model]
 EOF
 )"
 git push origin main
 ```
+
+Same footer note as Step 3 — pull the current format from `CLAUDE.md`, don't hardcode it here.
 
 ---
 
