@@ -4,7 +4,7 @@ _Part of the full Exhibit 4 — [table of contents](https://github.com/drasticst
  · [public-preview homepage](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/)_
 
 **Reporting month:** September 2026  
-**Commits this month:** 143 · **Hours-equiv:** 689 · **Actions-equiv:** 14
+**Commits this month:** 151 · **Hours-equiv:** 722 · **Actions-equiv:** 14
 
 ---
 
@@ -12,7 +12,7 @@ _Part of the full Exhibit 4 — [table of contents](https://github.com/drasticst
 
 **Compliance target (context):** 8 attributable actions/week
 
-_Commits this week:_ 143 · _Hours-equiv:_ 689 · _Actions-equiv:_ 14
+_Commits this week:_ 151 · _Hours-equiv:_ 722 · _Actions-equiv:_ 14
 
 ### Weekly Vocational Activity & Work-Search & Effort Report
 
@@ -161,11 +161,25 @@ _Commits this week:_ 143 · _Hours-equiv:_ 689 · _Actions-equiv:_ 14
 | 2026-09-04 | Product Management | Archive 2 screenshots from _Screenshots-2B-filed_new_again | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/87e9d89d0d4d4b67a2dabb3cd411109139a89214 | 4 hrs (Hours (product management / startup labor)) |
 | 2026-09-04 | Audit / Education | TradeZella/ subfolder + import-trades skill: hash-verify, gallery.html sync step, GitHub-canonical | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/850cda35fd6f3a62b18ea77465ca2d546d4ec5f3 | 3 hrs (Hours (professional performance review)) |
 | 2026-09-04 | Product Management | Build CSV-driven 433-F architecture: private data, structurally-blind public template | **tax-assistant-public-preview**<br>https://github.com/drasticstatic/tax-assistant-public-preview/commit/1ac11db0309588bb9ef64672d4923566317b46e7 | 4 hrs (Hours (product management / startup labor)) |
+| 2026-09-04 | Audit / Education | Add Exhibit 4 auto-refresh: new skill + spec, wired into session-sync; regenerate through today | **divorce-custody-assistant-public-preview**<br>https://github.com/drasticstatic/divorce-custody-assistant-public-preview/commit/c1b67980228d1b67528d0d56138faedccf441e6e | 3 hrs (Hours (professional performance review)) |
+| 2026-09-04 | Product Management | Skill: document TopOne's real export path (browser copy -> Numbers -> CSV) | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/57f2b5bdf9a798637fc85eafb8a4e7bc1c2ba1e5 | 4 hrs (Hours (product management / startup labor)) |
+| 2026-09-04 | Product Management | Close the CSV gap: 8 new ledger trades, 26 files archived (19 backlog + 7 new), gallery calendar synced | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/44114c10c595697d7a410bbcc83a499e3ab726e7 | 4 hrs (Hours (product management / startup labor)) |
+| 2026-09-04 | Product Management | Skill: document the exact TopOne CSV reshape recipe, archive BTCC Numbers template | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/78163e53fbf8aeafbcb70cd3398185d5f5727d27 | 4 hrs (Hours (product management / startup labor)) |
+| 2026-09-04 | Audit / Education | pattern_tracker.md: Links to individual reviews as a year/month accordion | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/e3290d05c0651ae7cab57ee892bcc08cb70f1371 | 3 hrs (Hours (professional performance review)) |
+| 2026-09-04 | Risk Evaluation | Archive the last 206 unprocessed screenshots to data/screenshots/ | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/b1c989c0ca3c786accdf8f93178fd15a78ab0535 | 8 hrs (Hours (prop firm combine / risk audit)) |
+| 2026-09-04 | Audit / Education | pattern_tracker.md: bigger/link-styled accordion markers, dropdown the technical trade log, sync 8 new trades | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/0a32a3b765bfc1979f7161bce4df56522508f4e1 | 3 hrs (Hours (professional performance review)) |
+| 2026-09-04 | Product Management | Accordion: whole summary line clickable again; log 3 Apex open positions in PENDING-TASKS | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/be03b96aa663b44532105d5b9bba82eb0ee1a311 | 4 hrs (Hours (product management / startup labor)) |
+
+#### Private Work (Attested, Not Independently Verifiable)
+
+Real work in repos that are private by design and never mirrored publicly, so no commit link can resolve for them. Named repo and commit count/date only — no message, diff, or content is read or shown. Kept separate from the table above on purpose: those rows each resolve to a real github.com URL; these do not, and are not claimed to.
+
+- **Mystarch** — 19 commits
 
 ---
 
 ## Verification
 
-Each row is traceable to a public commit via its proof link. Sworn verification and signature language rest with the filed memorandum, not this public-facing artifact.
+Each row in the Weekly Vocational Activity table above is traceable to a public commit via its proof link. Rows under "Private Work" are attested by the account owner only — named repo and count/date, no working link, by design (see `privatewitness_scan.py`). Sworn verification and signature language rest with the filed memorandum, not this public-facing artifact.
 
 *This per-month file is regenerated, not hand-edited.*

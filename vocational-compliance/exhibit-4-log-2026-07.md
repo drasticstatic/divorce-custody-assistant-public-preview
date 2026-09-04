@@ -109,6 +109,6 @@ _Commits this week:_ 5 · _Hours-equiv:_ 20 · _Actions-equiv:_ 0
 
 ## Verification
 
-Each row is traceable to a public commit via its proof link. Sworn verification and signature language rest with the filed memorandum, not this public-facing artifact.
+Each row in the Weekly Vocational Activity table above is traceable to a public commit via its proof link. Rows under "Private Work" are attested by the account owner only — named repo and count/date, no working link, by design (see `privatewitness_scan.py`). Sworn verification and signature language rest with the filed memorandum, not this public-facing artifact.
 
 *This per-month file is regenerated, not hand-edited.*

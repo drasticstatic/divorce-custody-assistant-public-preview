@@ -1,0 +1,17 @@
+{
+  "_readme": "Allowlist of private repos surfaced in Exhibit 4's 'Private Work' section. A repo shows up here \u2014 named, with commit COUNTS and DATES only, never commit messages, diffs, or content \u2014 only after being explicitly classified. New repos default to unlisted/excluded until reviewed; see privatewitness_scan.py --scan.",
+  "repos": {
+    "mystarch": {
+      "display_name": "Mystarch",
+      "status": "included",
+      "added": "2026-09-04",
+      "note": "Augment Intent chief-of-staff coordination workspace; private-forever by design, no public mirror. This path is a git worktree of the same repo Christopher originally pointed to (~/intent/workspaces/__chief__) \u2014 using the worktree checkout as the single canonical path to avoid double-registering the same history under two ids."
+    },
+    "mystarch-acp-spoof": {
+      "display_name": "mystarch_chief-of-staff_acp-spoof",
+      "status": "excluded",
+      "added": "2026-09-04",
+      "note": "Test/spoof variant of the mystarch worktree, not distinct vocational work product. Left out rather than partially masked -- the registry's included/excluded model doesn't support a partial-redaction display name, and this looked like the safer default given the name itself."
+    }
+  }
+}

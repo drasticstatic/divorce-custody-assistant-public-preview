@@ -63,6 +63,8 @@ from dataclasses import dataclass, field
 from datetime import datetime, timedelta, timezone
 from urllib.parse import quote
 
+import privatewitness_scan
+
 
 # --------------------------------------------------------------------------- #
 # Configuration
@@ -622,6 +624,12 @@ class Week:
     total_hours: float = 0.0
     total_actions: float = 0.0
     commit_count: int = 0
+    # [(display_name, commit_count), ...] for included private repos this week.
+    # Attested, NOT independently verifiable — see privatewitness_scan.py and the
+    # "Private Work" section this renders into, kept visually separate from the
+    # public-commit-linked rows above so the honesty contract for THOSE rows
+    # (every one traces to a real, resolvable github.com URL) is never diluted.
+    private_witness: list = field(default_factory=list)
 
 
 # --------------------------------------------------------------------------- #
@@ -956,13 +964,31 @@ def render_month_md(month_k: str, weeks: list[Week]) -> str:
         p.append("")
         p.append(render_table(wk.rows))
         p.append("")
+        if wk.private_witness:
+            p.append("#### Private Work (Attested, Not Independently Verifiable)")
+            p.append("")
+            p.append("Real work in repos that are private by design and never "
+                     "mirrored publicly, so no commit link can resolve for them. "
+                     "Named repo and commit count/date only — no message, diff, "
+                     "or content is read or shown. Kept separate from the table "
+                     "above on purpose: those rows each resolve to a real "
+                     "github.com URL; these do not, and are not claimed to.")
+            p.append("")
+            for display, count in wk.private_witness:
+                p.append(f"- **{html.escape(display)}** — {count} commit"
+                         f"{'s' if count != 1 else ''}")
+            p.append("")
         p.append("---")
         p.append("")
     p.append("## Verification")
     p.append("")
-    p.append("Each row is traceable to a public commit via its proof link. "
-             "Sworn verification and signature language rest with the filed "
-             "memorandum, not this public-facing artifact.")
+    p.append("Each row in the Weekly Vocational Activity table above is "
+             "traceable to a public commit via its proof link. Rows under "
+             "\"Private Work\" are attested by the account owner only — named "
+             "repo and count/date, no working link, by design (see "
+             "`privatewitness_scan.py`). Sworn verification and signature "
+             "language rest with the filed memorandum, not this public-facing "
+             "artifact.")
     p.append("")
     p.append("*This per-month file is regenerated, not hand-edited.*")
     return "\n".join(p)
@@ -1282,6 +1308,16 @@ th { position:sticky; top:0; background:#0f172a; color:var(--muted);
 td.proof a, td.desc { word-break:break-word; min-width:6rem; }
 td.proof .url { display:block; font-size:.72rem; color:#7dd3fc; word-break:break-all; }
 .empty { padding:6px 20px 14px; color:var(--muted); font-style:italic; }
+/* Private Work lane — visually distinct from the public-verifiable table above:
+   dashed border + amber tone signal "attested, not linked" without pretending
+   to be an equivalent row. See privatewitness_scan.py. */
+.pw-block { margin:0 20px 16px; padding:12px 14px; border:1px dashed var(--accent-2);
+  border-radius:10px; background:rgba(129,140,248,.06); }
+.pw-head { margin:0 0 4px; font-size:.78rem; font-weight:700; letter-spacing:.03em;
+  text-transform:uppercase; color:var(--accent-2); }
+.pw-note { margin:0 0 8px; font-size:.78rem; color:var(--muted); line-height:1.5; }
+.pw-list { margin:0; padding-left:1.1rem; font-size:.86rem; }
+.pw-list li { margin:2px 0; }
 a { color:var(--accent); }
 footer { text-align:center; color:var(--muted); font-size:.82rem; margin:32px 0 0; line-height:1.6; }
 
@@ -1509,8 +1545,27 @@ def render_html(weeks: list[Week], since: str, until: str,
             stat = f"upcoming as of {gen_date}"
         else:
             stat = "no attributable commits"
+        if wk.private_witness:
+            pw_total = sum(c for _, c in wk.private_witness)
+            stat += f" &#183; +{pw_total} private (attested)"
         body = (table_for(wk.rows) if wk.rows
                 else '<p class="empty">No attributable commits recorded this week.</p>')
+        if wk.private_witness:
+            items = "".join(
+                f'<li><strong>{_html_escape(name)}</strong> &#8212; {count} commit'
+                f'{"s" if count != 1 else ""}</li>'
+                for name, count in wk.private_witness
+            )
+            body += (
+                '<div class="pw-block">'
+                '<p class="pw-head">Private Work (Attested, Not Independently Verifiable)</p>'
+                '<p class="pw-note">Real work in repos that are private by design and '
+                'never mirrored publicly, so no commit link can resolve for them. Named '
+                'repo and commit count/date only &#8212; no message, diff, or content is '
+                'read or shown. Kept separate from the table above on purpose.</p>'
+                f'<ul class="pw-list">{items}</ul>'
+                '</div>'
+            )
         return (f'<details class="week"><summary>'
                 f'<span>Week of {label}</span>'
                 f'<span class="wstat">{stat}</span></summary>'
@@ -1748,6 +1803,18 @@ def main(argv: list[str]) -> int:
           file=sys.stderr)
 
     weeks = build_weeks(commits, start, end)
+
+    # Private Work lane — attested, not independently verifiable. Failure here
+    # (missing local config, bad repo path, etc.) must never break the public
+    # generator; it's opt-in local-machine state.
+    try:
+        pw_by_week = privatewitness_scan.get_privatewitness_by_week(args.since, args.until)
+    except Exception as exc:  # noqa: BLE001 - deliberately broad, see above
+        print(f"  [privatewitness] skipped: {exc}", file=sys.stderr)
+        pw_by_week = {}
+    for wk in weeks:
+        wk.private_witness = pw_by_week.get(wk.start, [])
+
     total_commits = sum(w.commit_count for w in weeks)
     by_month = group_months(weeks)
 
