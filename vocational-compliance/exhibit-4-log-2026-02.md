@@ -32,14 +32,6 @@ _Commits this week:_ 1 · _Hours-equiv:_ 5 · _Actions-equiv:_ 0
 |---|---|---|---|---|
 | 2026-02-12 | Beta-Testing & Calibration | commit b4 adding perp DEXs | **trading-bot-arbitrage-public**<br>https://github.com/drasticstatic/trading-bot-arbitrage-public/commit/be8515251db4e5dff589cc899732e5adf4adfb87 | 5 hrs (Hours (product development / startup labor)) |
 
-#### Private Work (Attested, Not Independently Verifiable)
-
-Real work in repos that are private by design and never mirrored publicly, so no commit link can resolve for them. Rows below use the same category rubric and message sanitization as the public table above, and each names its real local commit SHA — a git-verifiable attestation the account owner can produce the underlying commit for on request — but not a link a reader can independently follow the way a public row's github.com URL can.
-
-| Date | Category | Activity / Description | Attestation (repo — local commit SHA) | Equivalence |
-|---|---|---|---|---|
-| 2026-02-12 | Product Management | commit b4 adding perp DEXs | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`577f600` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
-
 ---
 
 ## Week of 2026-02-16 → 2026-02-22
@@ -132,6 +124,6 @@ _Commits this week:_ 45 · _Hours-equiv:_ 232 · _Actions-equiv:_ 0
 
 ## Verification
 
-Each row in the Weekly Vocational Activity table above is traceable to a public commit via its proof link. Rows under "Private Work" are attested by the account owner only — named repo and count/date, no working link, by design (see `privatewitness_scan.py`). Sworn verification and signature language rest with the filed memorandum, not this public-facing artifact.
+Each row above is traceable to a public commit via its proof link. Real work in repos that are private by design (no public mirror) is NOT in this file — it's attested separately in [`exhibit-4-log-private-work.md`](https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/exhibit-4-log-private-work.md), kept apart on purpose since those rows can't carry a resolvable link the way these can. Sworn verification and signature language rest with the filed memorandum, not this public-facing artifact.
 
 *This per-month file is regenerated, not hand-edited.*

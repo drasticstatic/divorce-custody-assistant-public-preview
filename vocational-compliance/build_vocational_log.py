@@ -93,6 +93,7 @@ BLOB_BASE = (f"https://github.com/{PUBLIC_PREVIEW_OWNER}/{PUBLIC_PREVIEW_REPO}"
 INDEX_FILE = "exhibit-4-log.md"
 HTML_FILE = "exhibit-4.html"          # interactive accordion (short URL for embedding)
 MONTH_FILE_TMPL = "exhibit-4-log-{}.md"   # .format("YYYY-MM")
+PRIVATE_WORK_FILE = "exhibit-4-log-private-work.md"  # standalone — see privatewitness_scan.py
 
 # Recognized author identities (login + any committed email handles).
 # Only commits by these identities are attributable; others are excluded so we
@@ -1024,33 +1025,82 @@ def render_month_md(month_k: str, weeks: list[Week]) -> str:
         p.append("")
         p.append(render_table(wk.rows))
         p.append("")
-        if wk.private_witness:
-            p.append("#### Private Work (Attested, Not Independently Verifiable)")
-            p.append("")
-            p.append("Real work in repos that are private by design and never "
-                     "mirrored publicly, so no commit link can resolve for them. "
-                     "Rows below use the same category rubric and message "
-                     "sanitization as the public table above, and each names its "
-                     "real local commit SHA — a git-verifiable attestation the "
-                     "account owner can produce the underlying commit for on "
-                     "request — but not a link a reader can independently follow "
-                     "the way a public row's github.com URL can.")
-            p.append("")
-            p.append(render_privatewitness_table(wk.private_witness))
-            p.append("")
         p.append("---")
         p.append("")
     p.append("## Verification")
     p.append("")
-    p.append("Each row in the Weekly Vocational Activity table above is "
-             "traceable to a public commit via its proof link. Rows under "
-             "\"Private Work\" are attested by the account owner only — named "
-             "repo and count/date, no working link, by design (see "
-             "`privatewitness_scan.py`). Sworn verification and signature "
-             "language rest with the filed memorandum, not this public-facing "
-             "artifact.")
+    p.append("Each row above is traceable to a public commit via its proof link. "
+             "Real work in repos that are private by design (no public mirror) is "
+             "NOT in this file — it's attested separately in "
+             f"[`{PRIVATE_WORK_FILE}`]({blob_url(PRIVATE_WORK_FILE)}), kept apart "
+             "on purpose since those rows can't carry a resolvable link the way "
+             "these can. Sworn verification and signature language rest with the "
+             "filed memorandum, not this public-facing artifact.")
     p.append("")
     p.append("*This per-month file is regenerated, not hand-edited.*")
+    return "\n".join(p)
+
+
+def render_private_work_md(by_month: "dict[str, list[Week]]", since: str,
+                           until: str) -> str:
+    """Standalone document — NOT nested inside the public per-month files.
+    Same table shape as the public log, but every row is an attestation (real
+    local commit SHA, no resolvable github.com link) rather than independently
+    verifiable. Kept as its own file/section on purpose, per Christopher's
+    explicit request for a wholly separate Private Work section rather than a
+    badge or a table folded into each public week."""
+    total = sum(len(wk.private_witness) for weeks in by_month.values() for wk in weeks)
+    p: list[str] = []
+    p.append("# Exhibit 4 — Private Work (Attested, Not Independently Verifiable)")
+    p.append("")
+    p.append(f"**Reporting period:** {since} → {until}  ")
+    p.append(f"**Total attested commits:** {total}  ")
+    p.append(f"_Part of the full Exhibit 4 — "
+             f"[table of contents]({blob_url(INDEX_FILE)}) · "
+             f"interactive view: [{HTML_FILE}]({pages_url(HTML_FILE)})"
+             f" · [public-preview homepage]({HOMEPAGE_URL})_")
+    p.append("")
+    p.append(
+        "This section exists because Exhibit 4's normal table can only ever see "
+        "PUBLIC GitHub commit history — real work in a repo that is private by "
+        "design (no public mirror) is otherwise invisible to it. Rows below name "
+        "the real repo and use the SAME category rubric and message sanitization "
+        "as the public table (see `privatewitness_scan.py` and "
+        "`build_vocational_log.py`'s `classify()`/`sanitize_message()`), but each "
+        "one carries a real **local** commit SHA instead of a github.com URL — a "
+        "git-verifiable attestation the account owner can produce the underlying "
+        "commit for on request, not a link a reader can independently follow the "
+        "way a public row's link can. See `vocational-compliance/"
+        "privatewitness-registry.json` for exactly which repos are in scope here "
+        "and which were reviewed and excluded (and why).")
+    p.append("")
+    p.append("---")
+    p.append("")
+    if not by_month:
+        p.append("_No private-repo activity in this reporting period._")
+        return "\n".join(p)
+    for mk in sorted(by_month.keys()):
+        weeks = by_month[mk]
+        p.append(f"## {month_label(week_month_anchor(weeks[0].start))}")
+        p.append("")
+        for wk in weeks:
+            if not wk.private_witness:
+                continue
+            label = f"{wk.start.date().isoformat()} → {wk.end.date().isoformat()}"
+            p.append(f"### Week of {label}")
+            p.append("")
+            p.append(render_privatewitness_table(wk.private_witness))
+            p.append("")
+    p.append("---")
+    p.append("")
+    p.append("## Verification")
+    p.append("")
+    p.append("Rows above are attested by the account owner only — named repo, "
+             "real category/description, real local commit SHA, no working link, "
+             "by design. This is a deliberately different standard than the main "
+             "public table, not an equivalent one.")
+    p.append("")
+    p.append("*This file is regenerated, not hand-edited.*")
     return "\n".join(p)
 
 
@@ -1104,6 +1154,10 @@ def render_log(weeks: list[Week], since: str, until: str,
     parts.append(
         f"- `exhibit-4-log-YYYY-MM.md` — one per-month file "
         f"(e.g. [`exhibit-4-log-2026-07.md`]({blob_url('exhibit-4-log-2026-07.md')}))")
+    parts.append(
+        f"- [`{PRIVATE_WORK_FILE}`]({blob_url(PRIVATE_WORK_FILE)}) — Private Work: "
+        f"attested-only activity in repos with no public mirror, kept as its own "
+        f"section since those rows can't carry a resolvable link")
     parts.append(
         f"- [{HTML_FILE}]({pages_url(HTML_FILE)}) — interactive accordion view "
         f"(live on GitHub Pages)")
@@ -1371,12 +1425,18 @@ td.proof .url { display:block; font-size:.72rem; color:#7dd3fc; word-break:break
 /* Private Work lane — visually distinct from the public-verifiable table above:
    dashed border + amber tone signal "attested, not linked" without pretending
    to be an equivalent row. See privatewitness_scan.py. */
-.pw-block { margin:0 20px 16px; padding:12px 14px; border:1px dashed var(--accent-2);
-  border-radius:10px; background:rgba(129,140,248,.06); }
-.pw-head { margin:0 0 4px; font-size:.78rem; font-weight:700; letter-spacing:.03em;
-  text-transform:uppercase; color:var(--accent-2); }
-.pw-note { margin:0 0 8px; font-size:.78rem; color:var(--muted); line-height:1.5; }
-.pw-block table { font-size:.82rem; }
+/* Private Work — a wholly separate top-level section (own heading, own
+   month/week accordions), deliberately not nested inside the public months
+   above. Dashed border + amber-violet accent throughout signals "attested,
+   not linked" without pretending to be an equivalent table. */
+.pw-section { margin:40px 0 0; padding:24px 20px; border:1px dashed var(--accent-2);
+  border-radius:16px; background:rgba(129,140,248,.05); }
+.pw-section .eyebrow { color:var(--accent-2); text-align:left; }
+.pw-section h2 { margin:0 0 10px; font-size:clamp(1.2rem,3vw,1.7rem); }
+.pw-section .deck { margin:0 0 16px; color:var(--muted); font-size:.9rem; line-height:1.6; }
+.pw-section .deck a { color:var(--accent-2); }
+.pw-month { border-color:rgba(129,140,248,.35); }
+.pw-week table { font-size:.82rem; }
 a { color:var(--accent); }
 footer { text-align:center; color:var(--muted); font-size:.82rem; margin:32px 0 0; line-height:1.6; }
 
@@ -1551,8 +1611,8 @@ def _html_escape(s: str) -> str:
     return html.escape(s or "", quote=True)
 
 
-def render_html(weeks: list[Week], since: str, until: str,
-                total_commits: int, out_path: str) -> str:
+def render_html(weeks: list[Week], by_month_private: "dict[str, list[Week]]",
+                since: str, until: str, total_commits: int, out_path: str) -> str:
     grand_hours = sum(w.total_hours for w in weeks)
     grand_actions = sum(w.total_actions for w in weeks)
     active_weeks = sum(1 for w in weeks if w.commit_count > 0)
@@ -1635,27 +1695,22 @@ def render_html(weeks: list[Week], since: str, until: str,
             stat = f"upcoming as of {gen_date}"
         else:
             stat = "no attributable commits"
-        if wk.private_witness:
-            stat += f" &#183; +{len(wk.private_witness)} private (attested)"
         body = (table_for(wk.rows) if wk.rows
                 else '<p class="empty">No attributable commits recorded this week.</p>')
-        if wk.private_witness:
-            body += (
-                '<div class="pw-block">'
-                '<p class="pw-head">Private Work (Attested, Not Independently Verifiable)</p>'
-                '<p class="pw-note">Real work in repos that are private by design and '
-                'never mirrored publicly, so no commit link can resolve for them. Same '
-                'category rubric and message sanitization as the table above; each row '
-                'names its real local commit SHA as a git-verifiable attestation &#8212; '
-                'not a link a reader can independently follow the way a public row\'s '
-                'github.com URL can.</p>'
-                f'{pw_table_for(wk.private_witness)}'
-                '</div>'
-            )
         return (f'<details class="week"><summary>'
                 f'<span>Week of {label}</span>'
                 f'<span class="wstat">{stat}</span></summary>'
                 f'{body}</details>')
+
+    def pw_week_block(wk: Week) -> str:
+        """Private Work's own week accordion — separate tree from week_block()
+        above, on purpose (see the module docstring / PENDING-TASKS.md)."""
+        label = f"{wk.start.date().isoformat()} &#8594; {wk.end.date().isoformat()}"
+        stat = f"{len(wk.private_witness)} attested (not independently verifiable)"
+        return (f'<details class="week pw-week"><summary>'
+                f'<span>Week of {label}</span>'
+                f'<span class="wstat">{stat}</span></summary>'
+                f'{pw_table_for(wk.private_witness)}</details>')
 
     months_html: list[str] = []
     for mk in sorted(by_month.keys()):
@@ -1671,6 +1726,43 @@ def render_html(weeks: list[Week], since: str, until: str,
             f'<span class="mstat">{commits} commits &#183; {hrs:g} hrs '
             f"&#183; {acts:g} actions</span></summary>"
             f"{inner}</details>"
+        )
+
+    # Private Work — a WHOLLY SEPARATE month/week accordion tree, own heading,
+    # own section. Not nested inside the public months above (see week_block()
+    # vs pw_week_block() — deliberately two different render paths).
+    pw_total = sum(len(wk.private_witness) for wks in by_month_private.values()
+                  for wk in wks)
+    pw_months_html: list[str] = []
+    for mk in sorted(by_month_private.keys()):
+        mws = [w for w in by_month_private[mk] if w.private_witness]
+        if not mws:
+            continue
+        lbl = month_label(week_month_anchor(mws[0].start))
+        count = sum(len(w.private_witness) for w in mws)
+        inner = "".join(pw_week_block(w) for w in mws)
+        pw_months_html.append(
+            f'<details class="month pw-month" id="pw-{mk}"><summary>'
+            f'<span>{_html_escape(lbl)}</span>'
+            f'<span class="mstat">{count} attested</span></summary>'
+            f"{inner}</details>"
+        )
+    pw_section = ""
+    if pw_months_html:
+        pw_section = (
+            '<section class="pw-section">'
+            '<p class="eyebrow">Private Work</p>'
+            '<h2>Attested, Not Independently Verifiable</h2>'
+            f'<p class="deck">{pw_total} commits across repos that are private '
+            'by design and have no public mirror &#8212; otherwise invisible to '
+            'the table above. Same category rubric and message sanitization as '
+            'the public table; each row names its real local commit SHA as a '
+            'git-verifiable attestation instead of a github.com link. See '
+            '<a href="privatewitness-registry.json">privatewitness-registry.json</a> '
+            'for exactly which repos are in scope and which were reviewed and '
+            'excluded (and why).</p>'
+            f'{"".join(pw_months_html)}'
+            '</section>'
         )
 
     return (
@@ -1740,6 +1832,7 @@ def render_html(weeks: list[Week], since: str, until: str,
         + "</div>"
         + "</div>"
         + "".join(months_html)
+        + pw_section
         + "<script>"
         "function syncExpandLabels(){var ms=document.querySelectorAll('.month'),"
         "ws=document.querySelectorAll('.week');var mo=0,wo=0;"
@@ -1837,9 +1930,9 @@ def render_html(weeks: list[Week], since: str, until: str,
     )
 
 
-def write_html(weeks: list[Week], since: str, until: str,
-               total_commits: int, out_path: str) -> int:
-    text = render_html(weeks, since, until, total_commits, out_path)
+def write_html(weeks: list[Week], by_month_private: "dict[str, list[Week]]",
+               since: str, until: str, total_commits: int, out_path: str) -> int:
+    text = render_html(weeks, by_month_private, since, until, total_commits, out_path)
     with open(out_path, "w", encoding="utf-8") as fh:
         fh.write(text + "\n")
     return len(text)
@@ -1890,18 +1983,24 @@ def main(argv: list[str]) -> int:
 
     weeks = build_weeks(commits, start, end)
 
-    # Private Work lane — attested, not independently verifiable. Failure here
-    # (missing local config, bad repo path, etc.) must never break the public
-    # generator; it's opt-in local-machine state.
+    # Private Work lane — a WHOLLY SEPARATE month/week tree, not nested inside
+    # the public weeks above (Christopher's explicit call, 2026-09-04, after
+    # seeing the nested version). Built from its own Week-shaped objects that
+    # carry only private_witness rows — group_months()/week_month_anchor()
+    # only need a `.start` attribute, so reusing Week here is fine, it isn't
+    # the same list of objects as `weeks`. Failure here (missing local config,
+    # bad repo path, etc.) must never break the public generator — it's
+    # opt-in local-machine state.
     try:
         pw_commits_by_week = privatewitness_scan.get_privatewitness_commits_by_week(
             args.since, args.until)
     except Exception as exc:  # noqa: BLE001 - deliberately broad, see above
         print(f"  [privatewitness] skipped: {exc}", file=sys.stderr)
         pw_commits_by_week = {}
-    for wk in weeks:
+    private_weeks: list[Week] = []
+    for wk_start, raw_commits in sorted(pw_commits_by_week.items()):
         pw_rows = []
-        for c in pw_commits_by_week.get(wk.start, []):
+        for c in raw_commits:
             # classify() only reads .repo/.message — reuse it via a throwaway
             # Commit so private and public rows share one rubric, not two.
             rubric = classify(Commit(repo=c["repo"], sha=c["sha"], date=c["date"],
@@ -1917,7 +2016,9 @@ def main(argv: list[str]) -> int:
                 action=rubric["action"],
                 equiv_label=rubric["equiv"],
             ))
-        wk.private_witness = pw_rows
+        private_weeks.append(Week(start=wk_start, end=wk_start + timedelta(days=6),
+                                  private_witness=pw_rows))
+    by_month_private = group_months(private_weeks)
 
     total_commits = sum(w.commit_count for w in weeks)
     by_month = group_months(weeks)
@@ -1935,8 +2036,16 @@ def main(argv: list[str]) -> int:
             fh.write(mtext + "\n")
         print(f"Wrote {mfname} ({len(mtext)} chars)", file=sys.stderr)
 
+    # Standalone Private Work file — separate from the public per-month files.
+    pw_path = os.path.join(base_dir, PRIVATE_WORK_FILE)
+    pw_text = render_private_work_md(by_month_private, args.since, args.until)
+    with open(pw_path, "w", encoding="utf-8") as fh:
+        fh.write(pw_text + "\n")
+    print(f"Wrote {pw_path} ({len(pw_text)} chars)", file=sys.stderr)
+
     # Interactive accordion HTML.
-    html_len = write_html(weeks, args.since, args.until, total_commits, html_path)
+    html_len = write_html(weeks, by_month_private, args.since, args.until,
+                          total_commits, html_path)
     print(f"Wrote {html_path} ({html_len} chars)", file=sys.stderr)
     return 0
 

@@ -109,6 +109,6 @@ _Commits this week:_ 5 · _Hours-equiv:_ 20 · _Actions-equiv:_ 0
 
 ## Verification
 
-Each row in the Weekly Vocational Activity table above is traceable to a public commit via its proof link. Rows under "Private Work" are attested by the account owner only — named repo and count/date, no working link, by design (see `privatewitness_scan.py`). Sworn verification and signature language rest with the filed memorandum, not this public-facing artifact.
+Each row above is traceable to a public commit via its proof link. Real work in repos that are private by design (no public mirror) is NOT in this file — it's attested separately in [`exhibit-4-log-private-work.md`](https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/exhibit-4-log-private-work.md), kept apart on purpose since those rows can't carry a resolvable link the way these can. Sworn verification and signature language rest with the filed memorandum, not this public-facing artifact.
 
 *This per-month file is regenerated, not hand-edited.*

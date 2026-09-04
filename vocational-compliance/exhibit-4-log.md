@@ -3,9 +3,9 @@
 **Maintainer:** drasticstatic  
 **Reporting period:** 2026-01-01 → 2026-09-04  
 **Generated:** 2026-09-04 (regenerable via `vocational-compliance/build_vocational_log.py`)  
-**Public commits attributed in range:** 1355  
+**Public commits attributed in range:** 1364  
 **Active development weeks:** 30 / 36  
-**Aggregate equivalence:** 6142 product development hours · 80 job-search actions  
+**Aggregate equivalence:** 6184 product development hours · 80 job-search actions  
 
 ---
 
@@ -19,6 +19,7 @@ This file is the **table of contents** index. The dated weekly detail lives in o
 - [`journey-context.md`](https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/journey-context.md) — the pre-2026 classroom → product → portfolio arc (below)
 - [`reporting-context.md`](https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/reporting-context.md) — known reporting gaps in this period
 - `exhibit-4-log-YYYY-MM.md` — one per-month file (e.g. [`exhibit-4-log-2026-07.md`](https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/exhibit-4-log-2026-07.md))
+- [`exhibit-4-log-private-work.md`](https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/exhibit-4-log-private-work.md) — Private Work: attested-only activity in repos with no public mirror, kept as its own section since those rows can't carry a resolvable link
 - [exhibit-4.html](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/vocational-compliance/exhibit-4.html) — interactive accordion view (live on GitHub Pages)
 - [public-preview homepage](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/)
 
@@ -208,7 +209,7 @@ verified evidence rather than a placeholder frame.
 | June 2026 | [`exhibit-4-log-2026-06.md`](https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/exhibit-4-log-2026-06.md) | [exhibit-4.html#2026-06](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/vocational-compliance/exhibit-4.html#2026-06) | 29 | 128 | 0 |
 | July 2026 | [`exhibit-4-log-2026-07.md`](https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/exhibit-4-log-2026-07.md) | [exhibit-4.html#2026-07](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/vocational-compliance/exhibit-4.html#2026-07) | 34 | 147 | 0 |
 | August 2026 | [`exhibit-4-log-2026-08.md`](https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/exhibit-4-log-2026-08.md) | [exhibit-4.html#2026-08](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/vocational-compliance/exhibit-4.html#2026-08) | 152 | 691 | 32 |
-| September 2026 | [`exhibit-4-log-2026-09.md`](https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/exhibit-4-log-2026-09.md) | [exhibit-4.html#2026-09](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/vocational-compliance/exhibit-4.html#2026-09) | 176 | 830 | 20 |
+| September 2026 | [`exhibit-4-log-2026-09.md`](https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/exhibit-4-log-2026-09.md) | [exhibit-4.html#2026-09](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/vocational-compliance/exhibit-4.html#2026-09) | 185 | 872 | 20 |
 
 ---
 

@@ -4,7 +4,7 @@ _Part of the full Exhibit 4 — [table of contents](https://github.com/drasticst
  · [public-preview homepage](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/)_
 
 **Reporting month:** September 2026  
-**Commits this month:** 176 · **Hours-equiv:** 830 · **Actions-equiv:** 20
+**Commits this month:** 185 · **Hours-equiv:** 872 · **Actions-equiv:** 20
 
 ---
 
@@ -12,7 +12,7 @@ _Part of the full Exhibit 4 — [table of contents](https://github.com/drasticst
 
 **Compliance target (context):** 8 attributable actions/week
 
-_Commits this week:_ 176 · _Hours-equiv:_ 830 · _Actions-equiv:_ 20
+_Commits this week:_ 185 · _Hours-equiv:_ 872 · _Actions-equiv:_ 20
 
 ### Weekly Vocational Activity & Work-Search & Effort Report
 
@@ -57,6 +57,7 @@ _Commits this week:_ 176 · _Hours-equiv:_ 830 · _Actions-equiv:_ 20
 | 2026-09-02 | Code Deployment | feat: add AGENT-SYNC/AGENT-SYNC_PUBLIC created-by-* skeleton + graphify pointer | **my-template**<br>https://github.com/drasticstatic/my-template/commit/b8b12c9b2b60f6e08a6721d62902d0f42cca6cdf | 6 hrs (Hours (technical portfolio build)) |
 | 2026-09-02 | Code Deployment | Initial commit: resync from my-template + interactive public-sync setup script | **my-template-clean**<br>https://github.com/drasticstatic/my-template-clean/commit/8d544dadac839d536cb7aa921be60a32b07249c1 | 6 hrs (Hours (technical portfolio build)) |
 | 2026-09-02 | Code Deployment | Add sync-clean-template.yml — auto-mirror my-template into my-template-clean | **my-template**<br>https://github.com/drasticstatic/my-template/commit/1deced90e263afc028823ea2e79e9eb84d29787b | 6 hrs (Hours (technical portfolio build)) |
+| 2026-09-02 | Beta-Testing & Calibration | Add graphify: .graphifyignore + Claude Code hook install | **gratitude-token-project_astro-public**<br>https://github.com/drasticstatic/gratitude-token-project_astro-public/commit/ba06d7ce2f28f3e4579f50958771aa0542f71d93 | 5 hrs (Hours (product development / startup labor)) |
 | 2026-09-02 | Beta-Testing & Calibration | sandbox/GRAPHIFY_SETUP.md: update Integration Plan for _astro/_docs/__chief__ | **anthropas-argus-alfred-public-preview**<br>https://github.com/drasticstatic/anthropas-argus-alfred-public-preview/commit/071f35c9a480d55709f33a5347f7b7a8ce3994c0 | 5 hrs (Hours (product development / startup labor)) |
 | 2026-09-02 | Beta-Testing & Calibration | Add graphify: .graphifyignore + Claude Code hook install | **gratitude-token-project_docs**<br>https://github.com/drasticstatic/gratitude-token-project_docs/commit/d68177cb151c01d03e5caf7e1639dbdd9828ecca | 5 hrs (Hours (product development / startup labor)) |
 | 2026-09-02 | Code Deployment | Add scripts/init-graphify.sh — fold graphify into the New Repo Checklist | **my-template**<br>https://github.com/drasticstatic/my-template/commit/7295fac215f0dea0adc0e50d401217d77f76d39c | 6 hrs (Hours (technical portfolio build)) |
@@ -67,6 +68,7 @@ _Commits this week:_ 176 · _Hours-equiv:_ 830 · _Actions-equiv:_ 20
 | 2026-09-02 | Code Deployment | Reframe toward showcasing Intent's strengths, not just interop friction | **augment-intent-properties-public-preview**<br>https://github.com/drasticstatic/augment-intent-properties-public-preview/commit/9ba566dda919af74c8afb030f189dad69d6ee5d9 | 6 hrs (Hours (technical portfolio build)) |
 | 2026-09-02 | Beta-Testing & Calibration | Fix: gitexporter.config.json + branch-protection/ were never actually tracked | **my-template**<br>https://github.com/drasticstatic/my-template/commit/9c7fddc2f0214d37417f81ff9e360718b451a143 | 5 hrs (Hours (product development / startup labor)) |
 | 2026-09-02 | Code Deployment | Fix sync-public-allowlist.yml: unify validation + filter-repo path lists | **my-template**<br>https://github.com/drasticstatic/my-template/commit/2f27a6b6a3836b3dd88efb756a3f31f1e4c3c036 | 6 hrs (Hours (technical portfolio build)) |
+| 2026-09-02 | Beta-Testing & Calibration | README overhaul: badges row, TOC, iamoneself-style formatting | **gratitude-token-project_astro-public**<br>https://github.com/drasticstatic/gratitude-token-project_astro-public/commit/c876d77b531b849af8384669cb7e72b2ed21b0c6 | 5 hrs (Hours (product development / startup labor)) |
 | 2026-09-02 | Beta-Testing & Calibration | README overhaul: badges row, TOC, iamoneself-style formatting | **gratitude-token-project_docs**<br>https://github.com/drasticstatic/gratitude-token-project_docs/commit/853f8e6170b1e8b17855430ed77e7dc0c06640ed | 5 hrs (Hours (product development / startup labor)) |
 | 2026-09-02 | Beta-Testing & Calibration | Merge pull request #5 from drasticstatic/dependabot/npm_and_yarn/minor-and-patch-3da94e5491 | **gratitude-token-project_docs**<br>https://github.com/drasticstatic/gratitude-token-project_docs/commit/45db40c11ef683d8b4d131a4d5f90fef2f2994bd | 5 hrs (Hours (product development / startup labor)) |
 | 2026-09-02 | Beta-Testing & Calibration | Revert "Merge pull request #5 from drasticstatic/dependabot/npm_and_yarn/minor-and-patch-3da94e5491" | **gratitude-token-project_docs**<br>https://github.com/drasticstatic/gratitude-token-project_docs/commit/582d9da8987fd7c0a0be76b9592bc69695578d80 | 5 hrs (Hours (product development / startup labor)) |
@@ -182,6 +184,7 @@ _Commits this week:_ 176 · _Hours-equiv:_ 830 · _Actions-equiv:_ 20
 | 2026-09-04 | Technical Outreach | GRAPHIFY_SETUP.md: update extraction status + log a real graphify dedup bug | **anthropas-argus-alfred-public-preview**<br>https://github.com/drasticstatic/anthropas-argus-alfred-public-preview/commit/30a071d375cad3b9727386e052e708b538e323f4 | 2 hrs / 2 action (Actions (direct business lead generation)) |
 | 2026-09-04 | Code Deployment | Add v1 static site: landing, workspace preview, and how-it-works/FAQ | **aunt-harriot-public-preview**<br>https://github.com/drasticstatic/aunt-harriot-public-preview/commit/641adf8d679e1910ee5823022caad1d46ad14451 | 6 hrs (Hours (technical portfolio build)) |
 | 2026-09-04 | Product Management | .gitignore: exclude graphify's newer internal cache files | **drasticstatic.github.io**<br>https://github.com/drasticstatic/drasticstatic.github.io/commit/c21bd4931dfa1facc3a506fed9fddb4ab8dd12cc | 4 hrs (Hours (product management / startup labor)) |
+| 2026-09-04 | Product Management | .gitignore: exclude graphify's newer internal cache files | **drasticstatic**<br>https://github.com/drasticstatic/drasticstatic/commit/ded2b7d05931f7639f930f2845c73d48f260f749 | 4 hrs (Hours (product management / startup labor)) |
 | 2026-09-04 | Product Management | sync: restore live data.json | **pir-devine-news-public**<br>https://github.com/drasticstatic/pir-devine-news-public/commit/c249c7eaba4083fe36bf7fbfb12d3effb3e4e8f5 | 4 hrs (Hours (product management / startup labor)) |
 | 2026-09-04 | Product Management | .gitignore: exclude graphify's newer internal cache files | **TradeZella_STB**<br>https://github.com/drasticstatic/TradeZella_STB/commit/4861f985618c81333ed995521a1d286b84acc55d | 4 hrs (Hours (product management / startup labor)) |
 | 2026-09-04 | Product Management | .gitignore: exclude graphify's newer internal cache files | **solidity_intensive**<br>https://github.com/drasticstatic/solidity_intensive/commit/fd40f9dbd2581d8e48206fc2203eed59d6dafb92 | 4 hrs (Hours (product management / startup labor)) |
@@ -194,42 +197,17 @@ _Commits this week:_ 176 · _Hours-equiv:_ 830 · _Actions-equiv:_ 20
 | 2026-09-04 | Beta-Testing & Calibration | .gitignore: exclude graphify's newer internal cache files | **gratitude-token-project_docs**<br>https://github.com/drasticstatic/gratitude-token-project_docs/commit/7dfcd6b54ce7c3abffb973732a48cd959ce9275b | 5 hrs (Hours (product development / startup labor)) |
 | 2026-09-04 | Technical Outreach | .gitignore: exclude graphify's newer internal cache files | **dev-recruitment-safeguards**<br>https://github.com/drasticstatic/dev-recruitment-safeguards/commit/85185d4283382ea180bf2d0e738798505e0a235f | 2 hrs / 2 action (Actions (direct business lead generation)) |
 | 2026-09-04 | Product Management | .gitignore: exclude graphify's newer internal cache files | **nft_dappu-punks**<br>https://github.com/drasticstatic/nft_dappu-punks/commit/15ef5ea639779430e02f33a783830a9356890cee | 4 hrs (Hours (product management / startup labor)) |
-
-#### Private Work (Attested, Not Independently Verifiable)
-
-Real work in repos that are private by design and never mirrored publicly, so no commit link can resolve for them. Rows below use the same category rubric and message sanitization as the public table above, and each names its real local commit SHA — a git-verifiable attestation the account owner can produce the underlying commit for on request — but not a link a reader can independently follow the way a public row's github.com URL can.
-
-| Date | Category | Activity / Description | Attestation (repo — local commit SHA) | Equivalence |
-|---|---|---|---|---|
-| 2026-08-31 | Product Management | docs: add Mystarch pointer handoff | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`6fe355f` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
-| 2026-08-31 | Product Management | Reorganize repo: PRIVATE status, AGENT-SYNC restructure, flashloan boilerplate, perp-DEX helpers | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`f3125fb` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
-| 2026-09-01 | Product Management | PENDING-TASKS: add iCloud-backed git-clone pipeline entry (cross-repo, from Fortuna) | **Mystarch**<br>`f86211e` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
-| 2026-09-01 | Product Management | Update PENDING-TASKS.md to reflect that __chief__ is now git-tracked | **Mystarch**<br>`9c8ca88` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
-| 2026-09-01 | Product Management | Initial commit: Mystarch Chief of Staff coordination repo | **Mystarch**<br>`9f2f1de` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
-| 2026-09-02 | Product Management | CLAUDE.md: add Auggie/AugmentCLI line for full-scenario completeness | **Mystarch**<br>`21e05fd` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
-| 2026-09-02 | Product Management | Handoff from Alfred: fleet-wide commit-footer convention redesign | **Mystarch**<br>`175e4da` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
-| 2026-09-02 | Product Management | CLAUDE.md: redesign commit-footer convention — Agent · Engine · Model | **Mystarch**<br>`659c846` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
-| 2026-09-02 | Product Management | CLAUDE.md: add commit-footer attribution convention (fleet-wide checkpoint) | **Mystarch**<br>`eebae06` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
-| 2026-09-02 | Product Management | Append: testPublish README polish done + deployTest.sh automation observation | **Mystarch**<br>`9c74e35` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
-| 2026-09-02 | Product Management | Append correction: application decides created-by-*, not path | **Mystarch**<br>`993d5a2` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
-| 2026-09-02 | Product Management | Handoff from Alfred: /code fallback organization + jsonl attribution convention | **Mystarch**<br>`043331e` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
-| 2026-09-02 | Product Management | README overhaul: badges row, TOC, iamoneself-style formatting | **Mystarch**<br>`4a1cfba` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
-| 2026-09-02 | Product Management | Move handoff into AGENT-SYNC/created-by-mystarch; complete created-by-* skeleton | **Mystarch**<br>`09391dc` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
-| 2026-09-02 | Product Management | Handoff from Alfred: augment-intent-properties repos created | **Mystarch**<br>`bd0ee2d` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
-| 2026-09-02 | Product Management | Merge remote-tracking branch 'origin/main' into main | **Mystarch**<br>`6fc69e1` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
-| 2026-09-02 | Product Management | Add graphify: .graphifyignore + Claude Code hook install | **Mystarch**<br>`144d004` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
-| 2026-09-02 | Product Management | Checkpoint: commit pre-existing uncommitted Mystarch/Chief-of-Staff scaffolding | **Mystarch**<br>`41deb1e` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
-| 2026-09-02 | Product Management | CLAUDE.md: add Auggie/AugmentCLI line for full-scenario completeness | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`aff35cb` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
-| 2026-09-02 | Product Management | CLAUDE.md: redesign commit-footer convention — Agent · Engine · Model (Intent-paired) | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`14cc660` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
-| 2026-09-02 | Product Management | CLAUDE.md: add commit-footer attribution convention (fleet-wide checkpoint) | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`c4eeeb7` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
-| 2026-09-03 | Product Management | PENDING-TASKS.md: log [private project] + aunt-harriot repo creation, ACP/Auggie finding | **Mystarch**<br>`2343a76` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
-| 2026-09-03 | Audit / Education | Resume from code/ clone: verify + close doc-sync queue, document ws.app-reach limit | **Mystarch**<br>`9088b7d` (local, not on github.com) | 3 hrs (Hours (professional performance review)) |
-| 2026-09-03 | Product Management | Sync PENDING-TASKS.md and ACP-fallback handoff before switching to code/ clone | **Mystarch**<br>`c072419` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-09-04 | Product Management | Merge remote-tracking branch 'origin/main' into main | **drasticstatic**<br>https://github.com/drasticstatic/drasticstatic/commit/cf019672eac8aae1cf288b5045768c41be57ffab | 4 hrs (Hours (product management / startup labor)) |
+| 2026-09-04 | Audit / Education | Regenerate Exhibit 4 after leaked-commit-message scrub; verify suppress_terms catches it | **divorce-custody-assistant-public-preview**<br>https://github.com/drasticstatic/divorce-custody-assistant-public-preview/commit/02a6f1f32cef87b5224236012e50d287afd25d7c | 3 hrs (Hours (professional performance review)) |
+| 2026-09-04 | Code Deployment | graphify: run extraction (previously only had keyless setup, not actually run) | **gratitude-token-project_astro-public**<br>https://github.com/drasticstatic/gratitude-token-project_astro-public/commit/08d6bf40707a22892d3c99283fa95aec9294cba3 | 6 hrs (Hours (technical portfolio build)) |
+| 2026-09-04 | Beta-Testing & Calibration | GRAPHIFY_SETUP.md: correct gratitude-token-project_astro status + log fleet gitignore hardening | **anthropas-argus-alfred-public-preview**<br>https://github.com/drasticstatic/anthropas-argus-alfred-public-preview/commit/971a92444d4dfa4b4701786a96148d7d8f97b0bb | 5 hrs (Hours (product development / startup labor)) |
+| 2026-09-04 | Product Management | Add commit-message denylist check to session-sync, per Mystarch's leak diagnosis | **divorce-custody-assistant-public-preview**<br>https://github.com/drasticstatic/divorce-custody-assistant-public-preview/commit/c230118e24f53d1c64ef1ecc96982b808f80def1 | 4 hrs (Hours (product management / startup labor)) |
+| 2026-09-04 | Code Deployment | Rebuild site v2, fill in README public-mirror pattern, log status | **aunt-harriot-public-preview**<br>https://github.com/drasticstatic/aunt-harriot-public-preview/commit/2362549b5cef3ed7a57a25935dfe509969f442ff | 6 hrs (Hours (technical portfolio build)) |
 
 ---
 
 ## Verification
 
-Each row in the Weekly Vocational Activity table above is traceable to a public commit via its proof link. Rows under "Private Work" are attested by the account owner only — named repo and count/date, no working link, by design (see `privatewitness_scan.py`). Sworn verification and signature language rest with the filed memorandum, not this public-facing artifact.
+Each row above is traceable to a public commit via its proof link. Real work in repos that are private by design (no public mirror) is NOT in this file — it's attested separately in [`exhibit-4-log-private-work.md`](https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/exhibit-4-log-private-work.md), kept apart on purpose since those rows can't carry a resolvable link the way these can. Sworn verification and signature language rest with the filed memorandum, not this public-facing artifact.
 
 *This per-month file is regenerated, not hand-edited.*

@@ -262,19 +262,6 @@ _Commits this week:_ 243 · _Hours-equiv:_ 1043 · _Actions-equiv:_ 8
 | 2026-05-10 | Code Deployment | Add session-sync skill; add graphify orientation to startup | **pir-devine-news-public**<br>https://github.com/drasticstatic/pir-devine-news-public/commit/0359f8e893d0f401eb816d7f5b10a7eba242be5f | 6 hrs (Hours (technical portfolio build)) |
 | 2026-05-10 | Product Management | Add graphify orientation to startup; fix push + add graphify to session-sync | **divorce-custody-assistant-public-preview**<br>https://github.com/drasticstatic/divorce-custody-assistant-public-preview/commit/971c57f131253b7802a8e9d111a64a6110d1f130 | 4 hrs (Hours (product management / startup labor)) |
 
-#### Private Work (Attested, Not Independently Verifiable)
-
-Real work in repos that are private by design and never mirrored publicly, so no commit link can resolve for them. Rows below use the same category rubric and message sanitization as the public table above, and each names its real local commit SHA — a git-verifiable attestation the account owner can produce the underlying commit for on request — but not a link a reader can independently follow the way a public row's github.com URL can.
-
-| Date | Category | Activity / Description | Attestation (repo — local commit SHA) | Equivalence |
-|---|---|---|---|---|
-| 2026-05-04 | Beta-Testing & Calibration | Add live demo badge + GHPagesBanner to DEX bot frontend | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`5fea392` (local, not on github.com) | 5 hrs (Hours (product development / startup labor)) |
-| 2026-05-05 | Product Management | Add override system to AGENTS.md; update CLAUDE.md | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`aec047f` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
-| 2026-05-05 | Product Management | Add AGENTS.md; add CLAUDE.md | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`323818b` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
-| 2026-05-08 | Product Management | Add .claudeignore — belt-and-suspenders secrets, deps, build, media exclusions | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`bd34426` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
-| 2026-05-10 | Product Management | Update .gitignore: add graphify output entries | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`e3411e6` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
-| 2026-05-10 | Code Deployment | Add workflow status badge to README | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`8679a33` (local, not on github.com) | 6 hrs (Hours (technical portfolio build)) |
-
 ---
 
 ## Week of 2026-05-11 → 2026-05-17
@@ -316,20 +303,6 @@ _Commits this week:_ 28 · _Hours-equiv:_ 136 · _Actions-equiv:_ 0
 | 2026-05-12 | Product Management | infra 2026-05-12 — update template cross-references for alfred reclassification | **my-template**<br>https://github.com/drasticstatic/my-template/commit/c100c8e6af9090eb5079f1188e77ecedba180702 | 4 hrs (Hours (product management / startup labor)) |
 | 2026-05-12 | Beta-Testing & Calibration | docs: add Firecrawl MCP setup guide with correct config location | **anthropas-argus-alfred-public-preview**<br>https://github.com/drasticstatic/anthropas-argus-alfred-public-preview/commit/d7d56a8f3cd90ea72c3ec86a0a87af8e43b50b3a | 5 hrs (Hours (product development / startup labor)) |
 
-#### Private Work (Attested, Not Independently Verifiable)
-
-Real work in repos that are private by design and never mirrored publicly, so no commit link can resolve for them. Rows below use the same category rubric and message sanitization as the public table above, and each names its real local commit SHA — a git-verifiable attestation the account owner can produce the underlying commit for on request — but not a link a reader can independently follow the way a public row's github.com URL can.
-
-| Date | Category | Activity / Description | Attestation (repo — local commit SHA) | Equivalence |
-|---|---|---|---|---|
-| 2026-05-12 | Code Deployment | infra 2026-05-12 — update sync-public cross-reference notes | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`50ca2e1` (local, not on github.com) | 6 hrs (Hours (technical portfolio build)) |
-| 2026-05-12 | Product Management | infra 2026-05-12 — add HANDOFF.md; gitexporter update | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`124f81d` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
-| 2026-05-12 | Code Deployment | fix 2026-05-12 — add missing private_allowlist entries to unblock sync-public CI | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`e234b3c` (local, not on github.com) | 6 hrs (Hours (technical portfolio build)) |
-| 2026-05-12 | Code Deployment | infra 2026-05-12 — sync-public + gitexporter hardening | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`8f1273e` (local, not on github.com) | 6 hrs (Hours (technical portfolio build)) |
-| 2026-05-12 | Product Management | Add .graphifyignore and graphify-out to private_allowlist; fix ALLOWLIST notes | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`33b5aaf` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
-| 2026-05-12 | Code Deployment | Update sync-public.yml with allowlist/denylist examples | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`e041a1f` (local, not on github.com) | 6 hrs (Hours (technical portfolio build)) |
-| 2026-05-12 | Product Management | Add notes about allowlist vs denylist logic and .nojekyll | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`f5143aa` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
-
 ---
 
 ## Week of 2026-05-18 → 2026-05-24
@@ -358,6 +331,6 @@ _No attributable commits recorded this week._
 
 ## Verification
 
-Each row in the Weekly Vocational Activity table above is traceable to a public commit via its proof link. Rows under "Private Work" are attested by the account owner only — named repo and count/date, no working link, by design (see `privatewitness_scan.py`). Sworn verification and signature language rest with the filed memorandum, not this public-facing artifact.
+Each row above is traceable to a public commit via its proof link. Real work in repos that are private by design (no public mirror) is NOT in this file — it's attested separately in [`exhibit-4-log-private-work.md`](https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/exhibit-4-log-private-work.md), kept apart on purpose since those rows can't carry a resolvable link the way these can. Sworn verification and signature language rest with the filed memorandum, not this public-facing artifact.
 
 *This per-month file is regenerated, not hand-edited.*
