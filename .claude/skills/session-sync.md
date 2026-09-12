@@ -61,12 +61,13 @@ Brief structural description — no names, case numbers, or identifying details
 - What changed structurally
 - Why it changed
 
-Co-Authored-By: [agent] · [engine] · [model]
+Co-Authored-By: [agent] · [engine] · [provider] [[model]]
+[Platform]-Session: <full session URL>
 EOF
 )"
 ```
 
-Footer format is `Agent · Engine · Model` — see this repo's own `CLAUDE.md` ("Commit footer" line) for
+Footer format is **four** fields — `Agent · Engine · Provider [Model]` — with the model in square brackets, followed by a **separate** session trailer. See this repo's own `CLAUDE.md` ("Commit footer" line) for
 the current values. Don't hardcode examples here; they drifted out of sync with `CLAUDE.md` once
 already (dropped the `<noreply@anthropic.com>` tail, `Claude` → `ClaudeCodeCLI`, 2026-09-02) and a
 second copy in this file is what let that happen unnoticed. This repo is managed by Alfred + Fortuna
@@ -156,7 +157,8 @@ git add AGENT-SYNC/
 git commit -m "$(cat <<'EOF'
 Update agent sync [date]
 
-Co-Authored-By: [agent] · [engine] · [model]
+Co-Authored-By: [agent] · [engine] · [provider] [[model]]
+[Platform]-Session: <full session URL>
 EOF
 )"
 python3 vocational-compliance/check_commit_messages.py && git push origin main
@@ -171,3 +173,17 @@ Same footer note as Step 3 — pull the current format from `CLAUDE.md`, don't h
 - Never commit `sessions/`, `logs/`, or any case working directories
 - Never write names, case numbers, or allegations in commit messages or AGENT_SYNC
 - Don't skip AGENT_SYNC — it's how Alfred and Fortuna stay aligned between sessions
+
+> **Corrected 2026-09-11.** This section previously documented a three-field footer
+> (`Agent · Engine · Model`), a near-miss of the canonical four-field
+> `Agent · Engine · Provider [Model]`. A fleet audit found 36/204 commits in
+> `anthropas-argus-alfred` and 183/856 in `trading-assistant` with no attribution trailer at all,
+> plus 15+ competing variants — the skills were a real source of that drift, so correcting
+> `CLAUDE.md` alone would not have held. Canonical form:
+> [`my-template/AGENT-SYNC/README.md`](https://github.com/drasticstatic/my-template/blob/main/AGENT-SYNC/README.md).
+> `.githooks/commit-msg` now rejects non-conforming commits — activate once per clone with
+> `sh scripts/install-hooks.sh`.
+>
+> The session trailer is a **separate** line (`Claude-Session:` / `Cosmos-Session:`). Never fold it
+> onto the `Co-Authored-By:` line — git parses one `Key: Value` trailer per line. Use the full
+> session URL, never a truncated prefix.
