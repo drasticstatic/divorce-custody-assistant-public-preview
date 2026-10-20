@@ -4,7 +4,7 @@ _Part of the full Exhibit 4 — [table of contents](https://github.com/drasticst
  · [public-preview homepage](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/)_
 
 **Reporting month:** January 2026  
-**Commits this month:** 36 · **Hours-equiv:** 171 · **Actions-equiv:** 0
+**Commits this month:** 41 · **Hours-equiv:** 191 · **Actions-equiv:** 0
 
 ---
 
@@ -92,7 +92,7 @@ _Commits this week:_ 9 · _Hours-equiv:_ 45 · _Actions-equiv:_ 0
 
 **Compliance target (context):** 8 attributable actions/week
 
-_Commits this week:_ 7 · _Hours-equiv:_ 36 · _Actions-equiv:_ 0
+_Commits this week:_ 12 · _Hours-equiv:_ 56 · _Actions-equiv:_ 0
 
 ### Weekly Vocational Activity & Work-Search & Effort Report
 
@@ -103,8 +103,13 @@ _Commits this week:_ 7 · _Hours-equiv:_ 36 · _Actions-equiv:_ 0
 | 2026-01-27 | Beta-Testing & Calibration | redesigned hero, footer, trade terminal mod, margins, sticky screener header/collapse | **trading-bot-arbitrage-public**<br>https://github.com/drasticstatic/trading-bot-arbitrage-public/commit/700fbaf46ddfa5ca33a7d944225a5b7d1af8c4e5 | 5 hrs (Hours (product development / startup labor)) |
 | 2026-01-27 | Beta-Testing & Calibration | Start MEV shield implementation, UI clean up/expand | **trading-bot-arbitrage-public**<br>https://github.com/drasticstatic/trading-bot-arbitrage-public/commit/6e5efad3e60f10cf1586f0363176afbdc3008c72 | 5 hrs (Hours (product development / startup labor)) |
 | 2026-01-27 | Beta-Testing & Calibration | fixed slider bugs, alignment and order in cards, charts, continue MEV, export logs buttons | **trading-bot-arbitrage-public**<br>https://github.com/drasticstatic/trading-bot-arbitrage-public/commit/21105471c3defa613918d4fb9288241c0dc74d11 | 5 hrs (Hours (product development / startup labor)) |
+| 2026-01-30 | Product Management | Update README.md | **free-claude-code**<br>https://github.com/drasticstatic/free-claude-code/commit/b7bec1158cda82623640c32515e5d38b21397ab4 | 4 hrs (Hours (product management / startup labor)) |
+| 2026-01-30 | Product Management | Update README.md | **free-claude-code**<br>https://github.com/drasticstatic/free-claude-code/commit/8e996df58827c442db11b70ae0ff8a52a317f2b0 | 4 hrs (Hours (product management / startup labor)) |
+| 2026-01-30 | Product Management | Update README.md | **free-claude-code**<br>https://github.com/drasticstatic/free-claude-code/commit/aca9259fa44eb15d65b8bdedc5f6557315a4874e | 4 hrs (Hours (product management / startup labor)) |
+| 2026-01-30 | Product Management | Update README.md | **free-claude-code**<br>https://github.com/drasticstatic/free-claude-code/commit/495474a62151a7b9335c0585e8418d5df9682fe1 | 4 hrs (Hours (product management / startup labor)) |
 | 2026-01-30 | Beta-Testing & Calibration | UI polish & logs details, debugg ing mainnet | **trading-bot-arbitrage-public**<br>https://github.com/drasticstatic/trading-bot-arbitrage-public/commit/8c6d7fb6f78fb043cf4f3d7337a17c176b4dc424 | 5 hrs (Hours (product development / startup labor)) |
 | 2026-01-30 | Beta-Testing & Calibration | MEV indicators, evm_mine/refork toggle, Route mismatch UI badge | **trading-bot-arbitrage-public**<br>https://github.com/drasticstatic/trading-bot-arbitrage-public/commit/453eb5678c423a5746e72dc32480a3b509f1d675 | 5 hrs (Hours (product development / startup labor)) |
+| 2026-02-01 | Product Management | Update README.md | **free-claude-code**<br>https://github.com/drasticstatic/free-claude-code/commit/76c62993a9f91b2e9d44318d817bfcded7655717 | 4 hrs (Hours (product management / startup labor)) |
 
 ---
 

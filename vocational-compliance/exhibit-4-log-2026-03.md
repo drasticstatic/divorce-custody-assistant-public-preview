@@ -4,7 +4,7 @@ _Part of the full Exhibit 4 — [table of contents](https://github.com/drasticst
  · [public-preview homepage](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/)_
 
 **Reporting month:** March 2026  
-**Commits this month:** 244 · **Hours-equiv:** 1103 · **Actions-equiv:** 2
+**Commits this month:** 249 · **Hours-equiv:** 1123 · **Actions-equiv:** 2
 
 ---
 
@@ -12,13 +12,16 @@ _Part of the full Exhibit 4 — [table of contents](https://github.com/drasticst
 
 **Compliance target (context):** 8 attributable actions/week
 
-_Commits this week:_ 85 · _Hours-equiv:_ 380 · _Actions-equiv:_ 0
+_Commits this week:_ 90 · _Hours-equiv:_ 400 · _Actions-equiv:_ 0
 
 ### Weekly Vocational Activity & Work-Search & Effort Report
 
 | Date | Category | Activity / Description | Proof (repo — full commit URL) | Equivalence |
 |---|---|---|---|---|
 | 2026-03-02 | Product Management | SmartTraderAI format fixes — correct templates + section placement | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/bc249ff60d7b57155c3b7240d326293f0e1e3e06 | 4 hrs (Hours (product management / startup labor)) |
+| 2026-03-02 | Product Management | Update CLAUDE.md | **free-claude-code**<br>https://github.com/drasticstatic/free-claude-code/commit/4ba2a4cfd31ede79f9c651b3392fed3d1b567970 | 4 hrs (Hours (product management / startup labor)) |
+| 2026-03-02 | Product Management | Update AGENTS.md | **free-claude-code**<br>https://github.com/drasticstatic/free-claude-code/commit/d1652792d3c754a1cd3edad8d5c3d203ab335b1e | 4 hrs (Hours (product management / startup labor)) |
+| 2026-03-02 | Product Management | Update CLAUDE.md | **free-claude-code**<br>https://github.com/drasticstatic/free-claude-code/commit/29125296c7e5528f751ae47fd2f6e5e310d268ba | 4 hrs (Hours (product management / startup labor)) |
 | 2026-03-02 | Audit / Education | Premarket template + format pass — all review documents aligned | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/3cfd33c06c90af2a112ce0381c4388c01e243b0f | 3 hrs (Hours (professional performance review)) |
 | 2026-03-02 | Product Management | VSCode-compatible anchor links for SmartTraderAI jump navigation | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/81bba83aab7a9c06fcefe2d544214f183aadf27a | 4 hrs (Hours (product management / startup labor)) |
 | 2026-03-02 | Product Management | Session logs (Feb 27 / Mar 1 / Mar 2) + premarket Feb 23 format fix | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/b33706eea77c803dfd4d1c7f66bf5b1e96fbaba8 | 4 hrs (Hours (product management / startup labor)) |
@@ -60,6 +63,7 @@ _Commits this week:_ 85 · _Hours-equiv:_ 380 · _Actions-equiv:_ 0
 | 2026-03-05 | Code Deployment | Promote chart-analysis-workflow → chart-analysis-methodology.md | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/312803c6b80a1ee318df3c46a79ee03716d51ec2 | 6 hrs (Hours (technical portfolio build)) |
 | 2026-03-05 | Risk Evaluation | Fix VSCode anchor + add strategy tracker index | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/d98475b052893acbc7d76b1a2214a462999bb9ec | 8 hrs (Hours (prop firm combine / risk audit)) |
 | 2026-03-05 | Audit / Education | Commit sed sweep content changes from restructure | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/4180ec26c840eb984f88a97f44d6d967810b3030 | 3 hrs (Hours (professional performance review)) |
+| 2026-03-05 | Product Management | Update README.md | **free-claude-code**<br>https://github.com/drasticstatic/free-claude-code/commit/a599319dd6d56cf5ea1db7e52eeac0bc80fccb7c | 4 hrs (Hours (product management / startup labor)) |
 | 2026-03-05 | Product Management | first commit | **divorce-custody-assistant-public-preview**<br>https://github.com/drasticstatic/divorce-custody-assistant-public-preview/commit/0cc2543139d861485b8b4686c9c42f471fe91020 | 4 hrs (Hours (product management / startup labor)) |
 | 2026-03-05 | Audit / Education | initial commit - initialize repo - based on trading-assistant repo but tailored by ChatGPT context + Claude.AI start idea + Augment Intent added gitignore, augmentignore, claude.md | **divorce-custody-assistant-public-preview**<br>https://github.com/drasticstatic/divorce-custody-assistant-public-preview/commit/9195adb32c49f1aad1f4d65f78a8732c27de06d6 | 3 hrs (Hours (professional performance review)) |
 | 2026-03-05 | Product Management | docs: add conversation history siloing and Intent clone architecture sec | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/caa1a69d59232fa76a5ddcab05a6ca674f3188d5 | 4 hrs (Hours (product management / startup labor)) |
@@ -102,6 +106,7 @@ _Commits this week:_ 85 · _Hours-equiv:_ 380 · _Actions-equiv:_ 0
 | 2026-03-08 | Product Management | Finalize Wave 41 front-end package | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/732732a53c798d9e4f2eaac564df6416c382da00 | 4 hrs (Hours (product management / startup labor)) |
 | 2026-03-08 | Product Management | Wave 42 verified package | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/ce50b5a075a8ba9218af001a7a2913315d9f3a79 | 4 hrs (Hours (product management / startup labor)) |
 | 2026-03-08 | Code Deployment | Release verified Wave 43 package | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/7245d3ce93f088b0a5ac2c0319762d43377e223f | 6 hrs (Hours (technical portfolio build)) |
+| 2026-03-08 | Product Management | Update README.md | **free-claude-code**<br>https://github.com/drasticstatic/free-claude-code/commit/2324be4989af145f335229e3000633c15127eddf | 4 hrs (Hours (product management / startup labor)) |
 | 2026-03-08 | Code Deployment | Release verified Wave 44 package | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/bb0fc06a34ae6ffe1ce3006a485c38c7efea7714 | 6 hrs (Hours (technical portfolio build)) |
 
 ---

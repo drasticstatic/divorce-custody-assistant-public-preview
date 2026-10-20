@@ -1,7 +1,7 @@
 # Exhibit 4 — Private Work (Attested, Not Independently Verifiable)
 
-**Reporting period:** 2026-01-01 → 2026-09-15  
-**Total attested commits:** 187  
+**Reporting period:** 2026-01-01 → 2026-10-20  
+**Total attested commits:** 217  
 _Part of the full Exhibit 4 — [table of contents](https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/exhibit-4-log.md) · interactive view: [exhibit-4.html](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/vocational-compliance/exhibit-4.html) · [public-preview homepage](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/)_
 
 This section exists because Exhibit 4's normal table can only ever see PUBLIC GitHub commit history — real work in a repo that is private by design (no public mirror) is otherwise invisible to it. Rows below name the real repo and use the SAME category rubric and message sanitization as the public table (see `privatewitness_scan.py` and `build_vocational_log.py`'s `classify()`/`sanitize_message()`), but each one carries a real **local** commit SHA instead of a github.com URL — a git-verifiable attestation the account owner can produce the underlying commit for on request, not a link a reader can independently follow the way a public row's link can. See `vocational-compliance/privatewitness-registry.json` for exactly which repos are in scope here and which were reviewed and excluded (and why).
@@ -273,11 +273,63 @@ This section exists because Exhibit 4's normal table can only ever see PUBLIC Gi
 | 2026-09-14 | Product Management | Update Holy Earth/PIR sneak-peek: fork-not-transfer + real repo names | **Mystarch**<br>`b767902` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
 | 2026-09-14 | Product Management | PENDING-TASKS.md + logs entry + reply to Cosmos Advisor's letter | **Mystarch**<br>`5a3d4a5` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
 | 2026-09-14 | Product Management | .githooks: add pre-commit chaining to ggshield -- closes a real secret-scan gap | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`ce4812a` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-09-15 | Product Management | PENDING-TASKS.md: close the divorce-custody-assistant hook-activation gap | **Mystarch**<br>`9c019bb` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
 | 2026-09-15 | Product Management | PENDING-TASKS.md: AGENTS.md/CLAUDE.md added to all 9 parent repos | **Mystarch**<br>`886d385` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
 | 2026-09-15 | Product Management | PENDING-TASKS.md: Cosmos's 2026-09-15 handoff read, fleet-wide sync complete | **Mystarch**<br>`f429153` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
 | 2026-09-15 | Product Management | Widen trigger scope to five repos, close fork-not-transfer, hand off to Mystarch | **Mystarch**<br>`737b28e` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
 | 2026-09-15 | Product Management | install-hooks.sh: refuse to silently disable ggshield, rather than warn about it | **Mystarch**<br>`1eb6996` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
 | 2026-09-15 | Product Management | install-hooks.sh: refuse to silently disable ggshield, rather than warn about it | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`f3e53b3` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-09-19 | Product Management | docs: fleet update for Mystarch - Littlebird is now a two-way MCP connection | **Mystarch**<br>`bb489b8` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-09-20 | Product Management | docs: heads-up for Mystarch - last two stray AGENT-SYNC dirs removed | **Mystarch**<br>`222330c` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+
+### Week of 2026-09-21 → 2026-09-27
+
+| Date | Category | Activity / Description | Attestation (repo — local commit SHA) | Equivalence |
+|---|---|---|---|---|
+| 2026-09-22 | Product Management | PENDING-TASKS.md + logs: record the addendum-placement correction | **Mystarch**<br>`eabaa3e` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-09-22 | Product Management | Move the org-separation update into its own dated file, not an addendum | **Mystarch**<br>`d6bd3ec` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-09-22 | Product Management | Record the 5-parent-repo reorg into ~/code/ + session continuity fixes | **Mystarch**<br>`cc6b05e` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-09-22 | Product Management | Close the attribution/ggshield hook gap fleet-wide + loop back to Cosmos | **Mystarch**<br>`3021085` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-09-22 | Product Management | docs: handoff to Cosmos on her attribution hook + new org/repo news | **Mystarch**<br>`8b93500` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-09-23 | Product Management | Handoff: fleet-wide changelog framework, built and live for PIR + THEF | **Mystarch**<br>`350f2bb` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-09-23 | Product Management | Handoff to Mystarch: LittlebirdAI hook-exemption gap, 8-repo partial sweep | **Mystarch**<br>`1e724a3` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-09-23 | Product Management | .githooks/commit-msg: sync the LittlebirdAI exemption fix from my-template | **Mystarch**<br>`f76b9e5` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-09-24 | Product Management | handoff: changelog framework grew into a matched portal/library system, follow-up | **Mystarch**<br>`a0277cb` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+
+## October 2026
+
+### Week of 2026-09-28 → 2026-10-04
+
+| Date | Category | Activity / Description | Attestation (repo — local commit SHA) | Equivalence |
+|---|---|---|---|---|
+| 2026-09-29 | Product Management | CLAUDE.md: add external-repo-safety section (was missing here entirely) | **Mystarch**<br>`6f1df47` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-09-29 | Product Management | Add session-log relocation cleanup handoff | **Mystarch**<br>`ad6455f` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+
+### Week of 2026-10-05 → 2026-10-11
+
+| Date | Category | Activity / Description | Attestation (repo — local commit SHA) | Equivalence |
+|---|---|---|---|---|
+| 2026-10-06 | Product Management | Cosmos: hand off to active PIR and O-R-G sessions | **Mystarch**<br>`a6926da` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-10-06 | Product Management | Cosmos: complete public branch protection rollout | **Mystarch**<br>`71e277d` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-10-06 | Product Management | Cosmos: record branch protection permission blockers | **Mystarch**<br>`c919679` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-10-06 | Product Management | Cosmos: roadmap health check and A.L.E.X. webhook pilot; final checkpoint | **Mystarch**<br>`2a1538d` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-10-06 | Product Management | Cosmos: checkpoint — gh added; branch-protection session instructions | **Mystarch**<br>`f8abc60` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-10-06 | Product Management | Cosmos: checkpoint before GitHub CLI and org branch protection | **Mystarch**<br>`ae04117` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-10-06 | Technical Outreach | Cosmos: point the proposal at its open PR instead of a placement task | **Mystarch**<br>`ab4d9bf` (local, not on github.com) | 2 hrs / 2 action (Actions (direct business lead generation)) |
+| 2026-10-06 | Audit / Education | Document five-owner access audit | **Mystarch**<br>`fd0afbe` (local, not on github.com) | 3 hrs (Hours (professional performance review)) |
+| 2026-10-06 | Product Management | Record PIR crisis text mismatch | **Mystarch**<br>`db1de81` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-10-06 | Product Management | Cosmos: record the launched org-access session in its kickoff | **Mystarch**<br>`be0164e` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-10-06 | Product Management | Cosmos: kickoff for the first session that can reach the orgs | **Mystarch**<br>`76924d7` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-10-06 | Product Management | Cosmos: add a where-to-look index and the settled org-access path | **Mystarch**<br>`0934e21` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-10-06 | Technical Outreach | Cosmos: handoff for the Claude agents, plus a Cosmos-for-PIR proposal draft | **Mystarch**<br>`64c90f1` (local, not on github.com) | 2 hrs / 2 action (Actions (direct business lead generation)) |
+| 2026-10-06 | Product Management | Cosmos: landscape across all five accounts, plus a roadmap for Mystarch to hold | **Mystarch**<br>`1c940b5` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-10-11 | Product Management | chore(agent-sync): Littlebird's org-access-unlocked handoff for Cosmos/Mystarch | **Mystarch**<br>`6b136c8` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+
+### Week of 2026-10-12 → 2026-10-18
+
+| Date | Category | Activity / Description | Attestation (repo — local commit SHA) | Equivalence |
+|---|---|---|---|---|
+| 2026-10-12 | Product Management | chore(agent-sync): Alfred handoff -- community platforms per org, Telegram build lane, Lens/Farcaster direction | **Mystarch**<br>`c60cfd6` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
 
 ---
 

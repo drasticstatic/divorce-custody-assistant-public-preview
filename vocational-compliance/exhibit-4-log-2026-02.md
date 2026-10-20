@@ -4,7 +4,7 @@ _Part of the full Exhibit 4 — [table of contents](https://github.com/drasticst
  · [public-preview homepage](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/)_
 
 **Reporting month:** February 2026  
-**Commits this month:** 63 · **Hours-equiv:** 311 · **Actions-equiv:** 0
+**Commits this month:** 75 · **Hours-equiv:** 358 · **Actions-equiv:** 0
 
 ---
 
@@ -12,11 +12,13 @@ _Part of the full Exhibit 4 — [table of contents](https://github.com/drasticst
 
 **Compliance target (context):** 8 attributable actions/week
 
-_No attributable commits recorded this week._
+_Commits this week:_ 1 · _Hours-equiv:_ 4 · _Actions-equiv:_ 0
 
 ### Weekly Vocational Activity & Work-Search & Effort Report
 
-_No attributable commits recorded this week._
+| Date | Category | Activity / Description | Proof (repo — full commit URL) | Equivalence |
+|---|---|---|---|---|
+| 2026-02-02 | Product Management | Update README.md | **free-claude-code**<br>https://github.com/drasticstatic/free-claude-code/commit/b6b63d3c78a9cd70c014c6b07c42c93d46ed9e48 | 4 hrs (Hours (product management / startup labor)) |
 
 ---
 
@@ -24,13 +26,22 @@ _No attributable commits recorded this week._
 
 **Compliance target (context):** 8 attributable actions/week
 
-_Commits this week:_ 1 · _Hours-equiv:_ 5 · _Actions-equiv:_ 0
+_Commits this week:_ 10 · _Hours-equiv:_ 40 · _Actions-equiv:_ 0
 
 ### Weekly Vocational Activity & Work-Search & Effort Report
 
 | Date | Category | Activity / Description | Proof (repo — full commit URL) | Equivalence |
 |---|---|---|---|---|
+| 2026-02-11 | Product Management | Update README.md | **free-claude-code**<br>https://github.com/drasticstatic/free-claude-code/commit/e7e9ed86cc22ba87c4637cfdd35fadb64c29c055 | 4 hrs (Hours (product management / startup labor)) |
 | 2026-02-12 | Beta-Testing & Calibration | commit b4 adding perp DEXs | **trading-bot-arbitrage-public**<br>https://github.com/drasticstatic/trading-bot-arbitrage-public/commit/be8515251db4e5dff589cc899732e5adf4adfb87 | 5 hrs (Hours (product development / startup labor)) |
+| 2026-02-13 | Product Management | Update README.md | **free-claude-code**<br>https://github.com/drasticstatic/free-claude-code/commit/e30ff4749a8b3934d7030521c1c97e895145483c | 4 hrs (Hours (product management / startup labor)) |
+| 2026-02-14 | Product Management | Update README.md | **free-claude-code**<br>https://github.com/drasticstatic/free-claude-code/commit/9e56866a284e36b86ad6b217a017978a576fce97 | 4 hrs (Hours (product management / startup labor)) |
+| 2026-02-15 | Product Management | Update README.md | **free-claude-code**<br>https://github.com/drasticstatic/free-claude-code/commit/01e29742f6ab38b74cb45ba4695b7c10de36ba1c | 4 hrs (Hours (product management / startup labor)) |
+| 2026-02-15 | Product Management | Update README.md | **free-claude-code**<br>https://github.com/drasticstatic/free-claude-code/commit/a8ea7d0e1ea1ed0256a29e8de0f4297910ac9783 | 4 hrs (Hours (product management / startup labor)) |
+| 2026-02-15 | Product Management | Update README.md | **free-claude-code**<br>https://github.com/drasticstatic/free-claude-code/commit/cadd2c15039a0be341bb920ef8f0e74dba7cbb87 | 4 hrs (Hours (product management / startup labor)) |
+| 2026-02-15 | Product Management | Update README.md | **free-claude-code**<br>https://github.com/drasticstatic/free-claude-code/commit/eb85c10848476d472e995129c0b34d7f8d7d17d1 | 4 hrs (Hours (product management / startup labor)) |
+| 2026-02-15 | Product Management | Update README.md | **free-claude-code**<br>https://github.com/drasticstatic/free-claude-code/commit/46a9c145368d63fa00125491b32cce43f1d380f2 | 4 hrs (Hours (product management / startup labor)) |
+| 2026-02-15 | Audit / Education | Update tests.yml | **free-claude-code**<br>https://github.com/drasticstatic/free-claude-code/commit/de970deb5db41603000cf08ea69041378cd6c158 | 3 hrs (Hours (professional performance review)) |
 
 ---
 
@@ -38,12 +49,13 @@ _Commits this week:_ 1 · _Hours-equiv:_ 5 · _Actions-equiv:_ 0
 
 **Compliance target (context):** 8 attributable actions/week
 
-_Commits this week:_ 17 · _Hours-equiv:_ 74 · _Actions-equiv:_ 0
+_Commits this week:_ 19 · _Hours-equiv:_ 82 · _Actions-equiv:_ 0
 
 ### Weekly Vocational Activity & Work-Search & Effort Report
 
 | Date | Category | Activity / Description | Proof (repo — full commit URL) | Equivalence |
 |---|---|---|---|---|
+| 2026-02-17 | Product Management | Update README.md | **free-claude-code**<br>https://github.com/drasticstatic/free-claude-code/commit/96553df53dc20029d5fd2a312590c84edda58b00 | 4 hrs (Hours (product management / startup labor)) |
 | 2026-02-18 | Product Management | first commit | **TradeZella_STB**<br>https://github.com/drasticstatic/TradeZella_STB/commit/c8347f1447a6733211fa623e5e118598cc8a2d42 | 4 hrs (Hours (product management / startup labor)) |
 | 2026-02-18 | Product Management | initial commit | **TradeZella_STB**<br>https://github.com/drasticstatic/TradeZella_STB/commit/6f5eaae459884a28f391e0f68d5c1fa9fd7f7061 | 4 hrs (Hours (product management / startup labor)) |
 | 2026-02-18 | Product Management | update readme with google sheets link master template | **TradeZella_STB**<br>https://github.com/drasticstatic/TradeZella_STB/commit/10e98e69e6008d1d483eb8fbc9bc036da624e8e9 | 4 hrs (Hours (product management / startup labor)) |
@@ -53,6 +65,7 @@ _Commits this week:_ 17 · _Hours-equiv:_ 74 · _Actions-equiv:_ 0
 | 2026-02-18 | Product Management | Include demo video and viewing instructions in README | **TradeZella_STB**<br>https://github.com/drasticstatic/TradeZella_STB/commit/c96dd88a2f5f825779c1720025c03ad6a1b359b8 | 4 hrs (Hours (product management / startup labor)) |
 | 2026-02-18 | Product Management | Revise demo video access instructions | **TradeZella_STB**<br>https://github.com/drasticstatic/TradeZella_STB/commit/75b65c88448ae73ce17856d012c53e886cda4a9e | 4 hrs (Hours (product management / startup labor)) |
 | 2026-02-18 | Product Management | Revise demo video section in README | **TradeZella_STB**<br>https://github.com/drasticstatic/TradeZella_STB/commit/1833a8d8f8d3bd239ea8f0d41efe2cc5c1821d3b | 4 hrs (Hours (product management / startup labor)) |
+| 2026-02-20 | Product Management | Update README.md | **free-claude-code**<br>https://github.com/drasticstatic/free-claude-code/commit/4c0c1f125b1d74f7b020ea9e967c4f1b774b2dd5 | 4 hrs (Hours (product management / startup labor)) |
 | 2026-02-21 | Product Management | first commit | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/9ddd0f77018af19eee03583bf9c834ec54126267 | 4 hrs (Hours (product management / startup labor)) |
 | 2026-02-21 | Product Management | initial commit | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/ae61d45e40ae5ca5f0adccdba910a9623ff6af72 | 4 hrs (Hours (product management / startup labor)) |
 | 2026-02-21 | Product Management | clean | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/257d70d7c4ff4a4e6f1e398731666db28ab81e9c | 4 hrs (Hours (product management / startup labor)) |

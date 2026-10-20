@@ -4,7 +4,7 @@ _Part of the full Exhibit 4 — [table of contents](https://github.com/drasticst
  · [public-preview homepage](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/)_
 
 **Reporting month:** April 2026  
-**Commits this month:** 350 · **Hours-equiv:** 1582 · **Actions-equiv:** 18
+**Commits this month:** 352 · **Hours-equiv:** 1592 · **Actions-equiv:** 18
 
 ---
 
@@ -241,7 +241,7 @@ _Commits this week:_ 55 · _Hours-equiv:_ 233 · _Actions-equiv:_ 0
 
 **Compliance target (context):** 8 attributable actions/week
 
-_Commits this week:_ 173 · _Hours-equiv:_ 771 · _Actions-equiv:_ 8
+_Commits this week:_ 175 · _Hours-equiv:_ 781 · _Actions-equiv:_ 8
 
 ### Weekly Vocational Activity & Work-Search & Effort Report
 
@@ -278,6 +278,7 @@ _Commits this week:_ 173 · _Hours-equiv:_ 771 · _Actions-equiv:_ 8
 | 2026-04-28 | Audit / Education | Complete Apr 28 trade review — MGC Long +$14 · Zella 38.89 · 2.03% exit efficiency | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/3251903e78f2ac3e4e9b7687ee3c80eb3efd1908 | 3 hrs (Hours (professional performance review)) |
 | 2026-04-28 | Audit / Education | Update Apr 28 review + trade-review skill automator command | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/03a3ae7c039a7d760da19c0d0b243eb172c69ebe | 3 hrs (Hours (professional performance review)) |
 | 2026-04-29 | Audit / Education | Spec audit + skills-to-specs integration, Apr 28 Marp slides | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/f7bfcad676bc8dcca077e805731284d20fc44b47 | 3 hrs (Hours (professional performance review)) |
+| 2026-04-29 | Beta-Testing & Calibration | Update .env.example | **free-claude-code**<br>https://github.com/drasticstatic/free-claude-code/commit/0294e04f437a7c0deab66bef3a37a6f146d0d54a | 5 hrs (Hours (product development / startup labor)) |
 | 2026-04-29 | Risk Evaluation | Pointer refactor: specs/skills aligned, external tools indexed | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/ca172c517f80314172dc534de6142b14f6833778 | 8 hrs (Hours (prop firm combine / risk audit)) |
 | 2026-04-29 | Product Management | Expand EXTERNAL_TOOLS with troubleshoot + new-machine setup; update README | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/10fb6ebacee9f2df8aa5a0682b25e5f7bda5cb10 | 4 hrs (Hours (product management / startup labor)) |
 | 2026-04-29 | Code Deployment | Fix README labels + EXTERNAL_TOOLS repo strategy | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/31afc761bbf77f680ddc29918eb75f77f61d511d | 6 hrs (Hours (technical portfolio build)) |
@@ -296,6 +297,7 @@ _Commits this week:_ 173 · _Hours-equiv:_ 771 · _Actions-equiv:_ 8
 | 2026-04-30 | Audit / Education | Standardize Feb daily review Trade Log sections | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/b4889cbbfa323a070f05dbae24fe9ae35916d46f | 3 hrs (Hours (professional performance review)) |
 | 2026-04-30 | Audit / Education | Fix legacy review link names in Feb daily reviews | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/3d3707e13ab5d06c27c73f92a5034932b5d861ce | 3 hrs (Hours (professional performance review)) |
 | 2026-04-30 | Audit / Education | Standardize all review headers: consistent format across all ~70 files | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/2ab91842b547b1ef98a63484efb951f124254950 | 3 hrs (Hours (professional performance review)) |
+| 2026-04-30 | Beta-Testing & Calibration | Update .env.example | **free-claude-code**<br>https://github.com/drasticstatic/free-claude-code/commit/1dfa54a04d135e1a6d6bac8b1b64ac1cac7943e2 | 5 hrs (Hours (product development / startup labor)) |
 | 2026-04-30 | Product Management | UI polish: identity-tinted chips, stronger CTAs, journey card emojis; draft Drive guide | **pir-devine-news-public**<br>https://github.com/drasticstatic/pir-devine-news-public/commit/04bded702bc87c97e793e180f90d434ada5f3635 | 4 hrs (Hours (product management / startup labor)) |
 | 2026-04-30 | Code Deployment | Add GDRIVE_GUIDE, GDrive nav links, input bg fixes, eyebrow/nav bounces | **pir-devine-news-public**<br>https://github.com/drasticstatic/pir-devine-news-public/commit/a77ff21ae8af4fffbb4f8fa31619bad1c1889a8e | 6 hrs (Hours (technical portfolio build)) |
 | 2026-04-30 | Beta-Testing & Calibration | GWS_SETUP: add Re-authentication section, fix auth command in troubleshooting | **pir-devine-news-public**<br>https://github.com/drasticstatic/pir-devine-news-public/commit/e3888721c3919ec946ad43784c359fd6bf0507b1 | 5 hrs (Hours (product development / startup labor)) |
