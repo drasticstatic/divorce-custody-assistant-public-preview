@@ -1,6 +1,6 @@
 # Exhibit 4 — Private Work (Attested, Not Independently Verifiable)
 
-**Reporting period:** 2026-01-01 → 2026-10-20  
+**Reporting period:** 2026-01-01 → 2026-10-22  
 **Total attested commits:** 217  
 _Part of the full Exhibit 4 — [table of contents](https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/exhibit-4-log.md) · interactive view: [exhibit-4.html](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/vocational-compliance/exhibit-4.html) · [public-preview homepage](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/)_
 

@@ -77,6 +77,21 @@ except Exception:  # noqa: BLE001 - opt-in local state, never break the generato
 
 ACCOUNT = "drasticstatic"
 
+# GitHub Organizations Christopher owns, whose PUBLIC repos should also be
+# scanned for his own commits (same author-identity filter as the personal
+# account below — org-mate commits are never attributed to him). This is an
+# explicit, reviewable allowlist, not an auto-discovered `gh api user/orgs`
+# call: new org membership should surface here deliberately, the same
+# "notice and ask before including" posture privatewitness_scan.py uses for
+# private repos. Confirmed with Christopher 2026-10-22.
+KNOWN_ORGS = [
+    "Octagon-Religious-Research-Group-ORG",
+    "theholyearthfoundation",
+    "psychedelicsinrecovery",
+    "psanctuarychurch",
+    "psanctuary",
+]
+
 # Public-preview publishing target. Cross-links in every generated markdown
 # resolve to GitHub blob URLs on this mirror (the privacy-preserving lane the
 # sync pipeline publishes), the HTML accordion is served raw off the
@@ -1974,10 +1989,17 @@ def main(argv: list[str]) -> int:
         print("Dates must be YYYY-MM-DD", file=sys.stderr)
         return 2
 
-    api = GitHubAPI(args.author)
-    print(f"Collecting public commits for {args.author} "
-          f"({args.since} → {args.until})…", file=sys.stderr)
-    commits = gather_commits(api, args.since, args.until, set(args.deny))
+    # Personal account first, then every known org — same author-identity
+    # filter (KNOWN_AUTHOR_IDENTITIES, applied inside gather_commits via
+    # attributable()) keeps org-mate commits out regardless of owner.
+    owners = [args.author] + [o for o in KNOWN_ORGS if o != args.author]
+    commits: list[Commit] = []
+    for owner in owners:
+        api = GitHubAPI(owner)
+        print(f"Collecting public commits for {owner} "
+              f"({args.since} → {args.until})…", file=sys.stderr)
+        commits.extend(gather_commits(api, args.since, args.until, set(args.deny)))
+    commits.sort(key=lambda c: c.date)
     print(f"Total attributable public commits in range: {len(commits)}",
           file=sys.stderr)
 
