@@ -1,7 +1,7 @@
 # Exhibit 4 — Private Work (Attested, Not Independently Verifiable)
 
-**Reporting period:** 2026-01-01 → 2026-10-22  
-**Total attested commits:** 217  
+**Reporting period:** 2026-01-01 → 2026-10-25  
+**Total attested commits:** 222  
 _Part of the full Exhibit 4 — [table of contents](https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/exhibit-4-log.md) · interactive view: [exhibit-4.html](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/vocational-compliance/exhibit-4.html) · [public-preview homepage](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/)_
 
 This section exists because Exhibit 4's normal table can only ever see PUBLIC GitHub commit history — real work in a repo that is private by design (no public mirror) is otherwise invisible to it. Rows below name the real repo and use the SAME category rubric and message sanitization as the public table (see `privatewitness_scan.py` and `build_vocational_log.py`'s `classify()`/`sanitize_message()`), but each one carries a real **local** commit SHA instead of a github.com URL — a git-verifiable attestation the account owner can produce the underlying commit for on request, not a link a reader can independently follow the way a public row's link can. See `vocational-compliance/privatewitness-registry.json` for exactly which repos are in scope here and which were reviewed and excluded (and why).
@@ -330,6 +330,16 @@ This section exists because Exhibit 4's normal table can only ever see PUBLIC Gi
 | Date | Category | Activity / Description | Attestation (repo — local commit SHA) | Equivalence |
 |---|---|---|---|---|
 | 2026-10-12 | Product Management | chore(agent-sync): Alfred handoff -- community platforms per org, Telegram build lane, Lens/Farcaster direction | **Mystarch**<br>`c60cfd6` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+
+### Week of 2026-10-19 → 2026-10-25
+
+| Date | Category | Activity / Description | Attestation (repo — local commit SHA) | Equivalence |
+|---|---|---|---|---|
+| 2026-10-25 | Code Deployment | chore(agent-sync): Alfred handoff -- THEF Genesis Stop 7 + knowledge-layer recon (BASE, search, deploy keys, Pages, GitGuardian) | **Mystarch**<br>`fd862fe` (local, not on github.com) | 6 hrs (Hours (technical portfolio build)) |
+| 2026-10-25 | Product Management | AGENT-SYNC: Fortuna's reply to Alfred's reconciliation handoff (terminal live, edge-report ask) | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`fab4921` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-10-25 | Beta-Testing & Calibration | Edge study: measure the arb edge on live Arbitrum before any wallet is funded | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`094edc5` (local, not on github.com) | 5 hrs (Hours (product development / startup labor)) |
+| 2026-10-25 | Product Management | Restore the April V1 code and ops docs that two stale-tree commits had reverted | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`8af24a1` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-10-25 | Product Management | AGENT-SYNC: Fortuna handoff for the tandem DEX session (monitor-only edge study) | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`1d5883f` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
 
 ---
 
