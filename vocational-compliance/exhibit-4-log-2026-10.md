@@ -4,7 +4,7 @@ _Part of the full Exhibit 4 — [table of contents](https://github.com/drasticst
  · [public-preview homepage](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/)_
 
 **Reporting month:** October 2026  
-**Commits this month:** 452 · **Hours-equiv:** 1996 · **Actions-equiv:** 10
+**Commits this month:** 475 · **Hours-equiv:** 2095 · **Actions-equiv:** 10
 
 ---
 
@@ -355,7 +355,7 @@ _Commits this week:_ 215 · _Hours-equiv:_ 959 · _Actions-equiv:_ 6
 
 **Compliance target (context):** 8 attributable actions/week
 
-_Commits this week:_ 148 · _Hours-equiv:_ 665 · _Actions-equiv:_ 0
+_Commits this week:_ 171 · _Hours-equiv:_ 764 · _Actions-equiv:_ 0
 
 ### Weekly Vocational Activity & Work-Search & Effort Report
 
@@ -509,6 +509,29 @@ _Commits this week:_ 148 · _Hours-equiv:_ 665 · _Actions-equiv:_ 0
 | 2026-10-25 | Code Deployment | [P3] deps: sharp 0.35.5, devalue, http-cache-semantics, smol-toml, source-map-js | **O-R-G-astro-public**<br>https://github.com/drasticstatic/O-R-G-astro-public/commit/d22002e186ff2cc550fc7ba4738dce63df63fcc1 | 6 hrs (Hours (technical portfolio build)) |
 | 2026-10-25 | Product Management | 🌿 rehearsal: build [redacted] | **david-amaringo-publish-preview**<br>https://github.com/theholyearthfoundation/david-amaringo-publish-preview/commit/0dfe465bd5c43413c21d049ab3ef667195f7a032 | 4 hrs (Hours (product management / startup labor)) |
 | 2026-10-25 | Product Management | 🌿 live: build [redacted] | **david-amaringo-public**<br>https://github.com/theholyearthfoundation/david-amaringo-public/commit/22de2cc167e27c828e8d217ebf5cc819eb14ab62 | 4 hrs (Hours (product management / startup labor)) |
+| 2026-10-25 | Risk Evaluation | Fortuna perps scanner + terminal alerts, scanner and sizer panels | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/db7b6252cefdc5a5b545371ff6cd257126b33a0a | 8 hrs (Hours (prop firm combine / risk audit)) |
+| 2026-10-25 | Product Management | 🌿 rehearsal: build [redacted] | **david-amaringo-genesis-preview**<br>https://github.com/drasticstatic/david-amaringo-genesis-preview/commit/a1fa2ef88541aa76d957bded277e842507186691 | 4 hrs (Hours (product management / startup labor)) |
+| 2026-10-25 | Code Deployment | [P2] security: Next.js 16.4.1, follow-redirects, hono, fast-uri, sharp, source-map-js | **O-R-G-dapp-public-preview**<br>https://github.com/drasticstatic/O-R-G-dapp-public-preview/commit/a226f585c248513b6fd39f2d467ec97655300995 | 6 hrs (Hours (technical portfolio build)) |
+| 2026-10-25 | Product Management | 🌿 live: build [redacted] | **iamoneself-retreats-public**<br>https://github.com/theholyearthfoundation/iamoneself-retreats-public/commit/375850b48c4d2ebbdc67a87adb0936604a905a77 | 4 hrs (Hours (product management / startup labor)) |
+| 2026-10-25 | Product Management | Regenerate Exhibit 4 through 2026-10-25 | **divorce-custody-assistant-public-preview**<br>https://github.com/drasticstatic/divorce-custody-assistant-public-preview/commit/4fbe7fd4fcf6a45245fe117f0712ada4da7815aa | 4 hrs (Hours (product management / startup labor)) |
+| 2026-10-25 | Code Deployment | [P2] security: astro 7.3.8, undici 8.12.3, vite 8.3.5, zod 4.6.7 | **O-R-G-astro-public**<br>https://github.com/drasticstatic/O-R-G-astro-public/commit/34f34b74b52d0c7d661828c8956c34c1b6732044 | 6 hrs (Hours (technical portfolio build)) |
+| 2026-10-25 | Product Management | Edge study, order planner, market specs; terminal Edge study panel | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/644257de1a8a540dcfd6232de6b471ad4ba9c5c8 | 4 hrs (Hours (product management / startup labor)) |
+| 2026-10-25 | Product Management | 🌿 live: build [redacted] | **iamoneself-retreats-public**<br>https://github.com/theholyearthfoundation/iamoneself-retreats-public/commit/bfa63b580a80ff9dc45b875ff01ba086b8720fe1 | 4 hrs (Hours (product management / startup labor)) |
+| 2026-10-25 | Product Management | 🌿 rehearsal: build [redacted] | **iamoneself-retreats-publish-preview**<br>https://github.com/theholyearthfoundation/iamoneself-retreats-publish-preview/commit/e04afda5f162c3eee63298da06ef27043c899e99 | 4 hrs (Hours (product management / startup labor)) |
+| 2026-10-25 | Product Management | Terminal: 18:53 ET check-in (crude out of zone, gold grinding, no trade) | **trading-assistant-public-preview**<br>https://github.com/drasticstatic/trading-assistant-public-preview/commit/f2ace8195938fc99fb568bc05cf32dc54812adfe | 4 hrs (Hours (product management / startup labor)) |
+| 2026-10-25 | Product Management | 🌿 rehearsal: build [redacted] | **iamoneself-genesis-preview**<br>https://github.com/drasticstatic/iamoneself-genesis-preview/commit/b38328c3427f334c6f730a3fac84e33fd0fe3067 | 4 hrs (Hours (product management / startup labor)) |
+| 2026-10-25 | Product Management | 🌿 rehearsal: build [redacted] | **david-amaringo-publish-preview**<br>https://github.com/theholyearthfoundation/david-amaringo-publish-preview/commit/77cf5b26a46d155683f6017f2e219714a52e41b2 | 4 hrs (Hours (product management / startup labor)) |
+| 2026-10-25 | Product Management | 🌿 rehearsal: build [redacted] | **david-amaringo-genesis-preview**<br>https://github.com/drasticstatic/david-amaringo-genesis-preview/commit/1e2abdf181b088c66d0754d126d2c8a6c0de145e | 4 hrs (Hours (product management / startup labor)) |
+| 2026-10-25 | Audit / Education | docs 2026-10-25 — VERSION-LINEAGE: the time machine (earlier versions, nearest first); new repos may come up with Actions off; an empty LIVE_BASE_PATH is false in expressions (from | **my-template**<br>https://github.com/drasticstatic/my-template/commit/4fc5edefe232bcee84762dbb291cf01c0000120b | 3 hrs (Hours (professional performance review)) |
+| 2026-10-25 | Product Management | 🌿 rehearsal: build [redacted] | **david-amaringo-publish-preview**<br>https://github.com/theholyearthfoundation/david-amaringo-publish-preview/commit/55435806a6c163156fec20f7c164af1cc45249b0 | 4 hrs (Hours (product management / startup labor)) |
+| 2026-10-25 | Product Management | 🌿 rehearsal: build [redacted] | **david-amaringo-genesis-preview**<br>https://github.com/drasticstatic/david-amaringo-genesis-preview/commit/0fc13f98a8b598d68b829934ec0664c7536ed159 | 4 hrs (Hours (product management / startup labor)) |
+| 2026-10-25 | Product Management | 🌿 live: build [redacted] | **david-amaringo-public**<br>https://github.com/theholyearthfoundation/david-amaringo-public/commit/b35438e172478cb5ae25107d1709442b1322a23d | 4 hrs (Hours (product management / startup labor)) |
+| 2026-10-25 | Product Management | docs 2026-10-25 — David's site is home at david.iamoneself.com; I Am One Self Retreats live from the foundation; the first lab versions kept as history | **theholyearthfoundation.github.io**<br>https://github.com/theholyearthfoundation/theholyearthfoundation.github.io/commit/c69481f2d6f733bd0189c8bf0830b229b1c77c23 | 4 hrs (Hours (product management / startup labor)) |
+| 2026-10-25 | Product Management | docs 2026-10-25 — profile: David at david.iamoneself.com, I Am One Self Retreats live from the foundation, the first lab versions kept as history | **.github**<br>https://github.com/theholyearthfoundation/.github/commit/077377bf4d3658b3bfc9112f98521035c35e3069 | 4 hrs (Hours (product management / startup labor)) |
+| 2026-10-25 | Product Management | 🌿 rehearsal: build [redacted] | **david-amaringo-publish-preview**<br>https://github.com/theholyearthfoundation/david-amaringo-publish-preview/commit/40bf586d9082cfd53e013cfbbdb77891adb40d3c | 4 hrs (Hours (product management / startup labor)) |
+| 2026-10-25 | Product Management | 🌿 rehearsal: build [redacted] | **iamoneself-retreats-publish-preview**<br>https://github.com/theholyearthfoundation/iamoneself-retreats-publish-preview/commit/b1bf00a36abee487091f9f9fb6a9328ef8f24164 | 4 hrs (Hours (product management / startup labor)) |
+| 2026-10-25 | Product Management | 🌿 rehearsal: build [redacted] | **david-amaringo-genesis-preview**<br>https://github.com/drasticstatic/david-amaringo-genesis-preview/commit/760e202f7b1f0e23fcc54915e642be3bcd9d16eb | 4 hrs (Hours (product management / startup labor)) |
+| 2026-10-25 | Product Management | 🌿 rehearsal: build [redacted] | **iamoneself-genesis-preview**<br>https://github.com/drasticstatic/iamoneself-genesis-preview/commit/53c45e1c54121e87d0acd4075144d9c2c1126594 | 4 hrs (Hours (product management / startup labor)) |
 
 ---
 
