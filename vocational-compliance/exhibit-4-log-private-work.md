@@ -1,7 +1,7 @@
 # Exhibit 4 — Private Work (Attested, Not Independently Verifiable)
 
-**Reporting period:** 2026-01-01 → 2026-10-25  
-**Total attested commits:** 223  
+**Reporting period:** 2026-01-01 → 2026-10-26  
+**Total attested commits:** 233  
 _Part of the full Exhibit 4 — [table of contents](https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/exhibit-4-log.md) · interactive view: [exhibit-4.html](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/vocational-compliance/exhibit-4.html) · [public-preview homepage](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/)_
 
 This section exists because Exhibit 4's normal table can only ever see PUBLIC GitHub commit history — real work in a repo that is private by design (no public mirror) is otherwise invisible to it. Rows below name the real repo and use the SAME category rubric and message sanitization as the public table (see `privatewitness_scan.py` and `build_vocational_log.py`'s `classify()`/`sanitize_message()`), but each one carries a real **local** commit SHA instead of a github.com URL — a git-verifiable attestation the account owner can produce the underlying commit for on request, not a link a reader can independently follow the way a public row's link can. See `vocational-compliance/privatewitness-registry.json` for exactly which repos are in scope here and which were reviewed and excluded (and why).
@@ -336,11 +336,26 @@ This section exists because Exhibit 4's normal table can only ever see PUBLIC Gi
 | Date | Category | Activity / Description | Attestation (repo — local commit SHA) | Equivalence |
 |---|---|---|---|---|
 | 2026-10-25 | Code Deployment | chore(agent-sync): Alfred handoff -- THEF Genesis Stop 7 + knowledge-layer recon (BASE, search, deploy keys, Pages, GitGuardian) | **Mystarch**<br>`fd862fe` (local, not on github.com) | 6 hrs (Hours (technical portfolio build)) |
+| 2026-10-25 | Product Management | Journal: 2026-10-25 — 142 activity, 0 analysis, 0 trade events, 142 quoted candidates | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`48a9121` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-10-25 | Code Deployment | HANDOFF: note the two mirror/deploy breaks found and fixed tonight, with the live public URLs | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`396a007` (local, not on github.com) | 6 hrs (Hours (technical portfolio build)) |
+| 2026-10-25 | Code Deployment | Pair vite 8 with @vitejs/plugin-react 6 so the public Pages build installs again | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`72decc0` (local, not on github.com) | 6 hrs (Hours (technical portfolio build)) |
+| 2026-10-25 | Product Management | Classify the restored root paths as private so the public mirror syncs again | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`0a60afc` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-10-25 | Product Management | Journal: 2026-10-25 — 2 activity, 0 analysis, 0 trade events, 2 quoted candidates | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`cb14090` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-10-25 | Beta-Testing & Calibration | Rebuild the dashboard as the FortunaTrades ARB terminal; journal every event to the repo; freeze earlier demos as lineage stops | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`df52fb8` (local, not on github.com) | 5 hrs (Hours (product development / startup labor)) |
 | 2026-10-25 | Product Management | Price every fee tier as its own venue, rank routes after pool fees, publish a public study snapshot | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`fe3942c` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
 | 2026-10-25 | Product Management | AGENT-SYNC: Fortuna's reply to Alfred's reconciliation handoff (terminal live, edge-report ask) | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`fab4921` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
 | 2026-10-25 | Beta-Testing & Calibration | Edge study: measure the arb edge on live Arbitrum before any wallet is funded | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`094edc5` (local, not on github.com) | 5 hrs (Hours (product development / startup labor)) |
 | 2026-10-25 | Product Management | Restore the April V1 code and ops docs that two stale-tree commits had reverted | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`8af24a1` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
 | 2026-10-25 | Product Management | AGENT-SYNC: Fortuna handoff for the tandem DEX session (monitor-only edge study) | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`1d5883f` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+
+### Week of 2026-10-26 → 2026-11-01
+
+| Date | Category | Activity / Description | Attestation (repo — local commit SHA) | Equivalence |
+|---|---|---|---|---|
+| 2026-10-26 | Product Management | Census persistence: hourly from the monitor, "apart in N of M runs", compact snapshot | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`40dd04d` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-10-26 | Product Management | Readings, the wider net, alert history, and the loop-back to Fortuna | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`2250bf7` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-10-26 | Product Management | Fortuna → Alfred handoff: loop-back convention, ntfy topic registry, alert-history backfill ask, liquidity chart ideas | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`ca9c445` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-10-26 | Product Management | Terminal v2: one page again, the fleet palette, a color per DEX, alerts to the phone | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`2429d8b` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
 
 ---
 
