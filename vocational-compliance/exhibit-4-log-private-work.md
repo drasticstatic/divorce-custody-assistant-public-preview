@@ -1,7 +1,7 @@
 # Exhibit 4 — Private Work (Attested, Not Independently Verifiable)
 
 **Reporting period:** 2026-01-01 → 2026-10-26  
-**Total attested commits:** 233  
+**Total attested commits:** 238  
 _Part of the full Exhibit 4 — [table of contents](https://github.com/drasticstatic/divorce-custody-assistant-public-preview/blob/main/vocational-compliance/exhibit-4-log.md) · interactive view: [exhibit-4.html](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/vocational-compliance/exhibit-4.html) · [public-preview homepage](https://drasticstatic.github.io/divorce-custody-assistant-public-preview/)_
 
 This section exists because Exhibit 4's normal table can only ever see PUBLIC GitHub commit history — real work in a repo that is private by design (no public mirror) is otherwise invisible to it. Rows below name the real repo and use the SAME category rubric and message sanitization as the public table (see `privatewitness_scan.py` and `build_vocational_log.py`'s `classify()`/`sanitize_message()`), but each one carries a real **local** commit SHA instead of a github.com URL — a git-verifiable attestation the account owner can produce the underlying commit for on request, not a link a reader can independently follow the way a public row's link can. See `vocational-compliance/privatewitness-registry.json` for exactly which repos are in scope here and which were reviewed and excluded (and why).
@@ -352,6 +352,11 @@ This section exists because Exhibit 4's normal table can only ever see PUBLIC Gi
 
 | Date | Category | Activity / Description | Attestation (repo — local commit SHA) | Equivalence |
 |---|---|---|---|---|
+| 2026-10-26 | Product Management | The frontier and the desk: four monitor-only scouts, a live rail, and the empty real estate filled | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`27396ef` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-10-26 | Product Management | Polish: the lessons read across, not down | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`66418c2` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-10-26 | Product Management | The chase: triangles, dislocation lifetimes and the wire — measured monitor-only before anything is built | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`1de0ee9` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
+| 2026-10-26 | Technical Outreach | Fortuna → Alfred: FortunaVision, shared chart engine + indicator contract proposal, proprietary boundary | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`51f2c9f` (local, not on github.com) | 2 hrs / 2 action (Actions (direct business lead generation)) |
+| 2026-10-26 | Product Management | The costume: the public copy wears stage names, the local page shows the real ones | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`5fad351` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
 | 2026-10-26 | Product Management | Census persistence: hourly from the monitor, "apart in N of M runs", compact snapshot | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`40dd04d` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
 | 2026-10-26 | Product Management | Readings, the wider net, alert history, and the loop-back to Fortuna | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`2250bf7` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
 | 2026-10-26 | Product Management | Fortuna → Alfred handoff: loop-back convention, ntfy topic registry, alert-history backfill ask, liquidity chart ideas | **trading-bot_arbitrage_DAPPUv3_hardhat_UNI-CAKE**<br>`ca9c445` (local, not on github.com) | 4 hrs (Hours (product management / startup labor)) |
